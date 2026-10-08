@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { Heart, ShoppingBag, Truck, ShieldCheck, ChevronDown } from "lucide-react";
+import { Heart } from "lucide-react";
 import { PRODUCTS } from "@/data/products";
 import { useShop } from "@/context/ShopContext";
 import { ProductCard } from "@/components/ProductCard";
@@ -26,9 +26,6 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
     product?.defaultSize || product?.sizeOptions?.[0] || "12ml"
   );
   const [quantity, setQuantity] = useState(1);
-  const [activeAccordion, setActiveAccordion] = useState<
-    "notes" | "ingredients" | "wear" | "returns" | null
-  >("notes");
 
   if (!product) {
     return (
@@ -36,11 +33,8 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
         <h1 className="font-serif text-4xl text-[#1a1411] font-light">
           Creation Not Found
         </h1>
-        <Link
-          href="/shop"
-          className="eyebrow-label text-xs text-[#8a6a22] border-b border-[#8a6a22]"
-        >
-          Return to Collection
+        <Link href="/shop" className="text-link-underline text-[#1a1411]">
+          Return to collection →
         </Link>
       </div>
     );
@@ -53,14 +47,8 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
     (p) => p.id !== product.id && p.category === product.category
   ).slice(0, 4);
 
-  const toggleAccordion = (
-    key: "notes" | "ingredients" | "wear" | "returns"
-  ) => {
-    setActiveAccordion(activeAccordion === key ? null : key);
-  };
-
   return (
-    <div className="bg-[#F6EFE2] text-[#1a1411] pt-28 pb-20 font-sans">
+    <div className="bg-[#F6EFE2] text-[#1a1411] pt-28 pb-24 font-sans">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 space-y-16">
         {/* Breadcrumb */}
         <div className="text-xs font-mono tracking-widest text-[#6b5f55] uppercase space-x-2">
@@ -78,8 +66,8 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
         {/* 2-Column Product Detail Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* LEFT: Photo Gallery */}
-          <div className="lg:col-span-6 space-y-4">
-            <div className="relative bg-[#FBF6EA] border border-[#dccfb6]">
+          <div className="lg:col-span-6">
+            <div className="relative bg-[#EADFCB]">
               <Photo
                 slot={product.slug}
                 alt={product.name}
@@ -90,11 +78,11 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
               />
               <button
                 onClick={() => toggleWishlist(product.id)}
-                className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-[#F6EFE2] flex items-center justify-center text-[#1a1411] hover:text-[#8b1a2b] transition-colors shadow-sm"
+                className="absolute top-4 right-4 z-10 p-2 text-[#1a1411] hover:text-[#8b1a2b] transition-colors focus:outline-none"
                 aria-label="Save to Wishlist"
               >
                 <Heart
-                  className={`w-4 h-4 ${
+                  className={`w-5 h-5 ${
                     isLiked ? "fill-[#8b1a2b] text-[#8b1a2b]" : ""
                   }`}
                 />
@@ -105,10 +93,10 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
           {/* RIGHT: Product Details & Purchase Actions */}
           <div className="lg:col-span-6 space-y-8">
             <div className="space-y-2 border-b border-[#dccfb6] pb-6">
-              <span className="eyebrow-label text-[#8a6a22]">
+              <span className="font-mono text-xs uppercase tracking-widest text-[#8a6a22]">
                 {product.type || product.category}
               </span>
-              <h1 className="font-serif text-3xl sm:text-4xl text-[#1a1411] font-light">
+              <h1 className="font-serif text-4xl sm:text-5xl text-[#1a1411] font-light">
                 {product.name}
               </h1>
               <p className="font-mono text-2xl text-[#1a1411] font-medium pt-2">
@@ -116,25 +104,25 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
               </p>
             </div>
 
-            <p className="text-[#6b5f55] text-sm font-light leading-relaxed">
+            <p className="text-[#6b5f55] text-base font-light leading-relaxed">
               {product.description || product.shortDescription}
             </p>
 
-            {/* Size Selector (Pill Buttons) */}
+            {/* Size Selector (Row of Text Options with Underline, NOT Pills) */}
             {product.sizeOptions && product.sizeOptions.length > 0 && (
               <div className="space-y-3">
-                <span className="eyebrow-label text-[11px] text-[#1a1411]">
-                  SELECT VOLUME
+                <span className="font-mono text-xs uppercase tracking-widest text-[#1a1411] block">
+                  VOLUME
                 </span>
-                <div className="flex flex-wrap gap-2.5">
+                <div className="flex flex-wrap gap-6 border-b border-[#dccfb6] pb-3">
                   {product.sizeOptions.map((size) => (
                     <button
                       key={size}
                       onClick={() => setSelectedSize(size)}
-                      className={`px-4 py-2.5 text-xs font-mono uppercase tracking-wider border transition-all ${
+                      className={`font-mono text-xs uppercase tracking-wider pb-1 border-b-2 transition-all ${
                         selectedSize === size
-                          ? "border-[#26060d] bg-[#26060d] text-[#F6EFE2]"
-                          : "border-[#dccfb6] bg-white text-[#1a1411] hover:border-[#C9A55C]"
+                          ? "border-[#C9A55C] text-[#1a1411] font-medium"
+                          : "border-transparent text-[#6b5f55] hover:text-[#1a1411]"
                       }`}
                     >
                       {size}
@@ -144,12 +132,12 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
               </div>
             )}
 
-            {/* Quantity Selector & Add to Bag */}
-            <div className="flex items-center gap-4 pt-2">
-              <div className="flex items-center border border-[#dccfb6] bg-white h-12">
+            {/* Quantity Selector & Single Primary Button */}
+            <div className="flex items-center gap-6 pt-2">
+              <div className="flex items-center border-b border-[#dccfb6] h-12">
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="px-3 py-2 text-sm text-[#1a1411] hover:bg-[#F6EFE2]"
+                  className="px-3 py-2 text-sm text-[#1a1411] hover:text-[#8b1a2b]"
                 >
                   -
                 </button>
@@ -158,7 +146,7 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
                 </span>
                 <button
                   onClick={() => setQuantity(quantity + 1)}
-                  className="px-3 py-2 text-sm text-[#1a1411] hover:bg-[#F6EFE2]"
+                  className="px-3 py-2 text-sm text-[#1a1411] hover:text-[#8b1a2b]"
                 >
                   +
                 </button>
@@ -166,154 +154,58 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
 
               <button
                 onClick={() => addToCart(product, selectedSize, quantity)}
-                className="flex-1 h-12 bg-[#26060d] text-[#F6EFE2] hover:bg-[#3b0a12] text-xs font-mono uppercase tracking-[0.25em] font-semibold transition-colors flex items-center justify-center gap-2"
+                className="flex-1 h-12 bg-[#C9A55C] text-[#26060d] hover:bg-[#E7CF98] text-xs font-mono uppercase tracking-[0.25em] font-semibold transition-colors rounded-none flex items-center justify-center"
               >
-                <span>ADD TO BAG</span>
-                <ShoppingBag className="w-4 h-4" />
+                Add to bag
               </button>
             </div>
 
-            {/* Accordions (Notes, Ingredients, Wear, Shipping/Returns) */}
-            <div className="border-t border-[#dccfb6] divide-y divide-[#dccfb6] pt-4">
-              {/* Notes Accordion */}
+            {/* Information Blocks (Plain Headings with Hairlines, No Accordion Boxes) */}
+            <div className="border-t border-[#dccfb6] divide-y divide-[#dccfb6] pt-4 space-y-6">
+              {/* Notes Block */}
               {product.notes && (
-                <div className="py-4">
-                  <button
-                    onClick={() => toggleAccordion("notes")}
-                    className="w-full flex items-center justify-between text-left focus:outline-none"
-                  >
-                    <span className="eyebrow-label text-xs text-[#1a1411]">
-                      OLFACTIVE NOTES
-                    </span>
-                    <ChevronDown
-                      className={`w-4 h-4 text-[#8a6a22] transition-transform ${
-                        activeAccordion === "notes" ? "rotate-180" : ""
-                      }`}
-                    />
-                  </button>
-                  {activeAccordion === "notes" && (
-                    <div className="pt-4 grid grid-cols-3 gap-4 text-xs font-light">
-                      <div>
-                        <span className="font-mono text-[10px] text-[#8a6a22] uppercase block mb-1">
-                          TOP
-                        </span>
-                        <p className="text-[#6b5f55]">
-                          {product.notes.top.join(", ")}
-                        </p>
-                      </div>
-                      <div>
-                        <span className="font-mono text-[10px] text-[#8a6a22] uppercase block mb-1">
-                          HEART
-                        </span>
-                        <p className="text-[#6b5f55]">
-                          {product.notes.heart.join(", ")}
-                        </p>
-                      </div>
-                      <div>
-                        <span className="font-mono text-[10px] text-[#8a6a22] uppercase block mb-1">
-                          BASE
-                        </span>
-                        <p className="text-[#6b5f55]">
-                          {product.notes.base.join(", ")}
-                        </p>
-                      </div>
-                    </div>
-                  )}
+                <div className="pt-4 space-y-2">
+                  <h3 className="font-serif text-xl text-[#1a1411]">
+                    Olfactive Notes
+                  </h3>
+                  <p className="text-xs text-[#6b5f55] font-light leading-relaxed">
+                    Top: {product.notes.top.join(", ")} • Heart: {product.notes.heart.join(", ")} • Base: {product.notes.base.join(", ")}
+                  </p>
                 </div>
               )}
 
-              {/* Ingredients Accordion */}
+              {/* Ingredients Block */}
               {product.ingredients && product.ingredients.length > 0 && (
-                <div className="py-4">
-                  <button
-                    onClick={() => toggleAccordion("ingredients")}
-                    className="w-full flex items-center justify-between text-left focus:outline-none"
-                  >
-                    <span className="eyebrow-label text-xs text-[#1a1411]">
-                      INGREDIENTS & CONCENTRATION
-                    </span>
-                    <ChevronDown
-                      className={`w-4 h-4 text-[#8a6a22] transition-transform ${
-                        activeAccordion === "ingredients" ? "rotate-180" : ""
-                      }`}
-                    />
-                  </button>
-                  {activeAccordion === "ingredients" && (
-                    <div className="pt-3 text-xs text-[#6b5f55] font-light space-y-2">
-                      <p>
-                        <strong className="font-medium text-[#1a1411]">
-                          Concentration:
-                        </strong>{" "}
-                        {product.concentration || "Fine Perfume Extrait"}
-                      </p>
-                      <p>
-                        <strong className="font-medium text-[#1a1411]">
-                          Ingredients:
-                        </strong>{" "}
-                        {product.ingredients.join(", ")}
-                      </p>
-                    </div>
-                  )}
+                <div className="pt-4 space-y-2">
+                  <h3 className="font-serif text-xl text-[#1a1411]">
+                    Ingredients & Concentration
+                  </h3>
+                  <p className="text-xs text-[#6b5f55] font-light leading-relaxed">
+                    {product.concentration || "Fine Perfume Extrait"}. {product.ingredients.join(", ")}.
+                  </p>
                 </div>
               )}
 
-              {/* How to Wear Accordion */}
+              {/* How to Wear Block */}
               {product.howToWear && (
-                <div className="py-4">
-                  <button
-                    onClick={() => toggleAccordion("wear")}
-                    className="w-full flex items-center justify-between text-left focus:outline-none"
-                  >
-                    <span className="eyebrow-label text-xs text-[#1a1411]">
-                      APPLICATION & SILPAGE
-                    </span>
-                    <ChevronDown
-                      className={`w-4 h-4 text-[#8a6a22] transition-transform ${
-                        activeAccordion === "wear" ? "rotate-180" : ""
-                      }`}
-                    />
-                  </button>
-                  {activeAccordion === "wear" && (
-                    <div className="pt-3 text-xs text-[#6b5f55] font-light space-y-2">
-                      <p>{product.howToWear}</p>
-                      {product.longevity && (
-                        <p>
-                          <strong className="font-medium text-[#1a1411]">
-                            Longevity:
-                          </strong>{" "}
-                          {product.longevity}
-                        </p>
-                      )}
-                    </div>
-                  )}
+                <div className="pt-4 space-y-2">
+                  <h3 className="font-serif text-xl text-[#1a1411]">
+                    Application & Sillage
+                  </h3>
+                  <p className="text-xs text-[#6b5f55] font-light leading-relaxed">
+                    {product.howToWear} {product.longevity ? `(${product.longevity})` : ""}
+                  </p>
                 </div>
               )}
 
-              {/* Shipping & Returns Accordion */}
-              <div className="py-4">
-                <button
-                  onClick={() => toggleAccordion("returns")}
-                  className="w-full flex items-center justify-between text-left focus:outline-none"
-                >
-                  <span className="eyebrow-label text-xs text-[#1a1411]">
-                    SHIPPING & GUARANTEE
-                  </span>
-                  <ChevronDown
-                    className={`w-4 h-4 text-[#8a6a22] transition-transform ${
-                      activeAccordion === "returns" ? "rotate-180" : ""
-                    }`}
-                  />
-                </button>
-                {activeAccordion === "returns" && (
-                  <div className="pt-3 text-xs text-[#6b5f55] font-light space-y-2">
-                    <p>
-                      Free express shipping across India on orders above ₹3,000.
-                    </p>
-                    <p className="text-[#8b1a2b] font-normal">
-                      No returns on opened or used products. If a bottle arrives broken or damaged, we will replace it. Report within 48 hours with an unboxing video.
-                    </p>
-                  </div>
-                )}
+              {/* Shipping & Guarantee Block */}
+              <div className="pt-4 space-y-2">
+                <h3 className="font-serif text-xl text-[#1a1411]">
+                  Shipping & Guarantee
+                </h3>
+                <p className="text-xs text-[#6b5f55] font-light leading-relaxed">
+                  Free shipping across India on orders above ₹3,000. No returns on opened or used products. If a bottle arrives broken or damaged, we will replace it. Report within 48 hours with an unboxing video.
+                </p>
               </div>
             </div>
           </div>
@@ -321,15 +213,10 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
 
         {/* Related Products Grid */}
         {relatedProducts.length > 0 && (
-          <div className="pt-16 border-t border-[#dccfb6] space-y-8">
-            <div className="text-center space-y-2">
-              <span className="eyebrow-label text-[#8a6a22]">
-                COMPLEMENTARY SCENTS
-              </span>
-              <h2 className="font-serif text-3xl text-[#1a1411] font-light">
-                You May Also Discover
-              </h2>
-            </div>
+          <div className="pt-20 border-t border-[#dccfb6] space-y-10">
+            <h2 className="font-serif text-3xl text-[#1a1411]">
+              You may also discover
+            </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {relatedProducts.map((p) => (
