@@ -1,71 +1,68 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&family=Alex+Brush&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --color-royal-pink: #B94D70;
-  --color-deep-rose: #8F304F;
-  --color-warm-ivory: #F8F1E7;
-  --color-soft-cream: #FFF9F1;
-  --color-deep-blue: #17345F;
-  --color-midnight-blue: #102746;
-  --color-silk-emerald: #176B58;
-  --color-deep-emerald: #0F4F42;
-  --color-antique-gold: #C49A52;
-  --color-light-gold: #DDBD78;
-  --color-dark-ink: #1A1615;
-  --color-muted-text: #756B63;
+  --color-wine-950: #26060d;
+  --color-wine-900: #3b0a12;
+  --color-wine-800: #4a0b17;
+  --color-wine-600: #7a1a2c;
+  --color-crimson: #8b1a2b;
+  --color-gold: #C9A55C;
+  --color-gold-light: #E7CF98;
+  --color-gold-deep: #8a6a22;
+  --color-ivory: #F6EFE2;
+  --color-cream: #FBF6EA;
+  --color-ink: #1a1411;
+  --color-muted: #6b5f55;
+  --color-line: #dccfb6;
 }
 
 body {
-  background-color: var(--color-warm-ivory);
-  color: var(--color-dark-ink);
-  font-family: 'Inter', sans-serif;
+  background-color: var(--color-ivory);
+  color: var(--color-ink);
+  font-family: var(--font-jost), sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, .font-serif-luxury {
-  font-family: 'Cormorant Garamond', serif;
+h1, h2, h3, h4, .font-serif {
+  font-family: var(--font-cormorant), Georgia, serif;
   font-weight: 400;
-  letter-spacing: -0.015em;
 }
 
-/* Editorial Heading Styles */
-.editorial-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 300;
-  letter-spacing: 0.02em;
-  line-height: 1.1;
-}
-
-.editorial-subhead {
-  font-family: 'Inter', sans-serif;
-  font-weight: 400;
-  letter-spacing: 0.25em;
+/* Eyebrow Label Utility */
+.eyebrow-label {
+  font-family: var(--font-jost), sans-serif;
+  font-size: 12px;
   text-transform: uppercase;
-  font-size: 0.6875rem;
+  letter-spacing: 0.28em;
+  font-weight: 500;
 }
 
-/* Subtle Architectural Accent Lines */
-.gold-line-subtle {
-  border-bottom: 1px solid rgba(196, 154, 82, 0.25);
-}
-
+/* Subtle Gold Gradient Text */
 .gold-gradient-text {
-  background: linear-gradient(135deg, #C49A52 0%, #F5E5C9 50%, #C49A52 100%);
+  background: linear-gradient(135deg, #E7CF98 0%, #C9A55C 50%, #8a6a22 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.border-gold-subtle {
-  border-color: rgba(196, 154, 82, 0.2);
+/* Architectural Arch Utilities */
+.arch-shape {
+  border-radius: 120px 120px 0 0;
 }
 
-/* Luxury Editorial Image Reveal & Hover */
+/* Subtle Gold Line */
+.gold-line-subtle {
+  border-bottom: 1px solid rgba(201, 165, 92, 0.3);
+}
+
+.border-gold-subtle {
+  border-color: rgba(201, 165, 92, 0.3);
+}
+
+/* Image Reveal & Hover */
 .editorial-image-hover {
   transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -76,21 +73,20 @@ h1, h2, h3, h4, .font-serif-luxury {
 
 /* Minimal Luxury Scrollbar */
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: #F8F1E7;
+  background: #F6EFE2;
 }
 ::-webkit-scrollbar-thumb {
-  background: #C49A52;
+  background: #C9A55C;
   border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #8F304F;
+  background: #3b0a12;
 }
 
 ::selection {
-  background-color: #17345F;
-  color: #F8F1E7;
+  background-color: #3b0a12;
+  color: #F6EFE2;
 }
-

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Cormorant_Garamond, Jost } from "next/font/google";
 import "./globals.css";
 import { ShopProvider } from "@/context/ShopContext";
 import { Header } from "@/components/Header";
@@ -9,31 +10,49 @@ import { SearchModal } from "@/components/SearchModal";
 import { FragranceFinderModal } from "@/components/FragranceFinderModal";
 import { ToastBanner } from "@/components/ToastBanner";
 
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  style: ["normal", "italic"],
+  variable: "--font-cormorant",
+  display: "swap",
+});
+
+const jost = Jost({
+  subsets: ["latin"],
+  weight: ["300", "400", "500"],
+  variable: "--font-jost",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "Mehraab | Royal Attar & Perfumes from India",
+  title: "Aarsika | Fine fragrance from India",
   description:
-    "Discover Mehraab's collection of attars, perfumes, oud and fragrance gifts inspired by India's rich perfumery heritage and Jaipur.",
+    "Rare scents. Timeless lands. Discover Aarsika's collection of fine attars, perfumes, bakhoor, and luxury gift sets.",
   keywords: [
-    "Mehraab",
-    "Royal Attar",
-    "Indian Perfumes",
-    "Attar Jaipur",
-    "Gul-e-Rooh",
-    "Oud Perfume",
-    "Luxury Perfumery India",
-    "Botanical Attar",
+    "Aarsika",
+    "Aarsika Parfums",
+    "Fine Fragrance India",
+    "Attar",
+    "Eau de Parfum",
+    "Luxury Perfume",
+    "Discovery Set",
+    "Extrait de Parfum",
   ],
+  icons: {
+    icon: "/brand/favicon.ico",
+  },
   openGraph: {
-    title: "Mehraab | Royal Attar & Perfumes from India",
-    description: "The Art of Royal Fragrance. Attars, perfumes & stories from India.",
-    url: "https://mehraab.in",
-    siteName: "Mehraab Royal Attar",
+    title: "Aarsika | Fine fragrance from India",
+    description: "Rare scents. Timeless lands. Fragrances shaped by memory, material and place.",
+    url: "https://aarsika.com",
+    siteName: "Aarsika Fine Fragrance",
     images: [
       {
-        url: "https://images.unsplash.com/photo-1615397349754-cfa2066a298e?auto=format&fit=crop&q=80&w=1200",
+        url: "/brand/og.jpg",
         width: 1200,
         height: 630,
-        alt: "Mehraab Royal Fragrance",
+        alt: "Aarsika Fine Fragrance",
       },
     ],
     locale: "en_IN",
@@ -47,8 +66,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="antialiased selection:bg-[#B94D70] selection:text-white">
+    <html lang="en" className={`${cormorant.variable} ${jost.variable}`}>
+      <body className="antialiased bg-[#F6EFE2] text-[#1a1411] font-sans selection:bg-[#8b1a2b] selection:text-white">
         <ShopProvider>
           <Header />
           <main className="min-h-screen">{children}</main>
