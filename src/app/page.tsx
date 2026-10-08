@@ -1,862 +1,434 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Star, ChevronLeft, ChevronRight, ShoppingBag, Heart } from "lucide-react";
+import { ArrowRight, Truck, ShieldCheck, RefreshCw, FileText, CheckCircle2 } from "lucide-react";
+import { motion } from "framer-motion";
 import { PRODUCTS } from "@/data/products";
-import { IMAGE_INVENTORY } from "@/data/images";
+import { JOURNAL_ARTICLES } from "@/data/journal";
 import { useShop } from "@/context/ShopContext";
+import { Photo } from "@/components/Photo";
+import { WaveDivider } from "@/components/WaveDivider";
 
 export default function HomePage() {
-  const { addToCart, toggleWishlist, wishlist } = useShop();
-  const [activeTestimonial, setActiveTestimonial] = useState(0);
-  const [emailInput, setEmailInput] = useState("");
-  const [agreedTerms, setAgreedTerms] = useState(false);
+  const { showToast } = useShop();
+  const [whatsappPhone, setWhatsappPhone] = useState("");
+  const [newsletterEmail, setNewsletterEmail] = useState("");
+  const [submitted, setSubmitted] = useState(false);
 
-  // Products to render in Section 04 (Bestsellers)
-  const bestsellerProducts = PRODUCTS.slice(0, 5);
+  // Featured product (first product in catalogue or Gul-e-Rooh)
+  const featuredProd = PRODUCTS[0] || {
+    id: "p1",
+    slug: "gul-e-rooh",
+    name: "Gul-e-Rooh",
+    type: "Damask Rose Attar",
+    price: 2499,
+    description:
+      "Pure distilled Damask Rose attar aged in creamy Mysore sandalwood oil. A timeless floral heart yielding an enveloping, serene fragrance aura.",
+  };
 
-  const testimonials = [
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!whatsappPhone && !newsletterEmail) return;
+    setSubmitted(true);
+    showToast("Thank you for connecting with Aarsika.");
+    setWhatsappPhone("");
+    setNewsletterEmail("");
+  };
+
+  const collectionsList = [
     {
-      id: 1,
-      quote: "The most beautiful rose attar I have ever experienced. Absolutely divine.",
-      author: "Aditi Sharma",
-      city: "Jaipur",
-      rating: 5,
+      num: "01",
+      title: "EAU DE PARFUM",
+      slot: "collection-eau-de-parfum",
+      href: "/perfumes",
     },
     {
-      id: 2,
-      quote: "Mehraab fragrances feel like a piece of heritage. Truly exceptional sillage.",
-      author: "Karan Malhotra",
-      city: "Delhi",
-      rating: 5,
+      num: "02",
+      title: "ATTAR",
+      slot: "collection-attar",
+      href: "/attar",
     },
     {
-      id: 3,
-      quote: "The packaging, the fragrance, the entire experience is so thoughtful and luxurious.",
-      author: "Sneha Rajput",
-      city: "Mumbai",
-      rating: 5,
+      num: "03",
+      title: "OUD",
+      slot: "collection-oud",
+      href: "/oud",
+    },
+    {
+      num: "04",
+      title: "GIFTING",
+      slot: "collection-gifting",
+      href: "/gifting",
     },
   ];
 
+  const storyStrips = [
+    {
+      slot: "strip-1",
+      caption: "REAL CRAFTSMANSHIP. REAL STORIES.",
+    },
+    {
+      slot: "strip-2",
+      caption: "A FRAGRANCE FOR EVERY STORY.",
+    },
+    {
+      slot: "strip-3",
+      caption: "INSPIRED BY PEOPLE, PLACES AND MOMENTS.",
+    },
+    {
+      slot: "strip-4",
+      caption: "SCENTS BORN FROM TIMELESS LANDS.",
+    },
+  ];
+
+  const journalTeasers = JOURNAL_ARTICLES.slice(0, 3);
+
   return (
-    <div className="bg-[#F8F1E7] text-[#1A1615] overflow-x-hidden font-sans">
+    <div className="bg-[#F6EFE2] text-[#1a1411] overflow-x-hidden font-sans">
       {/* ==========================================
-          01. ROYAL HERO — PALACE CAMPAIGN COMPOSITION
+          5a. HERO SECTION (Full Viewport, Deep Burgundy #26060d)
       ========================================== */}
-      <section className="relative h-screen min-h-[760px] flex flex-col justify-end overflow-hidden">
-        {/* Background Campaign Photography */}
+      <section className="relative h-screen min-h-[680px] bg-[#26060d] text-[#F6EFE2] flex flex-col justify-end overflow-hidden">
+        {/* Background Photo Slot with Dark Legibility Gradient */}
         <div className="absolute inset-0 z-0">
-          <Image
-            src={IMAGE_INVENTORY.heroApproved.url}
-            alt={IMAGE_INVENTORY.heroApproved.alt}
-            fill
+          <Photo
+            slot="hero"
+            alt="Aarsika Fine Fragrance Hero"
+            aspect="16/9"
+            shape="full"
             priority
             sizes="100vw"
-            className="object-cover object-center filter brightness-[0.92] contrast-[1.02]"
+            className="h-full w-full opacity-40 mix-blend-luminosity"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-black/15" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#26060d] via-[#26060d]/70 to-[#26060d]/40 z-10" />
         </div>
 
-        {/* Side Vertical Editorial Labels */}
-        <div className="absolute left-8 top-1/2 -translate-y-1/2 z-10 hidden lg:block">
-          <div className="flex flex-col items-center gap-3">
-            <span className="w-1.5 h-1.5 rotate-45 bg-[#C49A52]" />
-            <span className="writing-mode-vertical text-[10px] tracking-[0.4em] font-mono uppercase text-[#F8F1E7]/80">
-              HERITAGE IN A BOTTLE
-            </span>
-          </div>
-        </div>
+        {/* Hero Main Content Box */}
+        <div className="relative z-20 max-w-7xl mx-auto w-full px-6 sm:px-8 lg:px-12 pb-20 md:pb-24 grid grid-cols-1 lg:grid-cols-12 items-end gap-8">
+          {/* Left Column: Tagline & CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="lg:col-span-9 space-y-6"
+          >
+            {/* Small Gold Diamond & Line Ornament */}
+            <div className="flex items-center space-x-3 text-[#C9A55C]">
+              <span className="h-[1px] w-8 bg-[#C9A55C]" />
+              <span className="text-xs">◆</span>
+              <span className="eyebrow-label text-[#E7CF98]">FINE FRAGRANCE</span>
+            </div>
 
-        <div className="absolute right-8 top-1/2 -translate-y-1/2 z-10 hidden lg:block">
-          <div className="flex flex-col items-center gap-3">
-            <span className="w-1.5 h-1.5 rotate-45 bg-[#C49A52]" />
-            <span className="writing-mode-vertical text-[10px] tracking-[0.4em] font-mono uppercase text-[#F8F1E7]/80">
-              SCENTS &bull; PLACES &bull; CULTURE &bull; CRAFTSMANSHIP &bull; JAIPUR
-            </span>
-          </div>
-        </div>
-
-        {/* Hero Central Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 pb-24 w-full text-center flex flex-col items-center justify-end space-y-6">
-          <div className="space-y-3 max-w-3xl">
-            <h1 className="font-serif text-5xl sm:text-7xl lg:text-8xl font-light text-[#F8F1E7] leading-[1.02] tracking-tight">
-              THE ART OF <br />
-              <span className="italic font-normal text-[#F8F1E7]">ROYAL FRAGRANCE.</span>
+            {/* Main Headline */}
+            <h1 className="font-serif font-light uppercase tracking-wider text-4xl sm:text-6xl lg:text-7xl xl:text-8xl leading-[1.05] gold-gradient-text">
+              RARE SCENTS. <br />
+              TIMELESS LANDS.
             </h1>
-            <p className="text-xs sm:text-sm text-[#F8F1E7]/85 font-light tracking-[0.25em] uppercase font-mono">
-              Attars, perfumes &amp; stories from India.
+
+            {/* Subcopy */}
+            <p className="text-sm sm:text-base md:text-lg text-[#F6EFE2]/85 font-light tracking-wide max-w-xl">
+              Fragrances shaped by memory, material and place.
             </p>
-          </div>
 
-          <div className="pt-2">
-            <Link
-              href="/shop"
-              className="inline-flex items-center gap-3 text-xs tracking-[0.3em] font-mono uppercase text-[#F8F1E7] hover:text-[#C49A52] transition-colors border-b border-[#F8F1E7]/60 pb-1 font-medium"
-            >
-              <span>SHOP COLLECTIONS</span>
-              <ArrowRight className="w-3.5 h-3.5 text-[#C49A52]" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ==========================================
-          02. CATEGORY ARCHES — ARCHITECTURAL FRAMES
-      ========================================== */}
-      <section className="py-20 sm:py-28 px-6 sm:px-10 lg:px-12 max-w-7xl mx-auto">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-          {/* ARCH 1: ATTAR */}
-          <Link href="/attar" className="group block space-y-4 text-center">
-            <div className="relative aspect-[3/4] w-full rounded-t-[140px] sm:rounded-t-[160px] overflow-hidden bg-[#EFE8DC] border border-[#C49A52]/40 p-2 shadow-md transition-transform duration-500 group-hover:-translate-y-1.5">
-              <div className="relative w-full h-full rounded-t-[132px] sm:rounded-t-[152px] overflow-hidden">
-                <Image
-                  src={IMAGE_INVENTORY.rosePerfumeBottle.url}
-                  alt="Attars Collection"
-                  fill
-                  sizes="(max-width: 768px) 50vw, 25vw"
-                  className="object-cover object-center filter contrast-[1.02] transition-transform duration-700 group-hover:scale-105"
-                />
-              </div>
-            </div>
-            <div className="space-y-1">
-              <h3 className="font-serif text-xl sm:text-2xl font-light text-[#1A1615] tracking-wide">
-                ATTAR
-              </h3>
-              <p className="text-[11px] font-light text-[#756B63] font-mono uppercase tracking-wider">
-                Pure. Natural. Timeless.
-              </p>
-              <span className="inline-block text-xs text-[#C49A52] group-hover:translate-x-1 transition-transform">
-                &rarr;
-              </span>
-            </div>
-          </Link>
-
-          {/* ARCH 2: EAU DE PARFUM */}
-          <Link href="/perfumes" className="group block space-y-4 text-center">
-            <div className="relative aspect-[3/4] w-full rounded-t-[140px] sm:rounded-t-[160px] overflow-hidden bg-[#EFE8DC] border border-[#C49A52]/40 p-2 shadow-md transition-transform duration-500 group-hover:-translate-y-1.5">
-              <div className="relative w-full h-full rounded-t-[132px] sm:rounded-t-[152px] overflow-hidden">
-                <Image
-                  src={IMAGE_INVENTORY.mehraabEdpProduct.url}
-                  alt="Eau de Parfum Collection"
-                  fill
-                  sizes="(max-width: 768px) 50vw, 25vw"
-                  className="object-cover object-center filter contrast-[1.02] transition-transform duration-700 group-hover:scale-105"
-                />
-              </div>
-            </div>
-            <div className="space-y-1">
-              <h3 className="font-serif text-xl sm:text-2xl font-light text-[#1A1615] tracking-wide">
-                EAU DE PARFUM
-              </h3>
-              <p className="text-[11px] font-light text-[#756B63] font-mono uppercase tracking-wider">
-                Modern. Elegant. Long-Lasting.
-              </p>
-              <span className="inline-block text-xs text-[#C49A52] group-hover:translate-x-1 transition-transform">
-                &rarr;
-              </span>
-            </div>
-          </Link>
-
-          {/* ARCH 3: OUD */}
-          <Link href="/oud" className="group block space-y-4 text-center">
-            <div className="relative aspect-[3/4] w-full rounded-t-[140px] sm:rounded-t-[160px] overflow-hidden bg-[#EFE8DC] border border-[#C49A52]/40 p-2 shadow-md transition-transform duration-500 group-hover:-translate-y-1.5">
-              <div className="relative w-full h-full rounded-t-[132px] sm:rounded-t-[152px] overflow-hidden">
-                <Image
-                  src={IMAGE_INVENTORY.oudhBottle.url}
-                  alt="Oud Collection"
-                  fill
-                  sizes="(max-width: 768px) 50vw, 25vw"
-                  className="object-cover object-center filter contrast-[1.02] transition-transform duration-700 group-hover:scale-105"
-                />
-              </div>
-            </div>
-            <div className="space-y-1">
-              <h3 className="font-serif text-xl sm:text-2xl font-light text-[#1A1615] tracking-wide">
-                OUD
-              </h3>
-              <p className="text-[11px] font-light text-[#756B63] font-mono uppercase tracking-wider">
-                Rare. Rich. Exquisite.
-              </p>
-              <span className="inline-block text-xs text-[#C49A52] group-hover:translate-x-1 transition-transform">
-                &rarr;
-              </span>
-            </div>
-          </Link>
-
-          {/* ARCH 4: GIFTING */}
-          <Link href="/gifting" className="group block space-y-4 text-center">
-            <div className="relative aspect-[3/4] w-full rounded-t-[140px] sm:rounded-t-[160px] overflow-hidden bg-[#EFE8DC] border border-[#C49A52]/40 p-2 shadow-md transition-transform duration-500 group-hover:-translate-y-1.5">
-              <div className="relative w-full h-full rounded-t-[132px] sm:rounded-t-[152px] overflow-hidden">
-                <Image
-                  src={IMAGE_INVENTORY.comboGiftingBox.url}
-                  alt="Royal Gifting"
-                  fill
-                  sizes="(max-width: 768px) 50vw, 25vw"
-                  className="object-cover object-center filter contrast-[1.02] transition-transform duration-700 group-hover:scale-105"
-                />
-              </div>
-            </div>
-            <div className="space-y-1">
-              <h3 className="font-serif text-xl sm:text-2xl font-light text-[#1A1615] tracking-wide">
-                GIFTING
-              </h3>
-              <p className="text-[11px] font-light text-[#756B63] font-mono uppercase tracking-wider">
-                Thoughtful. Royal. Memorable.
-              </p>
-              <span className="inline-block text-xs text-[#C49A52] group-hover:translate-x-1 transition-transform">
-                &rarr;
-              </span>
-            </div>
-          </Link>
-        </div>
-      </section>
-
-      {/* ==========================================
-          03. ROYAL HOUSE EDITORIAL SECTION — 3-PART MAGAZINE SPREAD
-      ========================================== */}
-      <section className="relative w-full overflow-hidden bg-[#F8F1E7] border-y border-[#C49A52]/20">
-        <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[480px] sm:min-h-[540px] lg:min-h-[580px]">
-          {/* LEFT PORTION (~35%): Blue Rajasthan Architectural Artwork */}
-          <div className="lg:col-span-4 relative min-h-[300px] lg:min-h-full overflow-hidden bg-[#17345F]">
-            <Image
-              src={IMAGE_INVENTORY.splitHeritageStory.url}
-              alt="Blue Rajasthan Architectural Illustration"
-              fill
-              priority
-              sizes="(max-width: 1024px) 100vw, 35vw"
-              className="object-cover object-left filter contrast-[1.03]"
-            />
-          </div>
-
-          {/* MIDDLE PORTION (~30%): Cream Editorial Text Block */}
-          <div className="lg:col-span-4 relative flex flex-col justify-center p-8 sm:p-12 lg:p-14 bg-[#F8F1E7] text-[#1A1615]">
-            <div className="space-y-6 max-w-md mx-auto">
-              <span className="text-xs tracking-[0.35em] text-[#8F304F] uppercase font-mono font-semibold block">
-                A LEGACY
-              </span>
-
-              <h2 className="font-serif text-3xl sm:text-5xl font-light text-[#1A1615] leading-[1.08] tracking-tight">
-                FAVOURITES <br />
-                OF THE ROYAL HOUSE.
-              </h2>
-
-              <p className="text-xs sm:text-sm font-light text-[#54463E] leading-relaxed">
-                Mehraab is a tribute to India&apos;s royal fragrance traditions, where fine ingredients, craftsmanship and culture come together to create extraordinary scents.
-              </p>
-
-              <div className="pt-2">
-                <Link
-                  href="/our-story"
-                  className="inline-flex items-center gap-3 text-xs tracking-[0.25em] font-mono uppercase text-[#1A1615] hover:text-[#B94D70] transition-colors border-b border-[#1A1615]/60 pb-0.5 font-semibold"
-                >
-                  <span>OUR STORY</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-[#C49A52]" />
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* RIGHT PORTION (~35%): Continuous Woman & Sandstone Palace Photograph */}
-          <div className="lg:col-span-4 relative min-h-[360px] lg:min-h-full overflow-hidden">
-            <Image
-              src={IMAGE_INVENTORY.splitHeritageStory.url}
-              alt="Woman in traditional pink outfit overlooking Rajasthan palace and lake"
-              fill
-              priority
-              sizes="(max-width: 1024px) 100vw, 35vw"
-              className="object-cover object-right filter contrast-[1.03]"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* ==========================================
-          04. BESTSELLERS — FAVOURITES OF THE ROYAL HOUSE
-      ========================================== */}
-      <section className="py-20 sm:py-28 lg:py-32 bg-[#F8F1E7]">
-        <div className="max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 space-y-12 sm:space-y-14">
-          {/* Section Header */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-[#C49A52]/25">
-            <div className="space-y-2.5">
-              <span className="text-xs sm:text-sm tracking-[0.35em] text-[#C49A52] uppercase font-mono font-medium block">
-                BESTSELLERS
-              </span>
-              <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-light text-[#1A1615] tracking-tight leading-tight">
-                FAVOURITES OF THE ROYAL HOUSE.
-              </h2>
-              <p className="text-sm sm:text-base font-light text-[#756B63] max-w-2xl leading-relaxed">
-                Our most-loved attars and perfumes, inspired by India&apos;s heritage and crafted for modern connoisseurs.
-              </p>
-            </div>
-
-            <div className="flex items-center gap-6 sm:gap-8">
+            {/* CTA Button */}
+            <div className="pt-2">
               <Link
                 href="/shop"
-                className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-[#C49A52] hover:text-[#1A1615] transition-colors border-b border-[#C49A52]/50 pb-1 font-medium"
+                className="inline-flex items-center gap-4 group focus:outline-none"
               >
-                VIEW ALL &rarr;
+                <span className="eyebrow-label text-xs tracking-[0.3em] text-[#F6EFE2] group-hover:text-[#E7CF98] transition-colors">
+                  EXPLORE COLLECTION
+                </span>
+                <span className="w-10 h-10 rounded-full border border-[#C9A55C] flex items-center justify-center text-[#C9A55C] group-hover:bg-[#C9A55C] group-hover:text-[#26060d] transition-all duration-300">
+                  <ArrowRight className="w-4 h-4" />
+                </span>
               </Link>
-              <div className="flex items-center gap-3">
-                <button
-                  className="w-10 h-10 rounded-full border border-[#C49A52]/40 flex items-center justify-center text-[#1A1615] hover:bg-[#1A1615] hover:text-white transition-colors"
-                  aria-label="Previous Products"
-                >
-                  <ChevronLeft className="w-5 h-5" />
-                </button>
-                <button
-                  className="w-10 h-10 rounded-full border border-[#C49A52]/40 flex items-center justify-center text-[#1A1615] hover:bg-[#1A1615] hover:text-white transition-colors"
-                  aria-label="Next Products"
-                >
-                  <ChevronRight className="w-5 h-5" />
-                </button>
-              </div>
             </div>
-          </div>
+          </motion.div>
 
-          {/* 5 Product Cards Grid — Extra Large Spacious Luxury Sizing */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 sm:gap-7 lg:gap-8">
-            {bestsellerProducts.map((product) => {
-              const isWishlisted = wishlist.includes(product.id);
-              return (
-                <div
-                  key={product.id}
-                  className="group flex flex-col justify-between p-4 sm:p-6 bg-[#F4ECDF] border border-[#E5DACB] rounded-xl shadow-sm space-y-4 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg"
+          {/* Right Edge: Vertical Stacked Pillar Labels (Hidden on Mobile) */}
+          <div className="hidden lg:flex lg:col-span-3 flex-col items-end justify-end space-y-8 pr-4">
+            <div className="h-32 w-[1px] bg-gradient-to-b from-transparent via-[#C9A55C] to-transparent my-2" />
+            {["NATURE", "HERITAGE", "CRAFTSMANSHIP", "FRAGRANCE"].map(
+              (label) => (
+                <span
+                  key={label}
+                  className="font-mono text-[9px] uppercase tracking-[0.3em] text-[#E7CF98]/60 hover:text-[#C9A55C] transition-colors"
                 >
-                  <div className="space-y-4">
-                    {/* Extra Large Square Image Frame */}
-                    <div className="relative aspect-square w-full bg-[#EFE8DC] overflow-hidden rounded-lg">
-                      <Link href={`/products/${product.slug}`} className="block relative w-full h-full">
-                        <Image
-                          src={product.mainImage}
-                          alt={product.name}
-                          fill
-                          sizes="(max-width: 768px) 50vw, 25vw"
-                          className="object-cover object-center filter contrast-[1.02] transition-transform duration-700 group-hover:scale-105"
-                        />
-                      </Link>
-
-                      {/* Subtle Wishlist Heart Button */}
-                      <button
-                        onClick={() => toggleWishlist(product.id)}
-                        className="absolute top-3.5 right-3.5 z-10 w-8.5 h-8.5 rounded-full bg-white/85 backdrop-blur-xs flex items-center justify-center text-[#2D2825] hover:text-[#B94D70] hover:bg-white transition-colors shadow-xs"
-                        aria-label="Add to wishlist"
-                      >
-                        <Heart className={`w-4 h-4 stroke-[1.5] ${isWishlisted ? "fill-[#B94D70] text-[#B94D70]" : ""}`} />
-                      </button>
-                    </div>
-
-                    {/* Product Metadata */}
-                    <div className="space-y-1 text-left px-0.5">
-                      <Link href={`/products/${product.slug}`} className="hover:text-[#B94D70] transition-colors">
-                        <h3 className="font-serif text-lg sm:text-xl font-semibold text-[#1C1714] leading-snug">
-                          {product.name}
-                        </h3>
-                      </Link>
-                      <p className="text-xs sm:text-sm font-sans text-[#73675E] font-light">
-                        {product.subcategory || product.type || product.category}
-                      </p>
-                      <p className="font-serif text-lg sm:text-xl font-semibold text-[#1C1714] pt-1">
-                        ₹ {product.price.toLocaleString("en-IN")}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Add to Bag Button */}
-                  <button
-                    onClick={() => addToCart(product)}
-                    className="w-full py-3 px-4 bg-white/50 hover:bg-[#1C1714] hover:text-[#F8F1E7] border border-[#8C8074]/40 text-xs font-mono uppercase tracking-widest text-[#1C1714] transition-all duration-200 flex items-center justify-between font-semibold rounded-md group/btn mt-2"
-                  >
-                    <span>ADD TO BAG</span>
-                    <ShoppingBag className="w-4 h-4 stroke-[1.5] transition-transform group-hover/btn:scale-110" />
-                  </button>
-                </div>
-              );
-            })}
+                  {label}
+                </span>
+              )
+            )}
           </div>
+        </div>
+
+        {/* 5b. WAVE DIVIDER */}
+        <WaveDivider fillColor="#F6EFE2" />
+      </section>
+
+      {/* ==========================================
+          5c. THE HOUSE OF AARSIKA (Ivory Section)
+      ========================================== */}
+      <section className="py-16 md:py-24 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          {/* Left Text Column */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-6 space-y-6"
+          >
+            <span className="eyebrow-label text-[#8a6a22] block">
+              THE HOUSE OF AARSIKA
+            </span>
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#1a1411] font-light leading-tight">
+              A Fragrance House Rooted in a Richer Story
+            </h2>
+            <p className="text-[#6b5f55] text-sm sm:text-base font-light leading-relaxed">
+              Aarsika is a celebration of rare ingredients, craftsmanship and the beauty of timeless lands. We work with traditional perfumery knowledge and contemporary craft to create scents that carry a sense of place, memory and purpose.
+            </p>
+            <div className="pt-4">
+              <Link
+                href="/our-story"
+                className="inline-flex items-center gap-3 px-6 py-3 border border-[#C9A55C] text-xs font-mono uppercase tracking-[0.25em] text-[#1a1411] hover:bg-[#3b0a12] hover:text-[#F6EFE2] hover:border-[#3b0a12] transition-all duration-300 rounded-full group"
+              >
+                <span>OUR STORY</span>
+                <span className="w-5 h-5 rounded-full border border-current flex items-center justify-center">
+                  <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                </span>
+              </Link>
+            </div>
+          </motion.div>
+
+          {/* Right Column: Tall Arch Photo Slot */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="lg:col-span-6 flex justify-center"
+          >
+            <Photo
+              slot="house"
+              alt="The House of Aarsika Craftsmanship"
+              aspect="3/4"
+              shape="arch"
+              sizes="(max-width: 1024px) 100vw, 45vw"
+              className="max-w-md w-full shadow-lg"
+            />
+          </motion.div>
         </div>
       </section>
 
       {/* ==========================================
-          05. THE ATTAR EDIT — SUBTLE HERITAGE SECTION
+          5d. THE COLLECTION (4 Arch Tiles + Discovery Banner)
       ========================================== */}
-      <section className="relative w-full py-24 sm:py-32 lg:py-36 overflow-hidden bg-[#F2DDD6]">
-        {/* Background Texture: Dusty Rose Rajasthan Palace Asset */}
-        <div
-          className="absolute inset-0 z-0 opacity-80 pointer-events-none mix-blend-multiply"
-          style={{
-            backgroundImage: `url('/images/ingrediants bg.png')`,
-            backgroundSize: "cover",
-            backgroundPosition: "center top",
-          }}
-        />
+      <section className="py-16 md:py-24 bg-[#FBF6EA] border-t border-[#dccfb6]/60">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 space-y-12">
+          {/* Section Heading */}
+          <div className="text-center max-w-2xl mx-auto space-y-3">
+            <span className="eyebrow-label text-[#8a6a22]">
+              EXPLORE BY CATEGORY
+            </span>
+            <h2 className="font-serif text-3xl sm:text-4xl text-[#1a1411] font-light">
+              The Collection
+            </h2>
+          </div>
 
-        <div className="relative z-10 max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-            {/* Left Content Column (~33% width) */}
-            <div className="lg:col-span-4 space-y-6">
-              <span className="text-xs sm:text-sm tracking-[0.35em] text-[#8F304F] uppercase font-mono font-semibold block">
-                THE ATTAR EDIT
+          {/* 4 Arch Tiles Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-6">
+            {collectionsList.map((col) => (
+              <Link
+                key={col.title}
+                href={col.href}
+                className="group flex flex-col space-y-4"
+              >
+                <div className="relative overflow-hidden rounded-t-[90px] shadow-sm bg-[#F6EFE2]">
+                  <Photo
+                    slot={col.slot}
+                    alt={col.title}
+                    aspect="3/4"
+                    shape="arch"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  />
+                  <span className="absolute top-4 left-6 font-mono text-xs text-[#E7CF98] bg-[#26060d]/70 px-2.5 py-1 backdrop-blur-sm rounded-full">
+                    {col.num}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between pt-1">
+                  <span className="font-serif text-lg tracking-wider text-[#1a1411] group-hover:text-[#8b1a2b] transition-colors">
+                    {col.title}
+                  </span>
+                  <span className="w-7 h-7 rounded-full border border-[#C9A55C] flex items-center justify-center text-[#C9A55C] group-hover:bg-[#C9A55C] group-hover:text-[#26060d] transition-all duration-300">
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          {/* Separate Discovery Set Banner */}
+          <div className="mt-16 bg-[#26060d] text-[#F6EFE2] rounded-none p-8 md:p-12 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center border border-[#C9A55C]/30 relative overflow-hidden">
+            <div className="lg:col-span-7 space-y-4 z-10">
+              <span className="eyebrow-label text-[#E7CF98]">
+                SAMPLER SET
               </span>
-
-              <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal text-[#2B1B17] leading-[1.08] tracking-tight">
-                PURE INGREDIENTS. <br />
-                EXTRAORDINARY SCENTS.
-              </h2>
-
-              <p className="text-sm font-light text-[#4A3B33] leading-relaxed max-w-md pt-1 font-sans">
-                From rare florals to precious woods, our attars are crafted using time-honoured techniques and the finest natural ingredients.
+              <h3 className="font-serif text-3xl md:text-4xl text-[#F6EFE2] font-light">
+                The Discovery Set
+              </h3>
+              <p className="text-[#F6EFE2]/80 text-sm font-light leading-relaxed max-w-lg">
+                Explore 5 signature 3ml sample vials at home. Includes a ₹500 full-bottle voucher redeemable on your next order.
               </p>
-
-              <div className="pt-3">
+              <div className="flex items-center gap-6 pt-2">
+                <span className="font-mono text-lg text-[#E7CF98] font-medium">
+                  ₹1,899
+                </span>
                 <Link
-                  href="/attar"
-                  className="inline-flex items-center gap-2.5 text-xs sm:text-sm tracking-[0.2em] font-mono uppercase text-[#8F304F] hover:text-[#2B1B17] transition-colors border-b border-[#8F304F]/60 pb-0.5 font-semibold"
+                  href="/discovery-sets"
+                  className="px-6 py-2.5 bg-[#C9A55C] text-[#26060d] text-xs font-mono uppercase tracking-widest font-semibold hover:bg-[#E7CF98] transition-colors"
                 >
-                  <span>EXPLORE ATTARS</span>
-                  <ArrowRight className="w-4 h-4 text-[#8F304F]" />
+                  DISCOVER NOW
                 </Link>
               </div>
             </div>
 
-            {/* Right Content Column (~67% width): 4 Extra Large Square Ingredient Cards */}
-            <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-5 sm:gap-7 lg:gap-8">
-              {/* ROSE CARD */}
-              <Link href="/attar" className="group block space-y-3 text-left">
-                <div className="relative aspect-square w-full rounded-xl overflow-hidden bg-[#EFE8DC] shadow-md transition-transform duration-500 group-hover:-translate-y-1.5">
-                  <Image
-                    src={IMAGE_INVENTORY.roseIngredient.url}
-                    alt="Damask Rose Petals"
-                    fill
-                    sizes="(max-width: 768px) 50vw, 320px"
-                    className="object-cover object-[center_82%] scale-135 filter contrast-[1.05] transition-transform duration-700 group-hover:scale-145"
-                  />
-                </div>
-                <div className="space-y-1 pt-1">
-                  <h3 className="font-serif text-base sm:text-lg font-semibold text-[#2B1B17] tracking-wider uppercase">
-                    ROSE
-                  </h3>
-                  <p className="text-xs sm:text-sm font-sans font-light text-[#5C4A40]">
-                    Romantic &amp; Timeless
-                  </p>
-                  <span className="inline-block text-xs sm:text-sm text-[#8F304F] group-hover:translate-x-1.5 transition-transform pt-0.5">
-                    &rarr;
-                  </span>
-                </div>
-              </Link>
-
-              {/* SAFFRON CARD */}
-              <Link href="/attar" className="group block space-y-3 text-left">
-                <div className="relative aspect-square w-full rounded-xl overflow-hidden bg-[#EFE8DC] shadow-md transition-transform duration-500 group-hover:-translate-y-1.5">
-                  <Image
-                    src={IMAGE_INVENTORY.kesarIngredient.url}
-                    alt="Kashmir Saffron Threads"
-                    fill
-                    sizes="(max-width: 768px) 50vw, 320px"
-                    className="object-cover object-[center_82%] scale-135 filter contrast-[1.05] transition-transform duration-700 group-hover:scale-145"
-                  />
-                </div>
-                <div className="space-y-1 pt-1">
-                  <h3 className="font-serif text-base sm:text-lg font-semibold text-[#2B1B17] tracking-wider uppercase">
-                    SAFFRON
-                  </h3>
-                  <p className="text-xs sm:text-sm font-sans font-light text-[#5C4A40]">
-                    Warm &amp; Luxurious
-                  </p>
-                  <span className="inline-block text-xs sm:text-sm text-[#8F304F] group-hover:translate-x-1.5 transition-transform pt-0.5">
-                    &rarr;
-                  </span>
-                </div>
-              </Link>
-
-              {/* OUD CARD */}
-              <Link href="/oud" className="group block space-y-3 text-left">
-                <div className="relative aspect-square w-full rounded-xl overflow-hidden bg-[#EFE8DC] shadow-md transition-transform duration-500 group-hover:-translate-y-1.5">
-                  <Image
-                    src={IMAGE_INVENTORY.oudhIngredient.url}
-                    alt="Assam Oud Agarwood"
-                    fill
-                    sizes="(max-width: 768px) 50vw, 320px"
-                    className="object-cover object-[center_82%] scale-135 filter contrast-[1.05] transition-transform duration-700 group-hover:scale-145"
-                  />
-                </div>
-                <div className="space-y-1 pt-1">
-                  <h3 className="font-serif text-base sm:text-lg font-semibold text-[#2B1B17] tracking-wider uppercase">
-                    OUD
-                  </h3>
-                  <p className="text-xs sm:text-sm font-sans font-light text-[#5C4A40]">
-                    Deep &amp; Mystical
-                  </p>
-                  <span className="inline-block text-xs sm:text-sm text-[#8F304F] group-hover:translate-x-1.5 transition-transform pt-0.5">
-                    &rarr;
-                  </span>
-                </div>
-              </Link>
-
-              {/* SANDALWOOD CARD */}
-              <Link href="/attar" className="group block space-y-3 text-left">
-                <div className="relative aspect-square w-full rounded-xl overflow-hidden bg-[#EFE8DC] shadow-md transition-transform duration-500 group-hover:-translate-y-1.5">
-                  <Image
-                    src={IMAGE_INVENTORY.sandalwoodIngredient.url}
-                    alt="Mysore Sandalwood Logs"
-                    fill
-                    sizes="(max-width: 768px) 50vw, 320px"
-                    className="object-cover object-[center_82%] scale-135 filter contrast-[1.05] transition-transform duration-700 group-hover:scale-145"
-                  />
-                </div>
-                <div className="space-y-1 pt-1">
-                  <h3 className="font-serif text-base sm:text-lg font-semibold text-[#2B1B17] tracking-wider uppercase">
-                    SANDALWOOD
-                  </h3>
-                  <p className="text-xs sm:text-sm font-sans font-light text-[#5C4A40]">
-                    Calm &amp; Refined
-                  </p>
-                  <span className="inline-block text-xs sm:text-sm text-[#8F304F] group-hover:translate-x-1.5 transition-transform pt-0.5">
-                    &rarr;
-                  </span>
-                </div>
-              </Link>
+            <div className="lg:col-span-5 z-10">
+              <Photo
+                slot="discovery-set"
+                alt="Aarsika Discovery Sampler Set"
+                aspect="16/9"
+                shape="rect"
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                className="shadow-xl"
+              />
             </div>
           </div>
         </div>
       </section>
 
       {/* ==========================================
-          06. ROYAL PALETTE — FOUR FRAGRANCE WORLDS CATALOGUE
+          5e. FEATURED PRODUCT BLOCK
       ========================================== */}
-      <section className="py-20 sm:py-28 lg:py-32 bg-[#F8F1E7] border-y border-[#C49A52]/20">
-        <div className="max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-            {/* Left Block (~33% width) */}
-            <div className="lg:col-span-4 space-y-6">
-              <span className="text-xs sm:text-sm tracking-[0.35em] text-[#C49A52] uppercase font-mono font-semibold block">
-                ROYAL PALETTE
-              </span>
-              <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal text-[#1A1615] leading-[1.08] tracking-tight">
-                FRAGRANCES FOR <br />
-                EVERY STORY.
-              </h2>
-              <p className="text-xs sm:text-sm text-[#756B63] font-light leading-relaxed max-w-md">
-                A curated collection of perfumes and attars inspired by India&apos;s colours, traditions and royal landscapes.
-              </p>
-              <div className="pt-2">
-                <Link
-                  href="/collections"
-                  className="inline-flex items-center gap-2.5 text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-[#C49A52] hover:text-[#1A1615] transition-colors border-b border-[#C49A52]/50 pb-0.5 font-semibold"
-                >
-                  <span>SHOP COLLECTIONS</span>
-                  <ArrowRight className="w-4 h-4 text-[#C49A52]" />
-                </Link>
-              </div>
-            </div>
-
-            {/* Right Block (~67% width): 4 Refined Fragrance World Compositions */}
-            <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 lg:gap-7">
-              {/* WORLD 1: THE ROYAL ROSE */}
-              <Link href="/attar" className="group block space-y-3">
-                <div className="relative aspect-[3/4] w-full bg-[#EFE8DC] overflow-hidden rounded-xl shadow-md border border-[#C49A52]/30 transition-transform duration-500 group-hover:-translate-y-1.5">
-                  <Image
-                    src={IMAGE_INVENTORY.rosePerfumeBottle.url}
-                    alt="The Royal Rose"
-                    fill
-                    sizes="(max-width: 768px) 50vw, 300px"
-                    className="object-cover object-center filter contrast-[1.03] transition-transform duration-700 group-hover:scale-105"
-                  />
-                </div>
-                <div className="flex items-center justify-between text-xs font-mono tracking-[0.2em] text-[#1A1615] uppercase font-semibold group-hover:text-[#B94D70] transition-colors pt-1">
-                  <span>THE ROYAL ROSE</span>
-                  <span className="transition-transform group-hover:translate-x-1">&rarr;</span>
-                </div>
-              </Link>
-
-              {/* WORLD 2: THE SAPPHIRE OUD */}
-              <Link href="/oud" className="group block space-y-3">
-                <div className="relative aspect-[3/4] w-full bg-[#EFE8DC] overflow-hidden rounded-xl shadow-md border border-[#C49A52]/30 transition-transform duration-500 group-hover:-translate-y-1.5">
-                  <Image
-                    src={IMAGE_INVENTORY.sapphireOudProduct.url}
-                    alt="The Sapphire Oud"
-                    fill
-                    sizes="(max-width: 768px) 50vw, 300px"
-                    className="object-cover object-center filter contrast-[1.03] transition-transform duration-700 group-hover:scale-105"
-                  />
-                </div>
-                <div className="flex items-center justify-between text-xs font-mono tracking-[0.2em] text-[#1A1615] uppercase font-semibold group-hover:text-[#B94D70] transition-colors pt-1">
-                  <span>THE SAPPHIRE OUD</span>
-                  <span className="transition-transform group-hover:translate-x-1">&rarr;</span>
-                </div>
-              </Link>
-
-              {/* WORLD 3: THE EMERALD COLLECTION */}
-              <Link href="/perfumes" className="group block space-y-3">
-                <div className="relative aspect-[3/4] w-full bg-[#EFE8DC] overflow-hidden rounded-xl shadow-md border border-[#C49A52]/30 transition-transform duration-500 group-hover:-translate-y-1.5">
-                  <Image
-                    src={IMAGE_INVENTORY.mehraabEdpProduct.url}
-                    alt="The Emerald Collection"
-                    fill
-                    sizes="(max-width: 768px) 50vw, 300px"
-                    className="object-cover object-center filter contrast-[1.03] transition-transform duration-700 group-hover:scale-105"
-                  />
-                </div>
-                <div className="flex items-center justify-between text-xs font-mono tracking-[0.2em] text-[#1A1615] uppercase font-semibold group-hover:text-[#B94D70] transition-colors pt-1">
-                  <span>THE EMERALD</span>
-                  <span className="transition-transform group-hover:translate-x-1">&rarr;</span>
-                </div>
-              </Link>
-
-              {/* WORLD 4: THE IVORY MUSK */}
-              <Link href="/perfumes" className="group block space-y-3">
-                <div className="relative aspect-[3/4] w-full bg-[#EFE8DC] overflow-hidden rounded-xl shadow-md border border-[#C49A52]/30 transition-transform duration-500 group-hover:-translate-y-1.5">
-                  <Image
-                    src={IMAGE_INVENTORY.ivoryMuskProduct.url}
-                    alt="The Ivory Musk"
-                    fill
-                    sizes="(max-width: 768px) 50vw, 300px"
-                    className="object-cover object-center filter contrast-[1.03] transition-transform duration-700 group-hover:scale-105"
-                  />
-                </div>
-                <div className="flex items-center justify-between text-xs font-mono tracking-[0.2em] text-[#1A1615] uppercase font-semibold group-hover:text-[#B94D70] transition-colors pt-1">
-                  <span>THE IVORY MUSK</span>
-                  <span className="transition-transform group-hover:translate-x-1">&rarr;</span>
-                </div>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ==========================================
-          07. CRAFTSMANSHIP — FULL-BLEED SILK EMERALD SPLIT BANNER
-      ========================================== */}
-      <section className="relative w-full overflow-hidden bg-[#0F4F42] text-[#F8F1E7]">
-        <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[460px] sm:min-h-[520px] lg:min-h-[560px]">
-          {/* LEFT ~50%: Full-Bleed Craftsmanship Photograph */}
-          <div className="lg:col-span-6 relative min-h-[360px] lg:min-h-full overflow-hidden">
-            <Image
-              src={IMAGE_INVENTORY.artistBottleFilling.url}
-              alt={IMAGE_INVENTORY.artistBottleFilling.alt}
-              fill
-              priority
+      <section className="py-16 md:py-24 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto">
+        <div className="bg-white border border-[#dccfb6] p-8 md:p-14 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center shadow-soft">
+          {/* Product Image Slot */}
+          <div className="lg:col-span-6 flex justify-center">
+            <Photo
+              slot="featured-product"
+              alt={featuredProd.name}
+              aspect="4/5"
+              shape="rect"
               sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover object-center filter contrast-[1.05]"
+              className="max-w-md w-full"
             />
           </div>
 
-          {/* RIGHT ~50%: Deep Emerald Background & Editorial Content */}
-          <div className="lg:col-span-6 relative flex flex-col justify-between p-8 sm:p-12 lg:p-16 bg-[#0F4F42] overflow-hidden">
-            {/* Background Botanical Line Art Overlay */}
-            <div className="absolute right-0 top-0 bottom-0 w-32 opacity-25 pointer-events-none border-r border-[#C49A52]/20">
-              <div className="h-full w-full bg-[radial-gradient(#C49A52_1px,transparent_1px)] [background-size:16px_16px]" />
-            </div>
-
-            {/* Main Text Content */}
-            <div className="relative z-10 space-y-6 max-w-lg my-auto">
-              <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-light leading-[1.08] tracking-tight text-[#F8F1E7]">
-                CRAFTED BY HAND. <br />
-                <span className="italic text-[#C49A52] font-normal">MADE TO BE REMEMBERED.</span>
-              </h2>
-
-              <p className="text-xs sm:text-sm font-light text-[#F8F1E7]/85 leading-relaxed">
-                Our fragrances are meticulously handcrafted by skilled artisans, using traditional methods and the finest ingredients from across India.
+          {/* Product Details */}
+          <div className="lg:col-span-6 space-y-6">
+            <span className="eyebrow-label text-[#8a6a22]">
+              FEATURED CREATION
+            </span>
+            <div className="space-y-1">
+              <h3 className="font-serif text-3xl sm:text-4xl text-[#1a1411] font-light">
+                {featuredProd.name}
+              </h3>
+              <p className="eyebrow-label text-[#8b1a2b] text-[11px]">
+                {featuredProd.type}
               </p>
-
-              {/* 4 Feature Indicators with Icons */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-8 border-t border-[#C49A52]/30 font-mono text-[10px] sm:text-[11px] text-center">
-                <div className="space-y-2">
-                  <div className="w-5 h-5 mx-auto text-[#C49A52] flex items-center justify-center border border-[#C49A52]/50 rotate-45">
-                    <span className="w-1.5 h-1.5 bg-[#C49A52]" />
-                  </div>
-                  <p className="uppercase tracking-wider text-[#F8F1E7]">NATURAL INGREDIENTS</p>
-                </div>
-
-                <div className="space-y-2">
-                  <div className="w-5 h-5 mx-auto text-[#C49A52] flex items-center justify-center border border-[#C49A52]/50 rotate-45">
-                    <span className="w-1.5 h-1.5 bg-[#C49A52]" />
-                  </div>
-                  <p className="uppercase tracking-wider text-[#F8F1E7]">TRADITIONAL DISTILLATION</p>
-                </div>
-
-                <div className="space-y-2">
-                  <div className="w-5 h-5 mx-auto text-[#C49A52] flex items-center justify-center border border-[#C49A52]/50 rotate-45">
-                    <span className="w-1.5 h-1.5 bg-[#C49A52]" />
-                  </div>
-                  <p className="uppercase tracking-wider text-[#F8F1E7]">SMALL BATCH PRODUCTION</p>
-                </div>
-
-                <div className="space-y-2">
-                  <div className="w-5 h-5 mx-auto text-[#C49A52] flex items-center justify-center border border-[#C49A52]/50 rotate-45">
-                    <span className="w-1.5 h-1.5 bg-[#C49A52]" />
-                  </div>
-                  <p className="uppercase tracking-wider text-[#F8F1E7]">EXCEPTIONAL QUALITY</p>
-                </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* ==========================================
-          08. ROYAL GIFTING — MORE THAN A GIFT (3-COLUMN LUXURY SPREAD)
-      ========================================== */}
-      <section className="py-24 sm:py-32 lg:py-36 bg-[#F8F1E7]">
-        <div className="max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-            {/* Left Column (~30% width) */}
-            <div className="lg:col-span-4 space-y-6">
-              <span className="text-xs sm:text-sm tracking-[0.35em] text-[#C49A52] uppercase font-mono font-semibold block">
-                ROYAL GIFTING
+            <p className="font-mono text-xl text-[#1a1411] font-medium">
+              ₹{featuredProd.price.toLocaleString("en-IN")}
+            </p>
+
+            <p className="text-[#6b5f55] text-sm font-light leading-relaxed line-clamp-3">
+              {featuredProd.description}
+            </p>
+
+            {/* Note Thumbnails */}
+            <div className="space-y-2 pt-2">
+              <span className="eyebrow-label text-[10px] text-[#6b5f55]">
+                KEY OLFACTIVE NOTES
               </span>
-
-              <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal text-[#1A1615] leading-[1.08] tracking-tight">
-                MORE THAN A GIFT. <br />
-                A LASTING IMPRESSION.
-              </h2>
-
-              <p className="text-xs sm:text-sm text-[#756B63] font-light leading-relaxed max-w-md">
-                Beautifully curated gift sets for celebrations, weddings and special moments. Crafted to make every occasion unforgettable.
-              </p>
-
-              <div className="pt-2">
-                <Link
-                  href="/gifting"
-                  className="inline-flex items-center gap-2.5 text-xs sm:text-sm tracking-[0.25em] font-mono uppercase text-[#1A1615] hover:text-[#B94D70] transition-colors border-b border-[#1A1615] pb-0.5 font-semibold"
-                >
-                  <span>EXPLORE GIFTING</span>
-                  <ArrowRight className="w-4 h-4 text-[#C49A52]" />
-                </Link>
+              <div className="flex items-center gap-3">
+                {["Amber", "Rose", "Sandalwood", "Vanilla"].map((note) => (
+                  <div
+                    key={note}
+                    className="flex flex-col items-center gap-1 text-center"
+                  >
+                    <div className="w-10 h-10 rounded-full bg-[#F6EFE2] border border-[#C9A55C]/40 flex items-center justify-center text-[10px] font-serif text-[#1a1411]">
+                      {note[0]}
+                    </div>
+                    <span className="text-[10px] font-sans text-[#6b5f55]">
+                      {note}
+                    </span>
+                  </div>
+                ))}
               </div>
             </div>
 
-            {/* Center Column (~45% width): Large Visually Prominent Gifting Box Photo */}
-            <div className="lg:col-span-5 relative aspect-[4/3] min-h-[380px] lg:min-h-[460px] bg-[#102746] rounded-xl overflow-hidden border border-[#C49A52]/40 shadow-2xl">
-              <Image
-                src={IMAGE_INVENTORY.comboGiftingBox.url}
-                alt="Mehraab Royal Velvet Gift Chest with Gold Embossed Flacons"
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 45vw"
-                className="object-cover object-center filter contrast-[1.04]"
-              />
-            </div>
-
-            {/* Right Column (~25% width): Customised Gift Sets Supporting Panel */}
-            <div className="lg:col-span-3 space-y-5 p-8 bg-[#EFE8DC] border border-[#C49A52]/35 rounded-xl shadow-sm">
-              <span className="text-xs tracking-[0.25em] text-[#C49A52] uppercase font-mono block font-semibold">
-                CUSTOMISED GIFT SETS
-              </span>
-              <p className="text-xs sm:text-sm font-light text-[#6E6359] leading-relaxed">
-                Personalise your gifts for a truly memorable experience. Choose custom engravings, signature ribbons, and bespoke fragrance selections.
-              </p>
-              <div className="pt-2">
-                <Link
-                  href="/gifting"
-                  className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.15em] text-[#1A1615] border-b border-[#1A1615] pb-0.5 font-semibold hover:text-[#B94D70] transition-colors"
-                >
-                  <span>LEARN MORE</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ==========================================
-          09. JAIPUR — A CITY OF INSPIRATION
-      ========================================== */}
-      <section className="relative py-36 sm:py-44 bg-[#1A1615] text-[#F8F1E7] overflow-hidden text-center flex items-center justify-center min-h-[540px]">
-        <div className="absolute inset-0 z-0 opacity-40">
-          <Image
-            src={IMAGE_INVENTORY.blueRoyalTheme.url}
-            alt="Jaipur Palace and Lake at Sunset"
-            fill
-            sizes="100vw"
-            className="object-cover object-center filter contrast-[1.05]"
-          />
-        </div>
-
-        <div className="relative z-10 max-w-3xl mx-auto px-6 space-y-6">
-          <span className="text-[11px] tracking-[0.35em] text-[#C49A52] uppercase font-mono font-medium block">
-            JAIPUR
-          </span>
-
-          <h2 className="font-serif text-5xl sm:text-7xl font-light text-[#F8F1E7] tracking-tight">
-            A CITY OF INSPIRATION.
-          </h2>
-
-          <p className="text-sm font-light text-[#F8F1E7]/85 leading-relaxed max-w-xl mx-auto">
-            From its majestic palaces to its vibrant bazaars, Jaipur&apos;s rich heritage lives in every Mehraab fragrance.
-          </p>
-
-          <div className="pt-4">
-            <Link
-              href="/our-story"
-              className="inline-flex items-center gap-3 text-xs tracking-[0.25em] font-mono uppercase text-[#F8F1E7] hover:text-[#C49A52] transition-colors border-b border-[#F8F1E7]/40 pb-1 font-medium"
-            >
-              <span>EXPLORE OUR ROOTS</span>
-              <ArrowRight className="w-3.5 h-3.5 text-[#C49A52]" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ==========================================
-          10. CUSTOMER LOVE — SCENTS THAT STAY IN HEARTS
-      ========================================== */}
-      <section className="py-28 sm:py-36 bg-[#FFF9F1]">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 space-y-12">
-          {/* Header */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-[#C49A52]/20">
-            <div className="space-y-2">
-              <span className="text-[11px] tracking-[0.35em] text-[#C49A52] uppercase font-mono font-medium block">
-                CUSTOMER LOVE
-              </span>
-              <h2 className="font-serif text-4xl sm:text-5xl font-light text-[#1A1615]">
-                SCENTS THAT STAY IN HEARTS.
-              </h2>
-            </div>
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => setActiveTestimonial((prev) => (prev > 0 ? prev - 1 : testimonials.length - 1))}
-                className="w-8 h-8 rounded-full border border-[#C49A52]/40 flex items-center justify-center text-[#1A1615] hover:bg-[#C49A52]/10 transition-colors"
-                aria-label="Previous testimony"
+            <div className="pt-4">
+              <Link
+                href={`/products/${featuredProd.slug}`}
+                className="inline-block px-8 py-3.5 border border-[#1a1411] text-xs font-mono uppercase tracking-[0.25em] text-[#1a1411] hover:bg-[#26060d] hover:text-[#F6EFE2] hover:border-[#26060d] transition-all duration-300"
               >
-                <ChevronLeft className="w-4 h-4" />
-              </button>
-              <button
-                onClick={() => setActiveTestimonial((prev) => (prev < testimonials.length - 1 ? prev + 1 : 0))}
-                className="w-8 h-8 rounded-full border border-[#C49A52]/40 flex items-center justify-center text-[#1A1615] hover:bg-[#C49A52]/10 transition-colors"
-                aria-label="Next testimony"
+                EXPLORE {featuredProd.name.toUpperCase()}
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ==========================================
+          5f. INGREDIENTS (Dark Burgundy Section)
+      ========================================== */}
+      <section className="py-16 md:py-24 bg-[#26060d] text-[#F6EFE2] relative">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 space-y-12">
+          <div className="text-center max-w-2xl mx-auto space-y-4">
+            <span className="eyebrow-label text-[#E7CF98]">
+              RAW BOTANICAL MASTERY
+            </span>
+            <h2 className="font-serif text-3xl sm:text-4xl text-[#F6EFE2] font-light">
+              Nature&apos;s Rarest Treasures
+            </h2>
+            <p className="text-[#F6EFE2]/80 text-sm font-light leading-relaxed">
+              We source the finest natural ingredients and blend tradition with modern artistry to create exceptional fragrances.
+            </p>
+            <div className="pt-2">
+              <Link
+                href="/ingredients"
+                className="inline-block px-6 py-2.5 border border-[#C9A55C] text-xs font-mono uppercase tracking-widest text-[#E7CF98] hover:bg-[#C9A55C] hover:text-[#26060d] transition-colors"
               >
-                <ChevronRight className="w-4 h-4" />
-              </button>
+                EXPLORE INGREDIENTS
+              </Link>
             </div>
           </div>
 
-          {/* 3 Testimonial Cards */}
+          {/* 3 Ingredient Photo Slots */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((t, idx) => (
-              <div
-                key={t.id}
-                className={`p-8 bg-[#EFE8DC] border border-[#C49A52]/30 space-y-6 transition-all ${
-                  activeTestimonial === idx ? "ring-1 ring-[#C49A52]" : ""
-                }`}
-              >
-                <p className="font-serif text-lg font-light text-[#1A1615] leading-relaxed italic">
-                  &ldquo;{t.quote}&rdquo;
-                </p>
-
-                <div className="flex items-center justify-between pt-4 border-t border-[#C49A52]/20">
-                  <div>
-                    <h4 className="font-serif text-base font-normal text-[#1A1615]">{t.author}</h4>
-                    <p className="text-[11px] font-mono text-[#756B63] uppercase">{t.city}</p>
-                  </div>
-                  <div className="flex text-[#C49A52] gap-0.5">
-                    {[...Array(t.rating)].map((_, i) => (
-                      <Star key={i} className="w-3.5 h-3.5 fill-current" />
-                    ))}
-                  </div>
+            {[
+              { slot: "ingredient-rose", name: "DAMASK ROSE", desc: "Hydro-distilled rose petals yielding velvet floral depth." },
+              { slot: "ingredient-oud", name: "ASSAM OUD", desc: "Wild-harvested agarwood resin aged for dark smoked majesty." },
+              { slot: "ingredient-saffron", name: "KASHMIR SAFFRON", desc: "Hand-picked crimson stigmas steeping warm golden spice." },
+            ].map((item) => (
+              <div key={item.name} className="space-y-4 text-center group">
+                <Photo
+                  slot={item.slot}
+                  alt={item.name}
+                  aspect="3/4"
+                  shape="rect"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="shadow-lg"
+                />
+                <div className="space-y-1">
+                  <h4 className="font-serif text-lg tracking-widest text-[#E7CF98] uppercase">
+                    {item.name}
+                  </h4>
+                  <p className="text-xs text-[#F6EFE2]/70 font-light max-w-xs mx-auto">
+                    {item.desc}
+                  </p>
                 </div>
               </div>
             ))}
@@ -865,68 +437,177 @@ export default function HomePage() {
       </section>
 
       {/* ==========================================
-          11. FIND YOUR SIGNATURE — FINAL HERITAGE INVITATION
+          5g. JOURNAL TEASER (Ivory Section)
       ========================================== */}
-      <section className="relative py-28 sm:py-36 lg:py-40 overflow-hidden bg-[#F2DDD6]">
-        {/* Background Texture: Existing Dusty Rose Rajasthan Heritage Asset */}
-        <div
-          className="absolute inset-0 z-0 opacity-80 pointer-events-none mix-blend-multiply"
-          style={{
-            backgroundImage: `url('/images/ingrediants bg.png')`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        />
-
-        <div className="relative z-10 max-w-2xl mx-auto px-6 text-center space-y-8">
-          <div className="space-y-3">
-            <h2 className="font-serif text-4xl sm:text-6xl font-normal text-[#2B1B17] tracking-tight leading-tight">
-              FIND YOUR <br />
-              SIGNATURE.
+      <section className="py-16 md:py-24 bg-[#FBF6EA] border-t border-[#dccfb6]">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 space-y-12">
+          <div className="text-center max-w-2xl mx-auto space-y-3">
+            <span className="eyebrow-label text-[#8a6a22]">
+              PERSPECTIVES & ESSAYS
+            </span>
+            <h2 className="font-serif text-3xl sm:text-4xl text-[#1a1411] font-light">
+              The Aarsika Journal
             </h2>
-            <p className="text-xs sm:text-sm text-[#4A3B33] font-light max-w-md mx-auto leading-relaxed font-sans">
-              Join our world of exquisite fragrances, new collections and royal stories from India.
+            <p className="text-[#6b5f55] text-sm font-light">
+              Stories, ingredients, places and perspectives from the world of fragrance.
             </p>
           </div>
 
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              if (emailInput) {
-                alert("Thank you for subscribing to Mehraab.");
-                setEmailInput("");
-              }
-            }}
-            className="space-y-4 max-w-md mx-auto"
-          >
-            <div className="flex items-center bg-[#FAF4EC] border border-[#8C8074]/40 p-1.5 shadow-sm rounded-md">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {journalTeasers.map((article, index) => (
+              <article key={article.id} className="bg-white border border-[#dccfb6] flex flex-col group overflow-hidden">
+                <Photo
+                  slot={`journal-${index + 1}`}
+                  alt={article.title}
+                  aspect="4/3"
+                  shape="rect"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+                <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
+                  <div className="space-y-2">
+                    <span className="eyebrow-label text-[10px] text-[#8b1a2b]">
+                      {article.category}
+                    </span>
+                    <h3 className="font-serif text-xl text-[#1a1411] group-hover:text-[#8b1a2b] transition-colors leading-snug">
+                      {article.title}
+                    </h3>
+                    <p className="text-[#6b5f55] text-xs font-light line-clamp-2">
+                      {article.excerpt}
+                    </p>
+                  </div>
+                  <Link
+                    href={`/journal/${article.slug}`}
+                    className="inline-flex items-center gap-2 eyebrow-label text-[11px] text-[#1a1411] group-hover:text-[#8b1a2b] transition-colors pt-2"
+                  >
+                    <span>READ MORE</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ==========================================
+          5h. STORY STRIP (4 Full-Bleed Cards)
+      ========================================== */}
+      <section className="py-12 bg-[#26060d]">
+        <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory px-6 sm:px-8 max-w-7xl mx-auto pb-4 scrollbar-none">
+          {storyStrips.map((strip) => (
+            <div
+              key={strip.slot}
+              className="snap-center shrink-0 w-[280px] sm:w-[320px] md:w-[360px] relative rounded-none overflow-hidden group shadow-lg"
+            >
+              <Photo
+                slot={strip.slot}
+                alt={strip.caption}
+                aspect="3/5"
+                shape="rect"
+                sizes="360px"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#26060d] via-[#26060d]/40 to-transparent flex flex-col justify-end p-6 text-center space-y-3">
+                <p className="font-serif text-lg tracking-wider text-[#F6EFE2] uppercase font-light leading-snug">
+                  {strip.caption}
+                </p>
+                <div className="w-8 h-[1px] bg-[#C9A55C] mx-auto" />
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ==========================================
+          5i. TRUST STRIP
+      ========================================== */}
+      <section className="py-10 bg-[#F6EFE2] border-y border-[#dccfb6]">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+          <div className="flex flex-col items-center space-y-2 p-2">
+            <Truck className="w-6 h-6 text-[#C9A55C]" />
+            <span className="eyebrow-label text-[11px] text-[#1a1411]">
+              Free Shipping Across India
+            </span>
+            <span className="text-xs text-[#6b5f55] font-light">
+              Complimentary shipping on orders ₹3,000+
+            </span>
+          </div>
+
+          <div className="flex flex-col items-center space-y-2 p-2">
+            <ShieldCheck className="w-6 h-6 text-[#C9A55C]" />
+            <span className="eyebrow-label text-[11px] text-[#1a1411]">
+              Secure Payments
+            </span>
+            <span className="text-xs text-[#6b5f55] font-light">
+              UPI, Cards & Cash on Delivery supported
+            </span>
+          </div>
+
+          <div className="flex flex-col items-center space-y-2 p-2">
+            <RefreshCw className="w-6 h-6 text-[#C9A55C]" />
+            <span className="eyebrow-label text-[11px] text-[#1a1411]">
+              Damage Guarantee
+            </span>
+            <span className="text-xs text-[#6b5f55] font-light">
+              Replacement if a bottle arrives broken
+            </span>
+          </div>
+
+          <div className="flex flex-col items-center space-y-2 p-2">
+            <FileText className="w-6 h-6 text-[#C9A55C]" />
+            <span className="eyebrow-label text-[11px] text-[#1a1411]">
+              GST Invoice Included
+            </span>
+            <span className="text-xs text-[#6b5f55] font-light">
+              Official tax invoice on every order
+            </span>
+          </div>
+        </div>
+      </section>
+
+      {/* ==========================================
+          5j. WHATSAPP + NEWSLETTER BLOCK
+      ========================================== */}
+      <section className="py-16 md:py-20 bg-[#3b0a12] text-[#F6EFE2]">
+        <div className="max-w-4xl mx-auto px-6 text-center space-y-6">
+          <span className="eyebrow-label text-[#E7CF98]">STAY CONNECTED</span>
+          <h2 className="font-serif text-3xl sm:text-4xl text-[#F6EFE2] font-light">
+            Find your signature.
+          </h2>
+          <p className="text-[#F6EFE2]/80 text-sm font-light max-w-lg mx-auto">
+            Receive private release updates, olfactory notes, and fragrance recommendations directly via WhatsApp or Email.
+          </p>
+
+          <form onSubmit={handleSubscribe} className="max-w-md mx-auto space-y-3 pt-2">
+            <div className="flex flex-col sm:flex-row gap-2">
+              <input
+                type="tel"
+                placeholder="WhatsApp Phone (+91)"
+                value={whatsappPhone}
+                onChange={(e) => setWhatsappPhone(e.target.value)}
+                className="flex-1 px-4 py-3 bg-[#26060d] border border-[#C9A55C]/40 text-[#F6EFE2] placeholder-[#F6EFE2]/40 text-xs font-mono focus:outline-none focus:border-[#C9A55C]"
+              />
               <input
                 type="email"
-                value={emailInput}
-                onChange={(e) => setEmailInput(e.target.value)}
-                placeholder="Enter your email address"
-                required
-                className="w-full px-4 py-3 bg-transparent text-xs text-[#1A1615] font-light focus:outline-none placeholder-[#8C8074]"
+                placeholder="Email Address"
+                value={newsletterEmail}
+                onChange={(e) => setNewsletterEmail(e.target.value)}
+                className="flex-1 px-4 py-3 bg-[#26060d] border border-[#C9A55C]/40 text-[#F6EFE2] placeholder-[#F6EFE2]/40 text-xs font-mono focus:outline-none focus:border-[#C9A55C]"
               />
-              <button
-                type="submit"
-                className="px-6 py-3 bg-[#2B1B17] text-[#F8F1E7] hover:bg-[#8F304F] transition-colors text-xs font-mono font-semibold rounded-sm"
-                aria-label="Submit email"
-              >
-                &rarr;
-              </button>
             </div>
-
-            <label className="flex items-center justify-center gap-2 text-[11px] font-light text-[#4A3B33] cursor-pointer select-none">
-              <input
-                type="checkbox"
-                checked={agreedTerms}
-                onChange={(e) => setAgreedTerms(e.target.checked)}
-                className="w-3.5 h-3.5 accent-[#8F304F]"
-              />
-              <span>I agree to receive updates, offers and stories from Mehraab.</span>
-            </label>
+            <button
+              type="submit"
+              className="w-full py-3 bg-[#C9A55C] text-[#26060d] text-xs font-mono uppercase tracking-[0.25em] font-semibold hover:bg-[#E7CF98] transition-colors"
+            >
+              SUBSCRIBE
+            </button>
           </form>
+
+          {submitted && (
+            <p className="text-xs text-[#E7CF98] flex items-center justify-center gap-1.5 pt-2 font-mono">
+              <CheckCircle2 className="w-4 h-4" />
+              <span>You are subscribed to Aarsika updates.</span>
+            </p>
+          )}
         </div>
       </section>
     </div>
