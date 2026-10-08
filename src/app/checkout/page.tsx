@@ -18,13 +18,13 @@ export default function CheckoutPage() {
   const { cart, cartTotal, clearCart, showToast } = useShop();
 
   const [formData, setFormData] = useState({
-    fullName: "Raja Man Singh",
-    email: "rajasingh@mehraab.in",
-    phone: "+91 98765 43210",
-    address: "108 Palace Road, Near Hawa Mahal",
-    city: "Jaipur",
-    state: "Rajasthan",
-    pincode: "302002",
+    fullName: "",
+    email: "",
+    phone: "",
+    address: "",
+    city: "",
+    state: "",
+    pincode: "",
     country: "India",
     gstin: "",
     paymentMethod: "COD" as "COD" | "RAZORPAY",

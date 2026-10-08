@@ -13,10 +13,10 @@ export default function AccountPage() {
   const [activeTab, setActiveTab] = useState<"orders" | "profile" | "wishlist" | "addresses">("orders");
   const [orders, setOrders] = useState<Order[]>([]);
   const [user, setUser] = useState({
-    name: "Raja Man Singh",
-    email: "rajasingh@mehraab.in",
-    phone: "+91 98765 43210",
-    city: "Jaipur, Rajasthan",
+    name: "Patron",
+    email: "patron@aarsika.com",
+    phone: "+91 98765 00000",
+    city: "New Delhi",
     fragrancePreference: "Damask Rose & Mysore Sandalwood",
   });
 

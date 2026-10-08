@@ -39,10 +39,10 @@ export default function AccountLoginPage() {
             <input
               type="email"
               required
-              placeholder="rajasingh@mehraab.in"
+              placeholder="name@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full bg-[#F8F1E7] border border-[#C49A52]/40 px-4 py-3 text-xs text-[#17345F] focus:outline-none"
+              className="w-full bg-[#F6EFE2] border border-[#dccfb6] px-4 py-3 text-xs text-[#1a1411] focus:outline-none"
             />
           </div>
 

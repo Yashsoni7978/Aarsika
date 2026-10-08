@@ -1,50 +1,34 @@
 "use client";
 
 import React, { useState, useMemo, Suspense } from "react";
-import Image from "next/image";
-import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { PRODUCTS } from "@/data/products";
 import { ProductCard } from "@/components/ProductCard";
-import { SlidersHorizontal, ArrowRight } from "lucide-react";
 
 function ShopContent() {
   const searchParams = useSearchParams();
   const initialCategory = searchParams.get("category") || "ALL";
 
   const [activeCategory, setActiveCategory] = useState(initialCategory);
-  const [maxPrice, setMaxPrice] = useState<number>(7000);
+  const [activeFamily, setActiveFamily] = useState("ALL");
   const [sortBy, setSortBy] = useState<"featured" | "price-asc" | "price-desc">("featured");
 
   const categories = [
-    {
-      id: "ATTAR",
-      name: "ATTAR",
-      subtitle: "Pure Botanical Concentrated Oils",
-      image: "/images/gul-e-rooh.jpg",
-      href: "/collections/attar",
-    },
-    {
-      id: "EAU DE PARFUM",
-      name: "EAU DE PARFUM",
-      subtitle: "Modern Royal Spray Formulations",
-      image: "/images/mehraab-edp.jpg",
-      href: "/collections/perfumes",
-    },
-    {
-      id: "OUD",
-      name: "OUD",
-      subtitle: "Assam & Cambodian Wild Agarwood",
-      image: "/images/oud-e-jaipur.jpg",
-      href: "/collections/oud",
-    },
-    {
-      id: "GIFTING",
-      name: "GIFTING",
-      subtitle: "Velvet Chests & Royal Token Sets",
-      image: "/images/combo gifting box.png",
-      href: "/collections/gifting",
-    },
+    { id: "ALL", label: "ALL CREATIONS" },
+    { id: "EAU DE PARFUM", label: "EAU DE PARFUM" },
+    { id: "ATTAR", label: "ATTAR OILS" },
+    { id: "OUD", label: "OUD COLLECTION" },
+    { id: "GIFTING", label: "GIFT CHESTS" },
+    { id: "DISCOVERY SETS", label: "DISCOVERY SETS" },
+  ];
+
+  const families = [
+    { id: "ALL", label: "All Families" },
+    { id: "FLORAL", label: "Floral" },
+    { id: "WOODY", label: "Woody" },
+    { id: "SPICY", label: "Spicy" },
+    { id: "MUSKY", label: "Musky" },
+    { id: "OUD", label: "Oud" },
   ];
 
   const filteredProducts = useMemo(() => {
@@ -52,7 +36,7 @@ function ShopContent() {
       if (activeCategory !== "ALL" && product.category !== activeCategory) {
         return false;
       }
-      if (product.price > maxPrice) {
+      if (activeFamily !== "ALL" && product.fragranceFamily !== activeFamily) {
         return false;
       }
       return true;
@@ -61,171 +45,97 @@ function ShopContent() {
       if (sortBy === "price-desc") return b.price - a.price;
       return 0;
     });
-  }, [activeCategory, maxPrice, sortBy]);
+  }, [activeCategory, activeFamily, sortBy]);
 
   return (
-    <div className="bg-[#F8F1E7] min-h-screen text-[#17345F]">
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-6 sm:px-10 lg:px-12 bg-[#FFF9F1] border-b border-[#C49A52]/25 overflow-hidden">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-7 space-y-5">
-            <span className="text-[10px] sm:text-[11px] tracking-[0.35em] text-[#C49A52] uppercase font-mono block">
-              THE MEHRAAB COLLECTION
-            </span>
-            <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl font-light text-[#17345F] leading-[1.08]">
-              Fragrances for every story.
-            </h1>
-            <p className="text-xs sm:text-sm text-[#756B63] max-w-xl font-light leading-relaxed">
-              Hand-distilled in traditional copper stills and hand-aged in pure Mysore sandalwood. Discover our full olfactive repertoire from royal Jaipur.
-            </p>
-
-            <div className="pt-2 flex items-center gap-4 text-xs font-mono tracking-[0.2em] text-[#C49A52]">
-              <span className="h-[1px] w-8 bg-[#C49A52]"></span>
-              <span>EST. KANNAUJ & JAIPUR</span>
-            </div>
-          </div>
-
-          <div className="lg:col-span-5 relative">
-            <div className="relative aspect-[4/5] w-full overflow-hidden border border-[#C49A52]/30 shadow-md">
-              <Image
-                src="/images/heritage with ingrediants.png"
-                alt="Mehraab Fragrance Collection"
-                fill
-                sizes="(max-width: 1024px) 100vw, 45vw"
-                className="object-cover object-center filter contrast-[1.03]"
-                priority
-              />
-            </div>
-          </div>
-        </div>
+    <div className="bg-[#F6EFE2] min-h-screen text-[#1a1411] pt-28 pb-24 font-sans">
+      {/* Header Banner */}
+      <section className="px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto text-center space-y-4 pb-12 border-b border-[#dccfb6]">
+        <span className="eyebrow-label text-[#8a6a22]">THE COLLECTION</span>
+        <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-[#1a1411] font-light">
+          Fine Fragrances & Attars
+        </h1>
+        <p className="text-[#6b5f55] text-sm sm:text-base font-light max-w-xl mx-auto">
+          Explore our complete olfactive repertoire—crafted with rare natural botanicals, pure attar oils, aged oud, and luxury gift sets.
+        </p>
       </section>
 
-      {/* Shop By Category Section */}
-      <section className="py-20 px-6 sm:px-10 lg:px-12 max-w-7xl mx-auto space-y-10">
-        <div className="text-center space-y-2">
-          <span className="text-[10px] tracking-[0.3em] text-[#C49A52] uppercase font-mono">
-            OLFACTIVE CATEGORIES
-          </span>
-          <h2 className="font-serif text-3xl sm:text-4xl text-[#17345F] font-light">
-            SHOP BY CATEGORY
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {categories.map((cat) => (
-            <Link
-              key={cat.id}
-              href={cat.href}
-              className="group relative bg-[#FFF9F1] border border-[#C49A52]/25 p-5 text-center space-y-4 hover:border-[#C49A52] transition-all duration-300"
-            >
-              {/* Arched Image Container */}
-              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-t-full border border-[#C49A52]/20">
-                <Image
-                  src={cat.image}
-                  alt={cat.name}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-              </div>
-
-              <div className="space-y-1">
-                <h3 className="font-serif text-xl text-[#17345F] group-hover:text-[#C49A52] transition-colors">
-                  {cat.name}
-                </h3>
-                <p className="text-[11px] text-[#756B63] font-light line-clamp-1 italic font-serif">
-                  {cat.subtitle}
-                </p>
-              </div>
-
-              <div className="inline-flex items-center text-[10px] font-mono tracking-[0.2em] text-[#C49A52] uppercase gap-1 group-hover:text-[#17345F]">
-                <span>EXPLORE</span>
-                <ArrowRight className="w-3 h-3 stroke-[1.4]" />
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* Main Catalogue Section */}
-      <section className="py-16 px-6 sm:px-10 lg:px-12 max-w-7xl mx-auto border-t border-[#C49A52]/20 space-y-10">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <div>
-            <span className="text-[10px] tracking-[0.3em] text-[#C49A52] uppercase font-mono">
-              ALL FORMULATIONS
-            </span>
-            <h2 className="font-serif text-3xl sm:text-4xl text-[#17345F] font-light">
-              ALL FRAGRANCES
-            </h2>
-          </div>
-
-          {/* Filter Bar */}
-          <div className="flex flex-wrap items-center gap-4 text-xs font-mono">
-            <div className="flex items-center gap-2 text-[#C49A52] uppercase tracking-wider text-[10px]">
-              <SlidersHorizontal className="w-3.5 h-3.5" />
-              <span>MAX PRICE: ₹ {maxPrice.toLocaleString("en-IN")}</span>
-            </div>
-            <input
-              type="range"
-              min="1000"
-              max="7000"
-              step="500"
-              value={maxPrice}
-              onChange={(e) => setMaxPrice(Number(e.target.value))}
-              className="w-28 accent-[#17345F]"
-            />
-
-            <div className="flex items-center gap-2 pl-4 border-l border-[#C49A52]/20">
-              <span className="text-[#756B63] uppercase tracking-wider text-[10px]">SORT:</span>
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value as any)}
-                className="bg-transparent text-[#17345F] font-mono text-xs focus:outline-none cursor-pointer"
-              >
-                <option value="featured">FEATURED</option>
-                <option value="price-asc">PRICE: LOW TO HIGH</option>
-                <option value="price-desc">PRICE: HIGH TO LOW</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
+      {/* Filter & Sort Bar */}
+      <section className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-8 space-y-6">
         {/* Category Pills */}
-        <div className="flex items-center gap-3 overflow-x-auto pb-2 text-[11px] font-mono tracking-[0.18em] uppercase">
-          {["ALL", "ATTAR", "EAU DE PARFUM", "OUD", "GIFTING"].map((cat) => (
+        <div className="flex flex-wrap items-center justify-center gap-2">
+          {categories.map((cat) => (
             <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`px-4 py-2 transition-colors whitespace-nowrap border ${
-                activeCategory === cat
-                  ? "bg-[#17345F] text-[#F8F1E7] border-[#17345F]"
-                  : "bg-[#FFF9F1] text-[#17345F] border-[#C49A52]/30 hover:border-[#C49A52]"
+              key={cat.id}
+              onClick={() => setActiveCategory(cat.id)}
+              className={`px-4 py-2 text-xs font-mono uppercase tracking-wider transition-all ${
+                activeCategory === cat.id
+                  ? "bg-[#26060d] text-[#F6EFE2] border border-[#26060d]"
+                  : "bg-white text-[#1a1411] border border-[#dccfb6] hover:border-[#C9A55C]"
               }`}
             >
-              {cat === "ALL" ? "ALL FRAGRANCES" : cat}
+              {cat.label}
             </button>
           ))}
         </div>
 
-        {/* Product Grid (4-col Desktop, 3-col Tablet, 2-col Mobile) */}
-        {filteredProducts.length === 0 ? (
-          <div className="text-center py-24 space-y-4 bg-[#FFF9F1] border border-[#C49A52]/20">
-            <p className="font-serif text-2xl font-light text-[#17345F]">No fragrances match your selected criteria.</p>
-            <button
-              onClick={() => {
-                setActiveCategory("ALL");
-                setMaxPrice(7000);
-              }}
-              className="text-xs font-mono uppercase tracking-[0.2em] text-[#C49A52] border-b border-[#C49A52] pb-0.5"
+        {/* Secondary Filter & Sort Row */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-[#dccfb6]/60 text-xs">
+          <div className="flex items-center gap-3">
+            <span className="eyebrow-label text-[10px] text-[#6b5f55]">FAMILY:</span>
+            <select
+              value={activeFamily}
+              onChange={(e) => setActiveFamily(e.target.value)}
+              className="bg-white border border-[#dccfb6] px-3 py-1.5 font-mono text-xs text-[#1a1411] focus:outline-none focus:border-[#C9A55C]"
             >
-              RESET FILTERS
-            </button>
+              {families.map((fam) => (
+                <option key={fam.id} value={fam.id}>
+                  {fam.label}
+                </option>
+              ))}
+            </select>
           </div>
-        ) : (
-          <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
+
+          <div className="flex items-center gap-3">
+            <span className="eyebrow-label text-[10px] text-[#6b5f55]">SORT BY:</span>
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value as any)}
+              className="bg-white border border-[#dccfb6] px-3 py-1.5 font-mono text-xs text-[#1a1411] focus:outline-none focus:border-[#C9A55C]"
+            >
+              <option value="featured">Featured Order</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      {/* Product Grid */}
+      <section className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        {filteredProducts.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {filteredProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
+          </div>
+        ) : (
+          <div className="py-20 text-center space-y-3 bg-white border border-[#dccfb6]">
+            <h3 className="font-serif text-2xl text-[#1a1411] font-light">
+              No creations found
+            </h3>
+            <p className="text-xs font-mono text-[#6b5f55]">
+              Try adjusting your category or fragrance family filter.
+            </p>
+            <button
+              onClick={() => {
+                setActiveCategory("ALL");
+                setActiveFamily("ALL");
+              }}
+              className="mt-2 px-4 py-2 border border-[#1a1411] text-xs font-mono uppercase tracking-wider text-[#1a1411] hover:bg-[#26060d] hover:text-[#F6EFE2]"
+            >
+              Reset Filters
+            </button>
           </div>
         )}
       </section>
@@ -235,10 +145,8 @@ function ShopContent() {
 
 export default function ShopPage() {
   return (
-    <Suspense fallback={<div className="p-24 text-center font-serif text-[#17345F]">Loading Mehraab Collection...</div>}>
+    <Suspense fallback={<div className="py-32 text-center text-xs font-mono">Loading Collection...</div>}>
       <ShopContent />
     </Suspense>
   );
 }
-
-
