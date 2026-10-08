@@ -19,7 +19,8 @@ const rawHeroSlidesData = [
     name: 'Nayaab',
     type: 'Eau de Parfum',
     moment: 'Every day',
-    line: 'Lemon and white florals. Clean, rare, made for every day.',
+    // TODO: placeholder until the formulas are final
+    line: 'Lemon and white florals.',
     img: 'hero-nayaab',
   },
   {
@@ -28,7 +29,8 @@ const rawHeroSlidesData = [
     name: 'Saaz',
     type: 'Eau de Parfum',
     moment: 'Day',
-    line: 'Citrus and white jasmine. Fresh, luminous, made for the day.',
+    // TODO: placeholder until the formulas are final
+    line: 'Bergamot and white jasmine.',
     img: 'hero-saaz',
   },
   {
@@ -37,7 +39,8 @@ const rawHeroSlidesData = [
     name: 'Madhuri',
     type: 'Eau de Parfum',
     moment: 'Evening',
-    line: 'Rose and oud. Warm, romantic, made for the evening.',
+    // TODO: placeholder until the formulas are final
+    line: 'Rose and oud.',
     img: 'hero-madhuri',
   },
   {
@@ -46,7 +49,8 @@ const rawHeroSlidesData = [
     name: 'Razmi',
     type: 'Eau de Parfum',
     moment: 'Night',
-    line: 'Oud and amber resin. Deep, smoky, made for the night.',
+    // TODO: placeholder until the formulas are final
+    line: 'Oud and amber resin.',
     img: 'hero-razmi',
   },
 ];
