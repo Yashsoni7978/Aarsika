@@ -186,7 +186,6 @@ export default function HeroSlider() {
                       alt={slide.name}
                       onError={() => handleImgError(slide.img)}
                       loading={index === 0 ? 'eager' : 'lazy'}
-                      // @ts-expect-error - fetchPriority attribute support
                       fetchPriority={index === 0 ? 'high' : 'low'}
                       className="w-full h-full object-cover object-[36%_50%]"
                     />

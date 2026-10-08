@@ -1,4 +1,4 @@
-import { products } from './products';
+import { PRODUCTS, Product } from './products';
 
 export interface HeroSlide {
   id: string;
@@ -52,7 +52,7 @@ const rawHeroSlidesData = [
 ];
 
 export const heroSlides: HeroSlide[] = rawHeroSlidesData.map((slide) => {
-  const productExists = products.some((p) => p.slug === slide.slug);
+  const productExists = PRODUCTS.some((p: Product) => p.slug === slide.slug);
   return {
     ...slide,
     href: productExists ? `/products/${slide.slug}` : '/perfumes',

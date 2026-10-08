@@ -1,17 +1,13 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import { PRODUCTS } from '@/data/products';
 import { JOURNAL_ARTICLES } from '@/data/journal';
-import { useShop } from '@/context/ShopContext';
 import { Photo } from '@/components/Photo';
 import { ArchFrame } from '@/components/ArchFrame';
 import HeroSlider from '@/components/HeroSlider';
 
 export default function HomePage() {
-  const { showToast } = useShop();
-
   // Find discovery product or fallback
   const discoveryPrice = 499;
 
@@ -82,11 +78,9 @@ export default function HomePage() {
           {/* Arch Frame Image Left */}
           <div className="lg:col-span-5 flex justify-center">
             <ArchFrame
-              slot="the-house"
+              src="/photos/the-house.jpg"
               alt="House of Aarsika Fragrance House"
-              aspect="4/5"
-              sizes="(max-width: 1024px) 80vw, 400px"
-              priority={false}
+              aspectRatio="4:5"
               className="max-w-md w-full"
             />
           </div>
@@ -141,10 +135,9 @@ export default function HomePage() {
               <div key={cat.slug} className="space-y-4 group">
                 <Link href={cat.href} className="block">
                   <ArchFrame
-                    slot={cat.image}
+                    src={`/photos/${cat.image}.jpg`}
                     alt={cat.title}
-                    aspect="4/5"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 280px"
+                    aspectRatio="4:5"
                   />
                 </Link>
 
@@ -199,7 +192,7 @@ export default function HomePage() {
               slot="discovery-set"
               alt="Aarsika Attar Discovery Set"
               aspect="4/3"
-              shape="square"
+              shape="rect"
               sizes="(max-width: 1024px) 100vw, 550px"
               className="w-full"
             />
@@ -218,7 +211,7 @@ export default function HomePage() {
               slot="featured-product"
               alt={featuredProd.name}
               aspect="1/1"
-              shape="square"
+              shape="rect"
               sizes="(max-width: 1024px) 100vw, 550px"
               className="w-full"
             />
