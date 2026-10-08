@@ -30,57 +30,46 @@ body {
 h1, h2, h3, h4, .font-serif {
   font-family: var(--font-cormorant), Georgia, serif;
   font-weight: 400;
+  line-height: 1.08;
 }
 
-/* Eyebrow Label Utility */
+/* Eyebrow Label Utility (Max 1 per section) */
 .eyebrow-label {
   font-family: var(--font-jost), sans-serif;
-  font-size: 12px;
+  font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.28em;
   font-weight: 500;
 }
 
-/* Subtle Gold Gradient Text */
-.gold-gradient-text {
-  background: linear-gradient(135deg, #E7CF98 0%, #C9A55C 50%, #8a6a22 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* Text Link Utility (No background, no border, no circle, gold underline on hover) */
+.text-link-underline {
+  font-family: var(--font-jost), sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: 500;
+  display: inline-flex;
+  items-center;
+  gap: 0.35rem;
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease, color 0.2s ease;
 }
 
-/* Architectural Arch Utilities */
-.arch-shape {
-  border-radius: 120px 120px 0 0;
-}
-
-/* Subtle Gold Line */
-.gold-line-subtle {
-  border-bottom: 1px solid rgba(201, 165, 92, 0.3);
-}
-
-.border-gold-subtle {
-  border-color: rgba(201, 165, 92, 0.3);
-}
-
-/* Image Reveal & Hover */
-.editorial-image-hover {
-  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.group:hover .editorial-image-hover {
-  transform: scale(1.03);
+.text-link-underline:hover {
+  border-bottom-color: #C9A55C;
 }
 
 /* Minimal Luxury Scrollbar */
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 4px;
 }
 ::-webkit-scrollbar-track {
   background: #F6EFE2;
 }
 ::-webkit-scrollbar-thumb {
   background: #C9A55C;
-  border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #3b0a12;
