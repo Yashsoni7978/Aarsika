@@ -297,7 +297,16 @@ export default function AdminDashboardPage() {
                   <tbody className="divide-y divide-[#C49A52]/10">
                     {orders.slice(0, 5).map((o) => (
                       <tr key={o.id}>
-                        <td className="py-3 px-2 font-serif font-bold text-[#DDBD78]">{o.orderNumber}</td>
+                        <td className="py-3 px-2 font-serif font-bold text-[#DDBD78]">
+                          {o.orderNumber}
+                          {o.items?.map((it, idx) => (
+                            (it.serialString || (it.serials && it.serials.length > 0)) && (
+                              <div key={idx} className="text-[9px] font-mono text-[#E7CF98] font-normal">
+                                {it.serialString || it.serials?.join(', ')}
+                              </div>
+                            )
+                          ))}
+                        </td>
                         <td className="py-3 px-2">{o.customer.fullName} ({o.customer.city})</td>
                         <td className="py-3 px-2 font-bold">₹ {o.totalAmount.toLocaleString("en-IN")}</td>
                         <td className="py-3 px-2">{o.paymentMethod}</td>
