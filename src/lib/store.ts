@@ -1,3 +1,6 @@
+// DRAFT: verify oil composition with supplier before final labels or claims
+// TODO: JSON file store is not concurrency-safe; migrate to real database before launch.
+
 import fs from 'fs';
 import path from 'path';
 import { Product, PRODUCTS as SEED_PRODUCTS } from '@/data/products';
@@ -10,6 +13,8 @@ export interface OrderItem {
   unitPrice: number;
   quantity: number;
   totalPrice: number;
+  serialString?: string;
+  serials?: string[];
 }
 
 export interface ShippingAddress {
@@ -124,8 +129,6 @@ function writeJSON<T>(filename: string, data: T) {
 let memoryProducts: Product[] | null = null;
 let memoryOrders: Order[] | null = null;
 let memoryCoupons: Coupon[] | null = null;
-let memoryReviews: ProductReview[] | null = null;
-let memoryReturns: ReturnRequest[] | null = null;
 
 export const DB = {
   getProducts(): Product[] {
@@ -147,47 +150,7 @@ export const DB = {
 
   getOrders(): Order[] {
     if (!memoryOrders) {
-      memoryOrders = readJSON<Order[]>('orders.json', [
-        {
-          id: "ord_1001",
-          orderNumber: "MEH-984210",
-          customer: {
-            fullName: "Ananya Roy",
-            email: "ananya.roy@example.com",
-            phone: "+91 98201 12345",
-            address: "42 Golf Course Road, DLF Phase 5",
-            city: "Gurugram",
-            state: "Haryana",
-            pincode: "122002",
-            country: "India",
-            gstin: "07AAAAA0000A1Z5"
-          },
-          items: [
-            {
-              productId: "p1",
-              productName: "Gul-e-Rooh",
-              productImage: "/images/gul-e-rooh.jpg",
-              size: "12ml Concentrated Oil",
-              unitPrice: 2499,
-              quantity: 1,
-              totalPrice: 2499
-            }
-          ],
-          subtotal: 2499,
-          discount: 0,
-          tax: 449.82,
-          shippingFee: 0,
-          totalAmount: 2499,
-          paymentMethod: "COD",
-          paymentStatus: "CAPTURED",
-          orderStatus: "SHIPPED",
-          courierName: "Blue Dart Express",
-          trackingNumber: "BD987654321IN",
-          trackingUrl: "https://www.bluedart.com/tracking?id=BD987654321IN",
-          createdAt: "2026-09-25T10:30:00Z",
-          updatedAt: "2026-09-26T14:20:00Z"
-        }
-      ]);
+      memoryOrders = readJSON<Order[]>('orders.json', []);
     }
     return memoryOrders;
   },
@@ -197,56 +160,133 @@ export const DB = {
     writeJSON('orders.json', orders);
   },
 
-  addOrder(order: Order) {
-    const orders = this.getOrders();
-    orders.unshift(order);
-    this.saveOrders(orders);
-
-    // Deduct stock
+  // TODO: JSON file store is not concurrency-safe; migrate to real database before launch.
+  assignSerialsAndConfirmOrder(order: Order): Order {
     const products = this.getProducts();
-    order.items.forEach(item => {
-      const prodIndex = products.findIndex(p => p.id === item.productId);
+
+    const updatedItems = order.items.map((item) => {
+      const prodIndex = products.findIndex(
+        (p) => p.id === item.productId || p.slug === item.productId
+      );
+
       if (prodIndex > -1) {
-        products[prodIndex].stock = Math.max(0, products[prodIndex].stock - item.quantity);
-        if (products[prodIndex].stock === 0) {
-          products[prodIndex].inStock = false;
+        const product = products[prodIndex];
+        const variantIndex = product.variants?.findIndex(
+          (v) => v.size === item.size
+        );
+
+        if (variantIndex !== undefined && variantIndex > -1) {
+          const variant = product.variants[variantIndex];
+          const batchNo = variant.batchNo || 1;
+          const batchSize = variant.batchSize || 69;
+          const startSerial = variant.nextSerial || 1;
+
+          const assignedSerials: string[] = [];
+          for (let i = 0; i < item.quantity; i++) {
+            const num = startSerial + i;
+            assignedSerials.push(
+              `${product.name}, ${item.size}, Batch ${String(batchNo).padStart(2, '0')}, No. ${num} of ${batchSize}`
+            );
+          }
+
+          // Atomically update variant counter and stock
+          variant.nextSerial = startSerial + item.quantity;
+          variant.stock = Math.max(0, variant.stock - item.quantity);
+          product.stock = Math.max(0, product.stock - item.quantity);
+          if (product.stock === 0) product.inStock = false;
+
+          const serialString =
+            item.quantity === 1
+              ? assignedSerials[0]
+              : `${product.name}, ${item.size}, Batch ${String(batchNo).padStart(2, '0')}, No. ${startSerial}–${startSerial + item.quantity - 1} of ${batchSize}`;
+
+          return {
+            ...item,
+            serials: assignedSerials,
+            serialString,
+          };
+        }
+      }
+      return item;
+    });
+
+    this.saveProducts(products);
+
+    const confirmedOrder: Order = {
+      ...order,
+      items: updatedItems,
+      orderStatus: order.paymentMethod === 'COD' ? 'ORDER_PLACED' : 'PAYMENT_CONFIRMED',
+      paymentStatus: order.paymentMethod === 'COD' ? 'PENDING' : 'CAPTURED',
+      updatedAt: new Date().toISOString(),
+    };
+
+    return confirmedOrder;
+  },
+
+  addOrder(order: Order): Order {
+    const orders = this.getOrders();
+    let finalOrder = order;
+
+    // COD orders confirm immediately; Online orders confirm upon payment verification
+    if (order.paymentMethod === 'COD') {
+      finalOrder = this.assignSerialsAndConfirmOrder(order);
+    }
+
+    orders.unshift(finalOrder);
+    this.saveOrders(orders);
+    return finalOrder;
+  },
+
+  cancelOrder(orderId: string): Order | undefined {
+    const orders = this.getOrders();
+    const orderIndex = orders.findIndex((o) => o.id === orderId);
+    if (orderIndex === -1) return undefined;
+
+    const order = orders[orderIndex];
+    if (order.orderStatus === 'CANCELLED') return order;
+
+    // Release stock back to inventory without re-using nextSerial
+    const products = this.getProducts();
+    order.items.forEach((item) => {
+      const prodIndex = products.findIndex(
+        (p) => p.id === item.productId || p.slug === item.productId
+      );
+      if (prodIndex > -1) {
+        const product = products[prodIndex];
+        product.stock += item.quantity;
+        product.inStock = true;
+
+        const variantIndex = product.variants?.findIndex(
+          (v) => v.size === item.size
+        );
+        if (variantIndex !== undefined && variantIndex > -1) {
+          product.variants[variantIndex].stock += item.quantity;
         }
       }
     });
+
     this.saveProducts(products);
+
+    orders[orderIndex].orderStatus = 'CANCELLED';
+    orders[orderIndex].paymentStatus = 'CANCELLED';
+    orders[orderIndex].updatedAt = new Date().toISOString();
+    this.saveOrders(orders);
+
+    return orders[orderIndex];
   },
 
   getCoupons(): Coupon[] {
     if (!memoryCoupons) {
       memoryCoupons = readJSON<Coupon[]>('coupons.json', [
         {
-          code: "ROYAL15",
-          discountType: "PERCENTAGE",
-          discountValue: 15,
-          minOrderAmount: 2000,
-          maxDiscount: 1000,
-          expiryDate: "2026-12-31",
-          timesUsed: 14,
-          isActive: true
-        },
-        {
-          code: "WELCOME500",
-          discountType: "FIXED",
+          code: 'WELCOME500',
+          discountType: 'FIXED',
           discountValue: 500,
-          minOrderAmount: 2500,
-          expiryDate: "2026-12-31",
-          timesUsed: 8,
-          isActive: true
+          minOrderAmount: 2000,
+          expiryDate: '2026-12-31T23:59:59Z',
+          timesUsed: 12,
+          isActive: true,
         },
-        {
-          code: "WELCOME10",
-          discountType: "PERCENTAGE",
-          discountValue: 10,
-          minOrderAmount: 1000,
-          expiryDate: "2026-12-31",
-          timesUsed: 42,
-          isActive: true
-        }
       ]);
     }
     return memoryCoupons;
@@ -256,51 +296,4 @@ export const DB = {
     memoryCoupons = coupons;
     writeJSON('coupons.json', coupons);
   },
-
-  getReviews(): ProductReview[] {
-    if (!memoryReviews) {
-      memoryReviews = readJSON<ProductReview[]>('reviews.json', [
-        {
-          id: "rev_1",
-          productId: "p1",
-          customerName: "Aditi Sharma",
-          rating: 5,
-          title: "Divine Rose Attar",
-          comment: "The most beautiful rose attar I have ever experienced. Aged in sandalwood, it lasts all day on skin.",
-          isVerifiedPurchase: true,
-          isApproved: true,
-          createdAt: "2026-09-10T12:00:00Z"
-        },
-        {
-          id: "rev_2",
-          productId: "p2",
-          customerName: "Rohan Malhotra",
-          rating: 5,
-          title: "Piece of Heritage",
-          comment: "Mehraab Fragrances feel like a piece of Jaipur heritage. Truly exceptional sillage and regal packaging.",
-          isVerifiedPurchase: true,
-          isApproved: true,
-          createdAt: "2026-09-15T15:30:00Z"
-        }
-      ]);
-    }
-    return memoryReviews;
-  },
-
-  saveReviews(reviews: ProductReview[]) {
-    memoryReviews = reviews;
-    writeJSON('reviews.json', reviews);
-  },
-
-  getReturns(): ReturnRequest[] {
-    if (!memoryReturns) {
-      memoryReturns = readJSON<ReturnRequest[]>('returns.json', []);
-    }
-    return memoryReturns;
-  },
-
-  saveReturns(returns: ReturnRequest[]) {
-    memoryReturns = returns;
-    writeJSON('returns.json', returns);
-  }
 };

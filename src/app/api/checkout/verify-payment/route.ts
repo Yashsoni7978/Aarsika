@@ -1,3 +1,6 @@
+// DRAFT: verify oil composition with supplier before final labels or claims
+// TODO: JSON file store is not concurrency-safe; migrate to real database before launch.
+
 import { NextResponse } from 'next/server';
 import crypto from 'crypto';
 import { DB } from '@/lib/store';
@@ -23,17 +26,20 @@ export async function POST(request: Request) {
       }
     }
 
-    // Payment verification successful. Update order in database.
+    let updatedOrder = null;
+
+    // Payment verification successful. Assign serials & update order in database.
     if (orderId) {
       const orders = DB.getOrders();
       const idx = orders.findIndex(o => o.id === orderId || o.orderNumber === orderId);
       if (idx > -1) {
-        orders[idx].paymentStatus = 'CAPTURED';
-        orders[idx].orderStatus = 'PAYMENT_CONFIRMED';
         orders[idx].razorpayOrderId = razorpay_order_id;
         orders[idx].razorpayPaymentId = razorpay_payment_id;
         orders[idx].razorpaySignature = razorpay_signature;
-        orders[idx].updatedAt = new Date().toISOString();
+
+        // Atomically assign consecutive serial numbers and deduct stock on confirmed payment
+        updatedOrder = DB.assignSerialsAndConfirmOrder(orders[idx]);
+        orders[idx] = updatedOrder;
         DB.saveOrders(orders);
       }
     }
@@ -42,7 +48,8 @@ export async function POST(request: Request) {
       success: true,
       verified: true,
       message: 'Razorpay payment verified successfully',
-      paymentId: razorpay_payment_id
+      paymentId: razorpay_payment_id,
+      order: updatedOrder
     });
   } catch (error) {
     return NextResponse.json({ success: false, message: 'Payment verification failed' }, { status: 500 });

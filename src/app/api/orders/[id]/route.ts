@@ -1,3 +1,6 @@
+// DRAFT: verify oil composition with supplier before final labels or claims
+// TODO: JSON file store is not concurrency-safe; migrate to real database before launch.
+
 import { NextResponse } from 'next/server';
 import { DB } from '@/lib/store';
 
@@ -15,6 +18,15 @@ export async function GET(request: Request, { params }: { params: { id: string }
 export async function PUT(request: Request, { params }: { params: { id: string } }) {
   try {
     const body = await request.json();
+
+    if (body.orderStatus === 'CANCELLED') {
+      const cancelledOrder = DB.cancelOrder(params.id);
+      if (!cancelledOrder) {
+        return NextResponse.json({ success: false, message: 'Order not found' }, { status: 404 });
+      }
+      return NextResponse.json({ success: true, order: cancelledOrder });
+    }
+
     const orders = DB.getOrders();
     const index = orders.findIndex(o => o.id === params.id || o.orderNumber === params.id);
 
