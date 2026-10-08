@@ -24,7 +24,7 @@ export const Footer: React.FC = () => {
                 href="https://instagram.com/aarsikaofficial"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full border border-[#C9A55C]/40 flex items-center justify-center text-[#E7CF98] hover:bg-[#C9A55C] hover:text-[#26060d] transition-colors"
+                className="w-9 h-9 border border-[#C9A55C]/40 flex items-center justify-center text-[#E7CF98] hover:bg-[#C9A55C] hover:text-[#26060d] transition-colors rounded-none"
                 aria-label="Aarsika Official Instagram"
               >
                 <Instagram className="w-4 h-4" />
@@ -33,7 +33,7 @@ export const Footer: React.FC = () => {
                 href="https://instagram.com/aarsikaparfums"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full border border-[#C9A55C]/40 flex items-center justify-center text-[#E7CF98] hover:bg-[#C9A55C] hover:text-[#26060d] transition-colors"
+                className="w-9 h-9 border border-[#C9A55C]/40 flex items-center justify-center text-[#E7CF98] hover:bg-[#C9A55C] hover:text-[#26060d] transition-colors rounded-none"
                 aria-label="Aarsika Parfums Instagram"
               >
                 <Instagram className="w-4 h-4" />
