@@ -43,12 +43,27 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [isFinderOpen, setIsFinderOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
-  // Load state from localStorage on mount
+  // Load state from localStorage on mount with migration
   useEffect(() => {
     try {
-      const savedCart = localStorage.getItem("mehraab_cart");
+      let savedCart = localStorage.getItem("aarsika_cart");
+      if (!savedCart) {
+        const legacyCart = localStorage.getItem("mehraab_cart");
+        if (legacyCart) {
+          savedCart = legacyCart;
+          localStorage.setItem("aarsika_cart", legacyCart);
+        }
+      }
       if (savedCart) setCart(JSON.parse(savedCart));
-      const savedWishlist = localStorage.getItem("mehraab_wishlist");
+
+      let savedWishlist = localStorage.getItem("aarsika_wishlist");
+      if (!savedWishlist) {
+        const legacyWishlist = localStorage.getItem("mehraab_wishlist");
+        if (legacyWishlist) {
+          savedWishlist = legacyWishlist;
+          localStorage.setItem("aarsika_wishlist", legacyWishlist);
+        }
+      }
       if (savedWishlist) setWishlist(JSON.parse(savedWishlist));
     } catch (e) {
       console.error(e);
@@ -58,7 +73,7 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({ children
   // Save to localStorage on change
   useEffect(() => {
     try {
-      localStorage.setItem("mehraab_cart", JSON.stringify(cart));
+      localStorage.setItem("aarsika_cart", JSON.stringify(cart));
     } catch (e) {
       console.error(e);
     }
@@ -66,7 +81,7 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   useEffect(() => {
     try {
-      localStorage.setItem("mehraab_wishlist", JSON.stringify(wishlist));
+      localStorage.setItem("aarsika_wishlist", JSON.stringify(wishlist));
     } catch (e) {
       console.error(e);
     }

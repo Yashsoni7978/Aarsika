@@ -230,7 +230,7 @@ export const DB = {
           isActive: true
         },
         {
-          code: "JAIPUR10",
+          code: "WELCOME500",
           discountType: "FIXED",
           discountValue: 500,
           minOrderAmount: 2500,

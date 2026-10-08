@@ -525,7 +525,7 @@ export default function AdminDashboardPage() {
               <input
                 type="text"
                 required
-                placeholder="New Coupon Code (e.g. JAIPUR20)"
+                placeholder="New Coupon Code (e.g. WELCOME500)"
                 value={newCouponCode}
                 onChange={(e) => setNewCouponCode(e.target.value)}
                 className="bg-[#102746] border border-[#C49A52]/40 p-2.5 rounded text-[#FFF9F1] uppercase flex-1"
