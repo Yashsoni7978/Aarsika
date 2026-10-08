@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import Link from "next/link";
-import { Heart } from "lucide-react";
-import { PRODUCTS } from "@/data/products";
-import { useShop } from "@/context/ShopContext";
-import { ProductCard } from "@/components/ProductCard";
-import { Photo } from "@/components/Photo";
+import React, { useState } from 'react';
+import Link from 'next/link';
+import { Heart } from 'lucide-react';
+import { PRODUCTS } from '@/data/products';
+import { useShop } from '@/context/ShopContext';
+import { ProductCard } from '@/components/ProductCard';
+import { Photo } from '@/components/Photo';
 
 interface ProductPageProps {
   params: {
@@ -23,7 +23,7 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
   const isLiked = product ? isInWishlist(product.id) : false;
 
   const [selectedSize, setSelectedSize] = useState(
-    product?.defaultSize || product?.sizeOptions?.[0] || "12ml"
+    product?.defaultSize || product?.sizeOptions?.[0] || '12 ml'
   );
   const [quantity, setQuantity] = useState(1);
 
@@ -40,12 +40,32 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
     );
   }
 
-  const activeVariant = product.variants?.find((v) => v.size === selectedSize);
-  const currentPrice = activeVariant ? activeVariant.price : product.price;
+  const activeVariant =
+    product.variants?.find((v) => v.size === selectedSize) ||
+    product.variants?.[0] || {
+      size: selectedSize,
+      price: product.price,
+      stock: product.stock,
+      batchNo: 1,
+      batchSize: 69,
+      nextSerial: 1,
+    };
+
+  const currentPrice = activeVariant.price;
+  const currentStock = activeVariant.stock;
+  const batchNo = activeVariant.batchNo || 1;
+  const batchSize = activeVariant.batchSize || 69;
 
   const relatedProducts = PRODUCTS.filter(
     (p) => p.id !== product.id && p.category === product.category
   ).slice(0, 4);
+
+  // WhatsApp waitlist message for sold-out items
+  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_PHONE || '';
+  const waitlistMessage = `Hello Aarsika, I would like to join the waitlist for ${product.name} (${selectedSize}, Batch 02).`;
+  const whatsappUrl = whatsappNumber
+    ? `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(waitlistMessage)}`
+    : `/contact?subject=${encodeURIComponent(`Waitlist for ${product.name} ${selectedSize}`)}`;
 
   return (
     <div className="bg-[#F6EFE2] text-[#1a1411] pt-28 pb-24 font-sans">
@@ -83,7 +103,7 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
               >
                 <Heart
                   className={`w-5 h-5 ${
-                    isLiked ? "fill-[#8b1a2b] text-[#8b1a2b]" : ""
+                    isLiked ? 'fill-[#8b1a2b] text-[#8b1a2b]' : ''
                   }`}
                 />
               </button>
@@ -99,16 +119,51 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
               <h1 className="font-serif text-4xl sm:text-5xl text-[#1a1411] font-light">
                 {product.name}
               </h1>
+
+              {/* Accent Line under product name */}
+              {product.accent && (
+                <div
+                  className="h-[2px] w-12 my-2"
+                  style={{ backgroundColor: product.accent }}
+                />
+              )}
+
+              {/* Tagline */}
+              {product.tagline && (
+                <p className="font-serif italic text-lg sm:text-xl text-[#4a3f35] pt-1">
+                  &ldquo;{product.tagline}&rdquo;
+                </p>
+              )}
+
               <p className="font-mono text-2xl text-[#1a1411] font-medium pt-2">
-                ₹{currentPrice.toLocaleString("en-IN")}
+                ₹{currentPrice.toLocaleString('en-IN')}
               </p>
+
+              {/* Numbered Batch Scarcity Display */}
+              <div className="pt-1">
+                {currentStock > 10 && (
+                  <span className="font-mono text-xs tracking-wider text-[#8a6a22] block">
+                    Batch {String(batchNo).padStart(2, '0')}: {currentStock} of {batchSize} bottles remaining
+                  </span>
+                )}
+                {currentStock > 0 && currentStock <= 10 && (
+                  <span className="font-mono text-xs tracking-wider text-[#8b1a2b] font-medium block">
+                    Batch {String(batchNo).padStart(2, '0')}: only {currentStock} bottles remaining
+                  </span>
+                )}
+                {currentStock === 0 && (
+                  <span className="font-mono text-xs tracking-wider text-[#8b1a2b] font-medium block">
+                    Batch {String(batchNo).padStart(2, '0')} is sold out
+                  </span>
+                )}
+              </div>
             </div>
 
             <p className="text-[#6b5f55] text-base font-light leading-relaxed">
               {product.description || product.shortDescription}
             </p>
 
-            {/* Size Selector (Row of Text Options with Underline, NOT Pills) */}
+            {/* Size Selector */}
             {product.sizeOptions && product.sizeOptions.length > 0 && (
               <div className="space-y-3">
                 <span className="font-mono text-xs uppercase tracking-widest text-[#1a1411] block">
@@ -121,8 +176,8 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
                       onClick={() => setSelectedSize(size)}
                       className={`font-mono text-xs uppercase tracking-wider pb-1 border-b-2 transition-all ${
                         selectedSize === size
-                          ? "border-[#C9A55C] text-[#1a1411] font-medium"
-                          : "border-transparent text-[#6b5f55] hover:text-[#1a1411]"
+                          ? 'border-[#C9A55C] text-[#1a1411] font-medium'
+                          : 'border-transparent text-[#6b5f55] hover:text-[#1a1411]'
                       }`}
                     >
                       {size}
@@ -132,44 +187,58 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
               </div>
             )}
 
-            {/* Quantity Selector & Single Primary Button */}
-            <div className="flex items-center gap-6 pt-2">
-              <div className="flex items-center border-b border-[#dccfb6] h-12">
+            {/* Quantity Selector & Purchase Button or Waitlist Link */}
+            {currentStock > 0 ? (
+              <div className="flex items-center gap-6 pt-2">
+                <div className="flex items-center border-b border-[#dccfb6] h-12">
+                  <button
+                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                    className="px-3 py-2 text-sm text-[#1a1411] hover:text-[#8b1a2b]"
+                  >
+                    -
+                  </button>
+                  <span className="px-3 font-mono text-xs font-medium">
+                    {quantity}
+                  </span>
+                  <button
+                    onClick={() => setQuantity(quantity + 1)}
+                    className="px-3 py-2 text-sm text-[#1a1411] hover:text-[#8b1a2b]"
+                  >
+                    +
+                  </button>
+                </div>
+
                 <button
-                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="px-3 py-2 text-sm text-[#1a1411] hover:text-[#8b1a2b]"
+                  onClick={() => addToCart(product, selectedSize, quantity)}
+                  className="flex-1 h-12 bg-[#C9A55C] text-[#26060d] hover:bg-[#E7CF98] text-xs font-mono uppercase tracking-[0.25em] font-semibold transition-colors rounded-none flex items-center justify-center"
                 >
-                  -
-                </button>
-                <span className="px-3 font-mono text-xs font-medium">
-                  {quantity}
-                </span>
-                <button
-                  onClick={() => setQuantity(quantity + 1)}
-                  className="px-3 py-2 text-sm text-[#1a1411] hover:text-[#8b1a2b]"
-                >
-                  +
+                  Add to bag
                 </button>
               </div>
+            ) : (
+              <div className="pt-2">
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-link-underline text-xs font-mono tracking-[0.2em] uppercase text-[#C9A55C] hover:text-[#1a1411] inline-flex items-center gap-1.5"
+                >
+                  Join the waitlist for Batch 02 →
+                </a>
+              </div>
+            )}
 
-              <button
-                onClick={() => addToCart(product, selectedSize, quantity)}
-                className="flex-1 h-12 bg-[#C9A55C] text-[#26060d] hover:bg-[#E7CF98] text-xs font-mono uppercase tracking-[0.25em] font-semibold transition-colors rounded-none flex items-center justify-center"
-              >
-                Add to bag
-              </button>
-            </div>
-
-            {/* Information Blocks (Plain Headings with Hairlines, No Accordion Boxes) */}
+            {/* Information Blocks */}
             <div className="border-t border-[#dccfb6] divide-y divide-[#dccfb6] pt-4 space-y-6">
-              {/* Notes Block */}
+              {/* "The fragrance" Section */}
               {product.notes && (
                 <div className="pt-4 space-y-2">
                   <h3 className="font-serif text-xl text-[#1a1411]">
-                    Olfactive Notes
+                    The fragrance
                   </h3>
                   <p className="text-xs text-[#6b5f55] font-light leading-relaxed">
-                    Top: {product.notes.top.join(", ")} • Heart: {product.notes.heart.join(", ")} • Base: {product.notes.base.join(", ")}
+                    Top: {product.notes.top.join(', ')} • Heart:{' '}
+                    {product.notes.heart.join(', ')} • Base: {product.notes.base.join(', ')}
                   </p>
                 </div>
               )}
@@ -181,19 +250,19 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
                     Ingredients & Concentration
                   </h3>
                   <p className="text-xs text-[#6b5f55] font-light leading-relaxed">
-                    {product.concentration || "Fine Perfume Extrait"}. {product.ingredients.join(", ")}.
+                    {product.concentration || '100% Pure Attar Oil'}. {product.ingredients.join(', ')}.
                   </p>
                 </div>
               )}
 
-              {/* How to Wear Block */}
+              {/* Application Block */}
               {product.howToWear && (
                 <div className="pt-4 space-y-2">
                   <h3 className="font-serif text-xl text-[#1a1411]">
                     Application & Sillage
                   </h3>
                   <p className="text-xs text-[#6b5f55] font-light leading-relaxed">
-                    {product.howToWear} {product.longevity ? `(${product.longevity})` : ""}
+                    {product.howToWear} {product.longevity ? `(${product.longevity})` : ''}
                   </p>
                 </div>
               )}
@@ -204,7 +273,7 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
                   Shipping & Guarantee
                 </h3>
                 <p className="text-xs text-[#6b5f55] font-light leading-relaxed">
-                  Free shipping across India on orders above ₹3,000. No returns on opened or used products. If a bottle arrives broken or damaged, we will replace it. Report within 48 hours with an unboxing video.
+                  Free shipping across India on all orders. No returns on opened or used products. If a bottle arrives broken or damaged, we will replace it. Report within 48 hours with an unboxing video.
                 </p>
               </div>
             </div>
