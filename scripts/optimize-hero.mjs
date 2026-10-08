@@ -2,26 +2,45 @@ import sharp from 'sharp';
 import fs from 'fs';
 import path from 'path';
 
-const SLUGS = ['hero-nayaab', 'hero-saaz', 'hero-madhuri', 'hero-razmi'];
-const SOURCE_DIR = 'source-images/hero';
+const SLUG_MAP = [
+  { slug: 'hero-nayaab', names: ['nayaab', 'hero-nayaab', '15bc658d-4dda-45cf-ac42-d42c775004b4'] },
+  { slug: 'hero-saaz', names: ['saaz', 'hero-saaz', 'cf17127e-7d63-4d14-a475-9944e3a93304'] },
+  { slug: 'hero-madhuri', names: ['madhuri', 'hero-madhuri', '65e7ca04-f44c-4df8-815a-da184b47d216'] },
+  { slug: 'hero-razmi', names: ['razmi', 'hero-razmi', '34ccc655-c94e-4fb0-915a-2de25bb8ea49'] },
+];
+
+const SEARCH_DIRS = ['source-images/hero', 'public/photos', 'hero images', '.'];
+const EXTENSIONS = ['.png', '.jpg', '.jpeg', '.webp'];
 const OUTPUT_DIR = 'public/photos/hero';
 
 if (!fs.existsSync(OUTPUT_DIR)) {
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 }
 
+function findInputPath(names) {
+  for (const dir of SEARCH_DIRS) {
+    for (const name of names) {
+      for (const ext of EXTENSIONS) {
+        const candidate = path.join(dir, `${name}${ext}`);
+        if (fs.existsSync(candidate)) {
+          return candidate;
+        }
+      }
+    }
+  }
+  return null;
+}
+
 async function optimizeHeroImages() {
-  console.log('--- OPTIMIZING HERO IMAGES ---');
+  console.log('--- OPTIMIZING HERO IMAGES (PHASE 1.8) ---');
   let totalFiles = 0;
 
-  for (const slug of SLUGS) {
-    let inputPath = path.join(SOURCE_DIR, `${slug}.jpg`);
-    if (!fs.existsSync(inputPath)) {
-      inputPath = path.join('public/photos', `${slug}.jpg`);
-    }
+  for (const item of SLUG_MAP) {
+    const { slug, names } = item;
+    const inputPath = findInputPath(names);
 
-    if (!fs.existsSync(inputPath)) {
-      console.warn(`[WARN] Source image for ${slug} not found at ${inputPath}. Skipping optimization.`);
+    if (!inputPath) {
+      console.warn(`[WARN] Source image for ${slug} not found in search paths. Skipping.`);
       continue;
     }
 
@@ -29,9 +48,9 @@ async function optimizeHeroImages() {
     const meta = await image.metadata();
     const { width: W, height: H } = meta;
 
-    console.log(`Processing ${slug} (${W}x${H})...`);
+    console.log(`Processing ${slug} (${W}x${H}) from ${inputPath}...`);
 
-    // 1. Desktop 2400w and 1600w
+    // 1. Desktop 2400w and 1600w (Full Frame, No Crop)
     const desktopTargets = [
       { name: `${slug}-desktop-2400w`, width: 2400 },
       { name: `${slug}-desktop-1600w`, width: 1600 },
@@ -55,7 +74,7 @@ async function optimizeHeroImages() {
       totalFiles += 2;
     }
 
-    // 2. Mobile 4:5 Crop (Centred at x = 36%)
+    // 2. Mobile 4:5 Crop (Centred on x = 36%, Bottle Fully Inside Crop)
     // 4:5 aspect ratio -> cropWidth = H * 0.8
     const cropHeight = H;
     const cropWidth = Math.round(H * 0.8);
