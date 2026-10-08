@@ -16,9 +16,9 @@ function ShopContent() {
   const categories = [
     { id: "ALL", label: "ALL CREATIONS" },
     { id: "EAU DE PARFUM", label: "EAU DE PARFUM" },
-    { id: "ATTAR", label: "ATTAR OILS" },
-    { id: "OUD", label: "OUD COLLECTION" },
-    { id: "GIFTING", label: "GIFT CHESTS" },
+    { id: "ATTAR", label: "ATTAR" },
+    { id: "OUD", label: "OUD" },
+    { id: "GIFTING", label: "GIFTING" },
     { id: "DISCOVERY SETS", label: "DISCOVERY SETS" },
   ];
 
@@ -50,28 +50,26 @@ function ShopContent() {
   return (
     <div className="bg-[#F6EFE2] min-h-screen text-[#1a1411] pt-28 pb-24 font-sans">
       {/* Header Banner */}
-      <section className="px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto text-center space-y-4 pb-12 border-b border-[#dccfb6]">
-        <span className="eyebrow-label text-[#8a6a22]">THE COLLECTION</span>
+      <section className="px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto space-y-4 pb-10 border-b border-[#dccfb6]">
         <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-[#1a1411] font-light">
-          Fine Fragrances & Attars
+          The collection
         </h1>
-        <p className="text-[#6b5f55] text-sm sm:text-base font-light max-w-xl mx-auto">
+        <p className="text-[#6b5f55] text-base font-light max-w-xl">
           Explore our complete olfactive repertoire—crafted with rare natural botanicals, pure attar oils, aged oud, and luxury gift sets.
         </p>
       </section>
 
-      {/* Filter & Sort Bar */}
+      {/* Filter Row as Plain Text Links with Underline */}
       <section className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-8 space-y-6">
-        {/* Category Pills */}
-        <div className="flex flex-wrap items-center justify-center gap-2">
+        <div className="flex flex-wrap items-center gap-x-8 gap-y-3 border-b border-[#dccfb6] pb-4">
           {categories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id)}
-              className={`px-4 py-2 text-xs font-mono uppercase tracking-wider transition-all ${
+              className={`text-xs font-mono uppercase tracking-[0.2em] transition-all pb-1 border-b ${
                 activeCategory === cat.id
-                  ? "bg-[#26060d] text-[#F6EFE2] border border-[#26060d]"
-                  : "bg-white text-[#1a1411] border border-[#dccfb6] hover:border-[#C9A55C]"
+                  ? "border-[#C9A55C] text-[#1a1411] font-medium"
+                  : "border-transparent text-[#6b5f55] hover:text-[#1a1411]"
               }`}
             >
               {cat.label}
@@ -80,13 +78,13 @@ function ShopContent() {
         </div>
 
         {/* Secondary Filter & Sort Row */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-[#dccfb6]/60 text-xs">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono">
           <div className="flex items-center gap-3">
-            <span className="eyebrow-label text-[10px] text-[#6b5f55]">FAMILY:</span>
+            <span className="text-[10px] text-[#6b5f55] uppercase tracking-widest">FAMILY:</span>
             <select
               value={activeFamily}
               onChange={(e) => setActiveFamily(e.target.value)}
-              className="bg-white border border-[#dccfb6] px-3 py-1.5 font-mono text-xs text-[#1a1411] focus:outline-none focus:border-[#C9A55C]"
+              className="bg-transparent border-b border-[#dccfb6] py-1 text-xs text-[#1a1411] focus:outline-none focus:border-[#C9A55C]"
             >
               {families.map((fam) => (
                 <option key={fam.id} value={fam.id}>
@@ -97,11 +95,11 @@ function ShopContent() {
           </div>
 
           <div className="flex items-center gap-3">
-            <span className="eyebrow-label text-[10px] text-[#6b5f55]">SORT BY:</span>
+            <span className="text-[10px] text-[#6b5f55] uppercase tracking-widest">SORT BY:</span>
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as any)}
-              className="bg-white border border-[#dccfb6] px-3 py-1.5 font-mono text-xs text-[#1a1411] focus:outline-none focus:border-[#C9A55C]"
+              className="bg-transparent border-b border-[#dccfb6] py-1 text-xs text-[#1a1411] focus:outline-none focus:border-[#C9A55C]"
             >
               <option value="featured">Featured Order</option>
               <option value="price-asc">Price: Low to High</option>
@@ -112,15 +110,15 @@ function ShopContent() {
       </section>
 
       {/* Product Grid */}
-      <section className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+      <section className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-4">
         {filteredProducts.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10">
             {filteredProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
         ) : (
-          <div className="py-20 text-center space-y-3 bg-white border border-[#dccfb6]">
+          <div className="py-20 text-center space-y-3">
             <h3 className="font-serif text-2xl text-[#1a1411] font-light">
               No creations found
             </h3>
@@ -132,9 +130,9 @@ function ShopContent() {
                 setActiveCategory("ALL");
                 setActiveFamily("ALL");
               }}
-              className="mt-2 px-4 py-2 border border-[#1a1411] text-xs font-mono uppercase tracking-wider text-[#1a1411] hover:bg-[#26060d] hover:text-[#F6EFE2]"
+              className="mt-2 text-link-underline text-[#1a1411]"
             >
-              Reset Filters
+              Reset Filters →
             </button>
           </div>
         )}
