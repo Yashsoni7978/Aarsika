@@ -21,11 +21,11 @@
     "lowStockThreshold": 10,
     "weight": "0.20 kg",
     "dimensions": "5 x 5 x 12 cm",
-    "mainImage": "/images/gul-e-rooh.jpg",
-    "secondaryImage": "/images/rose-ingrediant.png",
+    "mainImage": "/photos/attars/sehar-e-gulab.jpg",
+    "secondaryImage": "/photos/attars/sehar-e-gulab-clean.jpg",
     "gallery": [
-      "/images/gul-e-rooh.jpg",
-      "/images/rose-ingrediant.png"
+      "/photos/attars/sehar-e-gulab.jpg",
+      "/photos/attars/sehar-e-gulab-clean.jpg"
     ],
     "sizeOptions": [
       "3 ml",
@@ -123,7 +123,7 @@
     "reviewsCount": 42,
     "colorTheme": "pink",
     "seoTitle": "Sehar E Gulab Pure Attar | Aarsika Fine Fragrance",
-    "seoDescription": "Discover Sehar E Gulab pure attar oil by Aarsika.",
+    "seoDescription": "Discover Sehar E Gulab pure attar oil by Aarsika. Delicate fresh roses in morning light.",
     "createdAt": "2026-01-01T00:00:00Z",
     "updatedAt": "2026-10-09T00:00:00Z"
   },
@@ -149,10 +149,12 @@
     "lowStockThreshold": 10,
     "weight": "0.20 kg",
     "dimensions": "5 x 5 x 12 cm",
-    "mainImage": "/images/mitti-royale.jpg",
-    "secondaryImage": "/images/artist-bottle-filling.png",
+    "mainImage": "/photos/attars/maati.jpg",
+    "secondaryImage": "/photos/attars/maati-golden-earth.jpg",
     "gallery": [
-      "/images/mitti-royale.jpg"
+      "/photos/attars/maati.jpg",
+      "/photos/attars/maati-golden-earth.jpg",
+      "/photos/attars/maati-first-rain.jpg"
     ],
     "sizeOptions": [
       "3 ml",
@@ -252,7 +254,7 @@
     "reviewsCount": 38,
     "colorTheme": "ivory",
     "seoTitle": "Maati Pure Attar | Aarsika Fine Fragrance",
-    "seoDescription": "Discover Maati petrichor attar oil by Aarsika.",
+    "seoDescription": "Discover Maati petrichor attar oil by Aarsika. Capturing the scent of earth after first rain.",
     "createdAt": "2026-01-01T00:00:00Z",
     "updatedAt": "2026-10-09T00:00:00Z"
   },
@@ -278,10 +280,12 @@
     "lowStockThreshold": 10,
     "weight": "0.20 kg",
     "dimensions": "5 x 5 x 12 cm",
-    "mainImage": "/images/mehraab-signature-edp.jpg",
-    "secondaryImage": "/images/ivory-musk.jpg",
+    "mainImage": "/photos/attars/saanjh.jpg",
+    "secondaryImage": "/photos/attars/saanjh-golden-hour.jpg",
     "gallery": [
-      "/images/mehraab-signature-edp.jpg"
+      "/photos/attars/saanjh.jpg",
+      "/photos/attars/saanjh-golden-hour.jpg",
+      "/photos/attars/saanjh-quiet-evening.jpg"
     ],
     "sizeOptions": [
       "3 ml",
@@ -379,7 +383,7 @@
     "reviewsCount": 29,
     "colorTheme": "gold",
     "seoTitle": "Saanjh Pure Attar | Aarsika Fine Fragrance",
-    "seoDescription": "Discover Saanjh musk attar oil by Aarsika.",
+    "seoDescription": "Discover Saanjh musk attar oil by Aarsika. Comforting evening fragrance for everyday rituals.",
     "createdAt": "2026-01-01T00:00:00Z",
     "updatedAt": "2026-10-09T00:00:00Z"
   },
@@ -405,10 +409,12 @@
     "lowStockThreshold": 10,
     "weight": "0.20 kg",
     "dimensions": "5 x 5 x 12 cm",
-    "mainImage": "/images/oud-e-jaipur.jpg",
-    "secondaryImage": "/images/combo-gifting-box.png",
+    "mainImage": "/photos/attars/shaam-ka-noor.jpg",
+    "secondaryImage": "/photos/attars/shaam-ka-noor-collection.jpg",
     "gallery": [
-      "/images/oud-e-jaipur.jpg"
+      "/photos/attars/shaam-ka-noor.jpg",
+      "/photos/attars/shaam-ka-noor-collection.jpg",
+      "/photos/attars/shaam-ka-noor-sunset.jpg"
     ],
     "sizeOptions": [
       "3 ml",
@@ -508,7 +514,7 @@
     "reviewsCount": 51,
     "colorTheme": "emerald",
     "seoTitle": "Shaam Ka Noor Attar | Aarsika Fine Fragrance",
-    "seoDescription": "Discover Shaam Ka Noor attar oil by Aarsika.",
+    "seoDescription": "Discover Shaam Ka Noor attar oil by Aarsika. Rich floral oud and amber for unhurried evenings.",
     "createdAt": "2026-01-01T00:00:00Z",
     "updatedAt": "2026-10-09T00:00:00Z"
   },
@@ -534,10 +540,12 @@
     "lowStockThreshold": 10,
     "weight": "0.20 kg",
     "dimensions": "5 x 5 x 12 cm",
-    "mainImage": "/images/raatraani.jpg",
-    "secondaryImage": "/images/rose-ingrediant.png",
+    "mainImage": "/photos/attars/raat-ki-rani.jpg",
+    "secondaryImage": "/photos/attars/raat-ki-rani-heritage.jpg",
     "gallery": [
-      "/images/raatraani.jpg"
+      "/photos/attars/raat-ki-rani.jpg",
+      "/photos/attars/raat-ki-rani-heritage.jpg",
+      "/photos/attars/raat-ki-rani-twilight.jpg"
     ],
     "sizeOptions": [
       "3 ml",
@@ -664,10 +672,12 @@
     "lowStockThreshold": 10,
     "weight": "0.20 kg",
     "dimensions": "5 x 5 x 12 cm",
-    "mainImage": "/images/sapphire-oud.jpg",
-    "secondaryImage": "/images/oud-e-jaipur.jpg",
+    "mainImage": "/photos/attars/resham-oudh.jpg",
+    "secondaryImage": "/photos/attars/resham-oudh-ad.jpg",
     "gallery": [
-      "/images/sapphire-oud.jpg"
+      "/photos/attars/resham-oudh.jpg",
+      "/photos/attars/resham-oudh-ad.jpg",
+      "/photos/attars/resham-oudh-sunset.jpg"
     ],
     "sizeOptions": [
       "3 ml",
@@ -767,7 +777,7 @@
     "reviewsCount": 47,
     "colorTheme": "gold",
     "seoTitle": "Resham Oudh Attar | Aarsika Fine Fragrance",
-    "seoDescription": "Discover Resham Oudh attar oil by Aarsika.",
+    "seoDescription": "Discover Resham Oudh attar oil by Aarsika. Silken woody accords and amber warmth.",
     "createdAt": "2026-01-01T00:00:00Z",
     "updatedAt": "2026-10-09T00:00:00Z"
   },
@@ -793,10 +803,11 @@
     "lowStockThreshold": 10,
     "weight": "0.20 kg",
     "dimensions": "5 x 5 x 12 cm",
-    "mainImage": "/images/saffron-sandal.jpg",
-    "secondaryImage": "/images/ivory-musk.jpg",
+    "mainImage": "/photos/attars/mehfil.jpg",
+    "secondaryImage": "/photos/attars/mehfil-palace.jpg",
     "gallery": [
-      "/images/saffron-sandal.jpg"
+      "/photos/attars/mehfil.jpg",
+      "/photos/attars/mehfil-palace.jpg"
     ],
     "sizeOptions": [
       "3 ml",
@@ -897,7 +908,7 @@
     "reviewsCount": 40,
     "colorTheme": "emerald",
     "seoTitle": "Mehfil Attar Oil | Aarsika Fine Fragrance",
-    "seoDescription": "Discover Mehfil attar oil by Aarsika.",
+    "seoDescription": "Discover Mehfil attar oil by Aarsika. Inspired by unforgettable gatherings.",
     "createdAt": "2026-01-01T00:00:00Z",
     "updatedAt": "2026-10-09T00:00:00Z"
   },
@@ -916,7 +927,7 @@
     "description": "Three to four attars, 3 ml each. Find your signature before you choose a full bottle. Free shipping across India.",
     "sku": "AAR-DISC-ATT-3",
     "barcode": "890432100109",
-    "stock": 69,
+    "stock": 50,
     "reservedQuantity": 0,
     "lowStockThreshold": 10,
     "weight": "0.30 kg",
@@ -935,7 +946,7 @@
         "size": "3 x 3ml Discovery Vials",
         "price": 499,
         "sku": "AAR-DISC-ATT-3",
-        "stock": 69,
+        "stock": 50,
         "batchNo": 1,
         "batchSize": 50,
         "nextSerial": 1,

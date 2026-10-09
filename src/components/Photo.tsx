@@ -2,9 +2,11 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import { PRODUCTS } from "@/data/products";
 
 interface PhotoProps {
   slot: string;
+  src?: string;
   alt: string;
   aspect?: "16/9" | "3/4" | "4/3" | "4/5" | "3/5" | "1/1" | string;
   shape?: "arch" | "rect" | "full";
@@ -17,6 +19,7 @@ interface PhotoProps {
 
 export const Photo: React.FC<PhotoProps> = ({
   slot,
+  src,
   alt,
   aspect = "3/4",
   shape = "rect",
@@ -27,6 +30,9 @@ export const Photo: React.FC<PhotoProps> = ({
   dark = false,
 }) => {
   const [imageError, setImageError] = useState(false);
+
+  const product = PRODUCTS.find((p) => p.slug === slot || p.id === slot);
+  const resolvedSrc = src || product?.mainImage || `/photos/${slot}.jpg`;
 
   const getAspectClass = () => {
     switch (aspect) {
@@ -58,7 +64,6 @@ export const Photo: React.FC<PhotoProps> = ({
     }
   };
 
-  const imageSrc = `/photos/${slot}.jpg`;
   const isDarkSlot = dark || slot === "hero" || slot.includes("ingredient") || slot.includes("strip");
 
   return (
@@ -68,7 +73,7 @@ export const Photo: React.FC<PhotoProps> = ({
     >
       {!imageError ? (
         <Image
-          src={imageSrc}
+          src={resolvedSrc}
           alt={alt || `Aarsika ${slot}`}
           fill={fill}
           priority={priority}

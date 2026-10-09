@@ -20,6 +20,7 @@ export const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
         <Link href={`/products/${product.slug}`} className="block relative w-full h-full">
           <Photo
             slot={product.slug}
+            src={product.mainImage}
             alt={product.name}
             aspect="4/5"
             shape="rect"
