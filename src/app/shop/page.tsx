@@ -8,10 +8,25 @@ import { ProductCard } from '@/components/ProductCard';
 
 function ShopContent() {
   const searchParams = useSearchParams();
-  const initialCategory = searchParams.get('category') || 'ALL';
+  const rawCategory = searchParams.get('category') || 'ALL';
 
-  const [activeCategory, setActiveCategory] = useState(initialCategory);
+  const normalizeCategory = (cat: string) => {
+    const c = cat.toLowerCase();
+    if (c === 'eau-de-parfums' || c === 'perfumes' || c === 'eau de parfum') return 'EAU DE PARFUM';
+    if (c === 'ittras' || c === 'attar' || c === 'attars') return 'ATTAR';
+    if (c === 'gift-sets' || c === 'gifting') return 'GIFTING';
+    if (c === 'trial-sets' || c === 'discovery-sets' || c === 'discovery sets') return 'DISCOVERY SETS';
+    return cat.toUpperCase();
+  };
+
+  const [activeCategory, setActiveCategory] = useState(() => normalizeCategory(rawCategory));
   const [sortBy, setSortBy] = useState<'featured' | 'price-asc' | 'price-desc'>('featured');
+
+  React.useEffect(() => {
+    if (rawCategory) {
+      setActiveCategory(normalizeCategory(rawCategory));
+    }
+  }, [rawCategory]);
 
   const categories = [
     { id: 'ALL', label: 'All' },
