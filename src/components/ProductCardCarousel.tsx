@@ -27,26 +27,8 @@ export const ProductCardCarousel: React.FC<ProductCardCarouselProps> = ({
   }, [images]);
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
   const [touchEndX, setTouchEndX] = useState<number | null>(null);
-
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
-
-  // Auto-play interval (4 seconds), paused on hover or when prefers-reduced-motion is enabled
-  useEffect(() => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    if (!isHovered && !prefersReducedMotion) {
-      timerRef.current = setInterval(() => {
-        setCurrentIndex((prev) => (prev + 1) % carouselImages.length);
-      }, 4000);
-    }
-
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-    };
-  }, [isHovered, carouselImages.length]);
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % carouselImages.length);
@@ -82,8 +64,6 @@ export const ProductCardCarousel: React.FC<ProductCardCarouselProps> = ({
   return (
     <div
       className="relative aspect-[4/3] sm:aspect-[4/3] w-full bg-[#EADFCB] overflow-hidden rounded-lg group/carousel select-none"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
