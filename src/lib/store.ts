@@ -129,6 +129,8 @@ function writeJSON<T>(filename: string, data: T) {
 let memoryProducts: Product[] | null = null;
 let memoryOrders: Order[] | null = null;
 let memoryCoupons: Coupon[] | null = null;
+let memoryReviews: ProductReview[] | null = null;
+let memoryReturns: ReturnRequest[] | null = null;
 
 export const DB = {
   getProducts(): Product[] {
@@ -227,7 +229,6 @@ export const DB = {
     const orders = this.getOrders();
     let finalOrder = order;
 
-    // COD orders confirm immediately; Online orders confirm upon payment verification
     if (order.paymentMethod === 'COD') {
       finalOrder = this.assignSerialsAndConfirmOrder(order);
     }
@@ -245,7 +246,6 @@ export const DB = {
     const order = orders[orderIndex];
     if (order.orderStatus === 'CANCELLED') return order;
 
-    // Release stock back to inventory without re-using nextSerial
     const products = this.getProducts();
     order.items.forEach((item) => {
       const prodIndex = products.findIndex(
@@ -295,5 +295,29 @@ export const DB = {
   saveCoupons(coupons: Coupon[]) {
     memoryCoupons = coupons;
     writeJSON('coupons.json', coupons);
+  },
+
+  getReviews(): ProductReview[] {
+    if (!memoryReviews) {
+      memoryReviews = readJSON<ProductReview[]>('reviews.json', []);
+    }
+    return memoryReviews;
+  },
+
+  saveReviews(reviews: ProductReview[]) {
+    memoryReviews = reviews;
+    writeJSON('reviews.json', reviews);
+  },
+
+  getReturns(): ReturnRequest[] {
+    if (!memoryReturns) {
+      memoryReturns = readJSON<ReturnRequest[]>('returns.json', []);
+    }
+    return memoryReturns;
+  },
+
+  saveReturns(returns: ReturnRequest[]) {
+    memoryReturns = returns;
+    writeJSON('returns.json', returns);
   },
 };

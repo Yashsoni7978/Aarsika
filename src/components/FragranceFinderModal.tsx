@@ -55,7 +55,7 @@ export const FragranceFinderModal: React.FC = () => {
         {/* Close Button */}
         <button
           onClick={() => setIsFinderOpen(false)}
-          className="absolute top-4 right-4 z-20 p-2 text-[#756B63] hover:text-[#B94D70] transition-colors rounded-full bg-[#F8F1E7]"
+          className="absolute top-4 right-4 z-20 p-2 text-[#6b5f55] hover:text-[#8b1a2b] transition-colors rounded-none bg-[#F6EFE2]"
           aria-label="Close Modal"
         >
           <X className="w-5 h-5" />

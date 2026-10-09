@@ -1,12 +1,12 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { CheckCircle2, ShoppingBag, ArrowRight } from 'lucide-react';
 import { Order } from '@/lib/store';
 
-export default function OrderSuccessPage() {
+function OrderSuccessContent() {
   const searchParams = useSearchParams();
   const orderId = searchParams.get('id') || searchParams.get('orderId');
   const [order, setOrder] = useState<Order | null>(null);
@@ -94,5 +94,13 @@ export default function OrderSuccessPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function OrderSuccessPage() {
+  return (
+    <Suspense fallback={<div className="bg-[#F6EFE2] min-h-screen pt-32 text-center text-[#8a6a22] font-mono text-xs">LOADING ORDER CONFIRMATION...</div>}>
+      <OrderSuccessContent />
+    </Suspense>
   );
 }

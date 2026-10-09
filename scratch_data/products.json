@@ -23,32 +23,100 @@
     "dimensions": "5 x 5 x 12 cm",
     "mainImage": "/images/gul-e-rooh.jpg",
     "secondaryImage": "/images/rose-ingrediant.png",
-    "gallery": ["/images/gul-e-rooh.jpg", "/images/rose-ingrediant.png"],
-    "sizeOptions": ["3 ml", "6 ml", "12 ml", "30 ml"],
+    "gallery": [
+      "/images/gul-e-rooh.jpg",
+      "/images/rose-ingrediant.png"
+    ],
+    "sizeOptions": [
+      "3 ml",
+      "6 ml",
+      "12 ml",
+      "30 ml"
+    ],
     "defaultSize": "12 ml",
     "variants": [
-      { "size": "3 ml", "price": 249, "sku": "AAR-SEHAR-E-GULAB-03", "stock": 69, "batchNo": 1, "batchSize": 69, "nextSerial": 1, "onRequest": false },
-      { "size": "6 ml", "price": 399, "sku": "AAR-SEHAR-E-GULAB-06", "stock": 69, "batchNo": 1, "batchSize": 69, "nextSerial": 1, "onRequest": false },
-      { "size": "12 ml", "price": 499, "sku": "AAR-SEHAR-E-GULAB-12", "stock": 69, "batchNo": 1, "batchSize": 69, "nextSerial": 1, "onRequest": false },
-      { "size": "30 ml", "price": 999, "sku": "AAR-SEHAR-E-GULAB-30", "stock": 69, "batchNo": 1, "batchSize": 69, "nextSerial": 1, "onRequest": false }
+      {
+        "size": "3 ml",
+        "price": 249,
+        "sku": "AAR-SEHAR-E-GULAB-03",
+        "stock": 69,
+        "batchNo": 1,
+        "batchSize": 69,
+        "nextSerial": 1,
+        "onRequest": false
+      },
+      {
+        "size": "6 ml",
+        "price": 399,
+        "sku": "AAR-SEHAR-E-GULAB-06",
+        "stock": 69,
+        "batchNo": 1,
+        "batchSize": 69,
+        "nextSerial": 1,
+        "onRequest": false
+      },
+      {
+        "size": "12 ml",
+        "price": 499,
+        "sku": "AAR-SEHAR-E-GULAB-12",
+        "stock": 69,
+        "batchNo": 1,
+        "batchSize": 69,
+        "nextSerial": 1,
+        "onRequest": false
+      },
+      {
+        "size": "30 ml",
+        "price": 999,
+        "sku": "AAR-SEHAR-E-GULAB-30",
+        "stock": 69,
+        "batchNo": 1,
+        "batchSize": 69,
+        "nextSerial": 1,
+        "onRequest": false
+      }
     ],
     "notes": {
-      "top": ["Fresh rose", "green notes"],
-      "heart": ["Rose", "soft floral accords"],
-      "base": ["Musk", "sandalwood", "warm amber"]
+      "top": [
+        "Fresh rose",
+        "green notes"
+      ],
+      "heart": [
+        "Rose",
+        "soft floral accords"
+      ],
+      "base": [
+        "Musk",
+        "sandalwood",
+        "warm amber"
+      ]
     },
-    "ingredients": ["Pure Concentrated Attar Oils", "Essential Oils"],
+    "ingredients": [
+      "Pure Concentrated Attar Oils",
+      "Essential Oils"
+    ],
     "concentration": "100% Pure Attar Oil",
     "longevity": "8-12 Hours",
     "sillage": "Intimate to Moderate",
     "application": "Glass Wand Applicator",
-    "benefits": ["Alcohol-free pure attar oil", "Long-lasting daily fragrance"],
+    "benefits": [
+      "Alcohol-free pure attar oil",
+      "Long-lasting daily fragrance"
+    ],
     "howToWear": "Apply a drop to pulse points on clean skin.",
     "warnings": "For external application only.",
     "shippingInformation": "Ships across India. Free shipping on all orders.",
     "returnEligibility": "Non-returnable item once unsealed.",
-    "tags": ["rose", "floral", "attar", "everyday"],
-    "collections": ["attar", "floral"],
+    "tags": [
+      "rose",
+      "floral",
+      "attar",
+      "everyday"
+    ],
+    "collections": [
+      "attar",
+      "floral"
+    ],
     "isBestseller": true,
     "inStock": true,
     "rating": 4.9,
@@ -83,32 +151,101 @@
     "dimensions": "5 x 5 x 12 cm",
     "mainImage": "/images/mitti-royale.jpg",
     "secondaryImage": "/images/artist-bottle-filling.png",
-    "gallery": ["/images/mitti-royale.jpg"],
-    "sizeOptions": ["3 ml", "6 ml", "12 ml", "30 ml"],
+    "gallery": [
+      "/images/mitti-royale.jpg"
+    ],
+    "sizeOptions": [
+      "3 ml",
+      "6 ml",
+      "12 ml",
+      "30 ml"
+    ],
     "defaultSize": "12 ml",
     "variants": [
-      { "size": "3 ml", "price": 249, "sku": "AAR-MAATI-03", "stock": 69, "batchNo": 1, "batchSize": 69, "nextSerial": 1, "onRequest": false },
-      { "size": "6 ml", "price": 399, "sku": "AAR-MAATI-06", "stock": 69, "batchNo": 1, "batchSize": 69, "nextSerial": 1, "onRequest": false },
-      { "size": "12 ml", "price": 499, "sku": "AAR-MAATI-12", "stock": 69, "batchNo": 1, "batchSize": 69, "nextSerial": 1, "onRequest": false },
-      { "size": "30 ml", "price": 999, "sku": "AAR-MAATI-30", "stock": 69, "batchNo": 1, "batchSize": 69, "nextSerial": 1, "onRequest": false }
+      {
+        "size": "3 ml",
+        "price": 249,
+        "sku": "AAR-MAATI-03",
+        "stock": 69,
+        "batchNo": 1,
+        "batchSize": 69,
+        "nextSerial": 1,
+        "onRequest": false
+      },
+      {
+        "size": "6 ml",
+        "price": 399,
+        "sku": "AAR-MAATI-06",
+        "stock": 69,
+        "batchNo": 1,
+        "batchSize": 69,
+        "nextSerial": 1,
+        "onRequest": false
+      },
+      {
+        "size": "12 ml",
+        "price": 499,
+        "sku": "AAR-MAATI-12",
+        "stock": 69,
+        "batchNo": 1,
+        "batchSize": 69,
+        "nextSerial": 1,
+        "onRequest": false
+      },
+      {
+        "size": "30 ml",
+        "price": 999,
+        "sku": "AAR-MAATI-30",
+        "stock": 69,
+        "batchNo": 1,
+        "batchSize": 69,
+        "nextSerial": 1,
+        "onRequest": false
+      }
     ],
     "notes": {
-      "top": ["Petrichor accord", "wet earth", "green notes"],
-      "heart": ["Vetiver", "earthy accords", "soft woods"],
-      "base": ["Sandalwood", "musk", "warm clay accord"]
+      "top": [
+        "Petrichor accord",
+        "wet earth",
+        "green notes"
+      ],
+      "heart": [
+        "Vetiver",
+        "earthy accords",
+        "soft woods"
+      ],
+      "base": [
+        "Sandalwood",
+        "musk",
+        "warm clay accord"
+      ]
     },
-    "ingredients": ["Pure Clay Extract", "Essential Oils"],
+    "ingredients": [
+      "Pure Clay Extract",
+      "Essential Oils"
+    ],
     "concentration": "100% Pure Attar Oil",
     "longevity": "8-12 Hours",
     "sillage": "Intimate",
     "application": "Glass Wand Applicator",
-    "benefits": ["Earthy petrichor scent", "Calming daily ritual"],
+    "benefits": [
+      "Earthy petrichor scent",
+      "Calming daily ritual"
+    ],
     "howToWear": "Apply a small touch on pulse points.",
     "warnings": "For external application only.",
     "shippingInformation": "Ships across India. Free shipping on all orders.",
     "returnEligibility": "Non-returnable item once unsealed.",
-    "tags": ["petrichor", "earthy", "attar", "woody"],
-    "collections": ["attar", "woody"],
+    "tags": [
+      "petrichor",
+      "earthy",
+      "attar",
+      "woody"
+    ],
+    "collections": [
+      "attar",
+      "woody"
+    ],
     "isBestseller": true,
     "inStock": true,
     "rating": 4.8,
@@ -143,32 +280,99 @@
     "dimensions": "5 x 5 x 12 cm",
     "mainImage": "/images/mehraab-signature-edp.jpg",
     "secondaryImage": "/images/ivory-musk.jpg",
-    "gallery": ["/images/mehraab-signature-edp.jpg"],
-    "sizeOptions": ["3 ml", "6 ml", "12 ml", "30 ml"],
+    "gallery": [
+      "/images/mehraab-signature-edp.jpg"
+    ],
+    "sizeOptions": [
+      "3 ml",
+      "6 ml",
+      "12 ml",
+      "30 ml"
+    ],
     "defaultSize": "12 ml",
     "variants": [
-      { "size": "3 ml", "price": 249, "sku": "AAR-SAANJH-03", "stock": 69, "batchNo": 1, "batchSize": 69, "nextSerial": 1, "onRequest": false },
-      { "size": "6 ml", "price": 399, "sku": "AAR-SAANJH-06", "stock": 69, "batchNo": 1, "batchSize": 69, "nextSerial": 1, "onRequest": false },
-      { "size": "12 ml", "price": 499, "sku": "AAR-SAANJH-12", "stock": 69, "batchNo": 1, "batchSize": 69, "nextSerial": 1, "onRequest": false },
-      { "size": "30 ml", "price": 999, "sku": "AAR-SAANJH-30", "stock": 69, "batchNo": 1, "batchSize": 69, "nextSerial": 1, "onRequest": false }
+      {
+        "size": "3 ml",
+        "price": 249,
+        "sku": "AAR-SAANJH-03",
+        "stock": 69,
+        "batchNo": 1,
+        "batchSize": 69,
+        "nextSerial": 1,
+        "onRequest": false
+      },
+      {
+        "size": "6 ml",
+        "price": 399,
+        "sku": "AAR-SAANJH-06",
+        "stock": 69,
+        "batchNo": 1,
+        "batchSize": 69,
+        "nextSerial": 1,
+        "onRequest": false
+      },
+      {
+        "size": "12 ml",
+        "price": 499,
+        "sku": "AAR-SAANJH-12",
+        "stock": 69,
+        "batchNo": 1,
+        "batchSize": 69,
+        "nextSerial": 1,
+        "onRequest": false
+      },
+      {
+        "size": "30 ml",
+        "price": 999,
+        "sku": "AAR-SAANJH-30",
+        "stock": 69,
+        "batchNo": 1,
+        "batchSize": 69,
+        "nextSerial": 1,
+        "onRequest": false
+      }
     ],
     "notes": {
-      "top": ["Soft citrus", "green notes", "aldehydes"],
-      "heart": ["White musk", "jasmine", "rose"],
-      "base": ["Musk", "sandalwood", "amber"]
+      "top": [
+        "Soft citrus",
+        "green notes",
+        "aldehydes"
+      ],
+      "heart": [
+        "White musk",
+        "jasmine",
+        "rose"
+      ],
+      "base": [
+        "Musk",
+        "sandalwood",
+        "amber"
+      ]
     },
-    "ingredients": ["Botanical Extracts", "Pure Essential Oils"],
+    "ingredients": [
+      "Botanical Extracts",
+      "Pure Essential Oils"
+    ],
     "concentration": "100% Pure Attar Oil",
     "longevity": "8-12 Hours",
     "sillage": "Moderate",
     "application": "Glass Wand Applicator",
-    "benefits": ["Soothing evening scent", "Intimate skin finish"],
+    "benefits": [
+      "Soothing evening scent",
+      "Intimate skin finish"
+    ],
     "howToWear": "Apply softly on wrists and neckline.",
     "warnings": "For external application only.",
     "shippingInformation": "Ships across India. Free shipping on all orders.",
     "returnEligibility": "Non-returnable item once unsealed.",
-    "tags": ["musk", "evening", "attar"],
-    "collections": ["attar"],
+    "tags": [
+      "musk",
+      "evening",
+      "attar"
+    ],
+    "collections": [
+      "attar"
+    ],
     "isBestseller": false,
     "inStock": true,
     "rating": 4.7,
@@ -203,32 +407,101 @@
     "dimensions": "5 x 5 x 12 cm",
     "mainImage": "/images/oud-e-jaipur.jpg",
     "secondaryImage": "/images/combo-gifting-box.png",
-    "gallery": ["/images/oud-e-jaipur.jpg"],
-    "sizeOptions": ["3 ml", "6 ml", "12 ml", "30 ml"],
+    "gallery": [
+      "/images/oud-e-jaipur.jpg"
+    ],
+    "sizeOptions": [
+      "3 ml",
+      "6 ml",
+      "12 ml",
+      "30 ml"
+    ],
     "defaultSize": "12 ml",
     "variants": [
-      { "size": "3 ml", "price": 249, "sku": "AAR-SHAAM-KA-NOOR-03", "stock": 69, "batchNo": 1, "batchSize": 69, "nextSerial": 1, "onRequest": false },
-      { "size": "6 ml", "price": 399, "sku": "AAR-SHAAM-KA-NOOR-06", "stock": 69, "batchNo": 1, "batchSize": 69, "nextSerial": 1, "onRequest": false },
-      { "size": "12 ml", "price": 499, "sku": "AAR-SHAAM-KA-NOOR-12", "stock": 69, "batchNo": 1, "batchSize": 69, "nextSerial": 1, "onRequest": false },
-      { "size": "30 ml", "price": 999, "sku": "AAR-SHAAM-KA-NOOR-30", "stock": 69, "batchNo": 1, "batchSize": 69, "nextSerial": 1, "onRequest": false }
+      {
+        "size": "3 ml",
+        "price": 249,
+        "sku": "AAR-SHAAM-KA-NOOR-03",
+        "stock": 69,
+        "batchNo": 1,
+        "batchSize": 69,
+        "nextSerial": 1,
+        "onRequest": false
+      },
+      {
+        "size": "6 ml",
+        "price": 399,
+        "sku": "AAR-SHAAM-KA-NOOR-06",
+        "stock": 69,
+        "batchNo": 1,
+        "batchSize": 69,
+        "nextSerial": 1,
+        "onRequest": false
+      },
+      {
+        "size": "12 ml",
+        "price": 499,
+        "sku": "AAR-SHAAM-KA-NOOR-12",
+        "stock": 69,
+        "batchNo": 1,
+        "batchSize": 69,
+        "nextSerial": 1,
+        "onRequest": false
+      },
+      {
+        "size": "30 ml",
+        "price": 999,
+        "sku": "AAR-SHAAM-KA-NOOR-30",
+        "stock": 69,
+        "batchNo": 1,
+        "batchSize": 69,
+        "nextSerial": 1,
+        "onRequest": false
+      }
     ],
     "notes": {
-      "top": ["Saffron", "spices", "citrus"],
-      "heart": ["Rose", "oud", "jasmine"],
-      "base": ["Amber", "sandalwood", "musk"]
+      "top": [
+        "Saffron",
+        "spices",
+        "citrus"
+      ],
+      "heart": [
+        "Rose",
+        "oud",
+        "jasmine"
+      ],
+      "base": [
+        "Amber",
+        "sandalwood",
+        "musk"
+      ]
     },
-    "ingredients": ["Aged Agarwood Oil", "Saffron Extract"],
+    "ingredients": [
+      "Aged Agarwood Oil",
+      "Saffron Extract"
+    ],
     "concentration": "100% Pure Attar Oil",
     "longevity": "10-14 Hours",
     "sillage": "Rich & Warm",
     "application": "Glass Wand Applicator",
-    "benefits": ["Rich evening warmth", "Deep lingering finish"],
+    "benefits": [
+      "Rich evening warmth",
+      "Deep lingering finish"
+    ],
     "howToWear": "Dab lightly on collar points and wrists.",
     "warnings": "For external application only.",
     "shippingInformation": "Ships across India. Free shipping on all orders.",
     "returnEligibility": "Non-returnable item once unsealed.",
-    "tags": ["oud", "evening", "attar", "saffron"],
-    "collections": ["attar", "oud"],
+    "tags": [
+      "oud",
+      "evening",
+      "attar",
+      "saffron"
+    ],
+    "collections": [
+      "attar",
+      "oud"
+    ],
     "isBestseller": true,
     "inStock": true,
     "rating": 4.9,
@@ -263,32 +536,102 @@
     "dimensions": "5 x 5 x 12 cm",
     "mainImage": "/images/raatraani.jpg",
     "secondaryImage": "/images/rose-ingrediant.png",
-    "gallery": ["/images/raatraani.jpg"],
-    "sizeOptions": ["3 ml", "6 ml", "12 ml", "30 ml"],
+    "gallery": [
+      "/images/raatraani.jpg"
+    ],
+    "sizeOptions": [
+      "3 ml",
+      "6 ml",
+      "12 ml",
+      "30 ml"
+    ],
     "defaultSize": "12 ml",
     "variants": [
-      { "size": "3 ml", "price": 249, "sku": "AAR-RAAT-KI-RANI-03", "stock": 69, "batchNo": 1, "batchSize": 69, "nextSerial": 1, "onRequest": false },
-      { "size": "6 ml", "price": 399, "sku": "AAR-RAAT-KI-RANI-06", "stock": 69, "batchNo": 1, "batchSize": 69, "nextSerial": 1, "onRequest": false },
-      { "size": "12 ml", "price": 499, "sku": "AAR-RAAT-KI-RANI-12", "stock": 69, "batchNo": 1, "batchSize": 69, "nextSerial": 1, "onRequest": false },
-      { "size": "30 ml", "price": 999, "sku": "AAR-RAAT-KI-RANI-30", "stock": 69, "batchNo": 1, "batchSize": 69, "nextSerial": 1, "onRequest": false }
+      {
+        "size": "3 ml",
+        "price": 249,
+        "sku": "AAR-RAAT-KI-RANI-03",
+        "stock": 69,
+        "batchNo": 1,
+        "batchSize": 69,
+        "nextSerial": 1,
+        "onRequest": false
+      },
+      {
+        "size": "6 ml",
+        "price": 399,
+        "sku": "AAR-RAAT-KI-RANI-06",
+        "stock": 69,
+        "batchNo": 1,
+        "batchSize": 69,
+        "nextSerial": 1,
+        "onRequest": false
+      },
+      {
+        "size": "12 ml",
+        "price": 499,
+        "sku": "AAR-RAAT-KI-RANI-12",
+        "stock": 69,
+        "batchNo": 1,
+        "batchSize": 69,
+        "nextSerial": 1,
+        "onRequest": false
+      },
+      {
+        "size": "30 ml",
+        "price": 999,
+        "sku": "AAR-RAAT-KI-RANI-30",
+        "stock": 69,
+        "batchNo": 1,
+        "batchSize": 69,
+        "nextSerial": 1,
+        "onRequest": false
+      }
     ],
     "notes": {
-      "top": ["Night-blooming floral accord", "jasmine", "citrus"],
-      "heart": ["Tuberose", "ylang-ylang", "soft spices"],
-      "base": ["Sandalwood", "musk", "amber", "vanilla"]
+      "top": [
+        "Night-blooming floral accord",
+        "jasmine",
+        "citrus"
+      ],
+      "heart": [
+        "Tuberose",
+        "ylang-ylang",
+        "soft spices"
+      ],
+      "base": [
+        "Sandalwood",
+        "musk",
+        "amber",
+        "vanilla"
+      ]
     },
-    "ingredients": ["Night Jasmine Absolute", "Vanilla Extract"],
+    "ingredients": [
+      "Night Jasmine Absolute",
+      "Vanilla Extract"
+    ],
     "concentration": "100% Pure Attar Oil",
     "longevity": "8-12 Hours",
     "sillage": "Enchanting Floral",
     "application": "Glass Wand Applicator",
-    "benefits": ["Captivating night floral", "Smooth vanilla sandalwood base"],
+    "benefits": [
+      "Captivating night floral",
+      "Smooth vanilla sandalwood base"
+    ],
     "howToWear": "Apply on wrists and behind ears.",
     "warnings": "For external application only.",
     "shippingInformation": "Ships across India. Free shipping on all orders.",
     "returnEligibility": "Non-returnable item once unsealed.",
-    "tags": ["jasmine", "tuberose", "night-bloom", "attar"],
-    "collections": ["attar", "floral"],
+    "tags": [
+      "jasmine",
+      "tuberose",
+      "night-bloom",
+      "attar"
+    ],
+    "collections": [
+      "attar",
+      "floral"
+    ],
     "isBestseller": false,
     "inStock": true,
     "rating": 4.8,
@@ -323,32 +666,101 @@
     "dimensions": "5 x 5 x 12 cm",
     "mainImage": "/images/sapphire-oud.jpg",
     "secondaryImage": "/images/oud-e-jaipur.jpg",
-    "gallery": ["/images/sapphire-oud.jpg"],
-    "sizeOptions": ["3 ml", "6 ml", "12 ml", "30 ml"],
+    "gallery": [
+      "/images/sapphire-oud.jpg"
+    ],
+    "sizeOptions": [
+      "3 ml",
+      "6 ml",
+      "12 ml",
+      "30 ml"
+    ],
     "defaultSize": "12 ml",
     "variants": [
-      { "size": "3 ml", "price": 249, "sku": "AAR-RESHAM-OUDH-03", "stock": 69, "batchNo": 1, "batchSize": 69, "nextSerial": 1, "onRequest": false },
-      { "size": "6 ml", "price": 399, "sku": "AAR-RESHAM-OUDH-06", "stock": 69, "batchNo": 1, "batchSize": 69, "nextSerial": 1, "onRequest": false },
-      { "size": "12 ml", "price": 499, "sku": "AAR-RESHAM-OUDH-12", "stock": 69, "batchNo": 1, "batchSize": 69, "nextSerial": 1, "onRequest": false },
-      { "size": "30 ml", "price": 999, "sku": "AAR-RESHAM-OUDH-30", "stock": 69, "batchNo": 1, "batchSize": 69, "nextSerial": 1, "onRequest": false }
+      {
+        "size": "3 ml",
+        "price": 249,
+        "sku": "AAR-RESHAM-OUDH-03",
+        "stock": 69,
+        "batchNo": 1,
+        "batchSize": 69,
+        "nextSerial": 1,
+        "onRequest": false
+      },
+      {
+        "size": "6 ml",
+        "price": 399,
+        "sku": "AAR-RESHAM-OUDH-06",
+        "stock": 69,
+        "batchNo": 1,
+        "batchSize": 69,
+        "nextSerial": 1,
+        "onRequest": false
+      },
+      {
+        "size": "12 ml",
+        "price": 499,
+        "sku": "AAR-RESHAM-OUDH-12",
+        "stock": 69,
+        "batchNo": 1,
+        "batchSize": 69,
+        "nextSerial": 1,
+        "onRequest": false
+      },
+      {
+        "size": "30 ml",
+        "price": 999,
+        "sku": "AAR-RESHAM-OUDH-30",
+        "stock": 69,
+        "batchNo": 1,
+        "batchSize": 69,
+        "nextSerial": 1,
+        "onRequest": false
+      }
     ],
     "notes": {
-      "top": ["Saffron", "bergamot", "soft spices"],
-      "heart": ["Oud", "rose", "sandalwood"],
-      "base": ["Amber", "musk", "vanilla"]
+      "top": [
+        "Saffron",
+        "bergamot",
+        "soft spices"
+      ],
+      "heart": [
+        "Oud",
+        "rose",
+        "sandalwood"
+      ],
+      "base": [
+        "Amber",
+        "musk",
+        "vanilla"
+      ]
     },
-    "ingredients": ["Pure Oud Extract", "Rose & Saffron Oils"],
+    "ingredients": [
+      "Pure Oud Extract",
+      "Rose & Saffron Oils"
+    ],
     "concentration": "100% Pure Attar Oil",
     "longevity": "12+ Hours",
     "sillage": "Velvety & Enveloping",
     "application": "Glass Wand Applicator",
-    "benefits": ["Smooth silken oud", "Warm amber trail"],
+    "benefits": [
+      "Smooth silken oud",
+      "Warm amber trail"
+    ],
     "howToWear": "Apply sparingly on pulse points.",
     "warnings": "For external application only.",
     "shippingInformation": "Ships across India. Free shipping on all orders.",
     "returnEligibility": "Non-returnable item once unsealed.",
-    "tags": ["oud", "amber", "saffron", "attar"],
-    "collections": ["attar", "oud"],
+    "tags": [
+      "oud",
+      "amber",
+      "saffron",
+      "attar"
+    ],
+    "collections": [
+      "attar",
+      "oud"
+    ],
     "isBestseller": true,
     "inStock": true,
     "rating": 4.9,
@@ -383,32 +795,102 @@
     "dimensions": "5 x 5 x 12 cm",
     "mainImage": "/images/saffron-sandal.jpg",
     "secondaryImage": "/images/ivory-musk.jpg",
-    "gallery": ["/images/saffron-sandal.jpg"],
-    "sizeOptions": ["3 ml", "6 ml", "12 ml", "30 ml"],
+    "gallery": [
+      "/images/saffron-sandal.jpg"
+    ],
+    "sizeOptions": [
+      "3 ml",
+      "6 ml",
+      "12 ml",
+      "30 ml"
+    ],
     "defaultSize": "12 ml",
     "variants": [
-      { "size": "3 ml", "price": 249, "sku": "AAR-MEHFIL-03", "stock": 69, "batchNo": 1, "batchSize": 69, "nextSerial": 1, "onRequest": false },
-      { "size": "6 ml", "price": 399, "sku": "AAR-MEHFIL-06", "stock": 69, "batchNo": 1, "batchSize": 69, "nextSerial": 1, "onRequest": false },
-      { "size": "12 ml", "price": 499, "sku": "AAR-MEHFIL-12", "stock": 69, "batchNo": 1, "batchSize": 69, "nextSerial": 1, "onRequest": false },
-      { "size": "30 ml", "price": 999, "sku": "AAR-MEHFIL-30", "stock": 69, "batchNo": 1, "batchSize": 69, "nextSerial": 1, "onRequest": false }
+      {
+        "size": "3 ml",
+        "price": 249,
+        "sku": "AAR-MEHFIL-03",
+        "stock": 69,
+        "batchNo": 1,
+        "batchSize": 69,
+        "nextSerial": 1,
+        "onRequest": false
+      },
+      {
+        "size": "6 ml",
+        "price": 399,
+        "sku": "AAR-MEHFIL-06",
+        "stock": 69,
+        "batchNo": 1,
+        "batchSize": 69,
+        "nextSerial": 1,
+        "onRequest": false
+      },
+      {
+        "size": "12 ml",
+        "price": 499,
+        "sku": "AAR-MEHFIL-12",
+        "stock": 69,
+        "batchNo": 1,
+        "batchSize": 69,
+        "nextSerial": 1,
+        "onRequest": false
+      },
+      {
+        "size": "30 ml",
+        "price": 999,
+        "sku": "AAR-MEHFIL-30",
+        "stock": 69,
+        "batchNo": 1,
+        "batchSize": 69,
+        "nextSerial": 1,
+        "onRequest": false
+      }
     ],
     "notes": {
-      "top": ["Saffron", "citrus", "soft spices"],
-      "heart": ["Rose", "jasmine", "amber"],
-      "base": ["Oud", "sandalwood", "musk", "vanilla"]
+      "top": [
+        "Saffron",
+        "citrus",
+        "soft spices"
+      ],
+      "heart": [
+        "Rose",
+        "jasmine",
+        "amber"
+      ],
+      "base": [
+        "Oud",
+        "sandalwood",
+        "musk",
+        "vanilla"
+      ]
     },
-    "ingredients": ["Saffron Oil", "Sandalwood & Oud Oils"],
+    "ingredients": [
+      "Saffron Oil",
+      "Sandalwood & Oud Oils"
+    ],
     "concentration": "100% Pure Attar Oil",
     "longevity": "10-14 Hours",
     "sillage": "Radiant & Inviting",
     "application": "Glass Wand Applicator",
-    "benefits": ["Celebratory scent profile", "Rich multi-faceted bouquet"],
+    "benefits": [
+      "Celebratory scent profile",
+      "Rich multi-faceted bouquet"
+    ],
     "howToWear": "Apply generously on cuffs and neck.",
     "warnings": "For external application only.",
     "shippingInformation": "Ships across India. Free shipping on all orders.",
     "returnEligibility": "Non-returnable item once unsealed.",
-    "tags": ["mehfil", "saffron", "oud", "attar"],
-    "collections": ["attar", "oud"],
+    "tags": [
+      "mehfil",
+      "saffron",
+      "oud",
+      "attar"
+    ],
+    "collections": [
+      "attar",
+      "oud"
+    ],
     "isBestseller": true,
     "inStock": true,
     "rating": 4.9,
@@ -434,36 +916,73 @@
     "description": "Three to four attars, 3 ml each. Find your signature before you choose a full bottle. Free shipping across India.",
     "sku": "AAR-DISC-ATT-3",
     "barcode": "890432100109",
-    "stock": 50,
+    "stock": 69,
     "reservedQuantity": 0,
     "lowStockThreshold": 10,
     "weight": "0.30 kg",
     "dimensions": "18 x 12 x 4 cm",
     "mainImage": "/images/royal-gift-box.jpg",
     "secondaryImage": "/images/gul-e-rooh.jpg",
-    "gallery": ["/images/royal-gift-box.jpg"],
-    "sizeOptions": ["3 x 3ml Discovery Vials"],
+    "gallery": [
+      "/images/royal-gift-box.jpg"
+    ],
+    "sizeOptions": [
+      "3 x 3ml Discovery Vials"
+    ],
     "defaultSize": "3 x 3ml Discovery Vials",
     "variants": [
-      { "size": "3 x 3ml Discovery Vials", "price": 499, "sku": "AAR-DISC-ATT-3", "stock": 50, "batchNo": 1, "batchSize": 50, "nextSerial": 1, "onRequest": false }
+      {
+        "size": "3 x 3ml Discovery Vials",
+        "price": 499,
+        "sku": "AAR-DISC-ATT-3",
+        "stock": 69,
+        "batchNo": 1,
+        "batchSize": 50,
+        "nextSerial": 1,
+        "onRequest": false
+      }
     ],
     "notes": {
-      "top": ["Fresh Rose", "Petrichor", "Saffron"],
-      "heart": ["Jasmine", "Vetiver", "White Musk"],
-      "base": ["Sandalwood", "Oud", "Amber"]
+      "top": [
+        "Fresh Rose",
+        "Petrichor",
+        "Saffron"
+      ],
+      "heart": [
+        "Jasmine",
+        "Vetiver",
+        "White Musk"
+      ],
+      "base": [
+        "Sandalwood",
+        "Oud",
+        "Amber"
+      ]
     },
-    "ingredients": ["Three to four pure attar samples"],
+    "ingredients": [
+      "Three to four pure attar samples"
+    ],
     "concentration": "100% Pure Attar Oil",
     "longevity": "8-12 Hours",
     "sillage": "Personal",
     "application": "Sample Vials",
-    "benefits": ["Explore signature attars", "Includes free shipping across India"],
+    "benefits": [
+      "Explore signature attars",
+      "Includes free shipping across India"
+    ],
     "howToWear": "Test each attar on clean skin across different days.",
     "warnings": "External use only.",
     "shippingInformation": "Ships across India in presentation sleeve.",
     "returnEligibility": "Non-returnable item once opened.",
-    "tags": ["discovery", "samples", "attar", "gift"],
-    "collections": ["discovery-sets"],
+    "tags": [
+      "discovery",
+      "samples",
+      "attar",
+      "gift"
+    ],
+    "collections": [
+      "discovery-sets"
+    ],
     "isBestseller": true,
     "inStock": true,
     "rating": 4.9,

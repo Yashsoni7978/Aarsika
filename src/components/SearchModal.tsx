@@ -72,7 +72,7 @@ export const SearchModal: React.FC = () => {
               <button
                 key={tag}
                 onClick={() => setQuery(tag)}
-                className="px-3 py-1 rounded-full bg-[#F8F1E7] border border-[#C49A52]/30 text-[#17345F] hover:bg-[#17345F] hover:text-[#FFF9F1] transition-all"
+                className="px-3 py-1 rounded-none bg-[#F6EFE2] border border-[#dccfb6] text-[#1a1411] hover:bg-[#26060d] hover:text-[#F6EFE2] transition-all"
               >
                 {tag}
               </button>
