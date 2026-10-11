@@ -63,37 +63,47 @@ export default function HomePage() {
     .map((slug) => PRODUCTS.find((p) => p.slug === slug))
     .filter(Boolean) as Product[];
 
-  // 4. Ingredients data
+  // 4. Ingredients data (associated with authentic fragrance compositions)
   const ingredients = [
     {
       name: 'Damask Rose',
       role: 'Floral Radiance',
       image: '/images/rose ingrediant.png',
       desc: 'Velvety petals harvested at dawn, offering a radiant, timeless floral signature.',
+      featuredIn: 'Sehar E Gulab & Amour',
+      productSlug: 'sehar-e-gulab',
     },
     {
       name: 'Assam Oud',
       role: 'Smoky Depth',
       image: '/images/oudh.png',
       desc: 'Deep, resinous agarwood providing profound smokiness and magnetic warmth.',
+      featuredIn: 'Resham Oudh',
+      productSlug: 'resham-oudh',
     },
     {
       name: 'Night Jasmine',
       role: 'Ethereal Sweetness',
       image: '/images/green jasmine.png',
       desc: 'Night-blooming white florals with intoxicating, ethereal sweetness.',
+      featuredIn: 'Raat Ki Rani',
+      productSlug: 'raat-ki-rani',
     },
     {
       name: 'Kashmiri Saffron',
       role: 'Exotic Warmth',
       image: '/images/kesar ingrediant.png',
       desc: 'Golden crimson threads infusing exotic spice and warm leather nuances.',
+      featuredIn: 'Saanjh',
+      productSlug: 'saanjh',
     },
     {
       name: 'Mysore Sandalwood',
       role: 'Creamy Calm',
       image: '/images/scandalwood.png',
       desc: 'Creamy heartwood that anchors compositions with serene elegance and comfort.',
+      featuredIn: 'Jaipur Maati',
+      productSlug: 'maati',
     },
   ];
 
@@ -153,25 +163,25 @@ export default function HomePage() {
               {
                 title: 'Eau de Parfums',
                 subtitle: 'Fine Spray Fragrances',
-                href: '/collection/eau-de-parfums',
+                href: '/collections/perfumes',
                 image: '/photos/perfumes/amour.png',
               },
               {
                 title: 'Ittras',
                 subtitle: 'Concentrated Attar Oils',
-                href: '/collection/ittras',
+                href: '/collections/attar',
                 image: '/photos/attars/sehar-e-gulab-clean 1st.jpg',
               },
               {
                 title: 'Gift Sets',
                 subtitle: 'Opulent Boxed Chests',
-                href: '/collection/gift-sets',
+                href: '/collections/gifting',
                 image: '/photos/gift-sets/discovery-gift-set.png',
               },
               {
                 title: 'Trial Sets',
                 subtitle: 'Discovery Vials 7 × 3 ml',
-                href: '/collection/trial-sets',
+                href: '/discovery-sets',
                 image: '/photos/trial-packs/aarsika-ittra-collection-trial-set.webp',
               },
             ].map((cat) => (
@@ -218,7 +228,7 @@ export default function HomePage() {
               </p>
             </div>
             <Link
-              href="/collection/ittras"
+              href="/collections/attar"
               className="text-xs font-mono uppercase tracking-[0.2em] text-[#9D6A26] hover:text-[#32151A] transition-colors flex items-center gap-1.5"
             >
               <span>VIEW ALL 7 ATTARS</span>
@@ -253,7 +263,7 @@ export default function HomePage() {
               </p>
             </div>
             <Link
-              href="/collection/eau-de-parfums"
+              href="/collections/perfumes"
               className="text-xs font-mono uppercase tracking-[0.2em] text-[#9D6A26] hover:text-[#32151A] transition-colors flex items-center gap-1.5"
             >
               <span>VIEW ALL PERFUMES</span>
@@ -268,9 +278,9 @@ export default function HomePage() {
               return (
                 <div
                   key={prod.id}
-                  className="group relative flex flex-col bg-[#F5EFE3] border border-[#C69A45]/20 p-4 transition-all duration-300 hover:border-[#C69A45] hover:shadow-md"
+                  className="group relative flex flex-col bg-[#FBF6EA] border border-[#C69A45]/20 p-4 sm:p-5 transition-all duration-300 hover:border-[#C69A45] hover:shadow-md"
                 >
-                  <div className="relative aspect-[4/5] w-full overflow-hidden bg-[#EADFCB] mb-4">
+                  <div className="relative aspect-[4/5] w-full overflow-hidden bg-[#EADFCB] mb-3.5">
                     <Link href={`/products/${prod.slug}`} className="block w-full h-full">
                       <Image
                         src={prod.mainImage}
@@ -278,7 +288,7 @@ export default function HomePage() {
                         fill
                         loading="eager"
                         sizes="(max-width: 640px) 50vw, 33vw"
-                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                       />
                     </Link>
 
@@ -351,12 +361,12 @@ export default function HomePage() {
                 Seven fragrances. One unforgettable beginning.
               </p>
               <p className="text-sm sm:text-base text-[#4a3f35] font-light leading-relaxed">
-                Experience our complete attar repertoire in 3 ml miniature flacons before choosing your full bottle. Hand-filled in Jaipur with complimentary shipping across India.
+                Experience our complete attar repertoire in 3 ml miniature flacons before choosing your full bottle. Hand-crafted with meticulous care and delivered with complimentary shipping across India.
               </p>
               
               <div className="pt-2">
                 <Link
-                  href="/collection/trial-sets"
+                  href="/discovery-sets"
                   className="inline-flex items-center gap-3 px-8 py-4 bg-[#30070D] text-[#F5EFE3] hover:bg-[#450B14] hover:text-[#E7CF98] border border-[#C69A45] transition-all duration-300 text-xs font-sans uppercase tracking-[0.22em] font-medium"
                 >
                   <span>EXPLORE THE TRIAL SET</span>
@@ -415,7 +425,7 @@ export default function HomePage() {
                 Fragrance is personal. It carries memories, shapes moods, and becomes part of the way we express ourselves. AARSIKA brings together distinctive scent compositions and considered design to make every fragrance feel like your own.
               </p>
               <p className="text-sm sm:text-base text-[#6b5f55] font-light leading-relaxed">
-                Rooted in authentic Indian botanicals yet crafted for the global aesthetic, each perfume and attar is developed in small batches with artisanal integrity and modern wearability.
+                Drawing inspiration from India&apos;s rich olfactory heritage while embracing the precision and elegance of contemporary global perfumery, our creations celebrate individual expression with natural sophistication.
               </p>
 
               <div className="pt-2">
@@ -450,31 +460,40 @@ export default function HomePage() {
             <div className="w-12 h-px bg-[#C69A45] mx-auto mt-4" />
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 sm:gap-6">
             {ingredients.map((ing) => (
               <div
                 key={ing.name}
-                className="bg-[#F5EFE3] border border-[#C69A45]/25 p-4 sm:p-5 flex flex-col justify-between text-center transition-all duration-300 hover:border-[#C69A45] hover:shadow-sm"
+                className="bg-[#F5EFE3] border border-[#C69A45]/25 p-5 flex flex-col justify-between transition-all duration-300 hover:border-[#C69A45] hover:shadow-md group"
               >
                 <div>
-                  <div className="relative aspect-square w-24 sm:w-28 mx-auto mb-3 overflow-hidden rounded-full border border-[#C69A45]/30 bg-[#30070D]/5">
+                  <div className="relative aspect-[4/3] w-full mb-4 overflow-hidden border border-[#C69A45]/20 bg-[#30070D]/5">
                     <Image
                       src={ing.image}
                       alt={ing.name}
                       fill
-                      sizes="120px"
-                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                     />
                   </div>
-                  <span className="text-[10px] font-mono tracking-widest text-[#9D6A26] uppercase block">
+                  <span className="text-[10px] font-mono tracking-widest text-[#9D6A26] uppercase block mb-1">
                     {ing.role}
                   </span>
-                  <h3 className="font-serif text-lg sm:text-xl font-normal text-[#32151A] mt-1">
+                  <h3 className="font-serif text-xl font-normal text-[#32151A]">
                     {ing.name}
                   </h3>
-                  <p className="text-xs text-[#6b5f55] font-light mt-2 line-clamp-3">
+                  <p className="text-xs text-[#6b5f55] font-light mt-2 leading-relaxed">
                     {ing.desc}
                   </p>
+                </div>
+
+                <div className="mt-4 pt-3 border-t border-[#C69A45]/20">
+                  <Link
+                    href={`/products/${ing.productSlug}`}
+                    className="text-[11px] font-mono uppercase tracking-wider text-[#9D6A26] hover:text-[#32151A] transition-colors block font-medium"
+                  >
+                    Featured in {ing.featuredIn} →
+                  </Link>
                 </div>
               </div>
             ))}
@@ -568,7 +587,7 @@ export default function HomePage() {
               </p>
             </div>
             <Link
-              href="/collection/gift-sets"
+              href="/collections/gifting"
               className="text-xs font-mono uppercase tracking-[0.2em] text-[#9D6A26] hover:text-[#32151A] transition-colors flex items-center gap-1.5"
             >
               <span>VIEW ALL GIFT SETS</span>
@@ -597,14 +616,30 @@ export default function HomePage() {
 
                 <div className="flex-1 flex flex-col justify-between">
                   <div>
-                    <span className="text-[10px] font-mono tracking-widest text-[#9D6A26] uppercase block">
-                      {prod.bundleInfo?.displayConfig ? `${prod.bundleInfo.displayConfig} Coffret` : prod.defaultSize || 'Gift Presentation'}
-                    </span>
-                    <Link href={`/products/${prod.slug}`} className="mt-1 block">
-                      <h3 className="font-serif text-lg sm:text-xl font-normal text-[#32151A] group-hover:text-[#9D6A26] transition-colors">
+                    {/* Explicit Configuration Display */}
+                    <div className="flex items-center gap-2 mb-1 flex-wrap">
+                      <span className="text-[10px] font-mono tracking-widest text-[#9D6A26] uppercase font-medium">
+                        {prod.bundleInfo?.bottleCount === 5 ? 'Five Bottles · 5 × 6 ml' :
+                         prod.bundleInfo?.bottleSize === '12 ml' ? 'Three Bottles · 3 × 12 ml' :
+                         prod.bundleInfo?.bottleSize === '30 ml' ? 'Three Bottles · 3 × 30 ml' :
+                         prod.bundleInfo?.displayConfig || 'Luxury Coffret'}
+                      </span>
+                      {prod.bundleInfo?.totalVolume && (
+                        <span className="text-[10px] font-mono text-[#6b5f55]">
+                          ({prod.bundleInfo.totalVolume})
+                        </span>
+                      )}
+                    </div>
+                    <Link href={`/products/${prod.slug}`} className="block">
+                      <h3 className="font-serif text-xl font-normal text-[#32151A] group-hover:text-[#9D6A26] transition-colors">
                         {prod.name}
                       </h3>
                     </Link>
+                    {prod.bundleInfo?.includedProducts && (
+                      <p className="text-xs text-[#6b5f55] font-light mt-1 line-clamp-1">
+                        Includes: {prod.bundleInfo.includedProducts.join(', ')}
+                      </p>
+                    )}
                   </div>
 
                   <div className="mt-4 pt-2.5 border-t border-[#C69A45]/20 flex items-center justify-between">

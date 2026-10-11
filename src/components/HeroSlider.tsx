@@ -23,7 +23,7 @@ const HERO_SLIDES: HeroSlideData[] = [
     headline: 'AARSIKA',
     copy: 'Modern Fragrances. Timeless Emotions.',
     ctaText: 'EXPLORE THE COLLECTION',
-    ctaLink: '/shop',
+    ctaLink: '/collections',
     imgSrc: '/photos/hero/royal-rose-attar-at-sunset.webp',
     alt: 'Aarsika Luxury Flagship Fragrance Presentation',
   },
@@ -73,7 +73,7 @@ const HERO_SLIDES: HeroSlideData[] = [
     headline: 'ITTRA COLLECTION',
     copy: 'Seven miniature vials. One unforgettable beginning.',
     ctaText: 'EXPLORE TRIAL SET',
-    ctaLink: '/collection/trial-sets',
+    ctaLink: '/discovery-sets',
     imgSrc: '/photos/hero/aarsika-ittra-collection-at-sunset.webp',
     alt: 'Aarsika Ittra Collection Trial Set at Sunset',
   },
@@ -167,7 +167,7 @@ export default function HeroSlider() {
             aria-roledescription="slide"
             aria-label={`${idx + 1} of ${HERO_SLIDES.length}: ${slide.headline}`}
             aria-hidden={!isActive}
-            className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${
+            className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out ${
               isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
             }`}
           >
@@ -180,44 +180,44 @@ export default function HeroSlider() {
                 priority={idx === 0}
                 loading={idx === 0 ? 'eager' : 'lazy'}
                 sizes="100vw"
-                className="object-cover object-[65%_center] sm:object-center transition-transform duration-[6000ms] ease-out scale-100"
+                className="object-cover object-[65%_25%] sm:object-center transition-transform duration-[6000ms] ease-out scale-100"
               />
             </div>
 
-            {/* Cinematic Gradient Mask for Text Contrast */}
+            {/* Cinematic Gradient Scrim for Text Readability & Bottle Focus */}
             <div
-              className="absolute inset-0 bg-gradient-to-r from-[#200408]/90 via-[#200408]/45 to-transparent w-full sm:max-w-2xl md:max-w-3xl pointer-events-none"
+              className="hidden sm:block absolute inset-0 bg-gradient-to-r from-[#200408]/92 via-[#200408]/65 to-transparent w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl pointer-events-none"
               aria-hidden="true"
             />
-            {/* Mobile bottom subtle vignette */}
+            {/* Mobile bottom-to-top scrim: ensures crystal clear text readability */}
             <div
-              className="sm:hidden absolute inset-0 bg-gradient-to-t from-[#200408]/75 via-transparent to-transparent pointer-events-none"
+              className="sm:hidden absolute inset-0 bg-gradient-to-t from-[#200408] via-[#200408]/80 via-55% to-transparent pointer-events-none"
               aria-hidden="true"
             />
 
             {/* Slide Content Overlay in Negative Space */}
-            <div className="relative z-20 h-full max-w-[1360px] mx-auto px-6 sm:px-10 lg:px-16 flex items-center">
-              <div className="max-w-xl space-y-4 sm:space-y-6 pt-10 sm:pt-0">
+            <div className="relative z-20 h-full max-w-[1360px] mx-auto px-6 sm:px-10 lg:px-16 flex items-end pb-16 sm:pb-0 sm:items-center">
+              <div className="max-w-xl space-y-3 sm:space-y-6">
                 {/* Eyebrow */}
-                <p className="text-[11px] sm:text-xs uppercase tracking-[0.28em] text-[#C69A45] font-sans font-medium">
+                <p className="text-[10px] sm:text-xs uppercase tracking-[0.28em] text-[#C69A45] font-sans font-medium">
                   {slide.eyebrow}
                 </p>
 
                 {/* Headline */}
-                <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl font-normal text-[#F5EFE3] leading-[1.05] tracking-wide">
+                <h1 className="font-serif text-3xl sm:text-5xl lg:text-7xl font-normal text-[#F5EFE3] leading-[1.05] tracking-wide">
                   {slide.headline}
                 </h1>
 
                 {/* Supporting Copy */}
-                <p className="font-sans text-sm sm:text-base lg:text-lg text-[#F5EFE3]/90 font-light leading-relaxed max-w-md">
+                <p className="font-sans text-xs sm:text-base lg:text-lg text-[#F5EFE3]/90 font-light leading-relaxed max-w-md">
                   {slide.copy}
                 </p>
 
                 {/* CTA Button */}
-                <div className="pt-2 sm:pt-4">
+                <div className="pt-1 sm:pt-4">
                   <Link
                     href={slide.ctaLink}
-                    className="inline-flex items-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 border border-[#C69A45] bg-[#30070D]/40 backdrop-blur-xs text-[#F5EFE3] hover:bg-[#C69A45] hover:text-[#30070D] transition-all duration-300 text-xs uppercase tracking-[0.22em] font-sans font-medium group"
+                    className="inline-flex items-center gap-3 px-6 sm:px-8 py-3 sm:py-4 border border-[#C69A45] bg-[#30070D]/90 backdrop-blur-md text-[#F5EFE3] hover:bg-[#C69A45] hover:text-[#30070D] transition-all duration-300 text-xs uppercase tracking-[0.22em] font-sans font-medium shadow-md group"
                   >
                     <span>{slide.ctaText}</span>
                     <span className="text-[#C69A45] group-hover:text-[#30070D] transition-transform duration-200 group-hover:translate-x-1">→</span>
@@ -247,7 +247,7 @@ export default function HeroSlider() {
       </button>
 
       {/* DISCREET PAGINATION INDICATORS */}
-      <div className="absolute bottom-6 sm:bottom-8 left-6 sm:left-10 lg:left-16 z-30 flex items-center gap-2.5">
+      <div className="absolute bottom-4 sm:bottom-8 left-6 sm:left-10 lg:left-16 z-30 flex items-center gap-2.5">
         {HERO_SLIDES.map((s, i) => {
           const isCurrent = i === activeIndex;
           return (
