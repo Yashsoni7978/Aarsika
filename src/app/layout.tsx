@@ -83,7 +83,6 @@ export default function RootLayout({
     <html lang="en" className={`${cormorant.variable} ${jost.variable}`}>
       <body className="antialiased bg-[#F6EFE2] text-[#1a1411] font-sans selection:bg-[#8b1a2b] selection:text-white">
         <ShopProvider>
-          <AnnouncementBar />
           <Header />
           <main className="min-h-screen">{children}</main>
           <Footer />

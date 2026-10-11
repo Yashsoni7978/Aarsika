@@ -3,25 +3,94 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { heroSlides } from '@/data/heroSlides';
-import { HOME } from '@/content/home.en';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-const AUTOPLAY_DURATION = 6000;
-const RESUME_DELAY = 8000;
+export interface HeroSlideData {
+  id: string;
+  eyebrow: string;
+  headline: string;
+  copy: string;
+  ctaText: string;
+  ctaLink: string;
+  imgSrc: string;
+  alt: string;
+}
+
+const HERO_SLIDES: HeroSlideData[] = [
+  {
+    id: 'aarsika-flagship',
+    eyebrow: 'SCENTS FOR A MORE MEANINGFUL YOU',
+    headline: 'AARSIKA',
+    copy: 'Modern Fragrances. Timeless Emotions.',
+    ctaText: 'EXPLORE THE COLLECTION',
+    ctaLink: '/shop',
+    imgSrc: '/photos/hero/royal-rose-attar-at-sunset.webp',
+    alt: 'Aarsika Luxury Flagship Fragrance Presentation',
+  },
+  {
+    id: 'amour-edp',
+    eyebrow: 'EAU DE PARFUM · 50 ML',
+    headline: 'AMOUR',
+    copy: 'Damask rose and white musk captured in warm golden light.',
+    ctaText: 'DISCOVER AMOUR',
+    ctaLink: '/products/amour',
+    imgSrc: '/photos/hero/aarsika-amour-golden-rose-still-life.webp',
+    alt: 'Aarsika Amour Eau de Parfum Still Life',
+  },
+  {
+    id: 'atlas-edp',
+    eyebrow: 'EAU DE PARFUM · 50 ML',
+    headline: 'ATLAS',
+    copy: 'A boundless marine horizon of fresh citrus and coastal woods.',
+    ctaText: 'DISCOVER ATLAS',
+    ctaLink: '/products/atlas',
+    imgSrc: '/photos/hero/aarsika-atlas-perfume-by-the-sea.webp',
+    alt: 'Aarsika Atlas Eau de Parfum by the Sea',
+  },
+  {
+    id: 'maati-attar',
+    eyebrow: 'CONCENTRATED ATTAR OIL',
+    headline: 'JAIPUR MAATI',
+    copy: 'The quiet poetry of baked earth kissed by the first rain.',
+    ctaText: 'DISCOVER MAATI',
+    ctaLink: '/products/maati',
+    imgSrc: '/photos/hero/aarsika-maati-attar-at-golden-hour.webp',
+    alt: 'Aarsika Jaipur Maati Attar at Golden Hour',
+  },
+  {
+    id: 'roman-edp',
+    eyebrow: 'EAU DE PARFUM · 50 ML',
+    headline: 'ROMAN',
+    copy: 'A story carved in warm amber, smoky spices, and aged woods.',
+    ctaText: 'DISCOVER ROMAN',
+    ctaLink: '/products/roman',
+    imgSrc: '/photos/hero/aarsika-roman-fragrance-in-golden-light.webp',
+    alt: 'Aarsika Roman Fragrance in Golden Light',
+  },
+  {
+    id: 'ittra-collection',
+    eyebrow: 'THE DISCOVERY SAMPLER',
+    headline: 'ITTRA COLLECTION',
+    copy: 'Seven miniature vials. One unforgettable beginning.',
+    ctaText: 'EXPLORE TRIAL SET',
+    ctaLink: '/collection/trial-sets',
+    imgSrc: '/photos/hero/aarsika-ittra-collection-at-sunset.webp',
+    alt: 'Aarsika Ittra Collection Trial Set at Sunset',
+  },
+];
+
+const AUTOPLAY_MS = 5500;
 
 export default function HeroSlider() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-  const [textFaded, setTextFaded] = useState(true);
-  const [imgErrors, setImgErrors] = useState<Record<string, boolean>>({});
 
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
-  const resumeTimerRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Reduced motion check
+  // Check reduced motion
   useEffect(() => {
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
     setPrefersReducedMotion(mq.matches);
@@ -30,7 +99,7 @@ export default function HeroSlider() {
     return () => mq.removeEventListener('change', handler);
   }, []);
 
-  // Pause on tab hidden
+  // Pause on visibility change
   useEffect(() => {
     const handler = () => {
       if (document.hidden) setIsPaused(true);
@@ -39,48 +108,22 @@ export default function HeroSlider() {
     return () => document.removeEventListener('visibilitychange', handler);
   }, []);
 
-  const changeSlide = useCallback((newIndex: number) => {
-    setTextFaded(false);
-    setActiveIndex(newIndex);
-    setTimeout(() => setTextFaded(true), 250);
-  }, []);
-
   const nextSlide = useCallback(() => {
-    changeSlide((activeIndex + 1) % heroSlides.length);
-  }, [activeIndex, changeSlide]);
+    setActiveIndex((prev) => (prev + 1) % HERO_SLIDES.length);
+  }, []);
 
   const prevSlide = useCallback(() => {
-    changeSlide((activeIndex - 1 + heroSlides.length) % heroSlides.length);
-  }, [activeIndex, changeSlide]);
-
-  const goToSlide = useCallback(
-    (index: number) => {
-      if (index !== activeIndex) changeSlide(index);
-    },
-    [activeIndex, changeSlide]
-  );
-
-  // Pause and resume after interaction
-  const pauseAndResume = useCallback(() => {
-    setIsPaused(true);
-    if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
-    resumeTimerRef.current = setTimeout(() => setIsPaused(false), RESUME_DELAY);
+    setActiveIndex((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
   }, []);
 
-  // Autoplay (disabled if reduced motion)
+  // Autoplay
   useEffect(() => {
     if (isPaused || prefersReducedMotion) return;
-    const interval = setInterval(nextSlide, AUTOPLAY_DURATION);
+    const interval = setInterval(nextSlide, AUTOPLAY_MS);
     return () => clearInterval(interval);
   }, [isPaused, prefersReducedMotion, nextSlide]);
 
-  // Keyboard navigation
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); pauseAndResume(); }
-    else if (e.key === 'ArrowRight') { e.preventDefault(); nextSlide(); pauseAndResume(); }
-  };
-
-  // Touch handlers for swipe
+  // Touch handlers
   const handleTouchStart = (e: React.TouchEvent) => {
     setIsPaused(true);
     touchStartX.current = e.touches[0].clientX;
@@ -98,316 +141,126 @@ export default function HeroSlider() {
     }
     touchStartX.current = null;
     touchEndX.current = null;
-    pauseAndResume();
+    setTimeout(() => setIsPaused(false), 6000);
   };
-
-  const handleImgError = (key: string) => {
-    setImgErrors((prev) => ({ ...prev, [key]: true }));
-  };
-
-  if (heroSlides.length === 0) return null;
-  const currentSlide = heroSlides[activeIndex];
-  const product = currentSlide.product;
-
-  // Read price and batch info directly from data
-  const lowestVariant = product?.variants?.reduce(
-    (min, v) => (v.price < min.price ? v : min),
-    product.variants[0]
-  );
-  const lowestPrice = lowestVariant?.price ?? product?.price ?? 0;
-  const batchNo = lowestVariant?.batchNo;
-  const batchSize = lowestVariant?.batchSize;
-  const stock = lowestVariant?.stock ?? 0;
-  const hasBatchData = batchNo !== undefined && batchSize !== undefined;
-  const isSoldOut = hasBatchData && stock === 0;
-
-  let batchLine = '';
-  if (hasBatchData) {
-    const batchLabel = `${HOME.hero.batchPrefix} ${String(batchNo).padStart(2, '0')}`;
-    if (isSoldOut) {
-      batchLine = `${batchLabel} ${HOME.hero.batchSoldOut}`;
-    } else if (stock <= 10) {
-      batchLine = `${HOME.hero.batchOnly} ${stock} ${HOME.hero.batchLeft} ${batchLabel}`;
-    } else {
-      batchLine = `${batchLabel}: ${stock} ${HOME.hero.batchOf} ${batchSize} ${HOME.hero.batchBottlesLeft}`;
-    }
-  }
 
   return (
     <section
       ref={sliderRef}
       role="region"
       aria-roledescription="carousel"
-      aria-label="Featured fragrances"
-      aria-live={isPaused ? 'polite' : 'off'}
-      tabIndex={0}
-      onKeyDown={handleKeyDown}
+      aria-label="Aarsika Fragrance Campaigns"
+      className="relative w-full h-[580px] sm:h-[620px] lg:h-[calc(100vh-72px)] lg:max-h-[760px] overflow-hidden bg-[#30070D] select-none"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
-      onFocus={() => setIsPaused(true)}
-      onBlur={() => setIsPaused(false)}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
-      className="w-full overflow-hidden bg-[#26060d] text-[#FFF9F1] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C9A55C] flex flex-col md:block"
     >
-      {/* ========================================================
-          MOBILE HERO VIEW (h-[calc(100svh-36px-56px-56px)] fit)
-      ======================================================== */}
-      <div className="flex md:hidden flex-col h-[calc(100svh-148px)] min-h-[520px] max-h-[700px] justify-between">
-        {/* IMAGE AREA: Edge to edge, center 38% */}
-        <div className="relative w-full flex-1 min-h-[220px] overflow-hidden bg-[#26060d]">
-          {heroSlides.map((slide, index) => {
-            const isActive = index === activeIndex;
-            const hasError = imgErrors[`mobile-${slide.img}`];
-            return (
-              <div
-                key={slide.id}
-                role="group"
-                aria-roledescription="slide"
-                aria-label={`${index + 1} of ${heroSlides.length}: ${slide.name}`}
-                aria-hidden={!isActive}
-                className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out ${
-                  isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
-                }`}
-              >
-                <div
-                  className={`w-full h-full overflow-hidden ${
-                    isActive && !prefersReducedMotion ? 'animate-hero-zoom' : ''
-                  }`}
-                >
-                  {!hasError ? (
-                    <Image
-                      src={`/photos/${slide.img}.jpg`}
-                      alt={slide.name}
-                      fill
-                      onError={() => handleImgError(`mobile-${slide.img}`)}
-                      priority={index === 0}
-                      loading={index === 0 ? 'eager' : 'lazy'}
-                      sizes="100vw"
-                      className="object-cover"
-                      style={{ objectPosition: 'center 38%' }}
-                    />
-                  ) : (
-                    <div className="w-full h-full bg-[#4a0b17] flex items-end p-4">
-                      <span className="font-mono text-[10px] text-[#EADFCB]/60">
-                        {slide.slug}-portrait
-                      </span>
-                    </div>
-                  )}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* INFO PANEL (solid burgundy-900) */}
-        <div className="bg-[#3b0a12] px-5 py-4 border-t border-[#C9A55C]/20 space-y-2.5 text-left shrink-0">
-          <div className={`space-y-1.5 transition-opacity duration-250 ${textFaded ? 'opacity-100' : 'opacity-0'}`}>
-            {/* 1. Label */}
-            <span className="font-mono text-xs tracking-[0.2em] text-[#C9A55C] uppercase block">
-              {currentSlide.type} · {product?.defaultSize || '50 ml'}
-            </span>
-
-            {/* 2. Name */}
-            <h2 className="font-serif text-[clamp(34px,8vw,48px)] text-[#E7CF98] font-normal leading-[1.05]">
-              {currentSlide.name}
-            </h2>
-
-            {/* 3. Descriptor */}
-            <p className="text-sm font-sans font-light text-[#F8F1E7] leading-tight line-clamp-1">
-              {currentSlide.line}
-            </p>
-
-            {/* 4. Price */}
-            <p className="text-sm font-sans text-[#F8F1E7]/90">
-              From ₹{lowestPrice.toLocaleString('en-IN')}{' '}
-              <span className="text-[10px] text-[#F8F1E7]/50 ml-1.5">({HOME.hero.moreAbout})</span>
-            </p>
-
-            {/* 5. Real batch line */}
-            {hasBatchData && (
-              <p className="font-mono text-[11px] text-[#E7CF98]/80 tracking-wide">
-                {batchLine}
-              </p>
-            )}
-
-            {/* 6. ONE gold button (52px high, square) */}
-            <div className="pt-1">
-              <Link
-                href={isSoldOut ? '#' : currentSlide.href}
-                className="inline-flex items-center justify-center h-[52px] w-full bg-[#C9A55C] text-[#1a1411] text-xs uppercase tracking-[0.16em] font-medium font-sans hover:bg-[#E7CF98] transition-colors rounded-none"
-              >
-                {isSoldOut ? HOME.hero.joinWaitlist : `${HOME.hero.buttonPrefix} ${currentSlide.name}`}
-              </Link>
-            </div>
-          </div>
-
-          {/* 7. "01 / 05" and five thin 24px gold progress lines */}
-          <div className="flex items-center justify-between pt-2 border-t border-[#C9A55C]/15">
-            <span className="font-mono text-xs tracking-widest text-[#F8F1E7]/80">
-              {String(activeIndex + 1).padStart(2, '0')} / {String(heroSlides.length).padStart(2, '0')}
-            </span>
-
-            <div className="flex items-center gap-2">
-              {heroSlides.map((s, idx) => {
-                const isCurrent = idx === activeIndex;
-                return (
-                  <button
-                    key={s.id}
-                    onClick={() => { goToSlide(idx); pauseAndResume(); }}
-                    aria-label={`Go to slide ${idx + 1}`}
-                    className="relative h-[2px] w-6 bg-[#C9A55C]/30 overflow-hidden focus:outline-none rounded-none min-h-[44px] flex items-center"
-                  >
-                    <div
-                      className={`h-[2px] bg-[#E7CF98] transition-all duration-300 ${
-                        isCurrent ? 'w-full' : 'w-0'
-                      }`}
-                    />
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* ========================================================
-          DESKTOP HERO VIEW (md and above)
-      ======================================================== */}
-      <div className="hidden md:block">
-        {/* Desktop Image Area */}
-        <div className="relative w-full h-[calc(100svh-36px-72px-160px)] min-h-[440px] max-h-[75vh] overflow-hidden bg-[#26060d]">
-          {heroSlides.map((slide, index) => {
-            const isActive = index === activeIndex;
-            const hasError = imgErrors[`desktop-${slide.img}`];
-            return (
-              <div
-                key={slide.id}
-                role="group"
-                aria-roledescription="slide"
-                aria-label={`${index + 1} of ${heroSlides.length}: ${slide.name}`}
-                aria-hidden={!isActive}
-                className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out ${
-                  isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
-                }`}
-              >
-                <div
-                  className={`w-full h-full overflow-hidden ${
-                    isActive && !prefersReducedMotion ? 'animate-hero-zoom' : ''
-                  }`}
-                >
-                  {!hasError ? (
-                    <Image
-                      src={`/photos/${slide.img}.jpg`}
-                      alt={slide.name}
-                      fill
-                      onError={() => handleImgError(`desktop-${slide.img}`)}
-                      priority={index === 0}
-                      loading={index === 0 ? 'eager' : 'lazy'}
-                      sizes="100vw"
-                      className="object-cover"
-                      style={{ objectPosition: 'center 38%' }}
-                    />
-                  ) : (
-                    <div className="w-full h-full bg-[#4a0b17] flex items-end p-4">
-                      <span className="font-mono text-[10px] text-[#EADFCB]/60">
-                        {slide.slug}-wide
-                      </span>
-                    </div>
-                  )}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Desktop Info Panel (solid burgundy-900) */}
-        <div className="w-full min-h-[160px] bg-[#3b0a12] border-t border-[#C9A55C]/20 text-[#FFF9F1] py-5">
-          <div className="max-w-[1280px] mx-auto px-12 h-full flex items-center justify-between">
-            {/* LEFT: Label, Name, Price */}
-            <div className={`w-[35%] pr-6 transition-opacity duration-250 ${textFaded ? 'opacity-100' : 'opacity-0'}`}>
-              <span className="font-mono text-xs tracking-[0.28em] text-[#C9A55C] uppercase block mb-1">
-                {currentSlide.type} · {product?.defaultSize || '50 ml'}
-              </span>
-              <h1 className="font-serif text-[clamp(36px,4vw,56px)] leading-[1.02] text-[#E7CF98] font-normal my-0.5">
-                {currentSlide.name}
-              </h1>
-              <p className="text-sm font-sans text-[#F8F1E7]/80">
-                From ₹{lowestPrice.toLocaleString('en-IN')}{' '}
-                <span className="text-[10px] text-[#F8F1E7]/50 ml-1">({HOME.hero.moreAbout})</span>
-              </p>
+      {/* SLIDES */}
+      {HERO_SLIDES.map((slide, idx) => {
+        const isActive = idx === activeIndex;
+        return (
+          <div
+            key={slide.id}
+            role="group"
+            aria-roledescription="slide"
+            aria-label={`${idx + 1} of ${HERO_SLIDES.length}: ${slide.headline}`}
+            aria-hidden={!isActive}
+            className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${
+              isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+            }`}
+          >
+            {/* Background Photographic Image */}
+            <div className="absolute inset-0 w-full h-full">
+              <Image
+                src={slide.imgSrc}
+                alt={slide.alt}
+                fill
+                priority={idx === 0}
+                loading={idx === 0 ? 'eager' : 'lazy'}
+                sizes="100vw"
+                className="object-cover object-[65%_center] sm:object-center transition-transform duration-[6000ms] ease-out scale-100"
+              />
             </div>
 
-            {/* MIDDLE: Descriptor, Batch, Button */}
-            <div className={`w-[40%] px-6 space-y-2.5 transition-opacity duration-250 ${textFaded ? 'opacity-100' : 'opacity-0'}`}>
-              <p className="text-[17px] font-sans font-light text-[#F8F1E7] leading-relaxed max-w-[38ch]">
-                {currentSlide.line}
-              </p>
-              {hasBatchData && (
-                <p className="font-mono text-xs text-[#E7CF98]/80 tracking-wide">
-                  {batchLine}
+            {/* Cinematic Gradient Mask for Text Contrast */}
+            <div
+              className="absolute inset-0 bg-gradient-to-r from-[#200408]/90 via-[#200408]/45 to-transparent w-full sm:max-w-2xl md:max-w-3xl pointer-events-none"
+              aria-hidden="true"
+            />
+            {/* Mobile bottom subtle vignette */}
+            <div
+              className="sm:hidden absolute inset-0 bg-gradient-to-t from-[#200408]/75 via-transparent to-transparent pointer-events-none"
+              aria-hidden="true"
+            />
+
+            {/* Slide Content Overlay in Negative Space */}
+            <div className="relative z-20 h-full max-w-[1360px] mx-auto px-6 sm:px-10 lg:px-16 flex items-center">
+              <div className="max-w-xl space-y-4 sm:space-y-6 pt-10 sm:pt-0">
+                {/* Eyebrow */}
+                <p className="text-[11px] sm:text-xs uppercase tracking-[0.28em] text-[#C69A45] font-sans font-medium">
+                  {slide.eyebrow}
                 </p>
-              )}
-              <div className="pt-1">
-                <Link
-                  href={isSoldOut ? '#' : currentSlide.href}
-                  className="inline-flex items-center justify-center h-[52px] px-8 bg-[#C9A55C] text-[#1a1411] text-xs uppercase tracking-[0.16em] font-medium font-sans hover:bg-[#E7CF98] transition-colors rounded-none"
-                >
-                  {isSoldOut ? HOME.hero.joinWaitlist : `${HOME.hero.buttonPrefix} ${currentSlide.name}`}
-                </Link>
-              </div>
-            </div>
 
-            {/* RIGHT: Counter, 24px Progress Lines, Arrows */}
-            <div className="w-[25%] pl-6 flex flex-col items-end justify-center space-y-3 text-right">
-              <span className="font-mono text-xs tracking-widest text-[#F8F1E7]/80">
-                {String(activeIndex + 1).padStart(2, '0')} / {String(heroSlides.length).padStart(2, '0')}
-              </span>
+                {/* Headline */}
+                <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl font-normal text-[#F5EFE3] leading-[1.05] tracking-wide">
+                  {slide.headline}
+                </h1>
 
-              <div className="flex items-center gap-2">
-                {heroSlides.map((s, idx) => {
-                  const isCurrent = idx === activeIndex;
-                  return (
-                    <button
-                      key={s.id}
-                      onClick={() => { goToSlide(idx); pauseAndResume(); }}
-                      aria-label={`Go to slide ${idx + 1}`}
-                      className="relative h-[2px] w-6 bg-[#C9A55C]/30 overflow-hidden focus:outline-none focus-visible:ring-1 focus-visible:ring-[#C9A55C] rounded-none min-h-[44px] flex items-center"
-                    >
-                      <div
-                        className={`h-full bg-[#E7CF98] ${
-                          isCurrent
-                            ? prefersReducedMotion
-                              ? 'w-full'
-                              : 'w-full transition-[width] duration-[6000ms] linear'
-                            : 'w-0 opacity-30'
-                        }`}
-                      />
-                    </button>
-                  );
-                })}
-              </div>
+                {/* Supporting Copy */}
+                <p className="font-sans text-sm sm:text-base lg:text-lg text-[#F5EFE3]/90 font-light leading-relaxed max-w-md">
+                  {slide.copy}
+                </p>
 
-              <div className="flex items-center gap-4 text-[#E7CF98]">
-                <button
-                  onClick={() => { prevSlide(); pauseAndResume(); }}
-                  aria-label="Previous slide"
-                  className="text-base font-mono hover:text-[#FFF9F1] transition-colors focus:outline-none min-w-[44px] min-h-[44px] flex items-center justify-center rounded-none"
-                >
-                  ←
-                </button>
-                <button
-                  onClick={() => { nextSlide(); pauseAndResume(); }}
-                  aria-label="Next slide"
-                  className="text-base font-mono hover:text-[#FFF9F1] transition-colors focus:outline-none min-w-[44px] min-h-[44px] flex items-center justify-center rounded-none"
-                >
-                  →
-                </button>
+                {/* CTA Button */}
+                <div className="pt-2 sm:pt-4">
+                  <Link
+                    href={slide.ctaLink}
+                    className="inline-flex items-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 border border-[#C69A45] bg-[#30070D]/40 backdrop-blur-xs text-[#F5EFE3] hover:bg-[#C69A45] hover:text-[#30070D] transition-all duration-300 text-xs uppercase tracking-[0.22em] font-sans font-medium group"
+                  >
+                    <span>{slide.ctaText}</span>
+                    <span className="text-[#C69A45] group-hover:text-[#30070D] transition-transform duration-200 group-hover:translate-x-1">→</span>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        );
+      })}
+
+      {/* MANUAL NAVIGATION CONTROLS */}
+      <button
+        onClick={prevSlide}
+        aria-label="Previous slide"
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-30 p-2 text-[#F5EFE3]/70 hover:text-[#E7CF98] bg-[#30070D]/30 backdrop-blur-xs border border-[#C69A45]/20 hover:border-[#C69A45] transition-colors focus:outline-none hidden sm:flex items-center justify-center min-w-[40px] min-h-[40px]"
+      >
+        <ChevronLeft className="w-5 h-5" />
+      </button>
+
+      <button
+        onClick={nextSlide}
+        aria-label="Next slide"
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-30 p-2 text-[#F5EFE3]/70 hover:text-[#E7CF98] bg-[#30070D]/30 backdrop-blur-xs border border-[#C69A45]/20 hover:border-[#C69A45] transition-colors focus:outline-none hidden sm:flex items-center justify-center min-w-[40px] min-h-[40px]"
+      >
+        <ChevronRight className="w-5 h-5" />
+      </button>
+
+      {/* DISCREET PAGINATION INDICATORS */}
+      <div className="absolute bottom-6 sm:bottom-8 left-6 sm:left-10 lg:left-16 z-30 flex items-center gap-2.5">
+        {HERO_SLIDES.map((s, i) => {
+          const isCurrent = i === activeIndex;
+          return (
+            <button
+              key={s.id}
+              onClick={() => setActiveIndex(i)}
+              aria-label={`Go to slide ${i + 1}`}
+              className={`transition-all duration-300 focus:outline-none min-h-[24px] flex items-center ${
+                isCurrent ? 'w-10 sm:w-12 h-[2.5px] bg-[#C69A45]' : 'w-4 sm:w-5 h-[1.5px] bg-[#F5EFE3]/40 hover:bg-[#F5EFE3]/70'
+              }`}
+            />
+          );
+        })}
       </div>
     </section>
   );

@@ -1152,9 +1152,9 @@ export const PRODUCTS: Product[] = [
     lowStockThreshold: 5,
     weight: "0.15 kg",
     dimensions: "15 x 10 x 3 cm",
-    mainImage: "placeholder",
-    secondaryImage: "placeholder",
-    gallery: ["placeholder", "placeholder", "placeholder"],
+    mainImage: "/photos/gift-sets/royal-heritage-set.png",
+    secondaryImage: "/photos/gift-sets/royal-heritage-set.png",
+    gallery: ["/photos/gift-sets/royal-heritage-set.png"],
     bundleInfo: {
       bottleCount: 4,
       bottleSize: "2 ml",
