@@ -3,9 +3,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Heart, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Heart, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import { Product } from '@/data/products';
 import { useShop } from '@/context/ShopContext';
+import PearlButton from './PearlButton';
 
 interface AttarCardProps {
   product: Product;
@@ -159,12 +160,14 @@ export const AttarCard: React.FC<AttarCardProps> = ({ product }) => {
           <span className="text-sm font-sans font-medium text-[#32151A]">
             From ₹{lowestPrice.toLocaleString('en-IN')}
           </span>
-          <Link
+          <PearlButton
             href={`/products/${product.slug}`}
-            className="text-[11px] font-mono uppercase tracking-wider text-[#9D6A26] hover:text-[#32151A] transition-colors"
+            variant="champagne"
+            size="sm"
+            rightIcon={<ArrowRight className="w-3 h-3 text-[#9D6A26]" />}
           >
-            EXPLORE →
-          </Link>
+            EXPLORE
+          </PearlButton>
         </div>
       </div>
     </div>

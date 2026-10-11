@@ -8,6 +8,7 @@ import HeroSlider from '@/components/HeroSlider';
 import { AttarCard } from '@/components/AttarCard';
 import { Heart, Sparkles, ArrowRight, ShieldCheck, Truck, RefreshCw, Award } from 'lucide-react';
 import { useShop } from '@/context/ShopContext';
+import PearlButton from '@/components/PearlButton';
 
 export default function HomePage() {
   const { wishlist, toggleWishlist } = useShop();
@@ -327,12 +328,14 @@ export default function HomePage() {
                       <span className="text-sm font-sans font-medium text-[#32151A]">
                         ₹{prod.price.toLocaleString('en-IN')}
                       </span>
-                      <Link
+                      <PearlButton
                         href={`/products/${prod.slug}`}
-                        className="text-xs font-mono uppercase tracking-wider text-[#9D6A26] hover:text-[#32151A] transition-colors"
+                        variant="champagne"
+                        size="sm"
+                        rightIcon={<ArrowRight className="w-3 h-3 text-[#9D6A26]" />}
                       >
-                        EXPLORE →
-                      </Link>
+                        EXPLORE
+                      </PearlButton>
                     </div>
                   </div>
                 </div>
@@ -369,14 +372,15 @@ export default function HomePage() {
                 <span className="text-xs font-mono tracking-widest text-[#9D6A26] uppercase">7 × 3 ml Vials · Complimentary Shipping</span>
               </div>
               
-              <div className="pt-1">
-                <Link
+              <div className="pt-2">
+                <PearlButton
                   href="/discovery-sets"
-                  className="inline-flex items-center gap-3 px-8 py-4 bg-[#30070D] text-[#F5EFE3] hover:bg-[#450B14] hover:text-[#E7CF98] border border-[#C69A45] transition-all duration-300 text-xs font-sans uppercase tracking-[0.22em] font-medium"
+                  variant="burgundy"
+                  size="lg"
+                  rightIcon={<ArrowRight className="w-4 h-4 text-[#C69A45]" />}
                 >
-                  <span>EXPLORE THE TRIAL SET</span>
-                  <span>→</span>
-                </Link>
+                  EXPLORE THE TRIAL SET
+                </PearlButton>
               </div>
             </div>
 
@@ -651,12 +655,14 @@ export default function HomePage() {
                     <span className="text-sm font-sans font-medium text-[#32151A]">
                       ₹{prod.price.toLocaleString('en-IN')}
                     </span>
-                    <Link
+                    <PearlButton
                       href={`/products/${prod.slug}`}
-                      className="text-xs font-mono uppercase tracking-wider text-[#9D6A26] hover:text-[#32151A] transition-colors"
+                      variant="champagne"
+                      size="sm"
+                      rightIcon={<ArrowRight className="w-3 h-3 text-[#9D6A26]" />}
                     >
-                      DETAILS →
-                    </Link>
+                      DETAILS
+                    </PearlButton>
                   </div>
                 </div>
               </div>
@@ -680,22 +686,24 @@ export default function HomePage() {
             Occasional notes on fragrance, new collections, and the art of scent.
           </p>
 
-          <form onSubmit={handleNewsletterSubmit} className="pt-4 flex flex-col sm:flex-row gap-2 max-w-md mx-auto">
+          <form onSubmit={handleNewsletterSubmit} className="pt-4 flex flex-col sm:flex-row gap-2.5 max-w-md mx-auto items-center">
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email address"
               required
-              className="flex-1 px-4 py-3.5 bg-[#F5EFE3] border border-[#C69A45]/40 text-[#32151A] text-sm focus:outline-none focus:border-[#C69A45]"
+              className="w-full sm:flex-1 px-5 py-3.5 bg-[#F5EFE3] border border-[#C69A45]/40 text-[#32151A] text-sm rounded-full focus:outline-none focus:border-[#C69A45] shadow-inner"
             />
-            <button
+            <PearlButton
               type="submit"
-              disabled={newsletterStatus === 'loading'}
-              className="px-6 py-3.5 bg-[#30070D] text-[#F5EFE3] hover:bg-[#450B14] hover:text-[#E7CF98] border border-[#C69A45] transition-colors text-xs font-mono uppercase tracking-[0.2em] font-medium disabled:opacity-50"
+              variant="burgundy"
+              size="md"
+              loading={newsletterStatus === 'loading'}
+              className="w-full sm:w-auto"
             >
-              {newsletterStatus === 'loading' ? 'SUBSCRIBING...' : 'SUBSCRIBE'}
-            </button>
+              SUBSCRIBE
+            </PearlButton>
           </form>
 
           {newsletterStatus === 'success' && (

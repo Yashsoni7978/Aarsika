@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { CheckCircle2, ShieldCheck, Truck, Sparkles, ArrowRight, Lock, CreditCard } from "lucide-react";
 import { useShop } from "@/context/ShopContext";
+import PearlButton from "@/components/PearlButton";
 
 declare global {
   interface Window {
@@ -405,14 +406,17 @@ export default function CheckoutPage() {
               </div>
             </div>
 
-            <button
+            <PearlButton
               type="submit"
               disabled={cart.length === 0 || isProcessing}
-              className="w-full py-4 bg-[#B94D70] hover:bg-[#8F304F] disabled:opacity-50 text-[#FFF9F1] text-xs font-semibold tracking-[0.2em] uppercase rounded-lg transition-colors flex items-center justify-center gap-2 shadow-md"
+              loading={isProcessing}
+              variant="burgundy"
+              size="lg"
+              fullWidth
+              leftIcon={<Lock className="w-4 h-4 text-[#C69A45]" />}
             >
-              <Lock className="w-4 h-4" />
-              <span>{isProcessing ? "PROCESSING ORDER..." : "PLACE ROYAL ORDER"}</span>
-            </button>
+              {isProcessing ? "PROCESSING ORDER..." : "PLACE ORDER"}
+            </PearlButton>
 
             <div className="text-[10px] text-center text-[#756B63] uppercase tracking-wider flex items-center justify-center gap-1">
               <ShieldCheck className="w-3.5 h-3.5 text-[#C49A52]" />

@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Trash2, Plus, Minus, ArrowRight, ShoppingBag, ShieldCheck, Tag, Sparkles } from "lucide-react";
 import { useShop } from "@/context/ShopContext";
+import PearlButton from "@/components/PearlButton";
 
 export default function CartPage() {
   const { cart, cartTotal, updateQuantity, removeFromCart, showToast } = useShop();
@@ -53,19 +54,20 @@ export default function CartPage() {
           <div className="w-20 h-20 mx-auto rounded-full bg-[#FFF9F1] border border-[#C49A52]/40 flex items-center justify-center shadow-soft text-[#17345F]">
             <ShoppingBag className="w-10 h-10 stroke-[1.5]" />
           </div>
-          <span className="text-[10px] tracking-[0.35em] text-[#C49A52] uppercase font-bold">YOUR SHOPPING BAG IS EMPTY</span>
-          <h1 className="font-serif text-4xl font-bold text-[#17345F]">EXPLORE OUR ROYAL FRAGRANCES</h1>
-          <p className="text-xs text-[#756B63] max-w-sm mx-auto leading-relaxed">
+          <span className="text-[10px] tracking-[0.35em] text-[#9D6A26] uppercase font-bold">YOUR SHOPPING BAG IS EMPTY</span>
+          <h1 className="font-serif text-4xl font-normal text-[#30070D]">EXPLORE OUR SIGNATURE FRAGRANCES</h1>
+          <p className="text-xs text-[#6b5f55] max-w-sm mx-auto leading-relaxed font-light">
             Discover concentrated attars, royal eau de parfum, rare oud decanters, and luxury gifting boxes.
           </p>
           <div className="pt-4">
-            <Link
+            <PearlButton
               href="/shop"
-              className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#17345F] text-[#FFF9F1] text-xs font-semibold tracking-[0.2em] uppercase rounded hover:bg-[#B94D70] transition-colors shadow-royal"
+              variant="burgundy"
+              size="lg"
+              rightIcon={<ArrowRight className="w-4 h-4 text-[#C69A45]" />}
             >
-              <span>DISCOVER COLLECTIONS</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
+              DISCOVER COLLECTIONS
+            </PearlButton>
           </div>
         </div>
       </div>
@@ -174,15 +176,16 @@ export default function CartPage() {
                     placeholder="e.g. ROYAL15"
                     value={couponCode}
                     onChange={(e) => setCouponCode(e.target.value)}
-                    className="w-full bg-[#F8F1E7] border border-[#C49A52]/40 px-3 py-2 rounded text-xs uppercase text-[#17345F] focus:outline-none"
+                    className="w-full bg-[#F5EFE3] border border-[#C69A45]/40 px-3.5 py-2.5 rounded-full text-xs uppercase text-[#30070D] focus:outline-none"
                   />
-                  <button
+                  <PearlButton
                     type="submit"
-                    disabled={isCheckingCoupon}
-                    className="px-4 py-2 bg-[#17345F] text-[#FFF9F1] text-xs font-semibold uppercase tracking-wider rounded hover:bg-[#B94D70] transition-colors shrink-0"
+                    variant="champagne"
+                    size="sm"
+                    loading={isCheckingCoupon}
                   >
                     APPLY
-                  </button>
+                  </PearlButton>
                 </div>
                 {appliedCoupon && (
                   <p className="text-xs text-[#176B58] font-semibold pt-1">
@@ -220,13 +223,15 @@ export default function CartPage() {
               </div>
 
               {/* Proceed to Checkout CTA */}
-              <Link
+              <PearlButton
                 href="/checkout"
-                className="w-full py-4 bg-[#B94D70] hover:bg-[#8F304F] text-[#FFF9F1] text-xs font-semibold tracking-[0.2em] uppercase rounded-lg transition-colors flex items-center justify-center gap-2 shadow-md text-center block"
+                variant="burgundy"
+                size="lg"
+                fullWidth
+                rightIcon={<ArrowRight className="w-4 h-4 text-[#C69A45]" />}
               >
-                <span>PROCEED TO ROYAL CHECKOUT</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
+                PROCEED TO CHECKOUT
+              </PearlButton>
 
               <div className="text-[10px] text-center text-[#756B63] uppercase tracking-wider flex items-center justify-center gap-1">
                 <ShieldCheck className="w-3.5 h-3.5 text-[#C49A52]" />

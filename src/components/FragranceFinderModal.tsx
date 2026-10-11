@@ -6,6 +6,7 @@ import Link from "next/link";
 import { X, Sparkles, Check, ArrowRight, RotateCcw } from "lucide-react";
 import { useShop } from "@/context/ShopContext";
 import { Product } from "@/data/products";
+import PearlButton from "./PearlButton";
 
 export const FragranceFinderModal: React.FC = () => {
   const { isFinderOpen, setIsFinderOpen, addToCart } = useShop();
@@ -257,18 +258,19 @@ export const FragranceFinderModal: React.FC = () => {
                         </div>
 
                         <div className="flex items-center gap-3 w-full sm:w-auto justify-end">
-                          <span className="font-serif font-bold text-base text-[#17345F]">
+                          <span className="font-serif font-bold text-base text-[#30070D]">
                             ₹ {product.price.toLocaleString("en-IN")}
                           </span>
-                          <button
+                          <PearlButton
                             onClick={() => {
                               addToCart(product);
                               setIsFinderOpen(false);
                             }}
-                            className="px-4 py-2 bg-[#B94D70] hover:bg-[#8F304F] text-[#FFF9F1] text-xs font-semibold uppercase tracking-wider rounded transition-colors"
+                            variant="burgundy"
+                            size="sm"
                           >
                             ADD TO BAG
-                          </button>
+                          </PearlButton>
                         </div>
                       </div>
                     ))}

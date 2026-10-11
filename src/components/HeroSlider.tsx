@@ -3,7 +3,8 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
+import PearlButton from './PearlButton';
 
 export interface HeroSlideData {
   id: string;
@@ -214,14 +215,15 @@ export default function HeroSlider() {
                 </p>
 
                 {/* CTA Button */}
-                <div className="pt-1 sm:pt-4">
-                  <Link
+                <div className="pt-2 sm:pt-4">
+                  <PearlButton
                     href={slide.ctaLink}
-                    className="inline-flex items-center gap-3 px-6 sm:px-8 py-3 sm:py-4 border border-[#C69A45] bg-[#30070D]/90 backdrop-blur-md text-[#F5EFE3] hover:bg-[#C69A45] hover:text-[#30070D] transition-all duration-300 text-xs uppercase tracking-[0.22em] font-sans font-medium shadow-md group"
+                    variant="burgundy"
+                    size="lg"
+                    rightIcon={<ArrowRight className="w-3.5 h-3.5 text-[#C69A45]" />}
                   >
-                    <span>{slide.ctaText}</span>
-                    <span className="text-[#C69A45] group-hover:text-[#30070D] transition-transform duration-200 group-hover:translate-x-1">→</span>
-                  </Link>
+                    {slide.ctaText}
+                  </PearlButton>
                 </div>
               </div>
             </div>

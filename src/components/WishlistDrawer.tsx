@@ -6,6 +6,7 @@ import Link from "next/link";
 import { X, Heart, ShoppingBag, Trash2 } from "lucide-react";
 import { useShop } from "@/context/ShopContext";
 import { PRODUCTS } from "@/data/products";
+import PearlButton from "./PearlButton";
 
 export const WishlistDrawer: React.FC = () => {
   const { wishlist, isWishlistOpen, setIsWishlistOpen, toggleWishlist, addToCart } = useShop();
@@ -50,13 +51,16 @@ export const WishlistDrawer: React.FC = () => {
                 <p className="text-xs text-[#756B63] max-w-xs mx-auto">
                   Save your favorite attars and royal perfumes to revisit anytime.
                 </p>
-                <Link
-                  href="/shop"
-                  onClick={() => setIsWishlistOpen(false)}
-                  className="inline-block mt-4 px-6 py-3 bg-[#17345F] text-[#FFF9F1] text-xs tracking-[0.15em] uppercase font-semibold rounded hover:bg-[#B94D70] transition-colors"
-                >
-                  EXPLORE COLLECTIONS
-                </Link>
+                <div className="pt-2">
+                  <PearlButton
+                    href="/shop"
+                    onClick={() => setIsWishlistOpen(false)}
+                    variant="burgundy"
+                    size="md"
+                  >
+                    EXPLORE COLLECTIONS
+                  </PearlButton>
+                </div>
               </div>
             ) : (
               wishlistProducts.map((product) => (

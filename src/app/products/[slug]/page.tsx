@@ -3,11 +3,12 @@
 import React, { useState, useEffect, useRef, TouchEvent } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Heart, ChevronLeft, ChevronRight, ShieldCheck, Truck, Sparkles, Check } from 'lucide-react';
+import { Heart, ChevronLeft, ChevronRight, ShieldCheck, Truck, Sparkles, Check, ArrowRight } from 'lucide-react';
 import { PRODUCTS } from '@/data/products';
 import { useShop } from '@/context/ShopContext';
 import { ProductCard } from '@/components/ProductCard';
 import { ProductPlaceholderImage } from '@/components/ProductPlaceholderImage';
+import PearlButton from '@/components/PearlButton';
 
 interface ProductPageProps {
   params: {
@@ -391,25 +392,30 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
             {/* Quantity Selector & Add to Bag / Waitlist / Coming Soon */}
             {product.status === 'coming_soon' || currentPrice === 0 ? (
               <div className="pt-2 space-y-3">
-                <button
+                <PearlButton
                   disabled
-                  className="w-full h-12 bg-[#EADFCB]/60 text-[#8a6a22] text-xs font-mono uppercase tracking-[0.25em] font-semibold rounded-lg border border-[#C9A55C]/40 flex items-center justify-center gap-2 cursor-not-allowed opacity-90 shadow-inner"
+                  fullWidth
+                  variant="outline"
+                  size="lg"
+                  leftIcon={<Sparkles className="w-4 h-4 text-[#C69A45]" />}
                 >
-                  <Sparkles className="w-4 h-4 text-[#C9A55C]" />
-                  <span>COMING SOON</span>
-                </button>
-                <a
+                  COMING SOON
+                </PearlButton>
+                <PearlButton
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full h-11 bg-[#30070D] text-[#E7CF98] hover:bg-[#450B14] text-[11px] font-mono tracking-[0.15em] uppercase font-semibold transition-colors rounded-lg flex items-center justify-center gap-2 border border-[#C9A55C]/30 shadow-md"
+                  fullWidth
+                  variant="burgundy"
+                  size="md"
+                  rightIcon={<ArrowRight className="w-3.5 h-3.5 text-[#C69A45]" />}
                 >
-                  <span>Notify Me On Launch →</span>
-                </a>
+                  Notify Me On Launch
+                </PearlButton>
               </div>
             ) : currentStock > 0 ? (
               <div className="flex flex-col sm:flex-row items-center gap-4 pt-2">
-                <div className="flex items-center border border-[#dccfb6] bg-[#F6EFE2] rounded-lg h-12 px-2">
+                <div className="flex items-center border border-[#C69A45]/40 bg-[#F6EFE2] rounded-full h-[52px] px-3 shadow-inner">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
                     className="w-8 h-full text-base text-[#1a1411] hover:text-[#30070D] font-mono"
@@ -429,24 +435,30 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
                   </button>
                 </div>
 
-                <button
+                <PearlButton
                   onClick={() => addToCart(product, selectedSize, quantity)}
-                  className="w-full sm:flex-1 h-12 bg-[#30070D] text-[#F5EFE3] hover:bg-[#450B14] text-xs font-mono uppercase tracking-[0.25em] font-semibold transition-all rounded-lg shadow-md flex items-center justify-center gap-2 border border-[#C9A55C]/40"
+                  variant="burgundy"
+                  size="lg"
+                  fullWidth
+                  className="sm:flex-1"
+                  leftIcon={<Sparkles className="w-4 h-4 text-[#C69A45]" />}
                 >
-                  <Sparkles className="w-4 h-4 text-[#C9A55C]" />
-                  <span>ADD TO BAG</span>
-                </button>
+                  ADD TO BAG
+                </PearlButton>
               </div>
             ) : (
               <div className="pt-2">
-                <a
+                <PearlButton
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full h-12 bg-[#C9A55C] text-[#26060d] hover:bg-[#E7CF98] text-xs font-mono tracking-[0.2em] uppercase font-semibold transition-colors rounded-lg flex items-center justify-center gap-2"
+                  variant="champagne"
+                  size="lg"
+                  fullWidth
+                  rightIcon={<ArrowRight className="w-4 h-4 text-[#9D6A26]" />}
                 >
-                  Join the waitlist for Batch 02 →
-                </a>
+                  Join the waitlist for Batch 02
+                </PearlButton>
               </div>
             )}
 

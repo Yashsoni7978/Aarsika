@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Search, X, ShoppingBag, ArrowRight } from "lucide-react";
 import { useShop } from "@/context/ShopContext";
 import { PRODUCTS } from "@/data/products";
+import PearlButton from "./PearlButton";
 
 export const SearchModal: React.FC = () => {
   const { isSearchOpen, setIsSearchOpen, addToCart } = useShop();
@@ -112,7 +113,7 @@ export const SearchModal: React.FC = () => {
                         <Image src={product.mainImage} alt={product.name} fill className="object-cover" />
                       </div>
                       <div>
-                        <h4 className="font-serif text-lg font-bold text-[#17345F] hover:text-[#B94D70]">
+                        <h4 className="font-serif text-lg font-bold text-[#30070D] hover:text-[#9D6A26]">
                           {product.name}
                         </h4>
                         <p className="text-xs text-[#756B63]">{product.type} • {product.defaultSize}</p>
@@ -126,16 +127,17 @@ export const SearchModal: React.FC = () => {
                       <span className="font-serif font-bold text-base text-[#241C1B]">
                         ₹ {product.price.toLocaleString("en-IN")}
                       </span>
-                      <button
+                      <PearlButton
                         onClick={() => {
                           addToCart(product);
                           setIsSearchOpen(false);
                         }}
-                        className="px-4 py-2 bg-[#17345F] text-[#FFF9F1] text-xs font-semibold uppercase tracking-wider rounded hover:bg-[#B94D70] transition-colors flex items-center gap-1.5"
+                        variant="burgundy"
+                        size="sm"
+                        leftIcon={<ShoppingBag className="w-3.5 h-3.5 text-[#C69A45]" />}
                       >
-                        <ShoppingBag className="w-3.5 h-3.5" />
-                        <span>BAG</span>
-                      </button>
+                        BAG
+                      </PearlButton>
                     </div>
                   </div>
                 ))}

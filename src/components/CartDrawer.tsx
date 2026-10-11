@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { X, Trash2, Plus, Minus, ShoppingBag, ArrowRight, ShieldCheck } from "lucide-react";
 import { useShop } from "@/context/ShopContext";
+import PearlButton from "./PearlButton";
 
 export const CartDrawer: React.FC = () => {
   const { cart, isCartOpen, setIsCartOpen, removeFromCart, updateQuantity, cartTotal } = useShop();
@@ -68,19 +69,22 @@ export const CartDrawer: React.FC = () => {
                 <div className="w-16 h-16 mx-auto rounded-full bg-[#F8F1E7] border border-[#C49A52]/30 flex items-center justify-center text-[#C49A52]">
                   <ShoppingBag className="w-8 h-8" />
                 </div>
-                <h3 className="font-serif text-2xl font-semibold text-[#17345F]">
+                <h3 className="font-serif text-2xl font-semibold text-[#30070D]">
                   Your Bag is Empty
                 </h3>
                 <p className="text-xs text-[#756B63] max-w-xs mx-auto">
                   Explore our royal collection of hand-distilled attars, eau de parfum, and luxury gift sets.
                 </p>
-                <Link
-                  href="/shop"
-                  onClick={() => setIsCartOpen(false)}
-                  className="inline-block mt-4 px-6 py-3 bg-[#17345F] text-[#FFF9F1] text-xs tracking-[0.15em] uppercase font-semibold rounded hover:bg-[#B94D70] transition-colors"
-                >
-                  DISCOVER FRAGRANCES
-                </Link>
+                <div className="pt-2">
+                  <PearlButton
+                    href="/shop"
+                    onClick={() => setIsCartOpen(false)}
+                    variant="burgundy"
+                    size="md"
+                  >
+                    DISCOVER FRAGRANCES
+                  </PearlButton>
+                </div>
               </div>
             ) : (
               cart.map((item, index) => (
@@ -155,7 +159,7 @@ export const CartDrawer: React.FC = () => {
                 <span className="text-[#756B63] uppercase tracking-wider text-xs font-medium">
                   SUBTOTAL
                 </span>
-                <span className="font-serif text-2xl font-bold text-[#17345F]">
+                <span className="font-serif text-2xl font-bold text-[#30070D]">
                   ₹ {cartTotal.toLocaleString("en-IN")}
                 </span>
               </div>
@@ -164,21 +168,25 @@ export const CartDrawer: React.FC = () => {
               </p>
 
               <div className="grid grid-cols-2 gap-3 pt-2">
-                <Link
+                <PearlButton
                   href="/cart"
                   onClick={() => setIsCartOpen(false)}
-                  className="w-full py-3 border border-[#17345F] text-[#17345F] text-xs font-semibold tracking-[0.15em] uppercase text-center rounded hover:bg-[#17345F] hover:text-[#FFF9F1] transition-all"
+                  variant="champagne"
+                  size="md"
+                  fullWidth
                 >
                   VIEW BAG
-                </Link>
-                <Link
+                </PearlButton>
+                <PearlButton
                   href="/checkout"
                   onClick={() => setIsCartOpen(false)}
-                  className="w-full py-3 bg-[#B94D70] text-[#FFF9F1] text-xs font-semibold tracking-[0.15em] uppercase text-center rounded hover:bg-[#8F304F] transition-all flex items-center justify-center gap-1.5"
+                  variant="burgundy"
+                  size="md"
+                  fullWidth
+                  rightIcon={<ArrowRight className="w-3.5 h-3.5 text-[#C69A45]" />}
                 >
-                  <span>CHECKOUT</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
+                  CHECKOUT
+                </PearlButton>
               </div>
 
               <div className="flex items-center justify-center gap-2 text-[10px] text-[#756B63] uppercase tracking-wider pt-1">
