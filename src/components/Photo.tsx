@@ -32,7 +32,10 @@ export const Photo: React.FC<PhotoProps> = ({
   const [imageError, setImageError] = useState(false);
 
   const product = PRODUCTS.find((p) => p.slug === slot || p.id === slot);
-  const resolvedSrc = src || product?.mainImage || `/photos/${slot}.jpg`;
+  const resolvedSrc =
+    src ||
+    product?.mainImage ||
+    (slot === "house" ? "/photos/the-house.jpg" : `/photos/${slot}.jpg`);
 
   const getAspectClass = () => {
     switch (aspect) {
@@ -64,7 +67,7 @@ export const Photo: React.FC<PhotoProps> = ({
     }
   };
 
-  const isDarkSlot = dark || slot === "hero" || slot.includes("ingredient") || slot.includes("strip");
+  const isDarkSlot = dark || slot === "hero" || slot.includes("attar") || slot.includes("dark");
 
   return (
     <div
@@ -82,15 +85,15 @@ export const Photo: React.FC<PhotoProps> = ({
           onError={() => setImageError(true)}
         />
       ) : (
-        /* Quiet Flat Blank Space Placeholder */
+        /* Flat fallback block with slot name 10px bottom-left */
         <div
           className={`absolute inset-0 select-none flex items-end p-4 ${
             isDarkSlot
-              ? "bg-[#3b0a12] text-[#E7CF98]"
+              ? "bg-[#4a0b17] text-[#E7CF98]"
               : "bg-[#EADFCB] text-[#1a1411]"
           }`}
         >
-          <span className="font-mono text-[10px] tracking-widest opacity-40 uppercase">
+          <span className="font-mono text-[10px] tracking-widest opacity-60 uppercase">
             {slot}
           </span>
         </div>
