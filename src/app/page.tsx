@@ -156,32 +156,36 @@ export default function HomePage() {
             <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-[#32151A]">
               Find Your Fragrance
             </h2>
-            <div className="w-12 h-px bg-[#C69A45] mx-auto mt-4" />
+            <div className="flex items-center justify-center gap-3 mt-3">
+              <span className="w-8 h-[1px] bg-[#C69A45]/40" />
+              <span className="text-[#C69A45] text-xs">❖</span>
+              <span className="w-8 h-[1px] bg-[#C69A45]/40" />
+            </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {[
               {
                 title: 'Eau de Parfums',
-                subtitle: 'Fine Spray Fragrances',
+                subtitle: 'Refined & Long-Lasting',
                 href: '/collections/perfumes',
                 image: '/photos/perfumes/amour.png',
               },
               {
-                title: 'Ittras',
-                subtitle: 'Concentrated Attar Oils',
+                title: 'Attars',
+                subtitle: 'Pure & Timeless',
                 href: '/collections/attar',
                 image: '/photos/attars/sehar-e-gulab-clean 1st.jpg',
               },
               {
                 title: 'Gift Sets',
-                subtitle: 'Opulent Boxed Chests',
+                subtitle: 'Thoughtful & Elegant',
                 href: '/collections/gifting',
                 image: '/photos/gift-sets/discovery-gift-set.png',
               },
               {
                 title: 'Trial Sets',
-                subtitle: 'Discovery Vials 7 × 3 ml',
+                subtitle: 'Discover Your Signature',
                 href: '/discovery-sets',
                 image: '/photos/trial-packs/aarsika-ittra-collection-trial-set.webp',
               },
@@ -189,21 +193,34 @@ export default function HomePage() {
               <Link
                 key={cat.title}
                 href={cat.href}
-                className="group relative p-6 sm:p-8 bg-[#FBF6EA] border border-[#C69A45]/25 hover:border-[#C69A45] hover:shadow-md transition-all duration-300 flex flex-col justify-between min-h-[170px] sm:min-h-[190px]"
+                className="group relative flex flex-col bg-[#FBF6EA] border border-[#C69A45]/25 rounded-xl overflow-hidden hover:border-[#C69A45] hover:shadow-md hover:-translate-y-1 transition-all duration-300"
               >
-                <div>
-                  <span className="text-[10px] font-mono tracking-widest text-[#9D6A26] uppercase block mb-1">
-                    EXPLORE
-                  </span>
-                  <h3 className="font-serif text-xl sm:text-2xl font-normal text-[#32151A] group-hover:text-[#9D6A26] transition-colors">
-                    {cat.title}
-                  </h3>
-                  <p className="text-xs text-[#6b5f55] font-light mt-1">
-                    {cat.subtitle}
-                  </p>
+                {/* Horizontal Image Container (Upper 55%) */}
+                <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#EADFCB]">
+                  <Image
+                    src={cat.image}
+                    alt={cat.title}
+                    fill
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 25vw"
+                    className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.05]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#200408]/20 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity" />
                 </div>
-                <div className="mt-4 flex items-center text-xs font-mono tracking-wider text-[#9D6A26] group-hover:translate-x-1 transition-transform">
-                  <span>VIEW COLLECTION →</span>
+
+                {/* Text Content */}
+                <div className="p-4 sm:p-5 flex flex-col justify-between flex-1 bg-[#FBF6EA]">
+                  <div>
+                    <h3 className="font-serif text-lg sm:text-xl font-normal text-[#32151A] group-hover:text-[#9D6A26] transition-colors leading-snug">
+                      {cat.title}
+                    </h3>
+                    <p className="text-xs font-sans text-[#6b5f55] font-light mt-1">
+                      {cat.subtitle}
+                    </p>
+                  </div>
+                  <div className="mt-3 pt-2.5 border-t border-[#C69A45]/15 flex items-center justify-between text-[11px] font-mono tracking-wider text-[#9D6A26] group-hover:text-[#32151A] transition-colors">
+                    <span>EXPLORE</span>
+                    <span className="group-hover:translate-x-1 transition-transform">→</span>
+                  </div>
                 </div>
               </Link>
             ))}
@@ -350,51 +367,62 @@ export default function HomePage() {
       ======================================================== */}
       <section className="py-16 md:py-24 bg-[#EADFCB] border-t border-[#C69A45]/25">
         <div className="max-w-[1360px] mx-auto px-6 sm:px-10 lg:px-16">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-            
-            {/* Left Content */}
-            <div className="lg:col-span-5 space-y-6">
-              <span className="text-xs font-mono uppercase tracking-[0.28em] text-[#9D6A26] block">
-                THE SAMPLER PRESENTATION
-              </span>
-              <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal text-[#32151A] leading-tight">
-                Discover Your Signature
-              </h2>
-              <p className="font-serif text-xl italic text-[#9D6A26]">
-                Seven fragrances. One unforgettable beginning.
-              </p>
-              <p className="text-sm sm:text-base text-[#4a3f35] font-light leading-relaxed">
-                Experience our complete attar repertoire in 3 ml miniature flacons before choosing your full bottle. Seven distinctive pure attar oils hand-crafted with meticulous care and delivered with complimentary shipping across India.
-              </p>
-
-              <div className="flex items-baseline gap-3 pt-1 pb-2">
-                <span className="text-2xl font-serif text-[#32151A] font-medium">₹499</span>
-                <span className="text-xs font-mono tracking-widest text-[#9D6A26] uppercase">7 × 3 ml Vials · Complimentary Shipping</span>
-              </div>
+          <div className="bg-gradient-to-br from-[#FBF6EA] via-[#F5EFE3] to-[#EADFCB] border border-[#C69A45]/30 rounded-2xl p-8 sm:p-12 lg:p-14 shadow-md">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
               
-              <div className="pt-2">
-                <PearlButton
-                  href="/discovery-sets"
-                  variant="burgundy"
-                  size="lg"
-                  rightIcon={<ArrowRight className="w-4 h-4 text-[#C69A45]" />}
-                >
-                  EXPLORE THE TRIAL SET
-                </PearlButton>
-              </div>
-            </div>
+              {/* Left Content (approx 52%) */}
+              <div className="lg:col-span-6 xl:col-span-7 space-y-6">
+                <span className="text-xs font-mono uppercase tracking-[0.28em] text-[#9D6A26] block">
+                  THE SAMPLER PRESENTATION
+                </span>
+                <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal text-[#32151A] leading-tight">
+                  Discover Your Signature
+                </h2>
+                <p className="font-serif text-xl sm:text-2xl italic text-[#9D6A26]">
+                  A curated set of 7 luxurious fragrances
+                </p>
+                <p className="text-sm sm:text-base text-[#4a3f35] font-light leading-relaxed max-w-xl">
+                  Experience our complete attar repertoire in 3 ml miniature flacons before choosing your full bottle. Seven distinctive pure attar oils hand-crafted with botanical precision and delivered with complimentary shipping across India.
+                </p>
 
-            {/* Right Image */}
-            <div className="lg:col-span-7">
-              <div className="relative aspect-[4/3] w-full overflow-hidden border border-[#C69A45]/30 shadow-lg bg-[#30070D]">
-                <Image
-                  src="/photos/trial-packs/aarsika-ittra-collection-trial-set.webp"
-                  alt="Aarsika Ittra Collection Trial Set"
-                  fill
-                  loading="eager"
-                  sizes="(max-width: 1024px) 100vw, 60vw"
-                  className="object-cover"
-                />
+                {/* Compact Row of 3 Benefits */}
+                <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-1 pb-1">
+                  <div className="px-4 py-2 bg-[#F5EFE3] border border-[#C69A45]/30 rounded-full text-xs font-mono tracking-wider text-[#32151A] font-medium shadow-2xs">
+                    7 × 3 ml
+                  </div>
+                  <div className="px-4 py-2 bg-[#30070D] border border-[#C69A45] rounded-full text-xs font-mono tracking-wider text-[#F5EFE3] font-semibold shadow-xs">
+                    ₹499
+                  </div>
+                  <div className="px-4 py-2 bg-[#F5EFE3] border border-[#C69A45]/30 rounded-full text-xs font-mono tracking-wider text-[#32151A] flex items-center gap-1.5 shadow-2xs">
+                    <Truck className="w-3.5 h-3.5 text-[#C69A45]" />
+                    <span>Free Pan-India Delivery</span>
+                  </div>
+                </div>
+                
+                <div className="pt-2">
+                  <PearlButton
+                    href="/discovery-sets"
+                    variant="burgundy"
+                    size="lg"
+                    rightIcon={<ArrowRight className="w-4 h-4 text-[#C69A45]" />}
+                  >
+                    EXPLORE THE TRIAL SET
+                  </PearlButton>
+                </div>
+              </div>
+
+              {/* Right Image (approx 48%) */}
+              <div className="lg:col-span-6 xl:col-span-5">
+                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-[#C69A45]/30 shadow-lg bg-[#30070D]">
+                  <Image
+                    src="/photos/trial-packs/aarsika-ittra-collection-trial-set.webp"
+                    alt="Aarsika Ittra Collection Trial Set"
+                    fill
+                    loading="eager"
+                    sizes="(max-width: 1024px) 100vw, 45vw"
+                    className="object-cover"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -562,18 +590,18 @@ export default function HomePage() {
       </section>
 
       {/* ========================================================
-          9. BRAND STATEMENT — Compact Burgundy Banner
+          9. OUR PHILOSOPHY — Minimal Brand Statement Strip
       ======================================================== */}
-      <section className="py-14 md:py-20 bg-[#30070D] text-[#F5EFE3] border-y border-[#C69A45]/30">
-        <div className="max-w-4xl mx-auto px-6 text-center space-y-4">
+      <section className="py-12 md:py-16 bg-[#30070D] text-[#F5EFE3] border-y border-[#C69A45]/30 relative">
+        <div className="max-w-3xl mx-auto px-6 text-center space-y-3 md:space-y-4">
           <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.3em] text-[#C69A45] block">
-            AARSIKA STATEMENT
+            OUR PHILOSOPHY
           </span>
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-[#F5EFE3] leading-tight">
+          <h2 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-normal text-[#F5EFE3] leading-tight tracking-wide">
             Fragrance Is More Than a Scent.
           </h2>
-          <p className="font-serif text-lg sm:text-xl text-[#E7CF98] font-light italic max-w-xl mx-auto">
-            It is a feeling, a memory, a quiet expression of who you are.
+          <p className="font-serif text-base sm:text-lg lg:text-xl text-[#E7CF98] font-light italic max-w-xl mx-auto leading-relaxed">
+            It is a feeling, a memory, and a moment of self-expression.
           </p>
         </div>
       </section>
