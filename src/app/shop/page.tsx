@@ -28,14 +28,54 @@ function ShopContent() {
     }
   }, [rawCategory]);
 
+  const categoryHeaderMeta = useMemo(() => {
+    const c = activeCategory.toUpperCase();
+    if (c === 'EAU DE PARFUM' || c === 'EAU-DE-PARFUMS' || c === 'PERFUMES') {
+      return {
+        title: 'The Perfume Collection',
+        subtitle: 'Modern expressions of timeless fragrance.',
+        description:
+          'Sophisticated Eau de Parfums crafted for presence, longevity, and contemporary luxury.',
+      };
+    }
+    if (c === 'ATTAR' || c === 'ITTRAS' || c === 'ATTARS') {
+      return {
+        title: 'The Attar Collection',
+        subtitle: 'Scents inspired by the soul of Rajasthan.',
+        description:
+          'Handcrafted pure attars aged in Mysore sandalwood oil. Zero alcohol, 100% natural extracts, and timeless fragrance rituals.',
+      };
+    }
+    if (c === 'GIFTING' || c === 'GIFT-SETS') {
+      return {
+        title: 'The Art of Gifting',
+        subtitle: 'Fragrance, thoughtfully brought together.',
+        description:
+          'Curated fragrance collections presented in artisanal gift packaging for moments of celebration.',
+      };
+    }
+    if (c === 'DISCOVERY SETS' || c === 'TRIAL-SETS') {
+      return {
+        title: 'Discover AARSIKA',
+        subtitle: 'Find the fragrance that feels like you.',
+        description:
+          'Sampler and discovery sets created to explore the diverse olfactive universe of AARSIKA before choosing your signature.',
+      };
+    }
+
+    return {
+      title: 'The Olfactive Collection',
+      subtitle: 'Pure oils, spray perfumes, and discovery sets.',
+      description: 'Explore the complete spectrum of fine Indian perfumery handcrafted by AARSIKA.',
+    };
+  }, [activeCategory]);
+
   const categories = [
     { id: 'ALL', label: 'All' },
-    { id: 'FLORAL', label: 'Floral' },
-    { id: 'WOODY', label: 'Woody' },
-    { id: 'OUD', label: 'Oud' },
-    { id: 'FRESH', label: 'Fresh' },
-    { id: 'EARTHY', label: 'Earthy' },
-    { id: 'GOURMAND', label: 'Gourmand' },
+    { id: 'EAU DE PARFUM', label: 'Eau de Parfums' },
+    { id: 'ATTAR', label: 'Itrras' },
+    { id: 'GIFTING', label: 'Gift Sets' },
+    { id: 'DISCOVERY SETS', label: 'Trial Sets' },
   ];
 
   const filteredProducts = useMemo(() => {
@@ -80,15 +120,15 @@ function ShopContent() {
 
               <div className="space-y-2">
                 <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-[#1a1411] font-normal leading-tight">
-                  The Attar Collection
+                  {categoryHeaderMeta.title}
                 </h1>
                 <p className="font-serif italic text-lg sm:text-xl text-[#6b5f55]">
-                  Scents inspired by the soul of Rajasthan.
+                  {categoryHeaderMeta.subtitle}
                 </p>
               </div>
 
               <p className="text-xs sm:text-sm text-[#5c5045] max-w-lg font-light leading-relaxed">
-                Handcrafted pure attars aged in Mysore sandalwood oil. Zero alcohol, 100% natural extracts, and timeless fragrance rituals.
+                {categoryHeaderMeta.description}
               </p>
 
               {/* Category Filter Pills */}

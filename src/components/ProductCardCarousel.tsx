@@ -1,15 +1,17 @@
 'use client';
 
-import React, { useState, useEffect, useRef, TouchEvent } from 'react';
-import Image from 'next/image';
+import React, { useState, TouchEvent } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ProductPlaceholderImage } from '@/components/ProductPlaceholderImage';
 
 interface ProductCardCarouselProps {
   images: string[];
   alt: string;
   slug: string;
   isLimitedBatch?: boolean;
+  isPlaceholderImage?: boolean;
 }
 
 export const ProductCardCarousel: React.FC<ProductCardCarouselProps> = ({
@@ -17,7 +19,10 @@ export const ProductCardCarousel: React.FC<ProductCardCarouselProps> = ({
   alt,
   slug,
   isLimitedBatch = false,
+  isPlaceholderImage = false,
 }) => {
+  const isPlaceholder = isPlaceholderImage || !images || images.length === 0 || images[0] === 'placeholder' || images[0].includes('placeholder');
+
   // Ensure we always have exactly 3 slides for the carousel
   const carouselImages = React.useMemo(() => {
     if (!images || images.length === 0) return ['/photos/attars/sehar-e-gulab.jpg', '/photos/attars/sehar-e-gulab.jpg', '/photos/attars/sehar-e-gulab.jpg'];
@@ -60,6 +65,14 @@ export const ProductCardCarousel: React.FC<ProductCardCarouselProps> = ({
     setTouchStartX(null);
     setTouchEndX(null);
   };
+
+  if (isPlaceholder) {
+    return (
+      <Link href={`/products/${slug}`} className="block relative w-full h-full">
+        <ProductPlaceholderImage productName={alt} />
+      </Link>
+    );
+  }
 
   return (
     <div

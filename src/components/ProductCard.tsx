@@ -43,6 +43,7 @@ export const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
           alt={product.name}
           slug={product.slug}
           isLimitedBatch={isLimitedBatch}
+          isPlaceholderImage={product.isPlaceholderImage || product.mainImage === 'placeholder' || product.mainImage?.includes('placeholder')}
         />
 
         {/* Wishlist Button (Top Right) */}

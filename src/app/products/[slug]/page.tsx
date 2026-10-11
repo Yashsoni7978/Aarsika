@@ -7,6 +7,7 @@ import { Heart, ChevronLeft, ChevronRight, ShieldCheck, Truck, Sparkles, Check }
 import { PRODUCTS } from '@/data/products';
 import { useShop } from '@/context/ShopContext';
 import { ProductCard } from '@/components/ProductCard';
+import { ProductPlaceholderImage } from '@/components/ProductPlaceholderImage';
 
 interface ProductPageProps {
   params: {
@@ -21,6 +22,16 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
 
   const { addToCart, toggleWishlist, isInWishlist } = useShop();
   const isLiked = product ? isInWishlist(product.id) : false;
+
+  const categoryBreadcrumb = React.useMemo(() => {
+    if (!product) return { href: '/shop', label: 'COLLECTION' };
+    const cat = (product.category || '').toUpperCase();
+    if (cat.includes('PARFUM')) return { href: '/collection/eau-de-parfums', label: 'EAU DE PARFUMS' };
+    if (cat.includes('ATTAR')) return { href: '/collection/ittras', label: 'ITTRAS' };
+    if (cat.includes('GIFT')) return { href: '/collection/gift-sets', label: 'GIFT SETS' };
+    if (cat.includes('DISCOVERY') || cat.includes('TRIAL')) return { href: '/collection/trial-sets', label: 'TRIAL SETS' };
+    return { href: '/shop', label: 'COLLECTION' };
+  }, [product]);
 
   const [selectedSize, setSelectedSize] = useState(
     product?.defaultSize || product?.sizeOptions?.[0] || '12 ml'
@@ -147,8 +158,8 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
             HOME
           </Link>
           <span>/</span>
-          <Link href="/shop" className="hover:text-[#1a1411]">
-            COLLECTION
+          <Link href={categoryBreadcrumb.href} className="hover:text-[#1a1411]">
+            {categoryBreadcrumb.label}
           </Link>
           <span>/</span>
           <span className="text-[#1a1411] font-medium">{product.name}</span>
@@ -156,87 +167,97 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
 
         {/* 2-Column Product Detail Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* LEFT: 3-Image Interactive Gallery */}
+          {/* LEFT: 3-Image Interactive Gallery or Placeholder */}
           <div className="lg:col-span-6 space-y-4">
-            <div
-              className="relative aspect-[4/3] sm:aspect-[4/3] w-full bg-[#EADFCB] rounded-xl overflow-hidden shadow-soft select-none group"
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-              onTouchStart={handleTouchStart}
-              onTouchMove={handleTouchMove}
-              onTouchEnd={handleTouchEnd}
-            >
-              {galleryImages.map((imgSrc, idx) => (
+            {product.isPlaceholderImage ? (
+              <ProductPlaceholderImage
+                productName={product.name}
+                category={product.category}
+                className="rounded-xl shadow-soft"
+              />
+            ) : (
+              <>
                 <div
-                  key={idx}
-                  className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
-                    idx === activeImageIndex ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
-                  }`}
+                  className="relative aspect-[4/3] sm:aspect-[4/3] w-full bg-[#EADFCB] rounded-xl overflow-hidden shadow-soft select-none group"
+                  onMouseEnter={() => setIsHovered(true)}
+                  onMouseLeave={() => setIsHovered(false)}
+                  onTouchStart={handleTouchStart}
+                  onTouchMove={handleTouchMove}
+                  onTouchEnd={handleTouchEnd}
                 >
-                  <Image
-                    src={imgSrc}
-                    alt={`${product.name} - View ${idx + 1}`}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                    className="object-cover"
-                    priority={idx === 0}
-                  />
+                  {galleryImages.map((imgSrc, idx) => (
+                    <div
+                      key={idx}
+                      className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                        idx === activeImageIndex ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+                      }`}
+                    >
+                      <Image
+                        src={imgSrc}
+                        alt={`${product.name} - View ${idx + 1}`}
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        className="object-cover"
+                        priority={idx === 0}
+                      />
+                    </div>
+                  ))}
+
+                  {/* Prev / Next Arrows */}
+                  <button
+                    onClick={prevImage}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-[#26060d]/60 backdrop-blur-sm text-[#F6EFE2] hover:bg-[#26060d] flex items-center justify-center transition-all duration-300 opacity-0 group-hover:opacity-100 shadow-md"
+                    aria-label="Previous Image"
+                  >
+                    <ChevronLeft className="w-5 h-5" />
+                  </button>
+
+                  <button
+                    onClick={nextImage}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-[#26060d]/60 backdrop-blur-sm text-[#F6EFE2] hover:bg-[#26060d] flex items-center justify-center transition-all duration-300 opacity-0 group-hover:opacity-100 shadow-md"
+                    aria-label="Next Image"
+                  >
+                    <ChevronRight className="w-5 h-5" />
+                  </button>
+
+                  {/* Wishlist Button */}
+                  <button
+                    onClick={() => toggleWishlist(product.id)}
+                    className={`absolute top-4 right-4 z-20 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
+                      isLiked
+                        ? 'bg-[#30070D] text-[#E7CF98] shadow-md'
+                        : 'bg-[#F6EFE2]/80 backdrop-blur-sm text-[#1a1411] hover:bg-[#30070D] hover:text-[#E7CF98]'
+                    }`}
+                    aria-label="Save to Wishlist"
+                  >
+                    <Heart className={`w-5 h-5 ${isLiked ? 'fill-[#E7CF98]' : 'stroke-[1.5]'}`} />
+                  </button>
                 </div>
-              ))}
 
-              {/* Prev / Next Arrows */}
-              <button
-                onClick={prevImage}
-                className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-[#26060d]/60 backdrop-blur-sm text-[#F6EFE2] hover:bg-[#26060d] flex items-center justify-center transition-all duration-300 opacity-0 group-hover:opacity-100 shadow-md"
-                aria-label="Previous Image"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-
-              <button
-                onClick={nextImage}
-                className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-[#26060d]/60 backdrop-blur-sm text-[#F6EFE2] hover:bg-[#26060d] flex items-center justify-center transition-all duration-300 opacity-0 group-hover:opacity-100 shadow-md"
-                aria-label="Next Image"
-              >
-                <ChevronRight className="w-5 h-5" />
-              </button>
-
-              {/* Wishlist Button */}
-              <button
-                onClick={() => toggleWishlist(product.id)}
-                className={`absolute top-4 right-4 z-20 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
-                  isLiked
-                    ? 'bg-[#30070D] text-[#E7CF98] shadow-md'
-                    : 'bg-[#F6EFE2]/80 backdrop-blur-sm text-[#1a1411] hover:bg-[#30070D] hover:text-[#E7CF98]'
-                }`}
-                aria-label="Save to Wishlist"
-              >
-                <Heart className={`w-5 h-5 ${isLiked ? 'fill-[#E7CF98]' : 'stroke-[1.5]'}`} />
-              </button>
-            </div>
-
-            {/* Three Thumbnails Row */}
-            <div className="grid grid-cols-3 gap-3">
-              {galleryImages.map((imgSrc, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setActiveImageIndex(idx)}
-                  className={`relative aspect-[4/3] w-full bg-[#EADFCB] rounded-lg overflow-hidden transition-all duration-300 ${
-                    idx === activeImageIndex
-                      ? 'border-2 border-[#C69A45] ring-2 ring-[#C69A45]/30 shadow-md scale-[1.02]'
-                      : 'border border-[#C9A55C]/30 opacity-70 hover:opacity-100'
-                  }`}
-                >
-                  <Image
-                    src={imgSrc}
-                    alt={`${product.name} Thumbnail ${idx + 1}`}
-                    fill
-                    sizes="20vw"
-                    className="object-cover"
-                  />
-                </button>
-              ))}
-            </div>
+                {/* Three Thumbnails Row */}
+                <div className="grid grid-cols-3 gap-3">
+                  {galleryImages.map((imgSrc, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setActiveImageIndex(idx)}
+                      className={`relative aspect-[4/3] w-full bg-[#EADFCB] rounded-lg overflow-hidden transition-all duration-300 ${
+                        idx === activeImageIndex
+                          ? 'border-2 border-[#C69A45] ring-2 ring-[#C69A45]/30 shadow-md scale-[1.02]'
+                          : 'border border-[#C9A55C]/30 opacity-70 hover:opacity-100'
+                      }`}
+                    >
+                      <Image
+                        src={imgSrc}
+                        alt={`${product.name} Thumbnail ${idx + 1}`}
+                        fill
+                        sizes="20vw"
+                        className="object-cover"
+                      />
+                    </button>
+                  ))}
+                </div>
+              </>
+            )}
           </div>
 
           {/* RIGHT: Product Details & Purchase Actions */}
@@ -302,6 +323,38 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
               {product.description || product.shortDescription}
             </p>
 
+            {/* Bundle Set Specifications */}
+            {product.bundleInfo && (
+              <div className="bg-[#F6EFE2] border border-[#C9A55C]/30 rounded-xl p-4 space-y-3 shadow-sm">
+                <div className="flex items-center justify-between text-xs font-mono">
+                  <span className="text-[#8a6a22] font-semibold uppercase tracking-wider">SET SPECIFICATIONS</span>
+                  <span className="bg-[#30070D] text-[#F5EFE3] px-2.5 py-0.5 rounded text-[11px] font-bold">
+                    {product.bundleInfo.displayConfig}
+                  </span>
+                </div>
+                <div className="grid grid-cols-3 gap-2 text-center text-xs font-mono pt-1 text-[#32151A]">
+                  <div className="bg-[#FBF6EA] p-2 rounded border border-[#C9A55C]/20">
+                    <span className="text-[9px] text-[#6b5f55] block uppercase">BOTTLES</span>
+                    <span className="font-semibold">{product.bundleInfo.bottleCount} Bottles</span>
+                  </div>
+                  <div className="bg-[#FBF6EA] p-2 rounded border border-[#C9A55C]/20">
+                    <span className="text-[9px] text-[#6b5f55] block uppercase">SIZE EACH</span>
+                    <span className="font-semibold">{product.bundleInfo.bottleSize}</span>
+                  </div>
+                  <div className="bg-[#FBF6EA] p-2 rounded border border-[#C9A55C]/20">
+                    <span className="text-[9px] text-[#6b5f55] block uppercase">TOTAL VOLUME</span>
+                    <span className="font-semibold">{product.bundleInfo.totalVolume}</span>
+                  </div>
+                </div>
+                {product.bundleInfo.includedProducts && product.bundleInfo.includedProducts.length > 0 && (
+                  <div className="pt-1 text-xs text-[#5c5045]">
+                    <span className="font-mono text-[10px] uppercase tracking-wider text-[#8a6a22] block font-semibold">INCLUDED CREATIONS:</span>
+                    <p className="font-serif italic text-sm text-[#1a1411]">{product.bundleInfo.includedProducts.join(' • ')}</p>
+                  </div>
+                )}
+              </div>
+            )}
+
             {/* Size Selector */}
             {product.sizeOptions && product.sizeOptions.length > 0 && (
               <div className="space-y-3">
@@ -335,8 +388,26 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
               </div>
             )}
 
-            {/* Quantity Selector & Add to Bag / Waitlist */}
-            {currentStock > 0 ? (
+            {/* Quantity Selector & Add to Bag / Waitlist / Coming Soon */}
+            {product.status === 'coming_soon' || currentPrice === 0 ? (
+              <div className="pt-2 space-y-3">
+                <button
+                  disabled
+                  className="w-full h-12 bg-[#EADFCB]/60 text-[#8a6a22] text-xs font-mono uppercase tracking-[0.25em] font-semibold rounded-lg border border-[#C9A55C]/40 flex items-center justify-center gap-2 cursor-not-allowed opacity-90 shadow-inner"
+                >
+                  <Sparkles className="w-4 h-4 text-[#C9A55C]" />
+                  <span>COMING SOON</span>
+                </button>
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full h-11 bg-[#30070D] text-[#E7CF98] hover:bg-[#450B14] text-[11px] font-mono tracking-[0.15em] uppercase font-semibold transition-colors rounded-lg flex items-center justify-center gap-2 border border-[#C9A55C]/30 shadow-md"
+                >
+                  <span>Notify Me On Launch →</span>
+                </a>
+              </div>
+            ) : currentStock > 0 ? (
               <div className="flex flex-col sm:flex-row items-center gap-4 pt-2">
                 <div className="flex items-center border border-[#dccfb6] bg-[#F6EFE2] rounded-lg h-12 px-2">
                   <button
