@@ -363,66 +363,79 @@ export default function HomePage() {
       </section>
 
       {/* ========================================================
-          5. DISCOVERY SET / TRIAL PACK PROMOTION
+          5. DISCOVERY SET / TRIAL PACK PROMOTION — Burgundy Panorama
       ======================================================== */}
-      <section className="py-16 md:py-24 bg-[#EADFCB] border-t border-[#C69A45]/25">
-        <div className="max-w-[1360px] mx-auto px-6 sm:px-10 lg:px-16">
-          <div className="bg-gradient-to-br from-[#FBF6EA] via-[#F5EFE3] to-[#EADFCB] border border-[#C69A45]/30 rounded-2xl p-8 sm:p-12 lg:p-14 shadow-md">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-              
-              {/* Left Content (approx 52%) */}
-              <div className="lg:col-span-6 xl:col-span-7 space-y-6">
-                <span className="text-xs font-mono uppercase tracking-[0.28em] text-[#9D6A26] block">
-                  THE SAMPLER PRESENTATION
-                </span>
-                <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal text-[#32151A] leading-tight">
-                  Discover Your Signature
-                </h2>
-                <p className="font-serif text-xl sm:text-2xl italic text-[#9D6A26]">
-                  A curated set of 7 luxurious fragrances
-                </p>
-                <p className="text-sm sm:text-base text-[#4a3f35] font-light leading-relaxed max-w-xl">
-                  Experience our complete attar repertoire in 3 ml miniature flacons before choosing your full bottle. Seven distinctive pure attar oils hand-crafted with botanical precision and delivered with complimentary shipping across India.
-                </p>
+      <section className="relative py-20 md:py-28 lg:py-32 overflow-hidden bg-[#200408] border-y border-[#C69A45]/30">
+        {/* Full-width Panoramic Background */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/photos/discovery-set-burgundy-bg.png"
+            alt="Aarsika Discovery Set Burgundy Background"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-[center_right] md:object-center"
+          />
+          {/* Subtle localized dark burgundy gradient overlay to ensure crystal clear text legibility while preserving architectural details */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1b0306]/95 via-[#1b0306]/55 to-[#1b0306]/75 md:bg-gradient-to-r md:from-[#1b0306]/92 md:via-[#1b0306]/60 md:to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-[#200408]/15 pointer-events-none" />
+        </div>
 
-                {/* Compact Row of 3 Benefits */}
-                <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-1 pb-1">
-                  <div className="px-4 py-2 bg-[#F5EFE3] border border-[#C69A45]/30 rounded-full text-xs font-mono tracking-wider text-[#32151A] font-medium shadow-2xs">
-                    7 × 3 ml
-                  </div>
-                  <div className="px-4 py-2 bg-[#30070D] border border-[#C69A45] rounded-full text-xs font-mono tracking-wider text-[#F5EFE3] font-semibold shadow-xs">
-                    ₹499
-                  </div>
-                  <div className="px-4 py-2 bg-[#F5EFE3] border border-[#C69A45]/30 rounded-full text-xs font-mono tracking-wider text-[#32151A] flex items-center gap-1.5 shadow-2xs">
-                    <Truck className="w-3.5 h-3.5 text-[#C69A45]" />
-                    <span>Free Pan-India Delivery</span>
-                  </div>
+        <div className="relative z-10 max-w-[1360px] mx-auto px-6 sm:px-10 lg:px-16">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+            
+            {/* Left Content — Product Information */}
+            <div className="lg:col-span-6 xl:col-span-7 space-y-6">
+              <span className="text-xs font-mono uppercase tracking-[0.28em] text-[#E5C378] block">
+                THE SAMPLER PRESENTATION
+              </span>
+              <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal text-[#FFF8EB] leading-tight drop-shadow-xs">
+                Discover Your Signature
+              </h2>
+              <p className="font-serif text-xl sm:text-2xl italic text-[#E5C378]">
+                A curated set of 7 luxurious fragrances
+              </p>
+              <p className="text-sm sm:text-base text-[#F5EFE3]/90 font-light leading-relaxed max-w-xl">
+                Experience our complete attar repertoire in 3 ml miniature flacons before choosing your full bottle. Seven distinctive pure attar oils hand-crafted with botanical precision and delivered with complimentary shipping across India.
+              </p>
+
+              {/* Benefit indicators */}
+              <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-1 pb-1">
+                <div className="px-4 py-2 bg-[#30070D]/80 backdrop-blur-xs border border-[#C69A45]/40 rounded-full text-xs font-mono tracking-wider text-[#FFF8EB] font-medium shadow-sm">
+                  7 × 3 ml
                 </div>
-                
-                <div className="pt-2">
-                  <PearlButton
-                    href="/discovery-sets"
-                    variant="burgundy"
-                    size="lg"
-                    rightIcon={<ArrowRight className="w-4 h-4 text-[#C69A45]" />}
-                  >
-                    EXPLORE THE TRIAL SET
-                  </PearlButton>
+                <div className="px-4 py-2 bg-[#E5C378] border border-[#FFF8EB]/50 rounded-full text-xs font-mono tracking-wider text-[#200408] font-bold shadow-md">
+                  ₹499
+                </div>
+                <div className="px-4 py-2 bg-[#30070D]/80 backdrop-blur-xs border border-[#C69A45]/40 rounded-full text-xs font-mono tracking-wider text-[#FFF8EB] flex items-center gap-2 shadow-sm">
+                  <Truck className="w-3.5 h-3.5 text-[#E5C378]" />
+                  <span>Free Pan-India Delivery</span>
                 </div>
               </div>
+              
+              <div className="pt-2">
+                <PearlButton
+                  href="/discovery-sets"
+                  variant="burgundy"
+                  size="lg"
+                  rightIcon={<ArrowRight className="w-4 h-4 text-[#C69A45]" />}
+                >
+                  EXPLORE THE TRIAL SET
+                </PearlButton>
+              </div>
+            </div>
 
-              {/* Right Image (approx 48%) */}
-              <div className="lg:col-span-6 xl:col-span-5">
-                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-[#C69A45]/30 shadow-lg bg-[#30070D]">
-                  <Image
-                    src="/photos/trial-packs/aarsika-ittra-collection-trial-set.webp"
-                    alt="Aarsika Ittra Collection Trial Set"
-                    fill
-                    loading="eager"
-                    sizes="(max-width: 1024px) 100vw, 45vw"
-                    className="object-cover"
-                  />
-                </div>
+            {/* Right Image — Authentic Product Photography (Natural 3:2 Proportions) */}
+            <div className="lg:col-span-6 xl:col-span-5">
+              <div className="relative aspect-[3/2] w-full overflow-hidden rounded-2xl border border-[#E5C378]/35 shadow-2xl bg-[#200408] transition-transform duration-500 hover:scale-[1.01]">
+                <Image
+                  src="/photos/trial-packs/aarsika-ittra-collection-trial-set.webp"
+                  alt="Aarsika Ittra Collection Trial Set"
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 45vw"
+                  className="object-cover"
+                />
               </div>
             </div>
           </div>
