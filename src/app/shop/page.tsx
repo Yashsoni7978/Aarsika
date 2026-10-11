@@ -63,12 +63,22 @@ function ShopContent() {
       };
     }
 
+    const rawMoment = searchParams.get('moment') || searchParams.get('occasion');
+    if (rawMoment) {
+      const mCapital = rawMoment.charAt(0).toUpperCase() + rawMoment.slice(1);
+      return {
+        title: `${mCapital} Fragrance Collection`,
+        subtitle: `Scents curated for your ${rawMoment} rituals.`,
+        description: `Explore compositions specifically suited for ${rawMoment} wear, balancing projection, longevity, and mood.`,
+      };
+    }
+
     return {
       title: 'The Olfactive Collection',
       subtitle: 'Pure oils, spray perfumes, and discovery sets.',
       description: 'Explore the complete spectrum of fine Indian perfumery handcrafted by AARSIKA.',
     };
-  }, [activeCategory]);
+  }, [activeCategory, searchParams]);
 
   const categories = [
     { id: 'ALL', label: 'All' },
@@ -79,7 +89,22 @@ function ShopContent() {
   ];
 
   const filteredProducts = useMemo(() => {
+    const rawMoment = searchParams.get('moment') || searchParams.get('occasion');
+
     return PRODUCTS.filter((product) => {
+      // Check moment / occasion filter
+      if (rawMoment) {
+        const m = rawMoment.toLowerCase();
+        const occ = (product.occasion || '').toLowerCase();
+        const tags = (product.tags || []).map((t) => t.toLowerCase());
+        const matchesMoment =
+          occ.includes(m) ||
+          tags.includes(m) ||
+          (m === 'night' && (occ.includes('evening') || occ.includes('occasions'))) ||
+          (m === 'office' && occ.includes('everyday'));
+        if (!matchesMoment) return false;
+      }
+
       if (activeCategory === 'ALL') return true;
 
       // Match by category or fragrance family or subcategory
@@ -100,7 +125,7 @@ function ShopContent() {
       if (sortBy === 'price-desc') return b.price - a.price;
       return 0;
     });
-  }, [activeCategory, sortBy]);
+  }, [activeCategory, sortBy, searchParams]);
 
   return (
     <div className="bg-[#F6EFE2] min-h-screen text-[#1a1411] pt-24 pb-24 font-sans">

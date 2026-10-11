@@ -74,7 +74,9 @@ export const AttarCard: React.FC<AttarCardProps> = ({ product }) => {
             alt={`${product.name} - image ${currentIdx + 1}`}
             fill
             sizes="(max-width: 640px) 70vw, (max-width: 1024px) 33vw, 25vw"
-            className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+            className={`object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02] ${
+              currentIdx === 0 ? 'object-[35%_center]' : 'object-center'
+            }`}
           />
         </Link>
 

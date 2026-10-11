@@ -361,10 +361,15 @@ export default function HomePage() {
                 Seven fragrances. One unforgettable beginning.
               </p>
               <p className="text-sm sm:text-base text-[#4a3f35] font-light leading-relaxed">
-                Experience our complete attar repertoire in 3 ml miniature flacons before choosing your full bottle. Hand-crafted with meticulous care and delivered with complimentary shipping across India.
+                Experience our complete attar repertoire in 3 ml miniature flacons before choosing your full bottle. Seven distinctive pure attar oils hand-crafted with meticulous care and delivered with complimentary shipping across India.
               </p>
+
+              <div className="flex items-baseline gap-3 pt-1 pb-2">
+                <span className="text-2xl font-serif text-[#32151A] font-medium">₹499</span>
+                <span className="text-xs font-mono tracking-widest text-[#9D6A26] uppercase">7 × 3 ml Vials · Complimentary Shipping</span>
+              </div>
               
-              <div className="pt-2">
+              <div className="pt-1">
                 <Link
                   href="/discovery-sets"
                   className="inline-flex items-center gap-3 px-8 py-4 bg-[#30070D] text-[#F5EFE3] hover:bg-[#450B14] hover:text-[#E7CF98] border border-[#C69A45] transition-all duration-300 text-xs font-sans uppercase tracking-[0.22em] font-medium"
