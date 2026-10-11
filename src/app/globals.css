@@ -13,6 +13,7 @@
   --color-gold-deep: #8a6a22;
   --color-ivory: #F6EFE2;
   --color-cream: #FBF6EA;
+  --color-sand: #EADFCB;
   --color-ink: #1a1411;
   --color-muted: #6b5f55;
   --color-line: #dccfb6;
@@ -25,6 +26,13 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+}
+
+@media (min-width: 1024px) {
+  body {
+    font-size: 17px;
+  }
 }
 
 h1, h2, h3, h4, .font-serif {
@@ -47,7 +55,7 @@ h1, h2, h3, h4, .font-serif {
   font-family: var(--font-jost), sans-serif;
   font-size: 12px;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.16em;
   font-weight: 500;
   display: inline-flex;
   align-items: center;
@@ -59,6 +67,35 @@ h1, h2, h3, h4, .font-serif {
 
 .text-link-underline:hover {
   border-bottom-color: #C9A55C;
+}
+
+/* Hero zoom animation */
+@keyframes hero-zoom {
+  from {
+    transform: scale(1.03);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.animate-hero-zoom {
+  animation: hero-zoom 6s ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-hero-zoom {
+    animation: none;
+  }
+}
+
+/* Hide scrollbar for carousels */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 /* Minimal Luxury Scrollbar */
@@ -78,4 +115,10 @@ h1, h2, h3, h4, .font-serif {
 ::selection {
   background-color: #3b0a12;
   color: #F6EFE2;
+}
+
+/* Focus ring for accessibility */
+*:focus-visible {
+  outline: 2px solid #C9A55C;
+  outline-offset: 2px;
 }

@@ -9,6 +9,9 @@ import { WishlistDrawer } from "@/components/WishlistDrawer";
 import { SearchModal } from "@/components/SearchModal";
 import { FragranceFinderModal } from "@/components/FragranceFinderModal";
 import { ToastBanner } from "@/components/ToastBanner";
+import AnnouncementBar from "@/components/AnnouncementBar";
+import StickyPhoneBar from "@/components/StickyPhoneBar";
+import { BRAND_NAME, BRAND_TAGLINE, BRAND_LEGAL_ADDRESS, BRAND_INSTAGRAM } from "@/config/brand";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -26,9 +29,10 @@ const jost = Jost({
 });
 
 export const metadata: Metadata = {
-  title: "Aarsika | Fine fragrance from India",
+  metadataBase: new URL("https://aarsika.com"),
+  title: `${BRAND_NAME} | ${BRAND_TAGLINE}`,
   description:
-    "Rare scents. Timeless lands. Discover Aarsika's collection of fine attars, perfumes, bakhoor, and luxury gift sets.",
+    "Rare scents. Timeless lands. Discover fine attars, perfumes, and luxury gift sets shaped by memory, material and place.",
   keywords: [
     "Aarsika",
     "Aarsika Parfums",
@@ -43,20 +47,30 @@ export const metadata: Metadata = {
     icon: "/brand/favicon.ico",
   },
   openGraph: {
-    title: "Aarsika | Fine fragrance from India",
+    title: `${BRAND_NAME} | ${BRAND_TAGLINE}`,
     description: "Rare scents. Timeless lands. Fragrances shaped by memory, material and place.",
     url: "https://aarsika.com",
-    siteName: "Aarsika Fine Fragrance",
+    siteName: `${BRAND_NAME} Fine Fragrance`,
     images: [
       {
         url: "/brand/og.jpg",
         width: 1200,
         height: 630,
-        alt: "Aarsika Fine Fragrance",
+        alt: `${BRAND_NAME} Fine Fragrance`,
       },
     ],
     locale: "en_IN",
     type: "website",
+  },
+  other: {
+    "application/ld+json": JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: BRAND_NAME,
+      url: "https://aarsika.com",
+      logo: "https://aarsika.com/brand/logo.svg",
+      sameAs: BRAND_INSTAGRAM,
+    }),
   },
 };
 
@@ -69,6 +83,7 @@ export default function RootLayout({
     <html lang="en" className={`${cormorant.variable} ${jost.variable}`}>
       <body className="antialiased bg-[#F6EFE2] text-[#1a1411] font-sans selection:bg-[#8b1a2b] selection:text-white">
         <ShopProvider>
+          <AnnouncementBar />
           <Header />
           <main className="min-h-screen">{children}</main>
           <Footer />
@@ -77,6 +92,7 @@ export default function RootLayout({
           <SearchModal />
           <FragranceFinderModal />
           <ToastBanner />
+          <StickyPhoneBar />
         </ShopProvider>
       </body>
     </html>
