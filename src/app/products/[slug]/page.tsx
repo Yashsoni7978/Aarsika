@@ -63,22 +63,7 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
     return imgs.slice(0, 3);
   }, [product]);
 
-  // Gallery autoplay (slower 6s interval), pauses on hover or user interaction
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
-  useEffect(() => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    if (!isHovered && !prefersReducedMotion && galleryImages.length > 1) {
-      timerRef.current = setInterval(() => {
-        setActiveImageIndex((prev) => (prev + 1) % galleryImages.length);
-      }, 6000);
-    }
-
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-    };
-  }, [isHovered, galleryImages.length]);
 
   if (!product) {
     return (

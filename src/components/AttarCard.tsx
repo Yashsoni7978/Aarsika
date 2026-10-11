@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Heart, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
@@ -23,20 +23,6 @@ export const AttarCard: React.FC<AttarCardProps> = ({ product }) => {
 
   const [currentIdx, setCurrentIdx] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
-
-  // Autoplay ~4s when not hovered
-  useEffect(() => {
-    if (images.length <= 1 || isHovered) return;
-
-    timerRef.current = setInterval(() => {
-      setCurrentIdx((prev) => (prev + 1) % images.length);
-    }, 4200);
-
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-    };
-  }, [images.length, isHovered]);
 
   const handlePrev = (e: React.MouseEvent) => {
     e.preventDefault();
