@@ -9,56 +9,26 @@ export interface HeroSlide {
   line: string;
   img: string;
   href: string;
+  product?: Product;
 }
 
-// TODO: placeholder until the formulas are final
-const rawHeroSlidesData = [
-  {
-    id: 'slide-nayaab',
-    slug: 'nayaab',
-    name: 'Nayaab',
-    type: 'Eau de Parfum',
-    moment: 'Every day',
-    // TODO: placeholder until the formulas are final
-    line: 'Lemon and white florals.',
-    img: 'hero-nayaab',
-  },
-  {
-    id: 'slide-saaz',
-    slug: 'saaz',
-    name: 'Saaz',
-    type: 'Eau de Parfum',
-    moment: 'Day',
-    // TODO: placeholder until the formulas are final
-    line: 'Bergamot and white jasmine.',
-    img: 'hero-saaz',
-  },
-  {
-    id: 'slide-madhuri',
-    slug: 'madhuri',
-    name: 'Madhuri',
-    type: 'Eau de Parfum',
-    moment: 'Evening',
-    // TODO: placeholder until the formulas are final
-    line: 'Rose and oud.',
-    img: 'hero-madhuri',
-  },
-  {
-    id: 'slide-razmi',
-    slug: 'razmi',
-    name: 'Razmi',
-    type: 'Eau de Parfum',
-    moment: 'Night',
-    // TODO: placeholder until the formulas are final
-    line: 'Oud and amber resin.',
-    img: 'hero-razmi',
-  },
-];
+// Phase 5.0: exactly these 5 products, in this order
+const heroSlugs = ['amour', 'raat-ki-rani', 'noor', 'resham-oudh', 'atlas'];
 
-export const heroSlides: HeroSlide[] = rawHeroSlidesData.map((slide) => {
-  const productExists = PRODUCTS.some((p: Product) => p.slug === slide.slug);
-  return {
-    ...slide,
-    href: productExists ? `/products/${slide.slug}` : '/perfumes',
-  };
-});
+export const heroSlides: HeroSlide[] = heroSlugs
+  .map((slug) => {
+    const product = PRODUCTS.find((p) => p.slug === slug);
+    if (!product) return null;
+    return {
+      id: `slide-${slug}`,
+      slug,
+      name: product.name,
+      type: product.type,
+      moment: product.occasion,
+      line: product.shortDescription || product.tagline || '',
+      img: slug,
+      href: `/products/${slug}`,
+      product,
+    };
+  })
+  .filter(Boolean) as HeroSlide[];
