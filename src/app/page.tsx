@@ -9,6 +9,7 @@ import { AttarCard } from '@/components/AttarCard';
 import { Heart, Sparkles, ArrowRight, ShieldCheck, Truck, RefreshCw, Award } from 'lucide-react';
 import { useShop } from '@/context/ShopContext';
 import PearlButton from '@/components/PearlButton';
+import ResponsivePhoto from '@/components/ResponsivePhoto';
 
 export default function HomePage() {
   const { wishlist, toggleWishlist } = useShop();
@@ -300,13 +301,13 @@ export default function HomePage() {
                 >
                   <div className="relative aspect-[4/5] w-full overflow-hidden bg-[#EADFCB] mb-3.5">
                     <Link href={`/products/${prod.slug}`} className="block w-full h-full">
-                      <Image
-                        src={prod.mainImage}
+                      <ResponsivePhoto
+                        slot={`${prod.slug}-card`}
                         alt={prod.name}
-                        fill
-                        loading="eager"
+                        aspect="4/5"
+                        objectFit="contain"
                         sizes="(max-width: 640px) 50vw, 33vw"
-                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                        className="w-full h-full"
                       />
                     </Link>
 
@@ -428,13 +429,14 @@ export default function HomePage() {
             {/* Right Image — Authentic Product Photography (Natural 3:2 Proportions) */}
             <div className="lg:col-span-6 xl:col-span-5">
               <div className="relative aspect-[3/2] w-full overflow-hidden rounded-2xl border border-[#E5C378]/35 shadow-2xl bg-[#200408] transition-transform duration-500 hover:scale-[1.01]">
-                <Image
-                  src="/photos/trial-packs/aarsika-ittra-collection-trial-set.webp"
+                <ResponsivePhoto
+                  slot="discovery-set"
                   alt="Aarsika Ittra Collection Trial Set"
-                  fill
                   priority
+                  aspect="3/2"
+                  objectFit="contain"
                   sizes="(max-width: 1024px) 100vw, 45vw"
-                  className="object-cover"
+                  className="w-full h-full"
                 />
               </div>
             </div>
@@ -451,14 +453,14 @@ export default function HomePage() {
             
             {/* Image (left) */}
             <div className="lg:col-span-6 order-2 lg:order-1">
-              <div className="relative aspect-[4/5] sm:aspect-[3/4] max-w-lg mx-auto overflow-hidden border border-[#C69A45]/30 shadow-md">
-                <Image
-                  src="/images/craftsmanship.jpg"
+              <div className="relative aspect-[3/4] max-w-lg mx-auto overflow-hidden border border-[#C69A45]/30 shadow-md">
+                <ResponsivePhoto
+                  slot="house"
                   alt="Aarsika Perfumery Craftsmanship"
-                  fill
-                  loading="eager"
+                  aspect="3/4"
+                  objectFit="cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover"
+                  className="w-full h-full"
                 />
               </div>
             </div>
@@ -653,13 +655,13 @@ export default function HomePage() {
               >
                 <div className="relative aspect-[4/5] w-full overflow-hidden bg-[#EADFCB] mb-4">
                   <Link href={`/products/${prod.slug}`} className="block w-full h-full">
-                    <Image
-                      src={prod.mainImage}
+                    <ResponsivePhoto
+                      slot="gifting"
                       alt={prod.name}
-                      fill
-                      loading="eager"
+                      aspect="4/5"
+                      objectFit="contain"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                      className="w-full h-full"
                     />
                   </Link>
                 </div>

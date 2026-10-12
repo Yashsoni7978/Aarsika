@@ -7,6 +7,7 @@ import { Heart, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import { Product } from '@/data/products';
 import { useShop } from '@/context/ShopContext';
 import PearlButton from './PearlButton';
+import ResponsivePhoto from './ResponsivePhoto';
 
 interface AttarCardProps {
   product: Product;
@@ -56,15 +57,24 @@ export const AttarCard: React.FC<AttarCardProps> = ({ product }) => {
       {/* IMAGE CONTAINER WITH 3-IMAGE CAROUSEL */}
       <div className="relative aspect-[4/5] w-full overflow-hidden bg-[#EADFCB] mb-3.5">
         <Link href={`/products/${product.slug}`} className="block w-full h-full">
-          <Image
-            src={images[currentIdx]}
-            alt={`${product.name} - image ${currentIdx + 1}`}
-            fill
-            sizes="(max-width: 640px) 70vw, (max-width: 1024px) 33vw, 25vw"
-            className={`object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02] ${
-              currentIdx === 0 ? 'object-[35%_center]' : 'object-center'
-            }`}
-          />
+          {currentIdx === 0 ? (
+            <ResponsivePhoto
+              slot={`${product.slug}-card`}
+              alt={product.name}
+              aspect="4/5"
+              objectFit="contain"
+              sizes="(max-width: 640px) 70vw, (max-width: 1024px) 33vw, 25vw"
+              className="w-full h-full"
+            />
+          ) : (
+            <Image
+              src={images[currentIdx]}
+              alt={`${product.name} - image ${currentIdx + 1}`}
+              fill
+              sizes="(max-width: 640px) 70vw, (max-width: 1024px) 33vw, 25vw"
+              className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02] object-center"
+            />
+          )}
         </Link>
 
         {/* Wishlist Button */}

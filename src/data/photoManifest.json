@@ -1,0 +1,1174 @@
+{
+  "generatedAt": "2026-10-12T17:51:27.433Z",
+  "totalExpectedSlots": 30,
+  "slots": {
+    "hero-amour-mobile": {
+      "slot": "hero-amour-mobile",
+      "available": false,
+      "family": "hero-mobile",
+      "expectedFile": "hero-amour-mobile.png",
+      "aspectRatio": "4:5",
+      "variants": {
+        "avif": [],
+        "webp": []
+      },
+      "fallback": null
+    },
+    "hero-amour-desktop": {
+      "slot": "hero-amour-desktop",
+      "available": true,
+      "family": "hero-desktop",
+      "originalFile": "source-images/hero-amour-desktop.png",
+      "originalDimensions": {
+        "width": 2160,
+        "height": 728
+      },
+      "aspectRatio": "16:9",
+      "variants": {
+        "avif": [
+          {
+            "width": 1280,
+            "height": 431,
+            "path": "/photos/hero-amour-desktop-1280w.avif",
+            "sizeKB": 70.9
+          },
+          {
+            "width": 1920,
+            "height": 647,
+            "path": "/photos/hero-amour-desktop-1920w.avif",
+            "sizeKB": 121.2
+          }
+        ],
+        "webp": [
+          {
+            "width": 1280,
+            "height": 431,
+            "path": "/photos/hero-amour-desktop-1280w.webp",
+            "sizeKB": 65
+          },
+          {
+            "width": 1920,
+            "height": 647,
+            "path": "/photos/hero-amour-desktop-1920w.webp",
+            "sizeKB": 116.8
+          }
+        ]
+      },
+      "fallback": "/photos/hero-amour-desktop-1920w.webp",
+      "resolutionWarning": "None",
+      "optimizationWarning": "None"
+    },
+    "hero-raat-ki-rani-mobile": {
+      "slot": "hero-raat-ki-rani-mobile",
+      "available": false,
+      "family": "hero-mobile",
+      "expectedFile": "hero-raat-ki-rani-mobile.png",
+      "aspectRatio": "4:5",
+      "variants": {
+        "avif": [],
+        "webp": []
+      },
+      "fallback": null
+    },
+    "hero-raat-ki-rani-desktop": {
+      "slot": "hero-raat-ki-rani-desktop",
+      "available": false,
+      "family": "hero-desktop",
+      "expectedFile": "hero-raat-ki-rani-desktop.png",
+      "aspectRatio": "16:9",
+      "variants": {
+        "avif": [],
+        "webp": []
+      },
+      "fallback": null
+    },
+    "hero-noor-mobile": {
+      "slot": "hero-noor-mobile",
+      "available": false,
+      "family": "hero-mobile",
+      "expectedFile": "hero-noor-mobile.png",
+      "aspectRatio": "4:5",
+      "variants": {
+        "avif": [],
+        "webp": []
+      },
+      "fallback": null
+    },
+    "hero-noor-desktop": {
+      "slot": "hero-noor-desktop",
+      "available": false,
+      "family": "hero-desktop",
+      "expectedFile": "hero-noor-desktop.png",
+      "aspectRatio": "16:9",
+      "variants": {
+        "avif": [],
+        "webp": []
+      },
+      "fallback": null
+    },
+    "hero-resham-oudh-mobile": {
+      "slot": "hero-resham-oudh-mobile",
+      "available": false,
+      "family": "hero-mobile",
+      "expectedFile": "hero-resham-oudh-mobile.png",
+      "aspectRatio": "4:5",
+      "variants": {
+        "avif": [],
+        "webp": []
+      },
+      "fallback": null
+    },
+    "hero-resham-oudh-desktop": {
+      "slot": "hero-resham-oudh-desktop",
+      "available": false,
+      "family": "hero-desktop",
+      "expectedFile": "hero-resham-oudh-desktop.png",
+      "aspectRatio": "16:9",
+      "variants": {
+        "avif": [],
+        "webp": []
+      },
+      "fallback": null
+    },
+    "hero-atlas-mobile": {
+      "slot": "hero-atlas-mobile",
+      "available": true,
+      "family": "hero-mobile",
+      "originalFile": "source-images/hero-atlas-mobile.png",
+      "originalDimensions": {
+        "width": 1254,
+        "height": 1254
+      },
+      "aspectRatio": "4:5",
+      "variants": {
+        "avif": [
+          {
+            "width": 640,
+            "height": 640,
+            "path": "/photos/hero-atlas-mobile-640w.avif",
+            "sizeKB": 65.6
+          },
+          {
+            "width": 828,
+            "height": 828,
+            "path": "/photos/hero-atlas-mobile-828w.avif",
+            "sizeKB": 94.9
+          },
+          {
+            "width": 1080,
+            "height": 1080,
+            "path": "/photos/hero-atlas-mobile-1080w.avif",
+            "sizeKB": 136.9
+          }
+        ],
+        "webp": [
+          {
+            "width": 640,
+            "height": 640,
+            "path": "/photos/hero-atlas-mobile-640w.webp",
+            "sizeKB": 61.3
+          },
+          {
+            "width": 828,
+            "height": 828,
+            "path": "/photos/hero-atlas-mobile-828w.webp",
+            "sizeKB": 91.7
+          },
+          {
+            "width": 1080,
+            "height": 1080,
+            "path": "/photos/hero-atlas-mobile-1080w.webp",
+            "sizeKB": 130.3
+          }
+        ]
+      },
+      "fallback": "/photos/hero-atlas-mobile-1080w.webp",
+      "resolutionWarning": "None",
+      "optimizationWarning": "None"
+    },
+    "hero-atlas-desktop": {
+      "slot": "hero-atlas-desktop",
+      "available": true,
+      "family": "hero-desktop",
+      "originalFile": "source-images/hero-atlas-desktop.png",
+      "originalDimensions": {
+        "width": 2161,
+        "height": 728
+      },
+      "aspectRatio": "16:9",
+      "variants": {
+        "avif": [
+          {
+            "width": 1280,
+            "height": 431,
+            "path": "/photos/hero-atlas-desktop-1280w.avif",
+            "sizeKB": 62.1
+          },
+          {
+            "width": 1920,
+            "height": 647,
+            "path": "/photos/hero-atlas-desktop-1920w.avif",
+            "sizeKB": 105.9
+          }
+        ],
+        "webp": [
+          {
+            "width": 1280,
+            "height": 431,
+            "path": "/photos/hero-atlas-desktop-1280w.webp",
+            "sizeKB": 58
+          },
+          {
+            "width": 1920,
+            "height": 647,
+            "path": "/photos/hero-atlas-desktop-1920w.webp",
+            "sizeKB": 100.6
+          }
+        ]
+      },
+      "fallback": "/photos/hero-atlas-desktop-1920w.webp",
+      "resolutionWarning": "None",
+      "optimizationWarning": "None"
+    },
+    "gifting-mobile": {
+      "slot": "gifting-mobile",
+      "available": false,
+      "family": "editorial-mobile",
+      "expectedFile": "gifting-mobile.png",
+      "aspectRatio": "4:5",
+      "variants": {
+        "avif": [],
+        "webp": []
+      },
+      "fallback": null
+    },
+    "gifting-desktop": {
+      "slot": "gifting-desktop",
+      "available": true,
+      "family": "editorial-desktop",
+      "originalFile": "source-images/gifting-desktop.png",
+      "originalDimensions": {
+        "width": 1312,
+        "height": 1199
+      },
+      "aspectRatio": "16:9",
+      "variants": {
+        "avif": [
+          {
+            "width": 1280,
+            "height": 1170,
+            "path": "/photos/gifting-desktop-1280w.avif",
+            "sizeKB": 267
+          }
+        ],
+        "webp": [
+          {
+            "width": 1280,
+            "height": 1170,
+            "path": "/photos/gifting-desktop-1280w.webp",
+            "sizeKB": 258.5
+          }
+        ]
+      },
+      "fallback": "/photos/gifting-desktop-1280w.webp",
+      "resolutionWarning": "None",
+      "optimizationWarning": "None"
+    },
+    "discovery-set-mobile": {
+      "slot": "discovery-set-mobile",
+      "available": false,
+      "family": "editorial-mobile",
+      "expectedFile": "discovery-set-mobile.png",
+      "aspectRatio": "4:3",
+      "variants": {
+        "avif": [],
+        "webp": []
+      },
+      "fallback": null
+    },
+    "discovery-set-desktop": {
+      "slot": "discovery-set-desktop",
+      "available": true,
+      "family": "editorial-desktop",
+      "originalFile": "source-images/discovery-set-desktop.png",
+      "originalDimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "aspectRatio": "3:2",
+      "variants": {
+        "avif": [
+          {
+            "width": 1280,
+            "height": 853,
+            "path": "/photos/discovery-set-desktop-1280w.avif",
+            "sizeKB": 210.6
+          }
+        ],
+        "webp": [
+          {
+            "width": 1280,
+            "height": 853,
+            "path": "/photos/discovery-set-desktop-1280w.webp",
+            "sizeKB": 210.5
+          }
+        ]
+      },
+      "fallback": "/photos/discovery-set-desktop-1280w.webp",
+      "resolutionWarning": "None",
+      "optimizationWarning": "None"
+    },
+    "house": {
+      "slot": "house",
+      "available": true,
+      "family": "house",
+      "originalFile": "source-images/house.jpg",
+      "originalDimensions": {
+        "width": 1200,
+        "height": 896
+      },
+      "aspectRatio": "3:4",
+      "variants": {
+        "avif": [
+          {
+            "width": 480,
+            "height": 358,
+            "path": "/photos/house-480w.avif",
+            "sizeKB": 45.2
+          },
+          {
+            "width": 800,
+            "height": 597,
+            "path": "/photos/house-800w.avif",
+            "sizeKB": 94.6
+          },
+          {
+            "width": 1200,
+            "height": 896,
+            "path": "/photos/house-1200w.avif",
+            "sizeKB": 170.5
+          }
+        ],
+        "webp": [
+          {
+            "width": 480,
+            "height": 358,
+            "path": "/photos/house-480w.webp",
+            "sizeKB": 42.8
+          },
+          {
+            "width": 800,
+            "height": 597,
+            "path": "/photos/house-800w.webp",
+            "sizeKB": 89.3
+          },
+          {
+            "width": 1200,
+            "height": 896,
+            "path": "/photos/house-1200w.webp",
+            "sizeKB": 156.4
+          }
+        ]
+      },
+      "fallback": "/photos/house-1200w.webp",
+      "resolutionWarning": "None",
+      "optimizationWarning": "None"
+    },
+    "og": {
+      "slot": "og",
+      "available": false,
+      "family": "og",
+      "expectedFile": "og.png",
+      "aspectRatio": "1.91:1",
+      "variants": {
+        "avif": [],
+        "webp": []
+      },
+      "fallback": null
+    },
+    "sehar-e-gulab-card": {
+      "slot": "sehar-e-gulab-card",
+      "available": true,
+      "family": "product-card",
+      "originalFile": "source-images/sehar-e-gulab-card.png",
+      "originalDimensions": {
+        "width": 1254,
+        "height": 1254
+      },
+      "aspectRatio": "4:5",
+      "variants": {
+        "avif": [
+          {
+            "width": 480,
+            "height": 480,
+            "path": "/photos/sehar-e-gulab-card-480w.avif",
+            "sizeKB": 55.9
+          },
+          {
+            "width": 720,
+            "height": 720,
+            "path": "/photos/sehar-e-gulab-card-720w.avif",
+            "sizeKB": 98.1
+          },
+          {
+            "width": 1080,
+            "height": 1080,
+            "path": "/photos/sehar-e-gulab-card-1080w.avif",
+            "sizeKB": 165.5
+          }
+        ],
+        "webp": [
+          {
+            "width": 480,
+            "height": 480,
+            "path": "/photos/sehar-e-gulab-card-480w.webp",
+            "sizeKB": 49.7
+          },
+          {
+            "width": 720,
+            "height": 720,
+            "path": "/photos/sehar-e-gulab-card-720w.webp",
+            "sizeKB": 88.7
+          },
+          {
+            "width": 1080,
+            "height": 1080,
+            "path": "/photos/sehar-e-gulab-card-1080w.webp",
+            "sizeKB": 155.6
+          }
+        ]
+      },
+      "fallback": "/photos/sehar-e-gulab-card-1080w.webp",
+      "resolutionWarning": "None",
+      "optimizationWarning": "None"
+    },
+    "maati-card": {
+      "slot": "maati-card",
+      "available": true,
+      "family": "product-card",
+      "originalFile": "source-images/maati-card.png",
+      "originalDimensions": {
+        "width": 1254,
+        "height": 1254
+      },
+      "aspectRatio": "4:5",
+      "variants": {
+        "avif": [
+          {
+            "width": 480,
+            "height": 480,
+            "path": "/photos/maati-card-480w.avif",
+            "sizeKB": 50
+          },
+          {
+            "width": 720,
+            "height": 720,
+            "path": "/photos/maati-card-720w.avif",
+            "sizeKB": 91.8
+          },
+          {
+            "width": 1080,
+            "height": 1080,
+            "path": "/photos/maati-card-1080w.avif",
+            "sizeKB": 158
+          }
+        ],
+        "webp": [
+          {
+            "width": 480,
+            "height": 480,
+            "path": "/photos/maati-card-480w.webp",
+            "sizeKB": 44.6
+          },
+          {
+            "width": 720,
+            "height": 720,
+            "path": "/photos/maati-card-720w.webp",
+            "sizeKB": 82.7
+          },
+          {
+            "width": 1080,
+            "height": 1080,
+            "path": "/photos/maati-card-1080w.webp",
+            "sizeKB": 148.5
+          }
+        ]
+      },
+      "fallback": "/photos/maati-card-1080w.webp",
+      "resolutionWarning": "None",
+      "optimizationWarning": "None"
+    },
+    "saanjh-card": {
+      "slot": "saanjh-card",
+      "available": true,
+      "family": "product-card",
+      "originalFile": "source-images/saanjh-card.png",
+      "originalDimensions": {
+        "width": 1254,
+        "height": 1254
+      },
+      "aspectRatio": "4:5",
+      "variants": {
+        "avif": [
+          {
+            "width": 480,
+            "height": 480,
+            "path": "/photos/saanjh-card-480w.avif",
+            "sizeKB": 52.1
+          },
+          {
+            "width": 720,
+            "height": 720,
+            "path": "/photos/saanjh-card-720w.avif",
+            "sizeKB": 93.6
+          },
+          {
+            "width": 1080,
+            "height": 1080,
+            "path": "/photos/saanjh-card-1080w.avif",
+            "sizeKB": 159
+          }
+        ],
+        "webp": [
+          {
+            "width": 480,
+            "height": 480,
+            "path": "/photos/saanjh-card-480w.webp",
+            "sizeKB": 47.4
+          },
+          {
+            "width": 720,
+            "height": 720,
+            "path": "/photos/saanjh-card-720w.webp",
+            "sizeKB": 86.3
+          },
+          {
+            "width": 1080,
+            "height": 1080,
+            "path": "/photos/saanjh-card-1080w.webp",
+            "sizeKB": 153.9
+          }
+        ]
+      },
+      "fallback": "/photos/saanjh-card-1080w.webp",
+      "resolutionWarning": "None",
+      "optimizationWarning": "None"
+    },
+    "shaam-ka-noor-card": {
+      "slot": "shaam-ka-noor-card",
+      "available": true,
+      "family": "product-card",
+      "originalFile": "source-images/shaam-ka-noor-card.png",
+      "originalDimensions": {
+        "width": 1254,
+        "height": 1254
+      },
+      "aspectRatio": "4:5",
+      "variants": {
+        "avif": [
+          {
+            "width": 480,
+            "height": 480,
+            "path": "/photos/shaam-ka-noor-card-480w.avif",
+            "sizeKB": 60.1
+          },
+          {
+            "width": 720,
+            "height": 720,
+            "path": "/photos/shaam-ka-noor-card-720w.avif",
+            "sizeKB": 109.3
+          },
+          {
+            "width": 1080,
+            "height": 1080,
+            "path": "/photos/shaam-ka-noor-card-1080w.avif",
+            "sizeKB": 183.6
+          }
+        ],
+        "webp": [
+          {
+            "width": 480,
+            "height": 480,
+            "path": "/photos/shaam-ka-noor-card-480w.webp",
+            "sizeKB": 54
+          },
+          {
+            "width": 720,
+            "height": 720,
+            "path": "/photos/shaam-ka-noor-card-720w.webp",
+            "sizeKB": 99.1
+          },
+          {
+            "width": 1080,
+            "height": 1080,
+            "path": "/photos/shaam-ka-noor-card-1080w.webp",
+            "sizeKB": 173.6
+          }
+        ]
+      },
+      "fallback": "/photos/shaam-ka-noor-card-1080w.webp",
+      "resolutionWarning": "None",
+      "optimizationWarning": "None"
+    },
+    "raat-ki-rani-card": {
+      "slot": "raat-ki-rani-card",
+      "available": true,
+      "family": "product-card",
+      "originalFile": "source-images/raat-ki-rani-card.png",
+      "originalDimensions": {
+        "width": 1254,
+        "height": 1254
+      },
+      "aspectRatio": "4:5",
+      "variants": {
+        "avif": [
+          {
+            "width": 480,
+            "height": 480,
+            "path": "/photos/raat-ki-rani-card-480w.avif",
+            "sizeKB": 75.4
+          },
+          {
+            "width": 720,
+            "height": 720,
+            "path": "/photos/raat-ki-rani-card-720w.avif",
+            "sizeKB": 137
+          },
+          {
+            "width": 1080,
+            "height": 1080,
+            "path": "/photos/raat-ki-rani-card-1080w.avif",
+            "sizeKB": 234.3
+          }
+        ],
+        "webp": [
+          {
+            "width": 480,
+            "height": 480,
+            "path": "/photos/raat-ki-rani-card-480w.webp",
+            "sizeKB": 66.1
+          },
+          {
+            "width": 720,
+            "height": 720,
+            "path": "/photos/raat-ki-rani-card-720w.webp",
+            "sizeKB": 125.8
+          },
+          {
+            "width": 1080,
+            "height": 1080,
+            "path": "/photos/raat-ki-rani-card-1080w.webp",
+            "sizeKB": 223.5
+          }
+        ]
+      },
+      "fallback": "/photos/raat-ki-rani-card-1080w.webp",
+      "resolutionWarning": "None",
+      "optimizationWarning": "Exceeds target size at 720px (125.8 KB > 110 KB)"
+    },
+    "resham-oudh-card": {
+      "slot": "resham-oudh-card",
+      "available": true,
+      "family": "product-card",
+      "originalFile": "source-images/resham-oudh-card.png",
+      "originalDimensions": {
+        "width": 1254,
+        "height": 1254
+      },
+      "aspectRatio": "4:5",
+      "variants": {
+        "avif": [
+          {
+            "width": 480,
+            "height": 480,
+            "path": "/photos/resham-oudh-card-480w.avif",
+            "sizeKB": 58.6
+          },
+          {
+            "width": 720,
+            "height": 720,
+            "path": "/photos/resham-oudh-card-720w.avif",
+            "sizeKB": 104.2
+          },
+          {
+            "width": 1080,
+            "height": 1080,
+            "path": "/photos/resham-oudh-card-1080w.avif",
+            "sizeKB": 176.1
+          }
+        ],
+        "webp": [
+          {
+            "width": 480,
+            "height": 480,
+            "path": "/photos/resham-oudh-card-480w.webp",
+            "sizeKB": 55.2
+          },
+          {
+            "width": 720,
+            "height": 720,
+            "path": "/photos/resham-oudh-card-720w.webp",
+            "sizeKB": 99.7
+          },
+          {
+            "width": 1080,
+            "height": 1080,
+            "path": "/photos/resham-oudh-card-1080w.webp",
+            "sizeKB": 174.1
+          }
+        ]
+      },
+      "fallback": "/photos/resham-oudh-card-1080w.webp",
+      "resolutionWarning": "None",
+      "optimizationWarning": "None"
+    },
+    "mehfil-card": {
+      "slot": "mehfil-card",
+      "available": true,
+      "family": "product-card",
+      "originalFile": "source-images/mehfil-card.png",
+      "originalDimensions": {
+        "width": 1254,
+        "height": 1254
+      },
+      "aspectRatio": "4:5",
+      "variants": {
+        "avif": [
+          {
+            "width": 480,
+            "height": 480,
+            "path": "/photos/mehfil-card-480w.avif",
+            "sizeKB": 56.4
+          },
+          {
+            "width": 720,
+            "height": 720,
+            "path": "/photos/mehfil-card-720w.avif",
+            "sizeKB": 100
+          },
+          {
+            "width": 1080,
+            "height": 1080,
+            "path": "/photos/mehfil-card-1080w.avif",
+            "sizeKB": 167.7
+          }
+        ],
+        "webp": [
+          {
+            "width": 480,
+            "height": 480,
+            "path": "/photos/mehfil-card-480w.webp",
+            "sizeKB": 51.5
+          },
+          {
+            "width": 720,
+            "height": 720,
+            "path": "/photos/mehfil-card-720w.webp",
+            "sizeKB": 92.6
+          },
+          {
+            "width": 1080,
+            "height": 1080,
+            "path": "/photos/mehfil-card-1080w.webp",
+            "sizeKB": 161.5
+          }
+        ]
+      },
+      "fallback": "/photos/mehfil-card-1080w.webp",
+      "resolutionWarning": "None",
+      "optimizationWarning": "None"
+    },
+    "amour-card": {
+      "slot": "amour-card",
+      "available": true,
+      "family": "product-card",
+      "originalFile": "source-images/amour-card.png",
+      "originalDimensions": {
+        "width": 1254,
+        "height": 1254
+      },
+      "aspectRatio": "4:5",
+      "variants": {
+        "avif": [
+          {
+            "width": 480,
+            "height": 480,
+            "path": "/photos/amour-card-480w.avif",
+            "sizeKB": 46.4
+          },
+          {
+            "width": 720,
+            "height": 720,
+            "path": "/photos/amour-card-720w.avif",
+            "sizeKB": 82.9
+          },
+          {
+            "width": 1080,
+            "height": 1080,
+            "path": "/photos/amour-card-1080w.avif",
+            "sizeKB": 141.8
+          }
+        ],
+        "webp": [
+          {
+            "width": 480,
+            "height": 480,
+            "path": "/photos/amour-card-480w.webp",
+            "sizeKB": 41.8
+          },
+          {
+            "width": 720,
+            "height": 720,
+            "path": "/photos/amour-card-720w.webp",
+            "sizeKB": 76
+          },
+          {
+            "width": 1080,
+            "height": 1080,
+            "path": "/photos/amour-card-1080w.webp",
+            "sizeKB": 133.4
+          }
+        ]
+      },
+      "fallback": "/photos/amour-card-1080w.webp",
+      "resolutionWarning": "None",
+      "optimizationWarning": "None"
+    },
+    "roman-card": {
+      "slot": "roman-card",
+      "available": true,
+      "family": "product-card",
+      "originalFile": "source-images/roman-card.png",
+      "originalDimensions": {
+        "width": 1254,
+        "height": 1254
+      },
+      "aspectRatio": "4:5",
+      "variants": {
+        "avif": [
+          {
+            "width": 480,
+            "height": 480,
+            "path": "/photos/roman-card-480w.avif",
+            "sizeKB": 49.3
+          },
+          {
+            "width": 720,
+            "height": 720,
+            "path": "/photos/roman-card-720w.avif",
+            "sizeKB": 88.4
+          },
+          {
+            "width": 1080,
+            "height": 1080,
+            "path": "/photos/roman-card-1080w.avif",
+            "sizeKB": 153.2
+          }
+        ],
+        "webp": [
+          {
+            "width": 480,
+            "height": 480,
+            "path": "/photos/roman-card-480w.webp",
+            "sizeKB": 45.4
+          },
+          {
+            "width": 720,
+            "height": 720,
+            "path": "/photos/roman-card-720w.webp",
+            "sizeKB": 83.4
+          },
+          {
+            "width": 1080,
+            "height": 1080,
+            "path": "/photos/roman-card-1080w.webp",
+            "sizeKB": 147.4
+          }
+        ]
+      },
+      "fallback": "/photos/roman-card-1080w.webp",
+      "resolutionWarning": "None",
+      "optimizationWarning": "None"
+    },
+    "atlas-card": {
+      "slot": "atlas-card",
+      "available": true,
+      "family": "product-card",
+      "originalFile": "source-images/atlas-card.png",
+      "originalDimensions": {
+        "width": 1254,
+        "height": 1254
+      },
+      "aspectRatio": "4:5",
+      "variants": {
+        "avif": [
+          {
+            "width": 480,
+            "height": 480,
+            "path": "/photos/atlas-card-480w.avif",
+            "sizeKB": 42.9
+          },
+          {
+            "width": 720,
+            "height": 720,
+            "path": "/photos/atlas-card-720w.avif",
+            "sizeKB": 77.5
+          },
+          {
+            "width": 1080,
+            "height": 1080,
+            "path": "/photos/atlas-card-1080w.avif",
+            "sizeKB": 136.9
+          }
+        ],
+        "webp": [
+          {
+            "width": 480,
+            "height": 480,
+            "path": "/photos/atlas-card-480w.webp",
+            "sizeKB": 40.4
+          },
+          {
+            "width": 720,
+            "height": 720,
+            "path": "/photos/atlas-card-720w.webp",
+            "sizeKB": 74.7
+          },
+          {
+            "width": 1080,
+            "height": 1080,
+            "path": "/photos/atlas-card-1080w.webp",
+            "sizeKB": 130.3
+          }
+        ]
+      },
+      "fallback": "/photos/atlas-card-1080w.webp",
+      "resolutionWarning": "None",
+      "optimizationWarning": "None"
+    },
+    "noor-card": {
+      "slot": "noor-card",
+      "available": true,
+      "family": "product-card",
+      "originalFile": "source-images/noor-card.png",
+      "originalDimensions": {
+        "width": 1254,
+        "height": 1254
+      },
+      "aspectRatio": "4:5",
+      "variants": {
+        "avif": [
+          {
+            "width": 480,
+            "height": 480,
+            "path": "/photos/noor-card-480w.avif",
+            "sizeKB": 47.3
+          },
+          {
+            "width": 720,
+            "height": 720,
+            "path": "/photos/noor-card-720w.avif",
+            "sizeKB": 84.2
+          },
+          {
+            "width": 1080,
+            "height": 1080,
+            "path": "/photos/noor-card-1080w.avif",
+            "sizeKB": 142
+          }
+        ],
+        "webp": [
+          {
+            "width": 480,
+            "height": 480,
+            "path": "/photos/noor-card-480w.webp",
+            "sizeKB": 42.1
+          },
+          {
+            "width": 720,
+            "height": 720,
+            "path": "/photos/noor-card-720w.webp",
+            "sizeKB": 77.5
+          },
+          {
+            "width": 1080,
+            "height": 1080,
+            "path": "/photos/noor-card-1080w.webp",
+            "sizeKB": 133.4
+          }
+        ]
+      },
+      "fallback": "/photos/noor-card-1080w.webp",
+      "resolutionWarning": "None",
+      "optimizationWarning": "None"
+    },
+    "saira-card": {
+      "slot": "saira-card",
+      "available": true,
+      "family": "product-card",
+      "originalFile": "source-images/saira-card.png",
+      "originalDimensions": {
+        "width": 1254,
+        "height": 1254
+      },
+      "aspectRatio": "4:5",
+      "variants": {
+        "avif": [
+          {
+            "width": 480,
+            "height": 480,
+            "path": "/photos/saira-card-480w.avif",
+            "sizeKB": 49.5
+          },
+          {
+            "width": 720,
+            "height": 720,
+            "path": "/photos/saira-card-720w.avif",
+            "sizeKB": 88.5
+          },
+          {
+            "width": 1080,
+            "height": 1080,
+            "path": "/photos/saira-card-1080w.avif",
+            "sizeKB": 150.7
+          }
+        ],
+        "webp": [
+          {
+            "width": 480,
+            "height": 480,
+            "path": "/photos/saira-card-480w.webp",
+            "sizeKB": 45.2
+          },
+          {
+            "width": 720,
+            "height": 720,
+            "path": "/photos/saira-card-720w.webp",
+            "sizeKB": 81.6
+          },
+          {
+            "width": 1080,
+            "height": 1080,
+            "path": "/photos/saira-card-1080w.webp",
+            "sizeKB": 140
+          }
+        ]
+      },
+      "fallback": "/photos/saira-card-1080w.webp",
+      "resolutionWarning": "None",
+      "optimizationWarning": "None"
+    },
+    "andaaz-e-khaas-card": {
+      "slot": "andaaz-e-khaas-card",
+      "available": true,
+      "family": "product-card",
+      "originalFile": "source-images/andaaz-e-khaas-card.png",
+      "originalDimensions": {
+        "width": 1254,
+        "height": 1254
+      },
+      "aspectRatio": "4:5",
+      "variants": {
+        "avif": [
+          {
+            "width": 480,
+            "height": 480,
+            "path": "/photos/andaaz-e-khaas-card-480w.avif",
+            "sizeKB": 51.5
+          },
+          {
+            "width": 720,
+            "height": 720,
+            "path": "/photos/andaaz-e-khaas-card-720w.avif",
+            "sizeKB": 93.7
+          },
+          {
+            "width": 1080,
+            "height": 1080,
+            "path": "/photos/andaaz-e-khaas-card-1080w.avif",
+            "sizeKB": 161.5
+          }
+        ],
+        "webp": [
+          {
+            "width": 480,
+            "height": 480,
+            "path": "/photos/andaaz-e-khaas-card-480w.webp",
+            "sizeKB": 47.9
+          },
+          {
+            "width": 720,
+            "height": 720,
+            "path": "/photos/andaaz-e-khaas-card-720w.webp",
+            "sizeKB": 87
+          },
+          {
+            "width": 1080,
+            "height": 1080,
+            "path": "/photos/andaaz-e-khaas-card-1080w.webp",
+            "sizeKB": 152.2
+          }
+        ]
+      },
+      "fallback": "/photos/andaaz-e-khaas-card-1080w.webp",
+      "resolutionWarning": "None",
+      "optimizationWarning": "None"
+    },
+    "mehfil-edp-card": {
+      "slot": "mehfil-edp-card",
+      "available": true,
+      "family": "product-card",
+      "originalFile": "source-images/mehfil-edp-card.png",
+      "originalDimensions": {
+        "width": 1254,
+        "height": 1254
+      },
+      "aspectRatio": "4:5",
+      "variants": {
+        "avif": [
+          {
+            "width": 480,
+            "height": 480,
+            "path": "/photos/mehfil-edp-card-480w.avif",
+            "sizeKB": 45.7
+          },
+          {
+            "width": 720,
+            "height": 720,
+            "path": "/photos/mehfil-edp-card-720w.avif",
+            "sizeKB": 82.7
+          },
+          {
+            "width": 1080,
+            "height": 1080,
+            "path": "/photos/mehfil-edp-card-1080w.avif",
+            "sizeKB": 141.8
+          }
+        ],
+        "webp": [
+          {
+            "width": 480,
+            "height": 480,
+            "path": "/photos/mehfil-edp-card-480w.webp",
+            "sizeKB": 43.1
+          },
+          {
+            "width": 720,
+            "height": 720,
+            "path": "/photos/mehfil-edp-card-720w.webp",
+            "sizeKB": 78.6
+          },
+          {
+            "width": 1080,
+            "height": 1080,
+            "path": "/photos/mehfil-edp-card-1080w.webp",
+            "sizeKB": 137.3
+          }
+        ]
+      },
+      "fallback": "/photos/mehfil-edp-card-1080w.webp",
+      "resolutionWarning": "None",
+      "optimizationWarning": "None"
+    }
+  }
+}
