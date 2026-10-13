@@ -10,6 +10,7 @@ import { Heart, Sparkles, ArrowRight, ShieldCheck, Truck, RefreshCw, Award } fro
 import { useShop } from '@/context/ShopContext';
 import PearlButton from '@/components/PearlButton';
 import ResponsivePhoto from '@/components/ResponsivePhoto';
+import FindYourFragrance from '@/components/FindYourFragrance';
 
 export default function HomePage() {
   const { wishlist, toggleWishlist } = useShop();
@@ -148,88 +149,9 @@ export default function HomePage() {
       <HeroSlider />
 
       {/* ========================================================
-          2. FIND YOUR FRAGRANCE (Shop by Type)
+          2. FIND YOUR FRAGRANCE (Sculptural Asymmetrical Arch Panels)
       ======================================================== */}
-      <section className="py-14 md:py-20 bg-[#F5EFE3] border-b border-[#C69A45]/20">
-        <div className="max-w-[1360px] mx-auto px-6 sm:px-10 lg:px-16">
-          <div className="text-center max-w-xl mx-auto mb-10 md:mb-12">
-            <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.28em] text-[#9D6A26] block mb-2">
-              CATEGORIES
-            </span>
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-[#32151A]">
-              Find Your Fragrance
-            </h2>
-            <div className="flex items-center justify-center gap-3 mt-3">
-              <span className="w-8 h-[1px] bg-[#C69A45]/40" />
-              <span className="text-[#C69A45] text-xs">❖</span>
-              <span className="w-8 h-[1px] bg-[#C69A45]/40" />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            {[
-              {
-                title: 'Eau de Parfums',
-                subtitle: 'Refined & Long-Lasting',
-                href: '/collections/perfumes',
-                image: '/photos/perfumes/amour.png',
-              },
-              {
-                title: 'Attars',
-                subtitle: 'Pure & Timeless',
-                href: '/collections/attar',
-                image: '/photos/attars/sehar-e-gulab-clean 1st.jpg',
-              },
-              {
-                title: 'Gift Sets',
-                subtitle: 'Thoughtful & Elegant',
-                href: '/collections/gifting',
-                image: '/photos/gift-sets/discovery-gift-set.png',
-              },
-              {
-                title: 'Trial Sets',
-                subtitle: 'Discover Your Signature',
-                href: '/discovery-sets',
-                image: '/photos/trial-packs/aarsika-ittra-collection-trial-set.webp',
-              },
-            ].map((cat) => (
-              <Link
-                key={cat.title}
-                href={cat.href}
-                className="group relative flex flex-col bg-[#FBF6EA] border border-[#C69A45]/25 rounded-xl overflow-hidden hover:border-[#C69A45] hover:shadow-md hover:-translate-y-1 transition-all duration-300"
-              >
-                {/* Horizontal Image Container (Upper 55%) */}
-                <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#EADFCB]">
-                  <Image
-                    src={cat.image}
-                    alt={cat.title}
-                    fill
-                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 25vw"
-                    className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.05]"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#200408]/20 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity" />
-                </div>
-
-                {/* Text Content */}
-                <div className="p-4 sm:p-5 flex flex-col justify-between flex-1 bg-[#FBF6EA]">
-                  <div>
-                    <h3 className="font-serif text-lg sm:text-xl font-normal text-[#32151A] group-hover:text-[#9D6A26] transition-colors leading-snug">
-                      {cat.title}
-                    </h3>
-                    <p className="text-xs font-sans text-[#6b5f55] font-light mt-1">
-                      {cat.subtitle}
-                    </p>
-                  </div>
-                  <div className="mt-3 pt-2.5 border-t border-[#C69A45]/15 flex items-center justify-between text-[11px] font-mono tracking-wider text-[#9D6A26] group-hover:text-[#32151A] transition-colors">
-                    <span>EXPLORE</span>
-                    <span className="group-hover:translate-x-1 transition-transform">→</span>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+      <FindYourFragrance />
 
       {/* ========================================================
           3. THE ATTAR COLLECTION (7 Attars with 3-Image Carousels)
