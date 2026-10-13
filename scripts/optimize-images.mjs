@@ -239,7 +239,7 @@ export const EXPECTED_SLOTS = [
     slot: 'raat-ki-rani-card',
     family: 'product-card',
     expectedFile: 'raat-ki-rani-card.png',
-    altNames: ['Attra images/Moonlit Aarsika Raat Ki Rani Attar.png'],
+    altNames: ['product card images/attar/Aarsika Raat Ki Rani Attar Bottle.png', 'Attra images/Moonlit Aarsika Raat Ki Rani Attar.png'],
     intendedMobile: '720 × 900 px',
     intendedDesktop: '1080 × 1350 px',
     aspect: '4:5',
@@ -259,7 +259,27 @@ export const EXPECTED_SLOTS = [
     slot: 'mehfil-card',
     family: 'product-card',
     expectedFile: 'mehfil-card.png',
-    altNames: ['Attra images/Aarsika Mehfil Attar_ Golden Palace Evenings.png'],
+    altNames: ['product card images/attar/Aarsika Mehfil Luxury Attar Bottle.png', 'Attra images/Aarsika Mehfil Attar_ Golden Palace Evenings.png'],
+    intendedMobile: '720 × 900 px',
+    intendedDesktop: '1080 × 1350 px',
+    aspect: '4:5',
+    targetWidths: [480, 720, 1080],
+  },
+  {
+    slot: 'chocolate-oudh-card',
+    family: 'product-card',
+    expectedFile: 'chocolate-oudh-card.png',
+    altNames: ['product card images/attar/Chocolate Oud Attar in Golden Elegance.png'],
+    intendedMobile: '720 × 900 px',
+    intendedDesktop: '1080 × 1350 px',
+    aspect: '4:5',
+    targetWidths: [480, 720, 1080],
+  },
+  {
+    slot: 'tobacco-card',
+    family: 'product-card',
+    expectedFile: 'tobacco-card.png',
+    altNames: ['product card images/attar/Luxurious Aarsika Tobacco Attar Bottle.png'],
     intendedMobile: '720 × 900 px',
     intendedDesktop: '1080 × 1350 px',
     aspect: '4:5',
@@ -269,7 +289,7 @@ export const EXPECTED_SLOTS = [
     slot: 'amour-card',
     family: 'product-card',
     expectedFile: 'amour-card.png',
-    altNames: ['parfums/Aarsika Amour Luxury Perfume Ad.png'],
+    altNames: ['product card images/parfums/Aarsika Amour Perfume Bottle.png', 'parfums/Aarsika Amour Luxury Perfume Ad.png'],
     intendedMobile: '720 × 900 px',
     intendedDesktop: '1080 × 1350 px',
     aspect: '4:5',
@@ -279,7 +299,7 @@ export const EXPECTED_SLOTS = [
     slot: 'roman-card',
     family: 'product-card',
     expectedFile: 'roman-card.png',
-    altNames: ['parfums/Aarsika Roman Luxury Perfume Advertisement.png'],
+    altNames: ['product card images/parfums/Aarsika Roman Perfume Bottle.png', 'parfums/Aarsika Roman Luxury Perfume Advertisement.png'],
     intendedMobile: '720 × 900 px',
     intendedDesktop: '1080 × 1350 px',
     aspect: '4:5',
@@ -289,7 +309,7 @@ export const EXPECTED_SLOTS = [
     slot: 'atlas-card',
     family: 'product-card',
     expectedFile: 'atlas-card.png',
-    altNames: ['parfums/Aarsika Atlas Luxury Perfume Poster.png'],
+    altNames: ['product card images/parfums/Aarsika Atlas Blue Perfume Bottle.png', 'parfums/Aarsika Atlas Luxury Perfume Poster.png'],
     intendedMobile: '720 × 900 px',
     intendedDesktop: '1080 × 1350 px',
     aspect: '4:5',
@@ -299,7 +319,7 @@ export const EXPECTED_SLOTS = [
     slot: 'noor-card',
     family: 'product-card',
     expectedFile: 'noor-card.png',
-    altNames: ['parfums/Noor_ Light in Every Moment.png'],
+    altNames: ['product card images/parfums/Aarsika Noor Luxury Perfume Bottle.png', 'parfums/Noor_ Light in Every Moment.png'],
     intendedMobile: '720 × 900 px',
     intendedDesktop: '1080 × 1350 px',
     aspect: '4:5',
@@ -309,7 +329,7 @@ export const EXPECTED_SLOTS = [
     slot: 'saira-card',
     family: 'product-card',
     expectedFile: 'saira-card.png',
-    altNames: ['parfums/Saira Luxury Rose Perfume Advertisement.png'],
+    altNames: ['product card images/parfums/Aarsika Saira Perfume Bottle.png', 'parfums/Saira Luxury Rose Perfume Advertisement.png'],
     intendedMobile: '720 × 900 px',
     intendedDesktop: '1080 × 1350 px',
     aspect: '4:5',
@@ -319,7 +339,7 @@ export const EXPECTED_SLOTS = [
     slot: 'andaaz-e-khaas-card',
     family: 'product-card',
     expectedFile: 'andaaz-e-khaas-card.png',
-    altNames: ['parfums/Aarsika Andaaz-E-Khaas Luxury Perfume Ad.png'],
+    altNames: ['product card images/parfums/Aarsika Andaaz-E-Khaas Perfume Bottle.png', 'parfums/Aarsika Andaaz-E-Khaas Luxury Perfume Ad.png'],
     intendedMobile: '720 × 900 px',
     intendedDesktop: '1080 × 1350 px',
     aspect: '4:5',
@@ -329,7 +349,57 @@ export const EXPECTED_SLOTS = [
     slot: 'mehfil-edp-card',
     family: 'product-card',
     expectedFile: 'mehfil-edp-card.png',
-    altNames: ['parfums/Aarsika Mehfil_ Unforgettable Nights.png'],
+    altNames: ['product card images/parfums/Aarsika Mehfil Perfume Bottle.png', 'parfums/Aarsika Mehfil_ Unforgettable Nights.png'],
+    intendedMobile: '720 × 900 px',
+    intendedDesktop: '1080 × 1350 px',
+    aspect: '4:5',
+    targetWidths: [480, 720, 1080],
+  },
+  {
+    slot: 'the-discovery-gift-set-card',
+    family: 'product-card',
+    expectedFile: 'the-discovery-gift-set-card.png',
+    altNames: ['product card images/gift set/Aarsika Palace Perfume Collection.png'],
+    intendedMobile: '720 × 900 px',
+    intendedDesktop: '1080 × 1350 px',
+    aspect: '4:5',
+    targetWidths: [480, 720, 1080],
+  },
+  {
+    slot: 'the-signature-gift-set-card',
+    family: 'product-card',
+    expectedFile: 'the-signature-gift-set-card.png',
+    altNames: ['product card images/gift set/Aarsika Signature Collection Gift Set.png'],
+    intendedMobile: '720 × 900 px',
+    intendedDesktop: '1080 × 1350 px',
+    aspect: '4:5',
+    targetWidths: [480, 720, 1080],
+  },
+  {
+    slot: 'the-grand-gift-set-card',
+    family: 'product-card',
+    expectedFile: 'the-grand-gift-set-card.png',
+    altNames: ['product card images/gift set/Aarsika Attar Collection Gift Set.png', 'product card images/gift set/Aarsika Luxury Attar Gift Set.png'],
+    intendedMobile: '720 × 900 px',
+    intendedDesktop: '1080 × 1350 px',
+    aspect: '4:5',
+    targetWidths: [480, 720, 1080],
+  },
+  {
+    slot: 'discovery-set-attar-card',
+    family: 'product-card',
+    expectedFile: 'discovery-set-attar-card.png',
+    altNames: ['product card images/discovery set/Aarsika Romantic Perfume Discovery Set.png'],
+    intendedMobile: '720 × 900 px',
+    intendedDesktop: '1080 × 1350 px',
+    aspect: '4:5',
+    targetWidths: [480, 720, 1080],
+  },
+  {
+    slot: 'the-royal-perfume-sampler-card',
+    family: 'product-card',
+    expectedFile: 'the-royal-perfume-sampler-card.png',
+    altNames: ['product card images/discovery set/Aarsika Luxury Perfume Discovery Set.png'],
     intendedMobile: '720 × 900 px',
     intendedDesktop: '1080 × 1350 px',
     aspect: '4:5',
@@ -348,7 +418,17 @@ function findOriginalFile(slotDef) {
   }
 
   // Check subdirectories for expectedFile
-  const subdirs = ['hero', 'parfums', 'Attra images', 'gift sets', 'trial packs'];
+  const subdirs = [
+    'hero',
+    'parfums',
+    'Attra images',
+    'gift sets',
+    'trial packs',
+    'product card images/attar',
+    'product card images/parfums',
+    'product card images/discovery set',
+    'product card images/gift set',
+  ];
   for (const sub of subdirs) {
     const candidate = path.join(SOURCE_DIR, sub, slotDef.expectedFile);
     if (fs.existsSync(candidate)) return candidate;
@@ -563,7 +643,7 @@ function generateMarkdownDocs(rows, totalFiles, totalBytes) {
   let md = `# Aarsika Fine Fragrance — Photo Slot Registry & Manifest (Phase 5.2)\n\n`;
   md += `This registry documents every photography slot across the Aarsika flagship website, detailing expected asset names, real filesystem availability, dimensions, format variants (AVIF & WebP), and quality warnings.\n\n`;
   md += `**Pipeline Summary:**\n`;
-  md += `- **Total Defined Slots:** 30\n`;
+  md += `- **Total Defined Slots:** ${rows.length}\n`;
   md += `- **Available Originals:** ${rows.filter((r) => r.availability === 'have it').length}\n`;
   md += `- **Missing Originals:** ${rows.filter((r) => r.availability === 'missing').length}\n`;
   md += `- **Total Generated Variants:** ${totalFiles} (${(totalBytes / 1024 / 1024).toFixed(2)} MB)\n\n`;

@@ -28,7 +28,7 @@ export default function HomePage() {
     }, 600);
   };
 
-  // 1. The 7 Attars in exact sequence
+  // 1. The 9 Attars in sequence
   const attarSlugs = [
     'maati',
     'saanjh',
@@ -37,6 +37,8 @@ export default function HomePage() {
     'raat-ki-rani',
     'resham-oudh',
     'mehfil',
+    'chocolate-oudh',
+    'tobacco',
   ];
   const attarProducts = attarSlugs
     .map((slug) => PRODUCTS.find((p) => p.slug === slug))
@@ -243,14 +245,14 @@ export default function HomePage() {
                 The Attar Collection
               </h2>
               <p className="text-sm sm:text-base text-[#6b5f55] font-light mt-2 max-w-xl">
-                Seven pure concentrated attar oils, aged with botanical precision to create an intimate skin aura.
+                Nine pure concentrated attar oils, aged with botanical precision to create an intimate skin aura.
               </p>
             </div>
             <Link
               href="/collections/attar"
               className="text-xs font-mono uppercase tracking-[0.2em] text-[#9D6A26] hover:text-[#32151A] transition-colors flex items-center gap-1.5"
             >
-              <span>VIEW ALL 7 ATTARS</span>
+              <span>VIEW ALL 9 ATTARS</span>
               <span>→</span>
             </Link>
           </div>

@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { PRODUCTS } from "@/data/products";
 import { ProductCard } from "@/components/ProductCard";
-import { Photo } from "@/components/Photo";
+import ResponsivePhoto from "@/components/ResponsivePhoto";
 import { Sparkles, CheckCircle2 } from "lucide-react";
 
 export default function DiscoverySetsPage() {
@@ -40,15 +40,16 @@ export default function DiscoverySetsPage() {
           </div>
 
           <div className="lg:col-span-5 flex justify-center">
-            <Photo
-              slot="discovery-set"
-              alt="Aarsika Discovery Set"
-              aspect="16/9"
-              shape="rect"
-              priority
-              sizes="(max-width: 1024px) 100vw, 40vw"
-              className="shadow-2xl border border-[#C9A55C]/30"
-            />
+            <div className="w-full max-w-lg overflow-hidden rounded-lg shadow-2xl border border-[#C9A55C]/30">
+              <ResponsivePhoto
+                slot="discovery-set"
+                alt="Aarsika Discovery Set"
+                aspect="16/9"
+                priority
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                className="w-full h-full object-cover"
+              />
+            </div>
           </div>
         </div>
       </section>

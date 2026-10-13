@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { ProductPlaceholderImage } from '@/components/ProductPlaceholderImage';
+import ResponsivePhoto from '@/components/ResponsivePhoto';
 
 interface ProductCardCarouselProps {
   images: string[];
@@ -76,7 +77,7 @@ export const ProductCardCarousel: React.FC<ProductCardCarouselProps> = ({
 
   return (
     <div
-      className="relative aspect-[4/3] sm:aspect-[4/3] w-full bg-[#EADFCB] overflow-hidden rounded-lg group/carousel select-none"
+      className="relative aspect-[4/5] w-full bg-[#EADFCB] overflow-hidden rounded-lg group/carousel select-none"
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
@@ -89,14 +90,26 @@ export const ProductCardCarousel: React.FC<ProductCardCarouselProps> = ({
               idx === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
             }`}
           >
-            <Image
-              src={imgSrc}
-              alt={`${alt} - View ${idx + 1}`}
-              fill
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-              className="object-cover transition-transform duration-700 hover:scale-[1.02]"
-              priority={idx === 0}
-            />
+            {idx === 0 ? (
+              <ResponsivePhoto
+                slot={`${slug}-card`}
+                alt={alt}
+                aspect="4/5"
+                objectFit="contain"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                priority={idx === 0}
+                className="w-full h-full"
+              />
+            ) : (
+              <Image
+                src={imgSrc}
+                alt={`${alt} - View ${idx + 1}`}
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                className="object-contain p-2 transition-transform duration-700 hover:scale-[1.02]"
+                priority={false}
+              />
+            )}
           </div>
         ))}
       </Link>

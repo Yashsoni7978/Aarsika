@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-12T17:51:27.433Z",
-  "totalExpectedSlots": 30,
+  "generatedAt": "2026-10-13T16:59:57.126Z",
+  "totalExpectedSlots": 37,
   "slots": {
     "hero-amour-mobile": {
       "slot": "hero-amour-mobile",
@@ -392,49 +392,49 @@
       "family": "product-card",
       "originalFile": "source-images/sehar-e-gulab-card.png",
       "originalDimensions": {
-        "width": 1254,
-        "height": 1254
+        "width": 1122,
+        "height": 1402
       },
       "aspectRatio": "4:5",
       "variants": {
         "avif": [
           {
             "width": 480,
-            "height": 480,
+            "height": 600,
             "path": "/photos/sehar-e-gulab-card-480w.avif",
-            "sizeKB": 55.9
+            "sizeKB": 48.4
           },
           {
             "width": 720,
-            "height": 720,
+            "height": 900,
             "path": "/photos/sehar-e-gulab-card-720w.avif",
-            "sizeKB": 98.1
+            "sizeKB": 88.8
           },
           {
             "width": 1080,
-            "height": 1080,
+            "height": 1350,
             "path": "/photos/sehar-e-gulab-card-1080w.avif",
-            "sizeKB": 165.5
+            "sizeKB": 151.1
           }
         ],
         "webp": [
           {
             "width": 480,
-            "height": 480,
+            "height": 600,
             "path": "/photos/sehar-e-gulab-card-480w.webp",
-            "sizeKB": 49.7
+            "sizeKB": 41.6
           },
           {
             "width": 720,
-            "height": 720,
+            "height": 900,
             "path": "/photos/sehar-e-gulab-card-720w.webp",
-            "sizeKB": 88.7
+            "sizeKB": 78.8
           },
           {
             "width": 1080,
-            "height": 1080,
+            "height": 1350,
             "path": "/photos/sehar-e-gulab-card-1080w.webp",
-            "sizeKB": 155.6
+            "sizeKB": 142.1
           }
         ]
       },
@@ -448,49 +448,49 @@
       "family": "product-card",
       "originalFile": "source-images/maati-card.png",
       "originalDimensions": {
-        "width": 1254,
-        "height": 1254
+        "width": 1122,
+        "height": 1402
       },
       "aspectRatio": "4:5",
       "variants": {
         "avif": [
           {
             "width": 480,
-            "height": 480,
+            "height": 600,
             "path": "/photos/maati-card-480w.avif",
-            "sizeKB": 50
+            "sizeKB": 43.9
           },
           {
             "width": 720,
-            "height": 720,
+            "height": 900,
             "path": "/photos/maati-card-720w.avif",
-            "sizeKB": 91.8
+            "sizeKB": 79.8
           },
           {
             "width": 1080,
-            "height": 1080,
+            "height": 1350,
             "path": "/photos/maati-card-1080w.avif",
-            "sizeKB": 158
+            "sizeKB": 138.2
           }
         ],
         "webp": [
           {
             "width": 480,
-            "height": 480,
+            "height": 600,
             "path": "/photos/maati-card-480w.webp",
-            "sizeKB": 44.6
+            "sizeKB": 36.7
           },
           {
             "width": 720,
-            "height": 720,
+            "height": 900,
             "path": "/photos/maati-card-720w.webp",
-            "sizeKB": 82.7
+            "sizeKB": 69.9
           },
           {
             "width": 1080,
-            "height": 1080,
+            "height": 1350,
             "path": "/photos/maati-card-1080w.webp",
-            "sizeKB": 148.5
+            "sizeKB": 126
           }
         ]
       },
@@ -504,49 +504,49 @@
       "family": "product-card",
       "originalFile": "source-images/saanjh-card.png",
       "originalDimensions": {
-        "width": 1254,
-        "height": 1254
+        "width": 1122,
+        "height": 1402
       },
       "aspectRatio": "4:5",
       "variants": {
         "avif": [
           {
             "width": 480,
-            "height": 480,
+            "height": 600,
             "path": "/photos/saanjh-card-480w.avif",
-            "sizeKB": 52.1
+            "sizeKB": 43.5
           },
           {
             "width": 720,
-            "height": 720,
+            "height": 900,
             "path": "/photos/saanjh-card-720w.avif",
-            "sizeKB": 93.6
+            "sizeKB": 79
           },
           {
             "width": 1080,
-            "height": 1080,
+            "height": 1350,
             "path": "/photos/saanjh-card-1080w.avif",
-            "sizeKB": 159
+            "sizeKB": 133.6
           }
         ],
         "webp": [
           {
             "width": 480,
-            "height": 480,
+            "height": 600,
             "path": "/photos/saanjh-card-480w.webp",
-            "sizeKB": 47.4
+            "sizeKB": 35.8
           },
           {
             "width": 720,
-            "height": 720,
+            "height": 900,
             "path": "/photos/saanjh-card-720w.webp",
-            "sizeKB": 86.3
+            "sizeKB": 68.3
           },
           {
             "width": 1080,
-            "height": 1080,
+            "height": 1350,
             "path": "/photos/saanjh-card-1080w.webp",
-            "sizeKB": 153.9
+            "sizeKB": 120.7
           }
         ]
       },
@@ -560,49 +560,49 @@
       "family": "product-card",
       "originalFile": "source-images/shaam-ka-noor-card.png",
       "originalDimensions": {
-        "width": 1254,
-        "height": 1254
+        "width": 1122,
+        "height": 1402
       },
       "aspectRatio": "4:5",
       "variants": {
         "avif": [
           {
             "width": 480,
-            "height": 480,
+            "height": 600,
             "path": "/photos/shaam-ka-noor-card-480w.avif",
-            "sizeKB": 60.1
+            "sizeKB": 45.2
           },
           {
             "width": 720,
-            "height": 720,
+            "height": 900,
             "path": "/photos/shaam-ka-noor-card-720w.avif",
-            "sizeKB": 109.3
+            "sizeKB": 82.6
           },
           {
             "width": 1080,
-            "height": 1080,
+            "height": 1350,
             "path": "/photos/shaam-ka-noor-card-1080w.avif",
-            "sizeKB": 183.6
+            "sizeKB": 141
           }
         ],
         "webp": [
           {
             "width": 480,
-            "height": 480,
+            "height": 600,
             "path": "/photos/shaam-ka-noor-card-480w.webp",
-            "sizeKB": 54
+            "sizeKB": 37.1
           },
           {
             "width": 720,
-            "height": 720,
+            "height": 900,
             "path": "/photos/shaam-ka-noor-card-720w.webp",
-            "sizeKB": 99.1
+            "sizeKB": 71.1
           },
           {
             "width": 1080,
-            "height": 1080,
+            "height": 1350,
             "path": "/photos/shaam-ka-noor-card-1080w.webp",
-            "sizeKB": 173.6
+            "sizeKB": 126.7
           }
         ]
       },
@@ -616,55 +616,55 @@
       "family": "product-card",
       "originalFile": "source-images/raat-ki-rani-card.png",
       "originalDimensions": {
-        "width": 1254,
-        "height": 1254
+        "width": 1122,
+        "height": 1402
       },
       "aspectRatio": "4:5",
       "variants": {
         "avif": [
           {
             "width": 480,
-            "height": 480,
+            "height": 600,
             "path": "/photos/raat-ki-rani-card-480w.avif",
-            "sizeKB": 75.4
+            "sizeKB": 40.7
           },
           {
             "width": 720,
-            "height": 720,
+            "height": 900,
             "path": "/photos/raat-ki-rani-card-720w.avif",
-            "sizeKB": 137
+            "sizeKB": 71.8
           },
           {
             "width": 1080,
-            "height": 1080,
+            "height": 1350,
             "path": "/photos/raat-ki-rani-card-1080w.avif",
-            "sizeKB": 234.3
+            "sizeKB": 122
           }
         ],
         "webp": [
           {
             "width": 480,
-            "height": 480,
+            "height": 600,
             "path": "/photos/raat-ki-rani-card-480w.webp",
-            "sizeKB": 66.1
+            "sizeKB": 36.1
           },
           {
             "width": 720,
-            "height": 720,
+            "height": 900,
             "path": "/photos/raat-ki-rani-card-720w.webp",
-            "sizeKB": 125.8
+            "sizeKB": 64.6
           },
           {
             "width": 1080,
-            "height": 1080,
+            "height": 1350,
             "path": "/photos/raat-ki-rani-card-1080w.webp",
-            "sizeKB": 223.5
+            "sizeKB": 105.9
           }
         ]
       },
       "fallback": "/photos/raat-ki-rani-card-1080w.webp",
       "resolutionWarning": "None",
-      "optimizationWarning": "Exceeds target size at 720px (125.8 KB > 110 KB)"
+      "optimizationWarning": "None"
     },
     "resham-oudh-card": {
       "slot": "resham-oudh-card",
@@ -672,49 +672,49 @@
       "family": "product-card",
       "originalFile": "source-images/resham-oudh-card.png",
       "originalDimensions": {
-        "width": 1254,
-        "height": 1254
+        "width": 1122,
+        "height": 1402
       },
       "aspectRatio": "4:5",
       "variants": {
         "avif": [
           {
             "width": 480,
-            "height": 480,
+            "height": 600,
             "path": "/photos/resham-oudh-card-480w.avif",
-            "sizeKB": 58.6
+            "sizeKB": 45.1
           },
           {
             "width": 720,
-            "height": 720,
+            "height": 900,
             "path": "/photos/resham-oudh-card-720w.avif",
-            "sizeKB": 104.2
+            "sizeKB": 82.3
           },
           {
             "width": 1080,
-            "height": 1080,
+            "height": 1350,
             "path": "/photos/resham-oudh-card-1080w.avif",
-            "sizeKB": 176.1
+            "sizeKB": 144
           }
         ],
         "webp": [
           {
             "width": 480,
-            "height": 480,
+            "height": 600,
             "path": "/photos/resham-oudh-card-480w.webp",
-            "sizeKB": 55.2
+            "sizeKB": 37.9
           },
           {
             "width": 720,
-            "height": 720,
+            "height": 900,
             "path": "/photos/resham-oudh-card-720w.webp",
-            "sizeKB": 99.7
+            "sizeKB": 72
           },
           {
             "width": 1080,
-            "height": 1080,
+            "height": 1350,
             "path": "/photos/resham-oudh-card-1080w.webp",
-            "sizeKB": 174.1
+            "sizeKB": 131.4
           }
         ]
       },
@@ -728,53 +728,165 @@
       "family": "product-card",
       "originalFile": "source-images/mehfil-card.png",
       "originalDimensions": {
-        "width": 1254,
-        "height": 1254
+        "width": 1122,
+        "height": 1402
       },
       "aspectRatio": "4:5",
       "variants": {
         "avif": [
           {
             "width": 480,
-            "height": 480,
+            "height": 600,
             "path": "/photos/mehfil-card-480w.avif",
-            "sizeKB": 56.4
+            "sizeKB": 45.5
           },
           {
             "width": 720,
-            "height": 720,
+            "height": 900,
             "path": "/photos/mehfil-card-720w.avif",
-            "sizeKB": 100
+            "sizeKB": 81.8
           },
           {
             "width": 1080,
-            "height": 1080,
+            "height": 1350,
             "path": "/photos/mehfil-card-1080w.avif",
-            "sizeKB": 167.7
+            "sizeKB": 138.2
           }
         ],
         "webp": [
           {
             "width": 480,
-            "height": 480,
+            "height": 600,
             "path": "/photos/mehfil-card-480w.webp",
-            "sizeKB": 51.5
+            "sizeKB": 38.6
           },
           {
             "width": 720,
-            "height": 720,
+            "height": 900,
             "path": "/photos/mehfil-card-720w.webp",
-            "sizeKB": 92.6
+            "sizeKB": 72.2
           },
           {
             "width": 1080,
-            "height": 1080,
+            "height": 1350,
             "path": "/photos/mehfil-card-1080w.webp",
-            "sizeKB": 161.5
+            "sizeKB": 125.9
           }
         ]
       },
       "fallback": "/photos/mehfil-card-1080w.webp",
+      "resolutionWarning": "None",
+      "optimizationWarning": "None"
+    },
+    "chocolate-oudh-card": {
+      "slot": "chocolate-oudh-card",
+      "available": true,
+      "family": "product-card",
+      "originalFile": "source-images/chocolate-oudh-card.png",
+      "originalDimensions": {
+        "width": 1122,
+        "height": 1402
+      },
+      "aspectRatio": "4:5",
+      "variants": {
+        "avif": [
+          {
+            "width": 480,
+            "height": 600,
+            "path": "/photos/chocolate-oudh-card-480w.avif",
+            "sizeKB": 64
+          },
+          {
+            "width": 720,
+            "height": 900,
+            "path": "/photos/chocolate-oudh-card-720w.avif",
+            "sizeKB": 114.8
+          },
+          {
+            "width": 1080,
+            "height": 1350,
+            "path": "/photos/chocolate-oudh-card-1080w.avif",
+            "sizeKB": 191.9
+          }
+        ],
+        "webp": [
+          {
+            "width": 480,
+            "height": 600,
+            "path": "/photos/chocolate-oudh-card-480w.webp",
+            "sizeKB": 57.4
+          },
+          {
+            "width": 720,
+            "height": 900,
+            "path": "/photos/chocolate-oudh-card-720w.webp",
+            "sizeKB": 103.8
+          },
+          {
+            "width": 1080,
+            "height": 1350,
+            "path": "/photos/chocolate-oudh-card-1080w.webp",
+            "sizeKB": 178.1
+          }
+        ]
+      },
+      "fallback": "/photos/chocolate-oudh-card-1080w.webp",
+      "resolutionWarning": "None",
+      "optimizationWarning": "None"
+    },
+    "tobacco-card": {
+      "slot": "tobacco-card",
+      "available": true,
+      "family": "product-card",
+      "originalFile": "source-images/tobacco-card.png",
+      "originalDimensions": {
+        "width": 1122,
+        "height": 1402
+      },
+      "aspectRatio": "4:5",
+      "variants": {
+        "avif": [
+          {
+            "width": 480,
+            "height": 600,
+            "path": "/photos/tobacco-card-480w.avif",
+            "sizeKB": 47.2
+          },
+          {
+            "width": 720,
+            "height": 900,
+            "path": "/photos/tobacco-card-720w.avif",
+            "sizeKB": 85.1
+          },
+          {
+            "width": 1080,
+            "height": 1350,
+            "path": "/photos/tobacco-card-1080w.avif",
+            "sizeKB": 142.2
+          }
+        ],
+        "webp": [
+          {
+            "width": 480,
+            "height": 600,
+            "path": "/photos/tobacco-card-480w.webp",
+            "sizeKB": 40.9
+          },
+          {
+            "width": 720,
+            "height": 900,
+            "path": "/photos/tobacco-card-720w.webp",
+            "sizeKB": 75.7
+          },
+          {
+            "width": 1080,
+            "height": 1350,
+            "path": "/photos/tobacco-card-1080w.webp",
+            "sizeKB": 131.1
+          }
+        ]
+      },
+      "fallback": "/photos/tobacco-card-1080w.webp",
       "resolutionWarning": "None",
       "optimizationWarning": "None"
     },
@@ -784,49 +896,49 @@
       "family": "product-card",
       "originalFile": "source-images/amour-card.png",
       "originalDimensions": {
-        "width": 1254,
-        "height": 1254
+        "width": 1122,
+        "height": 1402
       },
       "aspectRatio": "4:5",
       "variants": {
         "avif": [
           {
             "width": 480,
-            "height": 480,
+            "height": 600,
             "path": "/photos/amour-card-480w.avif",
-            "sizeKB": 46.4
+            "sizeKB": 31.5
           },
           {
             "width": 720,
-            "height": 720,
+            "height": 900,
             "path": "/photos/amour-card-720w.avif",
-            "sizeKB": 82.9
+            "sizeKB": 54.9
           },
           {
             "width": 1080,
-            "height": 1080,
+            "height": 1350,
             "path": "/photos/amour-card-1080w.avif",
-            "sizeKB": 141.8
+            "sizeKB": 94.8
           }
         ],
         "webp": [
           {
             "width": 480,
-            "height": 480,
+            "height": 600,
             "path": "/photos/amour-card-480w.webp",
-            "sizeKB": 41.8
+            "sizeKB": 30.5
           },
           {
             "width": 720,
-            "height": 720,
+            "height": 900,
             "path": "/photos/amour-card-720w.webp",
-            "sizeKB": 76
+            "sizeKB": 52.7
           },
           {
             "width": 1080,
-            "height": 1080,
+            "height": 1350,
             "path": "/photos/amour-card-1080w.webp",
-            "sizeKB": 133.4
+            "sizeKB": 87
           }
         ]
       },
@@ -840,49 +952,49 @@
       "family": "product-card",
       "originalFile": "source-images/roman-card.png",
       "originalDimensions": {
-        "width": 1254,
-        "height": 1254
+        "width": 1122,
+        "height": 1402
       },
       "aspectRatio": "4:5",
       "variants": {
         "avif": [
           {
             "width": 480,
-            "height": 480,
+            "height": 600,
             "path": "/photos/roman-card-480w.avif",
-            "sizeKB": 49.3
+            "sizeKB": 29
           },
           {
             "width": 720,
-            "height": 720,
+            "height": 900,
             "path": "/photos/roman-card-720w.avif",
-            "sizeKB": 88.4
+            "sizeKB": 52.1
           },
           {
             "width": 1080,
-            "height": 1080,
+            "height": 1350,
             "path": "/photos/roman-card-1080w.avif",
-            "sizeKB": 153.2
+            "sizeKB": 92.1
           }
         ],
         "webp": [
           {
             "width": 480,
-            "height": 480,
+            "height": 600,
             "path": "/photos/roman-card-480w.webp",
-            "sizeKB": 45.4
+            "sizeKB": 25.9
           },
           {
             "width": 720,
-            "height": 720,
+            "height": 900,
             "path": "/photos/roman-card-720w.webp",
-            "sizeKB": 83.4
+            "sizeKB": 48.1
           },
           {
             "width": 1080,
-            "height": 1080,
+            "height": 1350,
             "path": "/photos/roman-card-1080w.webp",
-            "sizeKB": 147.4
+            "sizeKB": 87.1
           }
         ]
       },
@@ -896,49 +1008,49 @@
       "family": "product-card",
       "originalFile": "source-images/atlas-card.png",
       "originalDimensions": {
-        "width": 1254,
-        "height": 1254
+        "width": 1122,
+        "height": 1402
       },
       "aspectRatio": "4:5",
       "variants": {
         "avif": [
           {
             "width": 480,
-            "height": 480,
+            "height": 600,
             "path": "/photos/atlas-card-480w.avif",
-            "sizeKB": 42.9
+            "sizeKB": 28.9
           },
           {
             "width": 720,
-            "height": 720,
+            "height": 900,
             "path": "/photos/atlas-card-720w.avif",
-            "sizeKB": 77.5
+            "sizeKB": 52.3
           },
           {
             "width": 1080,
-            "height": 1080,
+            "height": 1350,
             "path": "/photos/atlas-card-1080w.avif",
-            "sizeKB": 136.9
+            "sizeKB": 91.2
           }
         ],
         "webp": [
           {
             "width": 480,
-            "height": 480,
+            "height": 600,
             "path": "/photos/atlas-card-480w.webp",
-            "sizeKB": 40.4
+            "sizeKB": 26.9
           },
           {
             "width": 720,
-            "height": 720,
+            "height": 900,
             "path": "/photos/atlas-card-720w.webp",
-            "sizeKB": 74.7
+            "sizeKB": 49.6
           },
           {
             "width": 1080,
-            "height": 1080,
+            "height": 1350,
             "path": "/photos/atlas-card-1080w.webp",
-            "sizeKB": 130.3
+            "sizeKB": 87.8
           }
         ]
       },
@@ -952,49 +1064,49 @@
       "family": "product-card",
       "originalFile": "source-images/noor-card.png",
       "originalDimensions": {
-        "width": 1254,
-        "height": 1254
+        "width": 1122,
+        "height": 1402
       },
       "aspectRatio": "4:5",
       "variants": {
         "avif": [
           {
             "width": 480,
-            "height": 480,
+            "height": 600,
             "path": "/photos/noor-card-480w.avif",
-            "sizeKB": 47.3
+            "sizeKB": 31.4
           },
           {
             "width": 720,
-            "height": 720,
+            "height": 900,
             "path": "/photos/noor-card-720w.avif",
-            "sizeKB": 84.2
+            "sizeKB": 56.5
           },
           {
             "width": 1080,
-            "height": 1080,
+            "height": 1350,
             "path": "/photos/noor-card-1080w.avif",
-            "sizeKB": 142
+            "sizeKB": 98.2
           }
         ],
         "webp": [
           {
             "width": 480,
-            "height": 480,
+            "height": 600,
             "path": "/photos/noor-card-480w.webp",
-            "sizeKB": 42.1
+            "sizeKB": 27.8
           },
           {
             "width": 720,
-            "height": 720,
+            "height": 900,
             "path": "/photos/noor-card-720w.webp",
-            "sizeKB": 77.5
+            "sizeKB": 51.4
           },
           {
             "width": 1080,
-            "height": 1080,
+            "height": 1350,
             "path": "/photos/noor-card-1080w.webp",
-            "sizeKB": 133.4
+            "sizeKB": 91.6
           }
         ]
       },
@@ -1008,49 +1120,49 @@
       "family": "product-card",
       "originalFile": "source-images/saira-card.png",
       "originalDimensions": {
-        "width": 1254,
-        "height": 1254
+        "width": 1122,
+        "height": 1402
       },
       "aspectRatio": "4:5",
       "variants": {
         "avif": [
           {
             "width": 480,
-            "height": 480,
+            "height": 600,
             "path": "/photos/saira-card-480w.avif",
-            "sizeKB": 49.5
+            "sizeKB": 29.4
           },
           {
             "width": 720,
-            "height": 720,
+            "height": 900,
             "path": "/photos/saira-card-720w.avif",
-            "sizeKB": 88.5
+            "sizeKB": 53.8
           },
           {
             "width": 1080,
-            "height": 1080,
+            "height": 1350,
             "path": "/photos/saira-card-1080w.avif",
-            "sizeKB": 150.7
+            "sizeKB": 93.6
           }
         ],
         "webp": [
           {
             "width": 480,
-            "height": 480,
+            "height": 600,
             "path": "/photos/saira-card-480w.webp",
-            "sizeKB": 45.2
+            "sizeKB": 26.2
           },
           {
             "width": 720,
-            "height": 720,
+            "height": 900,
             "path": "/photos/saira-card-720w.webp",
-            "sizeKB": 81.6
+            "sizeKB": 49.5
           },
           {
             "width": 1080,
-            "height": 1080,
+            "height": 1350,
             "path": "/photos/saira-card-1080w.webp",
-            "sizeKB": 140
+            "sizeKB": 87.9
           }
         ]
       },
@@ -1064,49 +1176,49 @@
       "family": "product-card",
       "originalFile": "source-images/andaaz-e-khaas-card.png",
       "originalDimensions": {
-        "width": 1254,
-        "height": 1254
+        "width": 1122,
+        "height": 1402
       },
       "aspectRatio": "4:5",
       "variants": {
         "avif": [
           {
             "width": 480,
-            "height": 480,
+            "height": 600,
             "path": "/photos/andaaz-e-khaas-card-480w.avif",
-            "sizeKB": 51.5
+            "sizeKB": 30.1
           },
           {
             "width": 720,
-            "height": 720,
+            "height": 900,
             "path": "/photos/andaaz-e-khaas-card-720w.avif",
-            "sizeKB": 93.7
+            "sizeKB": 54.2
           },
           {
             "width": 1080,
-            "height": 1080,
+            "height": 1350,
             "path": "/photos/andaaz-e-khaas-card-1080w.avif",
-            "sizeKB": 161.5
+            "sizeKB": 91.7
           }
         ],
         "webp": [
           {
             "width": 480,
-            "height": 480,
+            "height": 600,
             "path": "/photos/andaaz-e-khaas-card-480w.webp",
-            "sizeKB": 47.9
+            "sizeKB": 26.1
           },
           {
             "width": 720,
-            "height": 720,
+            "height": 900,
             "path": "/photos/andaaz-e-khaas-card-720w.webp",
-            "sizeKB": 87
+            "sizeKB": 48.1
           },
           {
             "width": 1080,
-            "height": 1080,
+            "height": 1350,
             "path": "/photos/andaaz-e-khaas-card-1080w.webp",
-            "sizeKB": 152.2
+            "sizeKB": 85.2
           }
         ]
       },
@@ -1120,6 +1232,118 @@
       "family": "product-card",
       "originalFile": "source-images/mehfil-edp-card.png",
       "originalDimensions": {
+        "width": 1122,
+        "height": 1402
+      },
+      "aspectRatio": "4:5",
+      "variants": {
+        "avif": [
+          {
+            "width": 480,
+            "height": 600,
+            "path": "/photos/mehfil-edp-card-480w.avif",
+            "sizeKB": 28.8
+          },
+          {
+            "width": 720,
+            "height": 900,
+            "path": "/photos/mehfil-edp-card-720w.avif",
+            "sizeKB": 52.3
+          },
+          {
+            "width": 1080,
+            "height": 1350,
+            "path": "/photos/mehfil-edp-card-1080w.avif",
+            "sizeKB": 89.1
+          }
+        ],
+        "webp": [
+          {
+            "width": 480,
+            "height": 600,
+            "path": "/photos/mehfil-edp-card-480w.webp",
+            "sizeKB": 26.3
+          },
+          {
+            "width": 720,
+            "height": 900,
+            "path": "/photos/mehfil-edp-card-720w.webp",
+            "sizeKB": 49
+          },
+          {
+            "width": 1080,
+            "height": 1350,
+            "path": "/photos/mehfil-edp-card-1080w.webp",
+            "sizeKB": 87.3
+          }
+        ]
+      },
+      "fallback": "/photos/mehfil-edp-card-1080w.webp",
+      "resolutionWarning": "None",
+      "optimizationWarning": "None"
+    },
+    "the-discovery-gift-set-card": {
+      "slot": "the-discovery-gift-set-card",
+      "available": true,
+      "family": "product-card",
+      "originalFile": "source-images/the-discovery-gift-set-card.png",
+      "originalDimensions": {
+        "width": 1312,
+        "height": 1199
+      },
+      "aspectRatio": "4:5",
+      "variants": {
+        "avif": [
+          {
+            "width": 480,
+            "height": 439,
+            "path": "/photos/the-discovery-gift-set-card-480w.avif",
+            "sizeKB": 55.2
+          },
+          {
+            "width": 720,
+            "height": 658,
+            "path": "/photos/the-discovery-gift-set-card-720w.avif",
+            "sizeKB": 105.7
+          },
+          {
+            "width": 1080,
+            "height": 987,
+            "path": "/photos/the-discovery-gift-set-card-1080w.avif",
+            "sizeKB": 192.4
+          }
+        ],
+        "webp": [
+          {
+            "width": 480,
+            "height": 439,
+            "path": "/photos/the-discovery-gift-set-card-480w.webp",
+            "sizeKB": 50.6
+          },
+          {
+            "width": 720,
+            "height": 658,
+            "path": "/photos/the-discovery-gift-set-card-720w.webp",
+            "sizeKB": 99.2
+          },
+          {
+            "width": 1080,
+            "height": 987,
+            "path": "/photos/the-discovery-gift-set-card-1080w.webp",
+            "sizeKB": 184.7
+          }
+        ]
+      },
+      "fallback": "/photos/the-discovery-gift-set-card-1080w.webp",
+      "resolutionWarning": "None",
+      "optimizationWarning": "None"
+    },
+    "the-signature-gift-set-card": {
+      "slot": "the-signature-gift-set-card",
+      "available": true,
+      "family": "product-card",
+      "originalFile": "source-images/the-signature-gift-set-card.png",
+      "originalDimensions": {
         "width": 1254,
         "height": 1254
       },
@@ -1129,44 +1353,212 @@
           {
             "width": 480,
             "height": 480,
-            "path": "/photos/mehfil-edp-card-480w.avif",
-            "sizeKB": 45.7
+            "path": "/photos/the-signature-gift-set-card-480w.avif",
+            "sizeKB": 61.2
           },
           {
             "width": 720,
             "height": 720,
-            "path": "/photos/mehfil-edp-card-720w.avif",
-            "sizeKB": 82.7
+            "path": "/photos/the-signature-gift-set-card-720w.avif",
+            "sizeKB": 119.8
           },
           {
             "width": 1080,
             "height": 1080,
-            "path": "/photos/mehfil-edp-card-1080w.avif",
-            "sizeKB": 141.8
+            "path": "/photos/the-signature-gift-set-card-1080w.avif",
+            "sizeKB": 226.4
           }
         ],
         "webp": [
           {
             "width": 480,
             "height": 480,
-            "path": "/photos/mehfil-edp-card-480w.webp",
-            "sizeKB": 43.1
+            "path": "/photos/the-signature-gift-set-card-480w.webp",
+            "sizeKB": 60.1
           },
           {
             "width": 720,
             "height": 720,
-            "path": "/photos/mehfil-edp-card-720w.webp",
-            "sizeKB": 78.6
+            "path": "/photos/the-signature-gift-set-card-720w.webp",
+            "sizeKB": 119.3
           },
           {
             "width": 1080,
             "height": 1080,
-            "path": "/photos/mehfil-edp-card-1080w.webp",
-            "sizeKB": 137.3
+            "path": "/photos/the-signature-gift-set-card-1080w.webp",
+            "sizeKB": 228.6
           }
         ]
       },
-      "fallback": "/photos/mehfil-edp-card-1080w.webp",
+      "fallback": "/photos/the-signature-gift-set-card-1080w.webp",
+      "resolutionWarning": "None",
+      "optimizationWarning": "Exceeds target size at 720px (119.3 KB > 110 KB)"
+    },
+    "the-grand-gift-set-card": {
+      "slot": "the-grand-gift-set-card",
+      "available": true,
+      "family": "product-card",
+      "originalFile": "source-images/the-grand-gift-set-card.png",
+      "originalDimensions": {
+        "width": 1122,
+        "height": 1402
+      },
+      "aspectRatio": "4:5",
+      "variants": {
+        "avif": [
+          {
+            "width": 480,
+            "height": 600,
+            "path": "/photos/the-grand-gift-set-card-480w.avif",
+            "sizeKB": 85.2
+          },
+          {
+            "width": 720,
+            "height": 900,
+            "path": "/photos/the-grand-gift-set-card-720w.avif",
+            "sizeKB": 166.6
+          },
+          {
+            "width": 1080,
+            "height": 1350,
+            "path": "/photos/the-grand-gift-set-card-1080w.avif",
+            "sizeKB": 298.6
+          }
+        ],
+        "webp": [
+          {
+            "width": 480,
+            "height": 600,
+            "path": "/photos/the-grand-gift-set-card-480w.webp",
+            "sizeKB": 79.4
+          },
+          {
+            "width": 720,
+            "height": 900,
+            "path": "/photos/the-grand-gift-set-card-720w.webp",
+            "sizeKB": 160.2
+          },
+          {
+            "width": 1080,
+            "height": 1350,
+            "path": "/photos/the-grand-gift-set-card-1080w.webp",
+            "sizeKB": 291.9
+          }
+        ]
+      },
+      "fallback": "/photos/the-grand-gift-set-card-1080w.webp",
+      "resolutionWarning": "None",
+      "optimizationWarning": "Exceeds target size at 720px (160.2 KB > 110 KB)"
+    },
+    "discovery-set-attar-card": {
+      "slot": "discovery-set-attar-card",
+      "available": true,
+      "family": "product-card",
+      "originalFile": "source-images/discovery-set-attar-card.png",
+      "originalDimensions": {
+        "width": 1086,
+        "height": 1448
+      },
+      "aspectRatio": "4:5",
+      "variants": {
+        "avif": [
+          {
+            "width": 480,
+            "height": 640,
+            "path": "/photos/discovery-set-attar-card-480w.avif",
+            "sizeKB": 64
+          },
+          {
+            "width": 720,
+            "height": 960,
+            "path": "/photos/discovery-set-attar-card-720w.avif",
+            "sizeKB": 131.1
+          },
+          {
+            "width": 1080,
+            "height": 1440,
+            "path": "/photos/discovery-set-attar-card-1080w.avif",
+            "sizeKB": 240.4
+          }
+        ],
+        "webp": [
+          {
+            "width": 480,
+            "height": 640,
+            "path": "/photos/discovery-set-attar-card-480w.webp",
+            "sizeKB": 58
+          },
+          {
+            "width": 720,
+            "height": 960,
+            "path": "/photos/discovery-set-attar-card-720w.webp",
+            "sizeKB": 119.7
+          },
+          {
+            "width": 1080,
+            "height": 1440,
+            "path": "/photos/discovery-set-attar-card-1080w.webp",
+            "sizeKB": 229.6
+          }
+        ]
+      },
+      "fallback": "/photos/discovery-set-attar-card-1080w.webp",
+      "resolutionWarning": "None",
+      "optimizationWarning": "Exceeds target size at 720px (119.7 KB > 110 KB)"
+    },
+    "the-royal-perfume-sampler-card": {
+      "slot": "the-royal-perfume-sampler-card",
+      "available": true,
+      "family": "product-card",
+      "originalFile": "source-images/the-royal-perfume-sampler-card.png",
+      "originalDimensions": {
+        "width": 1312,
+        "height": 1199
+      },
+      "aspectRatio": "4:5",
+      "variants": {
+        "avif": [
+          {
+            "width": 480,
+            "height": 439,
+            "path": "/photos/the-royal-perfume-sampler-card-480w.avif",
+            "sizeKB": 58.8
+          },
+          {
+            "width": 720,
+            "height": 658,
+            "path": "/photos/the-royal-perfume-sampler-card-720w.avif",
+            "sizeKB": 115.7
+          },
+          {
+            "width": 1080,
+            "height": 987,
+            "path": "/photos/the-royal-perfume-sampler-card-1080w.avif",
+            "sizeKB": 214.9
+          }
+        ],
+        "webp": [
+          {
+            "width": 480,
+            "height": 439,
+            "path": "/photos/the-royal-perfume-sampler-card-480w.webp",
+            "sizeKB": 54.3
+          },
+          {
+            "width": 720,
+            "height": 658,
+            "path": "/photos/the-royal-perfume-sampler-card-720w.webp",
+            "sizeKB": 105.2
+          },
+          {
+            "width": 1080,
+            "height": 987,
+            "path": "/photos/the-royal-perfume-sampler-card-1080w.webp",
+            "sizeKB": 202.3
+          }
+        ]
+      },
+      "fallback": "/photos/the-royal-perfume-sampler-card-1080w.webp",
       "resolutionWarning": "None",
       "optimizationWarning": "None"
     }

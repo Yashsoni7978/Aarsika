@@ -3,10 +3,10 @@
 This registry documents every photography slot across the Aarsika flagship website, detailing expected asset names, real filesystem availability, dimensions, format variants (AVIF & WebP), and quality warnings.
 
 **Pipeline Summary:**
-- **Total Defined Slots:** 30
-- **Available Originals:** 20
+- **Total Defined Slots:** 37
+- **Available Originals:** 27
 - **Missing Originals:** 10
-- **Total Generated Variants:** 108 (10.98 MB)
+- **Total Generated Variants:** 150 (13.78 MB)
 
 | Slot | Expected original filename | Availability | Original dimensions | Intended mobile dimensions | Intended desktop dimensions | Aspect ratio | AVIF variants generated | WebP variants generated | Resolution warnings | Optimization warnings |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -26,20 +26,27 @@ This registry documents every photography slot across the Aarsika flagship websi
 | `discovery-set-desktop` | `discovery-set-desktop.png` | **have it** | 1536 × 1024 px | — | 1920 × 1280 px (3:2) | 3:2 | 1280w (210.6 KB) | 1280w (210.5 KB) | None | None |
 | `house` | `house.jpg` | **have it** | 1200 × 896 px | 750 × 1000 px (3:4) | 1200 × 1600 px (3:4) | 3:4 | 480w (45.2 KB), 800w (94.6 KB), 1200w (170.5 KB) | 480w (42.8 KB), 800w (89.3 KB), 1200w (156.4 KB) | None | None |
 | `og` | `og.png` | **missing** | — | — | 1200 × 630 px (1.91:1) | 1.91:1 | None | None | Source missing | Skipped (missing) |
-| `sehar-e-gulab-card` | `sehar-e-gulab-card.png` | **have it** | 1254 × 1254 px | 720 × 900 px | 1080 × 1350 px | 4:5 | 480w (55.9 KB), 720w (98.1 KB), 1080w (165.5 KB) | 480w (49.7 KB), 720w (88.7 KB), 1080w (155.6 KB) | None | None |
-| `maati-card` | `maati-card.png` | **have it** | 1254 × 1254 px | 720 × 900 px | 1080 × 1350 px | 4:5 | 480w (50 KB), 720w (91.8 KB), 1080w (158 KB) | 480w (44.6 KB), 720w (82.7 KB), 1080w (148.5 KB) | None | None |
-| `saanjh-card` | `saanjh-card.png` | **have it** | 1254 × 1254 px | 720 × 900 px | 1080 × 1350 px | 4:5 | 480w (52.1 KB), 720w (93.6 KB), 1080w (159 KB) | 480w (47.4 KB), 720w (86.3 KB), 1080w (153.9 KB) | None | None |
-| `shaam-ka-noor-card` | `shaam-ka-noor-card.png` | **have it** | 1254 × 1254 px | 720 × 900 px | 1080 × 1350 px | 4:5 | 480w (60.1 KB), 720w (109.3 KB), 1080w (183.6 KB) | 480w (54 KB), 720w (99.1 KB), 1080w (173.6 KB) | None | None |
-| `raat-ki-rani-card` | `raat-ki-rani-card.png` | **have it** | 1254 × 1254 px | 720 × 900 px | 1080 × 1350 px | 4:5 | 480w (75.4 KB), 720w (137 KB), 1080w (234.3 KB) | 480w (66.1 KB), 720w (125.8 KB), 1080w (223.5 KB) | None | Exceeds target size at 720px (125.8 KB > 110 KB) |
-| `resham-oudh-card` | `resham-oudh-card.png` | **have it** | 1254 × 1254 px | 720 × 900 px | 1080 × 1350 px | 4:5 | 480w (58.6 KB), 720w (104.2 KB), 1080w (176.1 KB) | 480w (55.2 KB), 720w (99.7 KB), 1080w (174.1 KB) | None | None |
-| `mehfil-card` | `mehfil-card.png` | **have it** | 1254 × 1254 px | 720 × 900 px | 1080 × 1350 px | 4:5 | 480w (56.4 KB), 720w (100 KB), 1080w (167.7 KB) | 480w (51.5 KB), 720w (92.6 KB), 1080w (161.5 KB) | None | None |
-| `amour-card` | `amour-card.png` | **have it** | 1254 × 1254 px | 720 × 900 px | 1080 × 1350 px | 4:5 | 480w (46.4 KB), 720w (82.9 KB), 1080w (141.8 KB) | 480w (41.8 KB), 720w (76 KB), 1080w (133.4 KB) | None | None |
-| `roman-card` | `roman-card.png` | **have it** | 1254 × 1254 px | 720 × 900 px | 1080 × 1350 px | 4:5 | 480w (49.3 KB), 720w (88.4 KB), 1080w (153.2 KB) | 480w (45.4 KB), 720w (83.4 KB), 1080w (147.4 KB) | None | None |
-| `atlas-card` | `atlas-card.png` | **have it** | 1254 × 1254 px | 720 × 900 px | 1080 × 1350 px | 4:5 | 480w (42.9 KB), 720w (77.5 KB), 1080w (136.9 KB) | 480w (40.4 KB), 720w (74.7 KB), 1080w (130.3 KB) | None | None |
-| `noor-card` | `noor-card.png` | **have it** | 1254 × 1254 px | 720 × 900 px | 1080 × 1350 px | 4:5 | 480w (47.3 KB), 720w (84.2 KB), 1080w (142 KB) | 480w (42.1 KB), 720w (77.5 KB), 1080w (133.4 KB) | None | None |
-| `saira-card` | `saira-card.png` | **have it** | 1254 × 1254 px | 720 × 900 px | 1080 × 1350 px | 4:5 | 480w (49.5 KB), 720w (88.5 KB), 1080w (150.7 KB) | 480w (45.2 KB), 720w (81.6 KB), 1080w (140 KB) | None | None |
-| `andaaz-e-khaas-card` | `andaaz-e-khaas-card.png` | **have it** | 1254 × 1254 px | 720 × 900 px | 1080 × 1350 px | 4:5 | 480w (51.5 KB), 720w (93.7 KB), 1080w (161.5 KB) | 480w (47.9 KB), 720w (87 KB), 1080w (152.2 KB) | None | None |
-| `mehfil-edp-card` | `mehfil-edp-card.png` | **have it** | 1254 × 1254 px | 720 × 900 px | 1080 × 1350 px | 4:5 | 480w (45.7 KB), 720w (82.7 KB), 1080w (141.8 KB) | 480w (43.1 KB), 720w (78.6 KB), 1080w (137.3 KB) | None | None |
+| `sehar-e-gulab-card` | `sehar-e-gulab-card.png` | **have it** | 1122 × 1402 px | 720 × 900 px | 1080 × 1350 px | 4:5 | 480w (48.4 KB), 720w (88.8 KB), 1080w (151.1 KB) | 480w (41.6 KB), 720w (78.8 KB), 1080w (142.1 KB) | None | None |
+| `maati-card` | `maati-card.png` | **have it** | 1122 × 1402 px | 720 × 900 px | 1080 × 1350 px | 4:5 | 480w (43.9 KB), 720w (79.8 KB), 1080w (138.2 KB) | 480w (36.7 KB), 720w (69.9 KB), 1080w (126 KB) | None | None |
+| `saanjh-card` | `saanjh-card.png` | **have it** | 1122 × 1402 px | 720 × 900 px | 1080 × 1350 px | 4:5 | 480w (43.5 KB), 720w (79 KB), 1080w (133.6 KB) | 480w (35.8 KB), 720w (68.3 KB), 1080w (120.7 KB) | None | None |
+| `shaam-ka-noor-card` | `shaam-ka-noor-card.png` | **have it** | 1122 × 1402 px | 720 × 900 px | 1080 × 1350 px | 4:5 | 480w (45.2 KB), 720w (82.6 KB), 1080w (141 KB) | 480w (37.1 KB), 720w (71.1 KB), 1080w (126.7 KB) | None | None |
+| `raat-ki-rani-card` | `raat-ki-rani-card.png` | **have it** | 1122 × 1402 px | 720 × 900 px | 1080 × 1350 px | 4:5 | 480w (40.7 KB), 720w (71.8 KB), 1080w (122 KB) | 480w (36.1 KB), 720w (64.6 KB), 1080w (105.9 KB) | None | None |
+| `resham-oudh-card` | `resham-oudh-card.png` | **have it** | 1122 × 1402 px | 720 × 900 px | 1080 × 1350 px | 4:5 | 480w (45.1 KB), 720w (82.3 KB), 1080w (144 KB) | 480w (37.9 KB), 720w (72 KB), 1080w (131.4 KB) | None | None |
+| `mehfil-card` | `mehfil-card.png` | **have it** | 1122 × 1402 px | 720 × 900 px | 1080 × 1350 px | 4:5 | 480w (45.5 KB), 720w (81.8 KB), 1080w (138.2 KB) | 480w (38.6 KB), 720w (72.2 KB), 1080w (125.9 KB) | None | None |
+| `chocolate-oudh-card` | `chocolate-oudh-card.png` | **have it** | 1122 × 1402 px | 720 × 900 px | 1080 × 1350 px | 4:5 | 480w (64 KB), 720w (114.8 KB), 1080w (191.9 KB) | 480w (57.4 KB), 720w (103.8 KB), 1080w (178.1 KB) | None | None |
+| `tobacco-card` | `tobacco-card.png` | **have it** | 1122 × 1402 px | 720 × 900 px | 1080 × 1350 px | 4:5 | 480w (47.2 KB), 720w (85.1 KB), 1080w (142.2 KB) | 480w (40.9 KB), 720w (75.7 KB), 1080w (131.1 KB) | None | None |
+| `amour-card` | `amour-card.png` | **have it** | 1122 × 1402 px | 720 × 900 px | 1080 × 1350 px | 4:5 | 480w (31.5 KB), 720w (54.9 KB), 1080w (94.8 KB) | 480w (30.5 KB), 720w (52.7 KB), 1080w (87 KB) | None | None |
+| `roman-card` | `roman-card.png` | **have it** | 1122 × 1402 px | 720 × 900 px | 1080 × 1350 px | 4:5 | 480w (29 KB), 720w (52.1 KB), 1080w (92.1 KB) | 480w (25.9 KB), 720w (48.1 KB), 1080w (87.1 KB) | None | None |
+| `atlas-card` | `atlas-card.png` | **have it** | 1122 × 1402 px | 720 × 900 px | 1080 × 1350 px | 4:5 | 480w (28.9 KB), 720w (52.3 KB), 1080w (91.2 KB) | 480w (26.9 KB), 720w (49.6 KB), 1080w (87.8 KB) | None | None |
+| `noor-card` | `noor-card.png` | **have it** | 1122 × 1402 px | 720 × 900 px | 1080 × 1350 px | 4:5 | 480w (31.4 KB), 720w (56.5 KB), 1080w (98.2 KB) | 480w (27.8 KB), 720w (51.4 KB), 1080w (91.6 KB) | None | None |
+| `saira-card` | `saira-card.png` | **have it** | 1122 × 1402 px | 720 × 900 px | 1080 × 1350 px | 4:5 | 480w (29.4 KB), 720w (53.8 KB), 1080w (93.6 KB) | 480w (26.2 KB), 720w (49.5 KB), 1080w (87.9 KB) | None | None |
+| `andaaz-e-khaas-card` | `andaaz-e-khaas-card.png` | **have it** | 1122 × 1402 px | 720 × 900 px | 1080 × 1350 px | 4:5 | 480w (30.1 KB), 720w (54.2 KB), 1080w (91.7 KB) | 480w (26.1 KB), 720w (48.1 KB), 1080w (85.2 KB) | None | None |
+| `mehfil-edp-card` | `mehfil-edp-card.png` | **have it** | 1122 × 1402 px | 720 × 900 px | 1080 × 1350 px | 4:5 | 480w (28.8 KB), 720w (52.3 KB), 1080w (89.1 KB) | 480w (26.3 KB), 720w (49 KB), 1080w (87.3 KB) | None | None |
+| `the-discovery-gift-set-card` | `the-discovery-gift-set-card.png` | **have it** | 1312 × 1199 px | 720 × 900 px | 1080 × 1350 px | 4:5 | 480w (55.2 KB), 720w (105.7 KB), 1080w (192.4 KB) | 480w (50.6 KB), 720w (99.2 KB), 1080w (184.7 KB) | None | None |
+| `the-signature-gift-set-card` | `the-signature-gift-set-card.png` | **have it** | 1254 × 1254 px | 720 × 900 px | 1080 × 1350 px | 4:5 | 480w (61.2 KB), 720w (119.8 KB), 1080w (226.4 KB) | 480w (60.1 KB), 720w (119.3 KB), 1080w (228.6 KB) | None | Exceeds target size at 720px (119.3 KB > 110 KB) |
+| `the-grand-gift-set-card` | `the-grand-gift-set-card.png` | **have it** | 1122 × 1402 px | 720 × 900 px | 1080 × 1350 px | 4:5 | 480w (85.2 KB), 720w (166.6 KB), 1080w (298.6 KB) | 480w (79.4 KB), 720w (160.2 KB), 1080w (291.9 KB) | None | Exceeds target size at 720px (160.2 KB > 110 KB) |
+| `discovery-set-attar-card` | `discovery-set-attar-card.png` | **have it** | 1086 × 1448 px | 720 × 900 px | 1080 × 1350 px | 4:5 | 480w (64 KB), 720w (131.1 KB), 1080w (240.4 KB) | 480w (58 KB), 720w (119.7 KB), 1080w (229.6 KB) | None | Exceeds target size at 720px (119.7 KB > 110 KB) |
+| `the-royal-perfume-sampler-card` | `the-royal-perfume-sampler-card.png` | **have it** | 1312 × 1199 px | 720 × 900 px | 1080 × 1350 px | 4:5 | 480w (58.8 KB), 720w (115.7 KB), 1080w (214.9 KB) | 480w (54.3 KB), 720w (105.2 KB), 1080w (202.3 KB) | None | None |
 
 ---
 

@@ -164,7 +164,7 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
             ) : (
               <>
                 <div
-                  className="relative aspect-[4/3] sm:aspect-[4/3] w-full bg-[#EADFCB] rounded-xl overflow-hidden shadow-soft select-none group"
+                  className="relative aspect-[4/5] w-full bg-[#EADFCB] rounded-xl overflow-hidden shadow-soft select-none group"
                   onMouseEnter={() => setIsHovered(true)}
                   onMouseLeave={() => setIsHovered(false)}
                   onTouchStart={handleTouchStart}
@@ -183,7 +183,7 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
                         alt={`${product.name} - View ${idx + 1}`}
                         fill
                         sizes="(max-width: 1024px) 100vw, 50vw"
-                        className="object-cover"
+                        className="object-contain p-3"
                         priority={idx === 0}
                       />
                     </div>
@@ -226,7 +226,7 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
                     <button
                       key={idx}
                       onClick={() => setActiveImageIndex(idx)}
-                      className={`relative aspect-[4/3] w-full bg-[#EADFCB] rounded-lg overflow-hidden transition-all duration-300 ${
+                      className={`relative aspect-[4/5] w-full bg-[#EADFCB] rounded-lg overflow-hidden transition-all duration-300 ${
                         idx === activeImageIndex
                           ? 'border-2 border-[#C69A45] ring-2 ring-[#C69A45]/30 shadow-md scale-[1.02]'
                           : 'border border-[#C9A55C]/30 opacity-70 hover:opacity-100'
@@ -237,7 +237,7 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
                         alt={`${product.name} Thumbnail ${idx + 1}`}
                         fill
                         sizes="20vw"
-                        className="object-cover"
+                        className="object-contain p-1.5"
                       />
                     </button>
                   ))}

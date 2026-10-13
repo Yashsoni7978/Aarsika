@@ -72,7 +72,7 @@ export const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
               href={`/products/${product.slug}`}
               className="block group-hover:text-[#30070D] transition-colors"
             >
-              <h3 className="font-serif text-xl sm:text-2xl font-normal text-[#1a1411] leading-tight truncate">
+              <h3 className="font-serif text-xl sm:text-2xl font-normal text-[#1a1411] leading-tight line-clamp-2">
                 {product.name}
               </h3>
             </Link>
