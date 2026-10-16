@@ -4,15 +4,22 @@
   "slots": {
     "hero-amour-mobile": {
       "slot": "hero-amour-mobile",
-      "available": false,
+      "available": true,
       "family": "hero-mobile",
-      "expectedFile": "hero-amour-mobile.png",
+      "expectedFile": "hero-amour-mobile.webp",
       "aspectRatio": "4:5",
       "variants": {
         "avif": [],
-        "webp": []
+        "webp": [
+          {
+            "width": 800,
+            "height": 1000,
+            "path": "/photos/hero/hero-amour-mobile.webp",
+            "sizeKB": 154
+          }
+        ]
       },
-      "fallback": null
+      "fallback": "/photos/hero/hero-amour-mobile.webp"
     },
     "hero-amour-desktop": {
       "slot": "hero-amour-desktop",
@@ -276,15 +283,22 @@
     },
     "discovery-set-mobile": {
       "slot": "discovery-set-mobile",
-      "available": false,
+      "available": true,
       "family": "editorial-mobile",
-      "expectedFile": "discovery-set-mobile.png",
-      "aspectRatio": "4:3",
+      "expectedFile": "discovery-set-mobile.webp",
+      "aspectRatio": "4:5",
       "variants": {
         "avif": [],
-        "webp": []
+        "webp": [
+          {
+            "width": 800,
+            "height": 1000,
+            "path": "/photos/discovery-set-mobile.webp",
+            "sizeKB": 170.9
+          }
+        ]
       },
-      "fallback": null
+      "fallback": "/photos/discovery-set-mobile.webp"
     },
     "discovery-set-desktop": {
       "slot": "discovery-set-desktop",
@@ -317,6 +331,120 @@
       "fallback": "/photos/discovery-set-desktop-1280w.webp",
       "resolutionWarning": "None",
       "optimizationWarning": "None"
+    },
+    "attar-collection-mobile": {
+      "slot": "attar-collection-mobile",
+      "available": true,
+      "family": "editorial-mobile",
+      "expectedFile": "attar-trio-mobile.webp",
+      "aspectRatio": "4:5",
+      "variants": {
+        "avif": [],
+        "webp": [
+          {
+            "width": 800,
+            "height": 1000,
+            "path": "/photos/attar-trio-mobile.webp",
+            "sizeKB": 194.8
+          }
+        ]
+      },
+      "fallback": "/photos/attar-trio-mobile.webp"
+    },
+    "attar-collection-tablet": {
+      "slot": "attar-collection-tablet",
+      "available": true,
+      "family": "editorial-tablet",
+      "expectedFile": "hero-amber-crimson-navy-tablet.webp",
+      "aspectRatio": "4:5",
+      "variants": {
+        "avif": [],
+        "webp": [
+          {
+            "width": 1080,
+            "height": 1350,
+            "path": "/photos/hero/hero-amber-crimson-navy-tablet.webp",
+            "sizeKB": 260
+          }
+        ]
+      },
+      "fallback": "/photos/hero/hero-amber-crimson-navy-tablet.webp"
+    },
+    "attar-collection-desktop": {
+      "slot": "attar-collection-desktop",
+      "available": true,
+      "family": "editorial-desktop",
+      "expectedFile": "hero-amber-crimson-navy.webp",
+      "aspectRatio": "16:9",
+      "variants": {
+        "avif": [],
+        "webp": [
+          {
+            "width": 1672,
+            "height": 941,
+            "path": "/photos/hero/hero-amber-crimson-navy.webp",
+            "sizeKB": 150
+          }
+        ]
+      },
+      "fallback": "/photos/hero/hero-amber-crimson-navy.webp"
+    },
+    "perfume-collection-mobile": {
+      "slot": "perfume-collection-mobile",
+      "available": true,
+      "family": "editorial-mobile",
+      "expectedFile": "hero-perfume-collection-mobile.webp",
+      "aspectRatio": "4:5",
+      "variants": {
+        "avif": [],
+        "webp": [
+          {
+            "width": 800,
+            "height": 1000,
+            "path": "/photos/hero/hero-perfume-collection-mobile.webp",
+            "sizeKB": 150
+          }
+        ]
+      },
+      "fallback": "/photos/hero/hero-perfume-collection-mobile.webp"
+    },
+    "perfume-collection-tablet": {
+      "slot": "perfume-collection-tablet",
+      "available": true,
+      "family": "editorial-tablet",
+      "expectedFile": "hero-perfume-collection-tablet.webp",
+      "aspectRatio": "4:5",
+      "variants": {
+        "avif": [],
+        "webp": [
+          {
+            "width": 1080,
+            "height": 1350,
+            "path": "/photos/hero/hero-perfume-collection-tablet.webp",
+            "sizeKB": 250
+          }
+        ]
+      },
+      "fallback": "/photos/hero/hero-perfume-collection-tablet.webp"
+    },
+    "perfume-collection-desktop": {
+      "slot": "perfume-collection-desktop",
+      "available": true,
+      "family": "editorial-desktop",
+      "expectedFile": "hero-perfume-collection.webp",
+      "aspectRatio": "16:9",
+      "variants": {
+        "avif": [],
+        "webp": [
+          {
+            "width": 1672,
+            "height": 941,
+            "path": "/photos/hero/hero-perfume-collection.webp",
+            "sizeKB": 140
+          }
+        ]
+      },
+      "fallback": "/photos/hero/hero-perfume-collection.webp"
     },
     "house": {
       "slot": "house",

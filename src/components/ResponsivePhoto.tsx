@@ -11,6 +11,7 @@ export interface ResponsivePhotoProps {
   sizes?: string;
   className?: string;
   aspect?: string; // e.g. '4/5', '16/9', '3/4', '3/2', '1/1'
+  shape?: 'arch' | 'rect' | 'full';
   objectFit?: 'cover' | 'contain';
   objectPosition?: string;
   width?: number;
@@ -44,32 +45,43 @@ interface PhotoManifest {
 const manifest = manifestDataRaw as unknown as PhotoManifest;
 
 /**
- * Resolves requested slot to candidate mobile and desktop manifest entries
+ * Resolves requested slot to candidate mobile, tablet, and desktop manifest entries
  */
 function resolveSlots(slot: string): {
   mobileSlot: ManifestSlot | null;
+  tabletSlot: ManifestSlot | null;
   desktopSlot: ManifestSlot | null;
   singleSlot: ManifestSlot | null;
 } {
   const slots = manifest.slots || {};
 
-  // Direct exact match
-  if (slots[slot]?.available) {
-    return { mobileSlot: null, desktopSlot: null, singleSlot: slots[slot] };
-  }
+  // Alias mappings
+  let cleanSlot = slot;
+  if (slot === 'collection-attar') cleanSlot = 'attar-collection';
+  if (slot === 'collection-eau-de-parfum') cleanSlot = 'perfume-collection';
 
-  // Base slot without suffix (e.g. 'hero-amour' or 'gifting' or 'discovery-set')
-  const mobileKey = slot.endsWith('-mobile') ? slot : `${slot}-mobile`;
-  const desktopKey = slot.endsWith('-desktop') ? slot : `${slot}-desktop`;
+  // Direct exact match if no mobile/desktop counterparts
+  const mobileKey = cleanSlot.endsWith('-mobile') ? cleanSlot : `${cleanSlot}-mobile`;
+  const tabletKey = cleanSlot.endsWith('-tablet') ? cleanSlot : `${cleanSlot}-tablet`;
+  const desktopKey = cleanSlot.endsWith('-desktop') ? cleanSlot : `${cleanSlot}-desktop`;
 
   const mobileSlot = slots[mobileKey]?.available ? slots[mobileKey] : null;
+  const tabletSlot = slots[tabletKey]?.available ? slots[tabletKey] : null;
   const desktopSlot = slots[desktopKey]?.available ? slots[desktopKey] : null;
 
+  if (mobileSlot || tabletSlot || desktopSlot) {
+    return { mobileSlot, tabletSlot, desktopSlot, singleSlot: null };
+  }
+
+  if (slots[cleanSlot]?.available) {
+    return { mobileSlot: null, tabletSlot: null, desktopSlot: null, singleSlot: slots[cleanSlot] };
+  }
+
   // Check product card alias (e.g. 'sehar-e-gulab' -> 'sehar-e-gulab-card')
-  const cardKey = slot.endsWith('-card') ? slot : `${slot}-card`;
+  const cardKey = cleanSlot.endsWith('-card') ? cleanSlot : `${cleanSlot}-card`;
   const cardSlot = slots[cardKey]?.available ? slots[cardKey] : null;
 
-  return { mobileSlot, desktopSlot, singleSlot: cardSlot };
+  return { mobileSlot: null, tabletSlot: null, desktopSlot: null, singleSlot: cardSlot };
 }
 
 export default function ResponsivePhoto({
@@ -79,6 +91,7 @@ export default function ResponsivePhoto({
   sizes,
   className = '',
   aspect,
+  shape = 'rect',
   objectFit = 'cover',
   objectPosition,
   width,
@@ -93,27 +106,29 @@ export default function ResponsivePhoto({
         slot={slot}
         alt={alt}
         aspect={aspect || '3/4'}
+        shape={shape}
         className={className}
       />
     );
   }
 
-  const { mobileSlot, desktopSlot, singleSlot } = resolveSlots(slot);
+  const { mobileSlot, tabletSlot, desktopSlot, singleSlot } = resolveSlots(slot);
 
   // If no available assets in manifest, fallback to Photo flat placeholder
-  if (!mobileSlot && !desktopSlot && !singleSlot) {
+  if (!mobileSlot && !tabletSlot && !desktopSlot && !singleSlot) {
     return (
       <Photo
         slot={slot}
         alt={alt}
         aspect={aspect || '3/4'}
+        shape={shape}
         className={className}
       />
     );
   }
 
   // Determine fallback image source and dimension metadata
-  const primarySlot = desktopSlot || singleSlot || mobileSlot;
+  const primarySlot = desktopSlot || tabletSlot || singleSlot || mobileSlot;
   const fallbackSrc =
     primarySlot?.fallback ||
     primarySlot?.variants?.webp?.[primarySlot.variants.webp.length - 1]?.path ||
@@ -126,6 +141,7 @@ export default function ResponsivePhoto({
         slot={slot}
         alt={alt}
         aspect={aspect || '3/4'}
+        shape={shape}
         className={className}
       />
     );
@@ -147,11 +163,22 @@ export default function ResponsivePhoto({
   const mobileAvif = buildSrcSet(mobileSlot?.variants?.avif);
   const mobileWebp = buildSrcSet(mobileSlot?.variants?.webp);
 
+  const tabletAvif = buildSrcSet(tabletSlot?.variants?.avif);
+  const tabletWebp = buildSrcSet(tabletSlot?.variants?.webp);
+
   const desktopAvif = buildSrcSet(desktopSlot?.variants?.avif);
   const desktopWebp = buildSrcSet(desktopSlot?.variants?.webp);
 
   const singleAvif = buildSrcSet(singleSlot?.variants?.avif);
   const singleWebp = buildSrcSet(singleSlot?.variants?.webp);
+
+  // Shape class
+  const shapeClass =
+    shape === 'arch'
+      ? 'rounded-t-[90px] md:rounded-t-[120px] rounded-b-none overflow-hidden'
+      : shape === 'full'
+      ? 'rounded-full overflow-hidden'
+      : 'overflow-hidden';
 
   // Aspect Ratio Styling for Zero Layout Shift
   const containerStyle: React.CSSProperties = {};
@@ -166,12 +193,12 @@ export default function ResponsivePhoto({
 
   return (
     <div
-      className={`relative w-full overflow-hidden ${className}`}
+      className={`relative w-full ${shapeClass} ${className}`}
       style={containerStyle}
     >
       <picture className="w-full h-full block">
-        {/* CASE 1: Art-directed Mobile + Desktop artwork */}
-        {mobileSlot && desktopSlot && (
+        {/* CASE 1: Art-directed Mobile + Tablet + Desktop artwork */}
+        {(mobileSlot || tabletSlot || desktopSlot) && (
           <>
             {/* Mobile Viewport (< 768px): AVIF first, then WebP */}
             {mobileAvif && (
@@ -191,10 +218,28 @@ export default function ResponsivePhoto({
               />
             )}
 
-            {/* Desktop Viewport (>= 768px): AVIF first, then WebP */}
+            {/* Tablet Viewport (768px - 1023px): if tabletSlot exists */}
+            {tabletAvif && (
+              <source
+                media="(min-width: 768px) and (max-width: 1023px)"
+                type="image/avif"
+                srcSet={tabletAvif}
+                sizes={sizes || '(max-width: 1023px) 60vw, 50vw'}
+              />
+            )}
+            {tabletWebp && (
+              <source
+                media="(min-width: 768px) and (max-width: 1023px)"
+                type="image/webp"
+                srcSet={tabletWebp}
+                sizes={sizes || '(max-width: 1023px) 60vw, 50vw'}
+              />
+            )}
+
+            {/* Desktop Viewport (>= 1024px if tabletSlot exists, else >= 768px) */}
             {desktopAvif && (
               <source
-                media="(min-width: 768px)"
+                media={tabletSlot ? '(min-width: 1024px)' : '(min-width: 768px)'}
                 type="image/avif"
                 srcSet={desktopAvif}
                 sizes={sizes || '100vw'}
@@ -202,7 +247,7 @@ export default function ResponsivePhoto({
             )}
             {desktopWebp && (
               <source
-                media="(min-width: 768px)"
+                media={tabletSlot ? '(min-width: 1024px)' : '(min-width: 768px)'}
                 type="image/webp"
                 srcSet={desktopWebp}
                 sizes={sizes || '100vw'}

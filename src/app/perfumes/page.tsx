@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { PRODUCTS } from "@/data/products";
 import { ProductCard } from "@/components/ProductCard";
-import { Photo } from "@/components/Photo";
+import ResponsivePhoto from "@/components/ResponsivePhoto";
 import { Sparkles, Wind } from "lucide-react";
 
 export default function PerfumesCategoryPage() {
@@ -39,15 +39,15 @@ export default function PerfumesCategoryPage() {
             </div>
           </div>
 
-          <div className="lg:col-span-5 flex justify-center">
-            <Photo
+          <div className="lg:col-span-5 flex justify-center w-full">
+            <ResponsivePhoto
               slot="collection-eau-de-parfum"
               alt="Aarsika Eau de Parfum Collection"
               aspect="3/4"
               shape="arch"
               priority
               sizes="(max-width: 1024px) 100vw, 40vw"
-              className="shadow-2xl border border-[#C9A55C]/30"
+              className="shadow-2xl border border-[#C9A55C]/30 max-w-md"
             />
           </div>
         </div>
