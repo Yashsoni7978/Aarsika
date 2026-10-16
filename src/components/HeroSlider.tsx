@@ -4,17 +4,21 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { HERO_SLIDES, HeroSlide } from '@/data/heroSlides';
+import { HERO_SLIDES, HeroSlide, MOBILE_HERO_SLIDES } from '@/data/heroSlides';
 
 const AUTOPLAY_MS = 6500;
+const MOBILE_AUTOPLAY_MS = 5500;
 
 export default function HeroSlider() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [mobileActiveIndex, setMobileActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
+  const mobileTouchStartX = useRef<number | null>(null);
+  const mobileTouchEndX = useRef<number | null>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
 
   // Check reduced motion preference
@@ -43,6 +47,14 @@ export default function HeroSlider() {
     setActiveIndex((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
   }, []);
 
+  const nextMobileSlide = useCallback(() => {
+    setMobileActiveIndex((prev) => (prev + 1) % MOBILE_HERO_SLIDES.length);
+  }, []);
+
+  const prevMobileSlide = useCallback(() => {
+    setMobileActiveIndex((prev) => (prev - 1 + MOBILE_HERO_SLIDES.length) % MOBILE_HERO_SLIDES.length);
+  }, []);
+
   // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -50,23 +62,32 @@ export default function HeroSlider() {
       if (e.key === 'ArrowRight') {
         e.preventDefault();
         nextSlide();
+        nextMobileSlide();
       } else if (e.key === 'ArrowLeft') {
         e.preventDefault();
         prevSlide();
+        prevMobileSlide();
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [nextSlide, prevSlide]);
+  }, [nextSlide, prevSlide, nextMobileSlide, prevMobileSlide]);
 
-  // Autoplay
+  // Desktop/Tablet Autoplay
   useEffect(() => {
     if (isPaused || prefersReducedMotion) return;
     const interval = setInterval(nextSlide, AUTOPLAY_MS);
     return () => clearInterval(interval);
   }, [isPaused, prefersReducedMotion, nextSlide]);
 
-  // Touch handlers for mobile swipe
+  // Mobile Autoplay (5.5s refined pace)
+  useEffect(() => {
+    if (isPaused || prefersReducedMotion) return;
+    const interval = setInterval(nextMobileSlide, MOBILE_AUTOPLAY_MS);
+    return () => clearInterval(interval);
+  }, [isPaused, prefersReducedMotion, nextMobileSlide]);
+
+  // Touch handlers for desktop/tablet swipe
   const handleTouchStart = (e: React.TouchEvent) => {
     setIsPaused(true);
     touchStartX.current = e.touches[0].clientX;
@@ -86,6 +107,29 @@ export default function HeroSlider() {
     }
     touchStartX.current = null;
     touchEndX.current = null;
+    setTimeout(() => setIsPaused(false), 5000);
+  };
+
+  // Mobile Touch Handlers
+  const handleMobileTouchStart = (e: React.TouchEvent) => {
+    setIsPaused(true);
+    mobileTouchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleMobileTouchMove = (e: React.TouchEvent) => {
+    mobileTouchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleMobileTouchEnd = () => {
+    if (mobileTouchStartX.current !== null && mobileTouchEndX.current !== null) {
+      const diff = mobileTouchStartX.current - mobileTouchEndX.current;
+      if (Math.abs(diff) > 40) {
+        if (diff > 0) nextMobileSlide();
+        else prevMobileSlide();
+      }
+    }
+    mobileTouchStartX.current = null;
+    mobileTouchEndX.current = null;
     setTimeout(() => setIsPaused(false), 5000);
   };
 
@@ -389,151 +433,129 @@ export default function HeroSlider() {
 
       {/* ========================================================
           3. MOBILE VIEWPORT (md:hidden block — < 768px):
-          Pristine portrait campaign artwork on top (bottle 100% visible, un-obscured)
-          + Luxury editorial content panel and Pearl CTA directly below
-          (Optimized for 375 × 812 and 390 × 844 viewports without vertical overflow)
+          Full-width, edge-to-edge luxury mobile hero image slider.
+          Uses approved mobile campaign artwork with embedded typography
+          and gold-bordered CTAs. No duplicate HTML text or buttons.
+          Tap-to-navigate links, subtle crossfade, swipe gestures,
+          and discrete pagination indicators.
       ======================================================== */}
-      <div className="md:hidden flex flex-col w-full bg-[#200408]">
-        {/* 1. Mobile Campaign Image Viewport */}
-        <div className="relative w-full aspect-[16/11] min-h-[270px] max-h-[340px] overflow-hidden bg-[#200408]">
-          {HERO_SLIDES.map((slide, idx) => {
-            const isActive = idx === activeIndex;
-            const isPriority = idx === 0;
+      <div
+        className="md:hidden relative w-full aspect-[4/5] min-h-[440px] max-h-[620px] overflow-hidden bg-[#1b0306] select-none"
+        onTouchStart={handleMobileTouchStart}
+        onTouchMove={handleMobileTouchMove}
+        onTouchEnd={handleMobileTouchEnd}
+      >
+        {/* Mobile Slide Crossfade Stack */}
+        {MOBILE_HERO_SLIDES.map((slide, idx) => {
+          const isActive = idx === mobileActiveIndex;
+          const isPriority = idx === 0;
 
-            return (
-              <div
-                key={slide.id}
-                role="group"
-                aria-roledescription="slide"
-                aria-label={`${slide.slideNumber} of ${HERO_SLIDES.length}: ${slide.headline}`}
-                aria-hidden={!isActive}
-                className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out ${
-                  isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
-                }`}
+          return (
+            <div
+              key={slide.id}
+              role="group"
+              aria-roledescription="slide"
+              aria-label={`${slide.slideNumber} of ${MOBILE_HERO_SLIDES.length}: ${slide.title}`}
+              aria-hidden={!isActive}
+              className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out ${
+                isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+              }`}
+            >
+              <Link
+                href={slide.link}
+                aria-label={`${slide.title} - ${slide.productName}`}
+                className="relative block w-full h-full overflow-hidden focus:outline-none focus:ring-1 focus:ring-[#C69A45]/60 cursor-pointer"
               >
-                <picture className="w-full h-full block">
-                  <source srcSet={slide.mobileImage} type="image/webp" />
+                {/* Ambient Soft Glow Background (seamless edge color matching) */}
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 overflow-hidden pointer-events-none"
+                >
                   <img
-                    src={slide.mobileImage}
+                    src={slide.mobileWebp}
+                    alt=""
+                    className="w-full h-full object-cover blur-2xl opacity-40 scale-110"
+                  />
+                </div>
+
+                {/* Main Crisp Campaign Artwork */}
+                <picture className="relative z-10 w-full h-full block">
+                  <source srcSet={slide.mobileAvif} type="image/avif" />
+                  <source srcSet={slide.mobileWebp} type="image/webp" />
+                  <img
+                    src={slide.fallbackImage}
                     alt={slide.alt}
-                    width={800}
-                    height={1000}
+                    width={1122}
+                    height={1402}
                     decoding="async"
                     loading={isPriority ? 'eager' : 'lazy'}
                     // @ts-expect-error fetchpriority attribute is standard in HTML5
                     fetchpriority={isPriority ? 'high' : 'auto'}
-                    className="w-full h-full object-cover object-center"
+                    className={`w-full h-full ${slide.objectFitClass} ${slide.objectPositionClass}`}
                   />
                 </picture>
-              </div>
-            );
-          })}
+              </Link>
+            </div>
+          );
+        })}
 
-          {/* Subtle bottom shadow on mobile image */}
-          <div
-            aria-hidden="true"
-            className="absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-[#200408] to-transparent z-15 pointer-events-none"
-          />
+        {/* Floating Mobile Navigation Chevrons */}
+        <button
+          type="button"
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            prevMobileSlide();
+          }}
+          aria-label="Previous mobile slide"
+          className="absolute left-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-[#1b0306]/65 hover:bg-[#1b0306]/90 text-[#F5EFE3] border border-[#C69A45]/35 backdrop-blur-sm flex items-center justify-center transition-transform active:scale-90 focus:outline-none"
+        >
+          <ChevronLeft className="w-4 h-4" />
+        </button>
+        <button
+          type="button"
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            nextMobileSlide();
+          }}
+          aria-label="Next mobile slide"
+          className="absolute right-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-[#1b0306]/65 hover:bg-[#1b0306]/90 text-[#F5EFE3] border border-[#C69A45]/35 backdrop-blur-sm flex items-center justify-center transition-transform active:scale-90 focus:outline-none"
+        >
+          <ChevronRight className="w-4 h-4" />
+        </button>
 
-          {/* Compact Mobile Navigation Chevrons */}
-          <button
-            onClick={prevSlide}
-            aria-label="Previous slide"
-            className="absolute left-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-[#200408]/60 text-[#F5EFE3] border border-[#C69A45]/30 flex items-center justify-center transition-all focus:outline-none"
-          >
-            <ChevronLeft className="w-4 h-4" />
-          </button>
-          <button
-            onClick={nextSlide}
-            aria-label="Next slide"
-            className="absolute right-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-[#200408]/60 text-[#F5EFE3] border border-[#C69A45]/30 flex items-center justify-center transition-all focus:outline-none"
-          >
-            <ChevronRight className="w-4 h-4" />
-          </button>
-
-          {/* Slide Indicator Overlay on Mobile Image */}
-          <div className="absolute bottom-2 inset-x-0 z-20 flex items-center justify-center gap-1.5">
-            {HERO_SLIDES.map((slide, idx) => {
-              const isCurrent = idx === activeIndex;
+        {/* Sleek Frosted Luxury Indicator Capsule & Slide Counter */}
+        <div className="absolute bottom-3 inset-x-0 z-20 flex items-center justify-center pointer-events-auto">
+          <div className="px-2.5 py-1 rounded-full bg-[#1b0306]/75 backdrop-blur-md border border-[#C69A45]/35 flex items-center gap-1.5 shadow-[0_4px_16px_rgba(0,0,0,0.5)]">
+            {MOBILE_HERO_SLIDES.map((slide, idx) => {
+              const isCurrent = idx === mobileActiveIndex;
               return (
                 <button
                   key={slide.id}
-                  onClick={() => setActiveIndex(idx)}
-                  aria-label={`Go to slide ${slide.slideNumber}`}
-                  className={`h-[2.5px] rounded-full transition-all duration-300 focus:outline-none ${
-                    isCurrent ? 'w-6 bg-[#C69A45]' : 'w-2 bg-[#F5EFE3]/40'
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setMobileActiveIndex(idx);
+                  }}
+                  aria-label={`Go to mobile slide ${slide.slideNumber}: ${slide.title}`}
+                  aria-current={isCurrent ? 'true' : undefined}
+                  className={`h-[3px] rounded-full transition-all duration-300 focus:outline-none ${
+                    isCurrent
+                      ? 'w-6 bg-[#D8B467] shadow-[0_0_8px_rgba(216,180,103,0.8)]'
+                      : 'w-2 bg-[#F5EFE3]/35 hover:bg-[#F5EFE3]/70'
                   }`}
                 />
               );
             })}
-          </div>
-        </div>
-
-        {/* 2. Mobile Editorial Content & Pearl Button Panel (100% clear of product) */}
-        <div
-          key={activeSlide.id}
-          className="px-5 pt-4 pb-6 bg-[#200408] text-center flex flex-col items-center space-y-2.5 animate-hero-fade-in"
-        >
-          {/* Eyebrow */}
-          <div className="flex items-center justify-center gap-2">
-            <span className="h-[1px] w-4 bg-[#C69A45]/70" />
-            <span className="text-[10px] uppercase tracking-[0.24em] text-[#E5C378] font-serif font-medium">
-              {activeSlide.eyebrow}
+            <span className="text-[10px] font-mono text-[#E5C378]/90 ml-1.5 tracking-wider select-none font-medium">
+              {String(mobileActiveIndex + 1).padStart(2, '0')} / {String(MOBILE_HERO_SLIDES.length).padStart(2, '0')}
             </span>
-            <span className="h-[1px] w-4 bg-[#C69A45]/70" />
-            <span className="text-[#C69A45] text-[10px]">❖</span>
           </div>
-
-          {/* Headline */}
-          <h1 className="font-serif text-2xl sm:text-3xl font-normal text-[#F5EFE3] leading-snug px-2">
-            {activeSlide.headline}{' '}
-            {activeSlide.headlineAccent && (
-              <span className="italic font-serif text-[#F8F4EC] font-light">
-                {activeSlide.headlineAccent}
-              </span>
-            )}
-            {activeSlide.headlineAfterAccent ? ` ${activeSlide.headlineAfterAccent}` : ''}
-          </h1>
-
-          {/* Description */}
-          <p className="font-sans text-xs text-[#F5EFE3]/85 font-light leading-relaxed max-w-sm px-2">
-            {activeSlide.description}
-          </p>
-
-          {/* Pearl Button CTA */}
-          <div className="pt-1.5 w-full flex justify-center">
-            <Link
-              href={activeSlide.ctaLink}
-              aria-label={`${activeSlide.ctaText} - ${activeSlide.productName}`}
-              className="group inline-flex items-center justify-center gap-3 px-6 py-2.5 rounded-full bg-gradient-to-r from-[#D8B467] via-[#E2C785] to-[#C9A24D] text-[#200408] font-sans font-semibold text-xs uppercase tracking-[0.16em] shadow-[0_4px_16px_rgba(198,154,69,0.35)] active:scale-[0.98] transition-all"
-            >
-              <span className="w-5 h-5 rounded-full bg-[#200408] border border-[#C69A45]/40 flex items-center justify-center text-[#E5C378] shrink-0">
-                <svg
-                  className="w-3 h-3"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                >
-                  <path
-                    d="M12 2L15 9L22 12L15 15L12 22L9 15L2 12L9 9L12 2Z"
-                    fill="currentColor"
-                    fillOpacity="0.4"
-                  />
-                  <circle cx="12" cy="12" r="2" fill="currentColor" />
-                </svg>
-              </span>
-              <span>{activeSlide.ctaText}</span>
-              <ChevronRight className="w-3.5 h-3.5 text-[#200408]" />
-            </Link>
-          </div>
-
-          {/* Slide counter */}
-          <span className="text-[10px] font-mono text-[#F5EFE3]/50 tracking-widest pt-0.5">
-            {String(activeIndex + 1).padStart(2, '0')} / {String(HERO_SLIDES.length).padStart(2, '0')}
-          </span>
         </div>
       </div>
+
     </section>
   );
 }

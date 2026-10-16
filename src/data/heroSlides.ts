@@ -193,3 +193,121 @@ export const HERO_SLIDES: HeroSlide[] = [
 ];
 
 export const heroSlides = HERO_SLIDES;
+
+export interface MobileHeroSlide {
+  id: string;
+  slideNumber: number;
+  title: string;
+  subtitle: string;
+  productName: string;
+  link: string;
+  mobileWebp: string;
+  mobileAvif: string;
+  fallbackImage: string;
+  alt: string;
+  sourceFilename: string;
+  aspectRatio: string;
+  objectFitClass: string;
+  objectPositionClass: string;
+}
+
+export const MOBILE_HERO_SLIDES: MobileHeroSlide[] = [
+  {
+    id: 'mobile-amour',
+    slideNumber: 1,
+    title: 'Amour — A Fragrance of Love',
+    subtitle: 'Rose ❖ Oud ❖ Amber',
+    productName: 'Aarsika Amour Eau de Parfum (50 ml)',
+    link: '/products/amour',
+    mobileWebp: '/photos/hero/mobile-amour-love.webp',
+    mobileAvif: '/photos/hero/mobile-amour-love.avif',
+    fallbackImage: '/photos/hero/mobile-amour-love.webp',
+    alt: 'Aarsika Amour Eau de Parfum - A Fragrance of Love',
+    sourceFilename: 'Amour_ A Fragrance of Love.png',
+    aspectRatio: '4/5',
+    objectFitClass: 'object-cover',
+    objectPositionClass: 'object-center',
+  },
+  {
+    id: 'mobile-scent-of-royalty',
+    slideNumber: 2,
+    title: 'Scent of Royalty — The Signature Collection',
+    subtitle: 'Discover Your Signature Fragrance',
+    productName: 'Aarsika Signature Perfumes (Mehfil, Atlas, Amour, Roman, Saira)',
+    link: '/collections/perfumes',
+    mobileWebp: '/photos/hero/mobile-scent-of-royalty.webp',
+    mobileAvif: '/photos/hero/mobile-scent-of-royalty.avif',
+    fallbackImage: '/photos/hero/mobile-scent-of-royalty.webp',
+    alt: 'Aarsika Scent of Royalty - Luxury Signature Perfume Collection',
+    sourceFilename: 'Scent of Royalty Perfume Collection.png',
+    aspectRatio: '4/5',
+    objectFitClass: 'object-cover',
+    objectPositionClass: 'object-center',
+  },
+  {
+    id: 'mobile-heritage-attar',
+    slideNumber: 3,
+    title: 'Heritage in Every Scent — Premium Attar Collection',
+    subtitle: 'Timeless Fragrances Rooted in Tradition',
+    productName: 'Aarsika Pure Attars (Tobacco Oudh, Shaam Ka Noor, Raat Ki Rani)',
+    link: '/collections/attar',
+    mobileWebp: '/photos/hero/mobile-heritage-attar.webp',
+    mobileAvif: '/photos/hero/mobile-heritage-attar.avif',
+    fallbackImage: '/photos/hero/mobile-heritage-attar.webp',
+    alt: 'Aarsika Heritage in Every Scent - Pure Luxury Attars',
+    sourceFilename: 'Heritage Attar Collection at Golden Hour.png',
+    aspectRatio: '2/3',
+    objectFitClass: 'object-cover',
+    objectPositionClass: 'object-[center_20%]',
+  },
+  {
+    id: 'mobile-scent-for-every-story',
+    slideNumber: 4,
+    title: 'A Scent for Every Story — The Aarsika Attar House',
+    subtitle: 'Discover the Art of Attar',
+    productName: 'The Aarsika Pure Attar Range',
+    link: '/collections/attar',
+    mobileWebp: '/photos/hero/mobile-scent-for-every-story.webp',
+    mobileAvif: '/photos/hero/mobile-scent-for-every-story.avif',
+    fallbackImage: '/photos/hero/mobile-scent-for-every-story.webp',
+    alt: 'The Aarsika Attar House - A Scent for Every Story',
+    sourceFilename: 'A Scent for Every Story.png',
+    aspectRatio: '9/16',
+    objectFitClass: 'object-contain',
+    objectPositionClass: 'object-center',
+  },
+  {
+    id: 'mobile-fragrances-tradition',
+    slideNumber: 5,
+    title: 'Fragrances Rooted in Tradition — Perfume Discovery Set',
+    subtitle: 'Scents for Every You — 10 × 3 ml',
+    productName: 'The Royal Perfume Sampler (10 × 3 ml Discovery Chest)',
+    link: '/products/the-royal-perfume-sampler',
+    mobileWebp: '/photos/hero/mobile-fragrances-tradition.webp',
+    mobileAvif: '/photos/hero/mobile-fragrances-tradition.avif',
+    fallbackImage: '/photos/hero/mobile-fragrances-tradition.webp',
+    alt: 'Aarsika Fragrances Rooted in Tradition - The Royal Perfume Sampler',
+    sourceFilename: 'Fragrances Rooted in Tradition.png',
+    aspectRatio: '9/16',
+    objectFitClass: 'object-contain',
+    objectPositionClass: 'object-center',
+  },
+  {
+    id: 'mobile-discovery-set-sunset',
+    slideNumber: 6,
+    title: 'Find Your Signature — The Aarsika Edit',
+    subtitle: 'A World of Fragrance, Waiting to Be Discovered — 5 × 12 ml',
+    productName: 'The Discovery Gift Set (5 × 12 ml Flacons)',
+    link: '/products/the-discovery-gift-set',
+    mobileWebp: '/photos/hero/mobile-discovery-set-sunset.webp',
+    mobileAvif: '/photos/hero/mobile-discovery-set-sunset.avif',
+    fallbackImage: '/photos/hero/mobile-discovery-set-sunset.webp',
+    alt: 'Aarsika Discovery Gift Set at Sunset - 5 x 12 ml Flacons',
+    sourceFilename: 'Aarsika Discovery Set at Sunset.png',
+    aspectRatio: '4/5',
+    objectFitClass: 'object-cover',
+    objectPositionClass: 'object-center',
+  },
+];
+
+export const mobileHeroSlides = MOBILE_HERO_SLIDES;
