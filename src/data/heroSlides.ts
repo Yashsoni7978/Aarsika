@@ -1,34 +1,176 @@
-import { PRODUCTS, Product } from './products';
-
 export interface HeroSlide {
   id: string;
-  slug: string;
-  name: string;
-  type: string;
-  moment: string;
-  line: string;
-  img: string;
-  href: string;
-  product?: Product;
+  slideNumber: number;
+  eyebrow: string;
+  headline: string;
+  headlineAccent?: string;
+  headlineAfterAccent?: string;
+  description: string;
+  ctaText: string;
+  ctaLink: string;
+  desktopImage: string;
+  mobileImage: string;
+  alt: string;
+  sourceFilename: string;
+  productName: string;
+  depiction: string;
 }
 
-// Phase 5.0: exactly these 5 products, in this order
-const heroSlugs = ['amour', 'raat-ki-rani', 'noor', 'resham-oudh', 'atlas'];
+export const HERO_SLIDES: HeroSlide[] = [
+  {
+    id: 'amour',
+    slideNumber: 1,
+    eyebrow: 'THE ART OF ATTRACTION',
+    headline: 'Fragrance That Stays With',
+    headlineAccent: 'Your',
+    headlineAfterAccent: 'Story.',
+    description: 'Romantic, warm and unforgettable. Discover a scent that turns fleeting moments into lasting memories.',
+    ctaText: 'DISCOVER AMOUR',
+    ctaLink: '/products/amour',
+    desktopImage: '/photos/hero/hero-amour.webp',
+    mobileImage: '/photos/hero/hero-amour-mobile.webp',
+    alt: 'Aarsika Amour Eau de Parfum in Golden Palace Courtyard',
+    sourceFilename: 'Aarsika Amour Perfume in Golden Courtyard.png',
+    productName: 'Aarsika Amour Eau de Parfum (50 ml)',
+    depiction: 'Individual AMOUR amber perfume bottle resting on a marble pedestal with red rose petals and Moorish palace arches in warm golden light.',
+  },
+  {
+    id: 'atlas',
+    slideNumber: 2,
+    eyebrow: 'MADE TO LEAVE AN IMPRESSION',
+    headline: 'Make Your Presence',
+    headlineAccent: 'Unmistakable.',
+    headlineAfterAccent: '',
+    description: 'Bold character. Refined depth. A confident signature crafted for those who leave an impression.',
+    ctaText: 'EXPLORE ATLAS',
+    ctaLink: '/products/atlas',
+    desktopImage: '/photos/hero/hero-atlas.webp',
+    mobileImage: '/photos/hero/hero-atlas-mobile.webp',
+    alt: 'Aarsika Atlas Eau de Parfum in Golden Palace Courtyard',
+    sourceFilename: 'Aarsika Atlas in a Golden Palace Courtyard.png',
+    productName: 'Aarsika Atlas Eau de Parfum (50 ml)',
+    depiction: 'Individual aquatic blue ATLAS perfume bottle resting on a marble and gold platter beside white jasmine blooms in a sunset palace courtyard.',
+  },
+  {
+    id: 'perfume-collection',
+    slideNumber: 3,
+    eyebrow: 'DISCOVER YOUR SIGNATURE',
+    headline: 'Your Signature.',
+    headlineAccent: 'Your',
+    headlineAfterAccent: 'Scent.',
+    description: 'From captivating florals to rich, sophisticated blends, find the fragrance that feels unmistakably you.',
+    ctaText: 'EXPLORE PERFUMES',
+    ctaLink: '/collections/perfumes',
+    desktopImage: '/photos/hero/hero-perfume-collection.webp',
+    mobileImage: '/photos/hero/hero-perfume-collection-mobile.webp',
+    alt: 'Aarsika Perfume Collection Velvet Presentation Coffret at Sunset',
+    sourceFilename: 'Aarsika Perfume Collection at Sunset.png',
+    productName: 'Aarsika Perfume Collection Coffret',
+    depiction: 'Open burgundy velvet presentation coffret box showcasing four signature perfumes (Amour, Roman, Noor, Saira) with the Aarsika gold crest on the lid.',
+  },
+  {
+    id: 'house-collection',
+    slideNumber: 4,
+    eyebrow: 'THE WORLD OF AARSIKA',
+    headline: 'A World of Fragrance.',
+    headlineAccent: 'One',
+    headlineAfterAccent: 'House.',
+    description: 'Meet the AARSIKA collection—distinctive scents created for different moods, moments and memories.',
+    ctaText: 'DISCOVER THE HOUSE',
+    ctaLink: '/collections',
+    desktopImage: '/photos/hero/hero-house-collection.webp',
+    mobileImage: '/photos/hero/hero-house-collection-mobile.webp',
+    alt: 'The House of Aarsika Fragrance Collection in Golden Palace Light',
+    sourceFilename: 'Aarsika Perfumes combo in Golden Palace Light.png',
+    productName: 'The House of Aarsika Fragrance Line',
+    depiction: 'Five distinctive house perfumes (Mehfil, Atlas, Amour, Roman, Saira) arranged together across marble pedestals beneath golden palace arches.',
+  },
+  {
+    id: 'discovery-set-10',
+    slideNumber: 5,
+    eyebrow: 'YOUR FRAGRANCE JOURNEY STARTS HERE',
+    headline: 'Find the Scent That Feels Like',
+    headlineAccent: 'You.',
+    headlineAfterAccent: '',
+    description: 'Explore a curated selection of fragrances and discover your next signature scent, one spray at a time.',
+    ctaText: 'SHOP THE DISCOVERY SET',
+    ctaLink: '/products/the-royal-perfume-sampler',
+    desktopImage: '/photos/hero/hero-discovery-set-10.webp',
+    mobileImage: '/photos/hero/hero-discovery-set-10-mobile.webp',
+    alt: 'Aarsika Perfume Discovery Set 10 Piece in Burgundy Chest at Sunset',
+    sourceFilename: 'Aarsika Perfume Discovery Set at Sunset 10 piece.png',
+    productName: 'The Royal Perfume Sampler (10 × 2 ml Discovery Set)',
+    depiction: 'Burgundy velvet presentation chest open with ten 2 ml Eau de Parfum atomizer spray vials on a sunset terrace.',
+  },
+  {
+    id: 'discovery-set-5',
+    slideNumber: 6,
+    eyebrow: 'MORE TO DISCOVER',
+    headline: 'Five Fragrances. Endless',
+    headlineAccent: 'Possibilities.',
+    headlineAfterAccent: '',
+    description: 'Explore five distinctive scents and make room for a new favourite in your everyday ritual.',
+    ctaText: 'EXPLORE THE DISCOVERY SET',
+    ctaLink: '/products/the-discovery-gift-set',
+    desktopImage: '/photos/hero/hero-discovery-set-5.webp',
+    mobileImage: '/photos/hero/hero-discovery-set-5-mobile.webp',
+    alt: 'Aarsika Discovery Set 5 Larger Vials at Sunset',
+    sourceFilename: 'Aarsika Perfume Discovery Set at Sunset.png',
+    productName: 'The Discovery Gift Set (5 × 12 ml Flacons)',
+    depiction: 'Pale pink presentation box with burgundy floral patterns housing five larger 12 ml flacons on a sunlit marble terrace with brass lantern.',
+  },
+  {
+    id: 'sehar-e-gulab',
+    slideNumber: 7,
+    eyebrow: 'THE POETRY OF ROSE',
+    headline: 'The Timeless Romance of',
+    headlineAccent: 'Rose.',
+    headlineAfterAccent: '',
+    description: 'Discover a rose-inspired attar that brings floral richness and timeless elegance to your fragrance ritual.',
+    ctaText: 'DISCOVER SEHAR-E-GULAB',
+    ctaLink: '/products/sehar-e-gulab',
+    desktopImage: '/photos/hero/hero-sehar-e-gulab.webp',
+    mobileImage: '/photos/hero/hero-sehar-e-gulab-mobile.webp',
+    alt: 'Aarsika Sehar E Gulab Pure Attar at Sunset',
+    sourceFilename: 'Aarsika Sehar Gulab Attar at Sunset.png',
+    productName: 'Aarsika Sehar E Gulab Attar (30 ml)',
+    depiction: 'Individual multifaceted ruby crystal attar flacon on a sunlit marble balustrade as warm light streams over fresh roses.',
+  },
+  {
+    id: 'attar-collection',
+    slideNumber: 8,
+    eyebrow: 'ROOTED IN FRAGRANCE TRADITION',
+    headline: 'Tradition, Bottled',
+    headlineAccent: 'Beautifully.',
+    headlineAfterAccent: '',
+    description: 'Discover expressive attars inspired by rich fragrance traditions and reimagined for the modern connoisseur.',
+    ctaText: 'EXPLORE ATTARS',
+    ctaLink: '/collections/attar',
+    desktopImage: '/photos/hero/hero-attar-collection.webp',
+    mobileImage: '/photos/hero/hero-attar-collection-mobile.webp',
+    alt: 'Aarsika Pure Attar Collection at Sunset',
+    sourceFilename: 'Aarsika Attar Collection at Sunset.png',
+    productName: 'Aarsika Pure Attar Collection',
+    depiction: 'Tiered marble steps presenting eight jewel-toned crystal flacon attars overlooking a palatial golden sunset courtyard.',
+  },
+  {
+    id: 'amber-crimson-navy',
+    slideNumber: 9,
+    eyebrow: 'FIND YOUR FRAGRANCE',
+    headline: 'Every Bottle Holds a Different',
+    headlineAccent: 'World.',
+    headlineAfterAccent: '',
+    description: 'From warm amber to deep crimson and midnight blue, explore a collection as individual as your taste.',
+    ctaText: 'FIND YOUR ATTAR',
+    ctaLink: '/collections/attar',
+    desktopImage: '/photos/hero/hero-amber-crimson-navy.webp',
+    mobileImage: '/photos/hero/hero-amber-crimson-navy-mobile.webp',
+    alt: 'Aarsika Luxury Amber, Crimson and Navy Attars',
+    sourceFilename: 'Luxury Amber, Crimson & Navy Attars.png',
+    productName: 'Aarsika Statement Attar Trio (Amber, Crimson & Navy)',
+    depiction: 'Trio of faceted crystal attars in warm amber (Tobacco Oudh), crimson (Shaam Ka Noor), and midnight navy (Raat Ki Rani) amidst white jasmine.',
+  },
+];
 
-export const heroSlides: HeroSlide[] = heroSlugs
-  .map((slug) => {
-    const product = PRODUCTS.find((p) => p.slug === slug);
-    if (!product) return null;
-    return {
-      id: `slide-${slug}`,
-      slug,
-      name: product.name,
-      type: product.type,
-      moment: product.occasion,
-      line: product.shortDescription || product.tagline || '',
-      img: slug,
-      href: `/products/${slug}`,
-      product,
-    };
-  })
-  .filter(Boolean) as HeroSlide[];
+// Backward compatibility alias
+export const heroSlides = HERO_SLIDES;

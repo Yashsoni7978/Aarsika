@@ -2,10 +2,10 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Search, ShoppingBag, Menu, X, Heart, User, ChevronDown } from 'lucide-react';
 import { useShop } from '@/context/ShopContext';
-import { Logo } from '@/components/Logo';
 
 export const Header: React.FC = () => {
   const pathname = usePathname();
@@ -62,30 +62,72 @@ export const Header: React.FC = () => {
     { label: 'Trial Sets', href: '/collection/trial-sets', desc: 'Discovery & sampler vials' },
   ];
 
+  const baseMarqueeMessages = [
+    'COMPLIMENTARY DELIVERY ON ORDERS ABOVE ₹799',
+    'DISCOVERY TRIAL SET JUST ₹499',
+    'EXPLORE OUR FRAGRANCE GIFTING COLLECTION',
+    'DISCOVER YOUR SIGNATURE SCENT — ATTARS & EAU DE PARFUMS',
+  ];
+
+  // Duplicate sequence twice in each track for seamless full-width coverage without gaps
+  const marqueeTrack = [...baseMarqueeMessages, ...baseMarqueeMessages];
+
   return (
-    <>
-      <header className="sticky top-0 z-50 w-full h-[64px] md:h-[72px] bg-[#30070D] text-[#F5EFE3] border-b border-[#C69A45]/20 flex items-center shadow-sm">
-        <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-10 w-full flex items-center justify-between">
-          
-          {/* LEFT: Logo & Mobile Hamburger */}
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => setIsMobileMenuOpen(true)}
-              className="lg:hidden p-2 text-[#E7CF98] hover:text-[#C69A45] focus:outline-none min-w-[44px] min-h-[44px] flex items-center justify-center"
-              aria-label="Open Navigation Menu"
-            >
-              <Menu className="w-5 h-5" />
-            </button>
-            <Logo variant="light" />
+    <header className="sticky top-0 z-50 w-full shadow-sm">
+      {/* 1. ANNOUNCEMENT BAR — CONTINUOUS SEAMLESS MARQUEE */}
+      <aside
+        aria-label="Store Announcements"
+        className="w-full h-8 sm:h-[32px] bg-[#30070D] text-[#E5C378] overflow-hidden border-y border-[#C69A45] flex items-center relative z-40 select-none group"
+      >
+        <div className="flex animate-marquee group-hover:[animation-play-state:paused] items-center whitespace-nowrap will-change-transform">
+          {/* Track 1: Rendered for view and accessible once to screen readers */}
+          <div className="flex items-center shrink-0">
+            {marqueeTrack.map((text, idx) => (
+              <div key={`track1-${idx}`} className="inline-flex items-center shrink-0">
+                <span className="font-serif text-[11px] sm:text-[12px] uppercase tracking-[0.22em] font-medium text-[#E5C378]">
+                  {text}
+                </span>
+                <div className="inline-flex items-center mx-5 sm:mx-7 select-none" aria-hidden="true">
+                  <span className="text-[#E5C378] text-[8px] sm:text-[9px]">✦</span>
+                  <span className="h-3 w-[1px] bg-[#C69A45]/40 inline-block ml-5 sm:ml-7" />
+                </div>
+              </div>
+            ))}
           </div>
 
-          {/* CENTER: Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-7 xl:space-x-9" aria-label="Main Navigation">
+          {/* Track 2: Identical duplicate for mathematically seamless continuous looping (hidden from assistive tech) */}
+          <div className="flex items-center shrink-0" aria-hidden="true">
+            {marqueeTrack.map((text, idx) => (
+              <div key={`track2-${idx}`} className="inline-flex items-center shrink-0">
+                <span className="font-serif text-[11px] sm:text-[12px] uppercase tracking-[0.22em] font-medium text-[#E5C378]">
+                  {text}
+                </span>
+                <div className="inline-flex items-center mx-5 sm:mx-7 select-none">
+                  <span className="text-[#E5C378] text-[8px] sm:text-[9px]">✦</span>
+                  <span className="h-3 w-[1px] bg-[#C69A45]/40 inline-block ml-5 sm:ml-7" />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </aside>
+
+      {/* 2. MAIN NAVIGATION — SPLIT LAYOUT WITH SCULPTED CENTRE PLAQUE */}
+      <nav
+        aria-label="Main Navigation"
+        className="w-full h-[44px] sm:h-[46px] lg:h-[48px] bg-[#F5EFE3] text-[#351418] border-b border-[#C69A45]/30 relative z-30 transition-all duration-300"
+      >
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 w-full h-full flex items-center justify-between relative">
+          
+          {/* =========================================
+              DESKTOP LEFT NAVIGATION
+          ========================================= */}
+          <div className="hidden lg:flex items-center space-x-6 xl:space-x-8 min-w-0 pr-4">
             {/* HOME */}
             <Link
               href="/"
-              className={`text-xs uppercase tracking-[0.22em] font-medium transition-colors relative py-1 focus:outline-none ${
-                pathname === '/' ? 'text-[#E7CF98]' : 'text-[#F5EFE3]/80 hover:text-[#E7CF98]'
+              className={`font-serif text-[13px] xl:text-[14px] uppercase tracking-[0.20em] transition-colors relative py-1 focus:outline-none ${
+                pathname === '/' ? 'text-[#30070D] font-semibold' : 'text-[#351418] hover:text-[#9D6A26]'
               }`}
             >
               HOME
@@ -94,7 +136,7 @@ export const Header: React.FC = () => {
               )}
             </Link>
 
-            {/* COLLECTION with Dropdown */}
+            {/* COLLECTIONS with Dropdown */}
             <div
               ref={dropdownRef}
               className="relative py-1"
@@ -104,15 +146,15 @@ export const Header: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setIsCollectionOpen(!isCollectionOpen)}
-                className={`text-xs uppercase tracking-[0.22em] font-medium transition-colors flex items-center gap-1.5 focus:outline-none ${
+                className={`font-serif text-[13px] xl:text-[14px] uppercase tracking-[0.20em] transition-colors flex items-center gap-1.5 focus:outline-none ${
                   pathname.startsWith('/collection') || pathname.startsWith('/shop')
-                    ? 'text-[#E7CF98]'
-                    : 'text-[#F5EFE3]/80 hover:text-[#E7CF98]'
+                    ? 'text-[#30070D] font-semibold'
+                    : 'text-[#351418] hover:text-[#9D6A26]'
                 }`}
                 aria-expanded={isCollectionOpen}
                 aria-haspopup="true"
               >
-                <span>COLLECTION</span>
+                <span>COLLECTIONS</span>
                 <ChevronDown
                   className={`w-3.5 h-3.5 text-[#C69A45] transition-transform duration-200 ${
                     isCollectionOpen ? 'rotate-180' : ''
@@ -122,21 +164,23 @@ export const Header: React.FC = () => {
 
               {/* Desktop Dropdown Menu */}
               {isCollectionOpen && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-72 z-50 animate-fadeIn">
-                  <div className="bg-[#30070D] text-[#F5EFE3] border border-[#C69A45]/30 shadow-2xl p-2 divide-y divide-[#C69A45]/15">
+                <div className="absolute top-full left-0 pt-2 w-72 z-50 animate-fadeIn">
+                  <div className="bg-[#30070D] text-[#F5EFE3] border border-[#C69A45]/40 shadow-2xl p-2.5 divide-y divide-[#C69A45]/20 rounded-b-sm">
                     <div className="py-1">
                       {collectionItems.map((cat) => (
                         <Link
                           key={cat.label}
                           href={cat.href}
                           onClick={() => setIsCollectionOpen(false)}
-                          className="block px-3 py-2.5 hover:bg-[#450B14] transition-colors group"
+                          className="block px-3 py-2.5 hover:bg-[#450B14] transition-colors group rounded-sm"
                         >
                           <div className="font-serif text-sm text-[#F5EFE3] group-hover:text-[#E7CF98] flex items-center justify-between">
                             <span>{cat.label}</span>
-                            <span className="text-[#C69A45] opacity-0 group-hover:opacity-100 transition-opacity text-xs">→</span>
+                            <span className="text-[#C69A45] opacity-0 group-hover:opacity-100 transition-opacity text-xs">
+                              →
+                            </span>
                           </div>
-                          <p className="text-[11px] text-[#F5EFE3]/60 font-light mt-0.5">{cat.desc}</p>
+                          <p className="text-[11px] text-[#F5EFE3]/70 font-light mt-0.5">{cat.desc}</p>
                         </Link>
                       ))}
                     </div>
@@ -154,14 +198,99 @@ export const Header: React.FC = () => {
               )}
             </div>
 
-            {/* THE HOUSE */}
+            {/* BEST SELLER */}
             <Link
-              href="/our-story"
-              className={`text-xs uppercase tracking-[0.22em] font-medium transition-colors relative py-1 focus:outline-none ${
-                pathname === '/our-story' ? 'text-[#E7CF98]' : 'text-[#F5EFE3]/80 hover:text-[#E7CF98]'
+              href="/collections/bestsellers"
+              className={`font-serif text-[13px] xl:text-[14px] uppercase tracking-[0.20em] transition-colors relative py-1 focus:outline-none ${
+                pathname === '/collections/bestsellers'
+                  ? 'text-[#30070D] font-semibold'
+                  : 'text-[#351418] hover:text-[#9D6A26]'
               }`}
             >
-              THE HOUSE
+              BEST SELLER
+              {pathname === '/collections/bestsellers' && (
+                <span className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-[#C69A45]" />
+              )}
+            </Link>
+          </div>
+
+          {/* =========================================
+              MOBILE LEFT CONTROLS (Hamburger + Search)
+          ========================================= */}
+          <div className="flex lg:hidden items-center space-x-1 sm:space-x-2 shrink-0">
+            <button
+              onClick={() => setIsMobileMenuOpen(true)}
+              className="p-2 text-[#30070D] hover:text-[#9D6A26] focus:outline-none min-w-[44px] min-h-[44px] flex items-center justify-center transition-colors"
+              aria-label="Open Navigation Menu"
+            >
+              <Menu className="w-5 h-5" />
+            </button>
+            <button
+              onClick={() => setIsSearchOpen(true)}
+              className="p-2 text-[#30070D] hover:text-[#9D6A26] focus:outline-none min-w-[44px] min-h-[44px] flex items-center justify-center transition-colors"
+              aria-label="Search Fragrances"
+            >
+              <Search className="w-5 h-5" />
+            </button>
+          </div>
+
+          {/* =========================================
+              CENTRE SCULPTED LOGO PANEL (ABSOLUTE VIEWPORT-CENTERED)
+              - Upper gold border begins immediately below the announcement strip
+              - Zero conspicuous empty ivory gap above the plaque
+              - Sculpted downward point extending below the navbar baseline
+              - True viewport centering relative to page width
+          ========================================= */}
+          <div className="absolute left-1/2 -translate-x-1/2 top-0 z-40 pointer-events-auto">
+            <Link
+              href="/"
+              className="group block focus:outline-none transition-transform duration-300 hover:scale-[1.015]"
+              aria-label="Aarsika Fine Fragrance Homepage"
+            >
+              {/* Desktop Plaque: 180px width, unclipped, seamlessly meeting the marquee lower edge */}
+              <div className="hidden lg:block relative">
+                <Image
+                  src="/brand/aarsika-sculpted-plaque.webp"
+                  alt="AARSIKA Haute Parfumerie"
+                  width={998}
+                  height={485}
+                  priority
+                  className="w-[180px] xl:w-[188px] h-auto drop-shadow-[0_8px_16px_rgba(48,7,13,0.22)] select-none"
+                />
+              </div>
+
+              {/* Mobile Plaque: 114px width, complete gold silhouette visible */}
+              <div className="block lg:hidden relative">
+                <Image
+                  src="/brand/aarsika-sculpted-plaque.webp"
+                  alt="AARSIKA Haute Parfumerie"
+                  width={998}
+                  height={485}
+                  priority
+                  className="w-[114px] sm:w-[120px] h-auto drop-shadow-[0_6px_12px_rgba(48,7,13,0.20)] select-none"
+                />
+              </div>
+            </Link>
+          </div>
+
+          {/* Reserved Spacer to guarantee clearance in desktop flow */}
+          <div
+            className="hidden lg:block w-[196px] xl:w-[206px] shrink-0 pointer-events-none"
+            aria-hidden="true"
+          />
+
+          {/* =========================================
+              DESKTOP RIGHT NAVIGATION & UTILITIES
+          ========================================= */}
+          <div className="hidden lg:flex items-center space-x-6 xl:space-x-8 min-w-0 pl-4 text-[#351418]">
+            {/* OUR STORY */}
+            <Link
+              href="/our-story"
+              className={`font-serif text-[13px] xl:text-[14px] uppercase tracking-[0.20em] transition-colors relative py-1 focus:outline-none ${
+                pathname === '/our-story' ? 'text-[#30070D] font-semibold' : 'text-[#351418] hover:text-[#9D6A26]'
+              }`}
+            >
+              OUR STORY
               {pathname === '/our-story' && (
                 <span className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-[#C69A45]" />
               )}
@@ -170,8 +299,8 @@ export const Header: React.FC = () => {
             {/* JOURNAL */}
             <Link
               href="/journal"
-              className={`text-xs uppercase tracking-[0.22em] font-medium transition-colors relative py-1 focus:outline-none ${
-                pathname.startsWith('/journal') ? 'text-[#E7CF98]' : 'text-[#F5EFE3]/80 hover:text-[#E7CF98]'
+              className={`font-serif text-[13px] xl:text-[14px] uppercase tracking-[0.20em] transition-colors relative py-1 focus:outline-none ${
+                pathname.startsWith('/journal') ? 'text-[#30070D] font-semibold' : 'text-[#351418] hover:text-[#9D6A26]'
               }`}
             >
               JOURNAL
@@ -180,49 +309,72 @@ export const Header: React.FC = () => {
               )}
             </Link>
 
-            {/* CONTACT */}
-            <Link
-              href="/contact"
-              className={`text-xs uppercase tracking-[0.22em] font-medium transition-colors relative py-1 focus:outline-none ${
-                pathname === '/contact' ? 'text-[#E7CF98]' : 'text-[#F5EFE3]/80 hover:text-[#E7CF98]'
-              }`}
-            >
-              CONTACT
-              {pathname === '/contact' && (
-                <span className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-[#C69A45]" />
-              )}
-            </Link>
-          </nav>
+            {/* Thin vertical champagne-gold separator */}
+            <span className="w-px h-3.5 bg-[#C69A45]/50 mx-1 xl:mx-2 shrink-0 select-none" aria-hidden="true" />
 
-          {/* RIGHT: Action Icons (Search, Account, Wishlist, Bag) */}
-          <div className="flex items-center space-x-2 sm:space-x-3 text-[#F5EFE3]">
-            {/* Search */}
-            <button
-              onClick={() => setIsSearchOpen(true)}
-              className="p-2 hover:text-[#E7CF98] transition-colors focus:outline-none min-w-[40px] min-h-[40px] flex items-center justify-center"
-              aria-label="Search Fragrances"
-            >
-              <Search className="w-[18px] h-[18px] sm:w-5 sm:h-5" />
-            </button>
+            {/* Icons Group */}
+            <div className="flex items-center space-x-1.5 xl:space-x-2 text-[#351418]">
+              {/* Search */}
+              <button
+                onClick={() => setIsSearchOpen(true)}
+                className="p-1.5 text-[#351418] hover:text-[#9D6A26] transition-colors focus:outline-none min-w-[34px] min-h-[34px] flex items-center justify-center"
+                aria-label="Search Fragrances"
+              >
+                <Search className="w-[17px] h-[17px]" strokeWidth={1.75} />
+              </button>
 
-            {/* Account */}
-            <Link
-              href="/account"
-              className="p-2 hover:text-[#E7CF98] transition-colors focus:outline-none min-w-[40px] min-h-[40px] flex items-center justify-center"
-              aria-label="Customer Account"
-            >
-              <User className="w-[18px] h-[18px] sm:w-5 sm:h-5" />
-            </Link>
+              {/* Account */}
+              <Link
+                href="/account"
+                className="p-1.5 text-[#351418] hover:text-[#9D6A26] transition-colors focus:outline-none min-w-[34px] min-h-[34px] flex items-center justify-center"
+                aria-label="Customer Account"
+              >
+                <User className="w-[17px] h-[17px]" strokeWidth={1.75} />
+              </Link>
 
+              {/* Wishlist */}
+              <button
+                onClick={() => setIsWishlistOpen(true)}
+                className="p-1.5 text-[#351418] hover:text-[#9D6A26] transition-colors relative focus:outline-none min-w-[34px] min-h-[34px] flex items-center justify-center"
+                aria-label="Saved Wishlist"
+              >
+                <Heart className="w-[17px] h-[17px]" strokeWidth={1.75} />
+                {wishlist.length > 0 && (
+                  <span className="absolute top-0.5 right-0.5 w-3.5 h-3.5 bg-[#30070D] text-[#F5EFE3] font-mono text-[9px] font-bold flex items-center justify-center border border-[#C69A45] rounded-full">
+                    {wishlist.length}
+                  </span>
+                )}
+              </button>
+
+              {/* Shopping Bag */}
+              <button
+                onClick={() => setIsCartOpen(true)}
+                className="p-1.5 text-[#351418] hover:text-[#9D6A26] transition-colors relative focus:outline-none min-w-[34px] min-h-[34px] flex items-center justify-center"
+                aria-label="Shopping Bag"
+              >
+                <ShoppingBag className="w-[17px] h-[17px]" strokeWidth={1.75} />
+                {cartCount > 0 && (
+                  <span className="absolute top-0.5 right-0.5 w-4 h-4 bg-[#30070D] text-[#F5EFE3] font-mono text-[10px] font-semibold flex items-center justify-center border border-[#C69A45] rounded-full">
+                    {cartCount}
+                  </span>
+                )}
+              </button>
+            </div>
+          </div>
+
+          {/* =========================================
+              MOBILE RIGHT CONTROLS (Wishlist + Shopping Bag)
+          ========================================= */}
+          <div className="flex lg:hidden items-center space-x-1 sm:space-x-2 text-[#26060D] shrink-0">
             {/* Wishlist */}
             <button
               onClick={() => setIsWishlistOpen(true)}
-              className="p-2 hover:text-[#E7CF98] transition-colors relative focus:outline-none min-w-[40px] min-h-[40px] flex items-center justify-center"
+              className="p-2 text-[#30070D] hover:text-[#9D6A26] transition-colors relative focus:outline-none min-w-[44px] min-h-[44px] flex items-center justify-center"
               aria-label="Saved Wishlist"
             >
-              <Heart className="w-[18px] h-[18px] sm:w-5 sm:h-5" />
+              <Heart className="w-5 h-5" />
               {wishlist.length > 0 && (
-                <span className="absolute top-1 right-1 w-3.5 h-3.5 bg-[#C69A45] text-[#30070D] font-mono text-[9px] font-bold flex items-center justify-center">
+                <span className="absolute top-2 right-2 w-3.5 h-3.5 bg-[#30070D] text-[#F5EFE3] font-mono text-[9px] font-bold flex items-center justify-center border border-[#C69A45] rounded-full">
                   {wishlist.length}
                 </span>
               )}
@@ -231,26 +383,42 @@ export const Header: React.FC = () => {
             {/* Shopping Bag */}
             <button
               onClick={() => setIsCartOpen(true)}
-              className="p-2 hover:text-[#E7CF98] transition-colors relative focus:outline-none min-w-[40px] min-h-[40px] flex items-center justify-center"
+              className="p-2 text-[#30070D] hover:text-[#9D6A26] transition-colors relative focus:outline-none min-w-[44px] min-h-[44px] flex items-center justify-center"
               aria-label="Shopping Bag"
             >
-              <ShoppingBag className="w-[18px] h-[18px] sm:w-5 sm:h-5" />
+              <ShoppingBag className="w-5 h-5" />
               {cartCount > 0 && (
-                <span className="absolute top-1 right-1 w-4 h-4 bg-[#450B14] text-[#F5EFE3] font-mono text-[10px] font-medium flex items-center justify-center border border-[#C69A45]">
+                <span className="absolute top-2 right-2 w-4 h-4 bg-[#30070D] text-[#F5EFE3] font-mono text-[10px] font-semibold flex items-center justify-center border border-[#C69A45] rounded-full">
                   {cartCount}
                 </span>
               )}
             </button>
           </div>
-        </div>
-      </header>
 
-      {/* FULL-SCREEN BURGUNDY MOBILE OVERLAY MENU */}
+        </div>
+      </nav>
+
+      {/* =========================================
+          MOBILE SLIDE-IN OVERLAY MENU
+      ========================================= */}
       {isMobileMenuOpen && (
         <div className="fixed inset-0 z-50 bg-[#30070D] text-[#F5EFE3] flex flex-col justify-between p-6 overflow-y-auto animate-fadeIn">
           {/* Mobile Top Bar */}
-          <div className="flex items-center justify-between pb-5 border-b border-[#C69A45]/20">
-            <Logo variant="light" />
+          <div className="flex items-center justify-between pb-5 border-b border-[#C69A45]/30">
+            <Link
+              href="/"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="inline-block"
+              aria-label="Aarsika Home"
+            >
+              <Image
+                src="/brand/aarsika-sculpted-plaque.webp"
+                alt="AARSIKA"
+                width={998}
+                height={485}
+                className="w-[124px] h-auto drop-shadow-sm"
+              />
+            </Link>
             <button
               onClick={() => setIsMobileMenuOpen(false)}
               className="p-2 text-[#C69A45] hover:text-[#E7CF98] focus:outline-none min-w-[44px] min-h-[44px] flex items-center justify-center"
@@ -277,7 +445,7 @@ export const Header: React.FC = () => {
                 onClick={() => setIsMobileCollectionOpen(!isMobileCollectionOpen)}
                 className="w-full flex items-center justify-between text-left focus:outline-none"
               >
-                <span className="font-serif text-xl tracking-wider text-[#E7CF98] uppercase">COLLECTION</span>
+                <span className="font-serif text-xl tracking-wider text-[#E7CF98] uppercase">COLLECTIONS</span>
                 <ChevronDown
                   className={`w-4 h-4 text-[#C69A45] transition-transform ${
                     isMobileCollectionOpen ? 'rotate-180' : ''
@@ -310,11 +478,29 @@ export const Header: React.FC = () => {
             </div>
 
             <Link
+              href="/collections/bestsellers"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="flex items-center justify-between py-2.5 border-b border-[#C69A45]/15 text-[#F5EFE3] hover:text-[#E7CF98]"
+            >
+              <span className="font-serif text-xl tracking-wider uppercase">BEST SELLER</span>
+              <span className="text-xs text-[#C69A45]">→</span>
+            </Link>
+
+            <Link
+              href="/collection/ittras"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="flex items-center justify-between py-2.5 border-b border-[#C69A45]/15 text-[#F5EFE3] hover:text-[#E7CF98]"
+            >
+              <span className="font-serif text-xl tracking-wider uppercase">ATTARS</span>
+              <span className="text-xs text-[#C69A45]">→</span>
+            </Link>
+
+            <Link
               href="/our-story"
               onClick={() => setIsMobileMenuOpen(false)}
               className="flex items-center justify-between py-2.5 border-b border-[#C69A45]/15 text-[#F5EFE3] hover:text-[#E7CF98]"
             >
-              <span className="font-serif text-xl tracking-wider uppercase">THE HOUSE</span>
+              <span className="font-serif text-xl tracking-wider uppercase">OUR STORY</span>
               <span className="text-xs text-[#C69A45]">→</span>
             </Link>
 
@@ -345,14 +531,14 @@ export const Header: React.FC = () => {
                   setIsMobileMenuOpen(false);
                   setIsSearchOpen(true);
                 }}
-                className="py-3 px-2 border border-[#C69A45]/30 text-xs tracking-widest text-[#E7CF98] uppercase hover:bg-[#C69A45]/10 min-h-[44px]"
+                className="py-3 px-2 border border-[#C69A45]/40 text-xs tracking-widest text-[#E7CF98] uppercase hover:bg-[#C69A45]/10 min-h-[44px] transition-colors"
               >
                 SEARCH
               </button>
               <Link
                 href="/account"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="py-3 px-2 border border-[#C69A45]/30 text-xs tracking-widest text-[#E7CF98] uppercase hover:bg-[#C69A45]/10 block min-h-[44px] flex items-center justify-center"
+                className="py-3 px-2 border border-[#C69A45]/40 text-xs tracking-widest text-[#E7CF98] uppercase hover:bg-[#C69A45]/10 block min-h-[44px] flex items-center justify-center transition-colors"
               >
                 ACCOUNT
               </Link>
@@ -360,6 +546,6 @@ export const Header: React.FC = () => {
           </div>
         </div>
       )}
-    </>
+    </header>
   );
 };

@@ -9,7 +9,6 @@ import { WishlistDrawer } from "@/components/WishlistDrawer";
 import { SearchModal } from "@/components/SearchModal";
 import { FragranceFinderModal } from "@/components/FragranceFinderModal";
 import { ToastBanner } from "@/components/ToastBanner";
-import AnnouncementBar from "@/components/AnnouncementBar";
 import StickyPhoneBar from "@/components/StickyPhoneBar";
 import { BRAND_NAME, BRAND_TAGLINE, BRAND_LEGAL_ADDRESS, BRAND_INSTAGRAM } from "@/config/brand";
 
