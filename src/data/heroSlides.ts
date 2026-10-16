@@ -225,7 +225,7 @@ export const MOBILE_HERO_SLIDES: MobileHeroSlide[] = [
     alt: 'Aarsika Amour Eau de Parfum - A Fragrance of Love',
     sourceFilename: 'Amour_ A Fragrance of Love.png',
     aspectRatio: '4/5',
-    objectFitClass: 'object-cover',
+    objectFitClass: 'object-contain',
     objectPositionClass: 'object-center',
   },
   {
@@ -241,7 +241,7 @@ export const MOBILE_HERO_SLIDES: MobileHeroSlide[] = [
     alt: 'Aarsika Scent of Royalty - Luxury Signature Perfume Collection',
     sourceFilename: 'Scent of Royalty Perfume Collection.png',
     aspectRatio: '4/5',
-    objectFitClass: 'object-cover',
+    objectFitClass: 'object-contain',
     objectPositionClass: 'object-center',
   },
   {
@@ -257,8 +257,8 @@ export const MOBILE_HERO_SLIDES: MobileHeroSlide[] = [
     alt: 'Aarsika Heritage in Every Scent - Pure Luxury Attars',
     sourceFilename: 'Heritage Attar Collection at Golden Hour.png',
     aspectRatio: '2/3',
-    objectFitClass: 'object-cover',
-    objectPositionClass: 'object-[center_20%]',
+    objectFitClass: 'object-contain',
+    objectPositionClass: 'object-center',
   },
   {
     id: 'mobile-scent-for-every-story',
@@ -305,9 +305,10 @@ export const MOBILE_HERO_SLIDES: MobileHeroSlide[] = [
     alt: 'Aarsika Discovery Gift Set at Sunset - 5 x 12 ml Flacons',
     sourceFilename: 'Aarsika Discovery Set at Sunset.png',
     aspectRatio: '4/5',
-    objectFitClass: 'object-cover',
+    objectFitClass: 'object-contain',
     objectPositionClass: 'object-center',
   },
 ];
 
 export const mobileHeroSlides = MOBILE_HERO_SLIDES;
+

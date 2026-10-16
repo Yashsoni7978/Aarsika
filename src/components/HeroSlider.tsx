@@ -440,7 +440,8 @@ export default function HeroSlider() {
           and discrete pagination indicators.
       ======================================================== */}
       <div
-        className="md:hidden relative w-full aspect-[4/5] min-h-[440px] max-h-[620px] overflow-hidden bg-[#1b0306] select-none"
+        className="md:hidden relative w-full overflow-hidden bg-[#1b0306] select-none h-[calc(100svh-4.75rem)] min-h-[580px] max-h-[860px]"
+        style={{ height: 'calc(100svh - 4.75rem)', minHeight: '580px', maxHeight: '860px' }}
         onTouchStart={handleMobileTouchStart}
         onTouchMove={handleMobileTouchMove}
         onTouchEnd={handleMobileTouchEnd}
@@ -466,7 +467,7 @@ export default function HeroSlider() {
                 aria-label={`${slide.title} - ${slide.productName}`}
                 className="relative block w-full h-full overflow-hidden focus:outline-none focus:ring-1 focus:ring-[#C69A45]/60 cursor-pointer"
               >
-                {/* Ambient Soft Glow Background (seamless edge color matching) */}
+                {/* Ambient Soft Glow Backdrop with Luxury Vignette */}
                 <div
                   aria-hidden="true"
                   className="absolute inset-0 overflow-hidden pointer-events-none"
@@ -474,26 +475,29 @@ export default function HeroSlider() {
                   <img
                     src={slide.mobileWebp}
                     alt=""
-                    className="w-full h-full object-cover blur-2xl opacity-40 scale-110"
+                    className="w-full h-full object-cover blur-3xl opacity-35 scale-110"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-b from-[#1b0306]/75 via-[#1b0306]/20 to-[#1b0306]/85" />
                 </div>
 
-                {/* Main Crisp Campaign Artwork */}
-                <picture className="relative z-10 w-full h-full block">
-                  <source srcSet={slide.mobileAvif} type="image/avif" />
-                  <source srcSet={slide.mobileWebp} type="image/webp" />
-                  <img
-                    src={slide.fallbackImage}
-                    alt={slide.alt}
-                    width={1122}
-                    height={1402}
-                    decoding="async"
-                    loading={isPriority ? 'eager' : 'lazy'}
-                    // @ts-expect-error fetchpriority attribute is standard in HTML5
-                    fetchpriority={isPriority ? 'high' : 'auto'}
-                    className={`w-full h-full ${slide.objectFitClass} ${slide.objectPositionClass}`}
-                  />
-                </picture>
+                {/* Main Crisp Campaign Artwork (Uniform Centered Frame with Safe Inset) */}
+                <div className="relative z-20 w-full h-full flex items-center justify-center p-2 pt-3 pb-16">
+                  <picture className="w-full h-full flex items-center justify-center">
+                    <source srcSet={slide.mobileAvif} type="image/avif" />
+                    <source srcSet={slide.mobileWebp} type="image/webp" />
+                    <img
+                      src={slide.fallbackImage}
+                      alt={slide.alt}
+                      width={1080}
+                      height={1350}
+                      decoding="async"
+                      loading={isPriority ? 'eager' : 'lazy'}
+                      // @ts-expect-error fetchpriority attribute is standard in HTML5
+                      fetchpriority={isPriority ? 'high' : 'auto'}
+                      className={`max-w-full max-h-full ${slide.objectFitClass} ${slide.objectPositionClass}`}
+                    />
+                  </picture>
+                </div>
               </Link>
             </div>
           );
@@ -525,8 +529,8 @@ export default function HeroSlider() {
           <ChevronRight className="w-4 h-4" />
         </button>
 
-        {/* Sleek Frosted Luxury Indicator Capsule & Slide Counter */}
-        <div className="absolute bottom-3 inset-x-0 z-20 flex items-center justify-center pointer-events-auto">
+        {/* Sleek Frosted Luxury Indicator Capsule & Slide Counter (floating above sticky bar) */}
+        <div className="absolute bottom-16 inset-x-0 z-20 flex items-center justify-center pointer-events-auto">
           <div className="px-2.5 py-1 rounded-full bg-[#1b0306]/75 backdrop-blur-md border border-[#C69A45]/35 flex items-center gap-1.5 shadow-[0_4px_16px_rgba(0,0,0,0.5)]">
             {MOBILE_HERO_SLIDES.map((slide, idx) => {
               const isCurrent = idx === mobileActiveIndex;
