@@ -127,7 +127,7 @@ export const Header: React.FC = () => {
             <Link
               href="/"
               className={`font-serif text-[13px] xl:text-[14px] uppercase tracking-[0.20em] transition-colors relative py-1 focus:outline-none ${
-                pathname === '/' ? 'text-[#30070D] font-semibold' : 'text-[#351418] hover:text-[#9D6A26]'
+                pathname === '/' ? 'text-[#30070D] font-semibold' : 'text-[#351418] font-medium hover:text-[#9D6A26]'
               }`}
             >
               HOME
@@ -149,7 +149,7 @@ export const Header: React.FC = () => {
                 className={`font-serif text-[13px] xl:text-[14px] uppercase tracking-[0.20em] transition-colors flex items-center gap-1.5 focus:outline-none ${
                   pathname.startsWith('/collection') || pathname.startsWith('/shop')
                     ? 'text-[#30070D] font-semibold'
-                    : 'text-[#351418] hover:text-[#9D6A26]'
+                    : 'text-[#351418] font-medium hover:text-[#9D6A26]'
                 }`}
                 aria-expanded={isCollectionOpen}
                 aria-haspopup="true"
@@ -159,6 +159,7 @@ export const Header: React.FC = () => {
                   className={`w-3.5 h-3.5 text-[#C69A45] transition-transform duration-200 ${
                     isCollectionOpen ? 'rotate-180' : ''
                   }`}
+                  strokeWidth={2}
                 />
               </button>
 
@@ -204,7 +205,7 @@ export const Header: React.FC = () => {
               className={`font-serif text-[13px] xl:text-[14px] uppercase tracking-[0.20em] transition-colors relative py-1 focus:outline-none ${
                 pathname === '/collections/bestsellers'
                   ? 'text-[#30070D] font-semibold'
-                  : 'text-[#351418] hover:text-[#9D6A26]'
+                  : 'text-[#351418] font-medium hover:text-[#9D6A26]'
               }`}
             >
               BEST SELLER
@@ -287,7 +288,7 @@ export const Header: React.FC = () => {
             <Link
               href="/our-story"
               className={`font-serif text-[13px] xl:text-[14px] uppercase tracking-[0.20em] transition-colors relative py-1 focus:outline-none ${
-                pathname === '/our-story' ? 'text-[#30070D] font-semibold' : 'text-[#351418] hover:text-[#9D6A26]'
+                pathname === '/our-story' ? 'text-[#30070D] font-semibold' : 'text-[#351418] font-medium hover:text-[#9D6A26]'
               }`}
             >
               OUR STORY
@@ -300,7 +301,7 @@ export const Header: React.FC = () => {
             <Link
               href="/journal"
               className={`font-serif text-[13px] xl:text-[14px] uppercase tracking-[0.20em] transition-colors relative py-1 focus:outline-none ${
-                pathname.startsWith('/journal') ? 'text-[#30070D] font-semibold' : 'text-[#351418] hover:text-[#9D6A26]'
+                pathname.startsWith('/journal') ? 'text-[#30070D] font-semibold' : 'text-[#351418] font-medium hover:text-[#9D6A26]'
               }`}
             >
               JOURNAL
@@ -435,7 +436,7 @@ export const Header: React.FC = () => {
               onClick={() => setIsMobileMenuOpen(false)}
               className="flex items-center justify-between py-2.5 border-b border-[#C69A45]/15 text-[#F5EFE3] hover:text-[#E7CF98]"
             >
-              <span className="font-serif text-xl tracking-wider uppercase">HOME</span>
+              <span className="font-serif font-medium text-xl tracking-wider uppercase">HOME</span>
               <span className="text-xs text-[#C69A45]">→</span>
             </Link>
 
@@ -445,7 +446,7 @@ export const Header: React.FC = () => {
                 onClick={() => setIsMobileCollectionOpen(!isMobileCollectionOpen)}
                 className="w-full flex items-center justify-between text-left focus:outline-none"
               >
-                <span className="font-serif text-xl tracking-wider text-[#E7CF98] uppercase">COLLECTIONS</span>
+                <span className="font-serif font-medium text-xl tracking-wider text-[#E7CF98] uppercase">COLLECTIONS</span>
                 <ChevronDown
                   className={`w-4 h-4 text-[#C69A45] transition-transform ${
                     isMobileCollectionOpen ? 'rotate-180' : ''
@@ -482,7 +483,7 @@ export const Header: React.FC = () => {
               onClick={() => setIsMobileMenuOpen(false)}
               className="flex items-center justify-between py-2.5 border-b border-[#C69A45]/15 text-[#F5EFE3] hover:text-[#E7CF98]"
             >
-              <span className="font-serif text-xl tracking-wider uppercase">BEST SELLER</span>
+              <span className="font-serif font-medium text-xl tracking-wider uppercase">BEST SELLER</span>
               <span className="text-xs text-[#C69A45]">→</span>
             </Link>
 
@@ -491,7 +492,7 @@ export const Header: React.FC = () => {
               onClick={() => setIsMobileMenuOpen(false)}
               className="flex items-center justify-between py-2.5 border-b border-[#C69A45]/15 text-[#F5EFE3] hover:text-[#E7CF98]"
             >
-              <span className="font-serif text-xl tracking-wider uppercase">ATTARS</span>
+              <span className="font-serif font-medium text-xl tracking-wider uppercase">ATTARS</span>
               <span className="text-xs text-[#C69A45]">→</span>
             </Link>
 
@@ -500,7 +501,7 @@ export const Header: React.FC = () => {
               onClick={() => setIsMobileMenuOpen(false)}
               className="flex items-center justify-between py-2.5 border-b border-[#C69A45]/15 text-[#F5EFE3] hover:text-[#E7CF98]"
             >
-              <span className="font-serif text-xl tracking-wider uppercase">OUR STORY</span>
+              <span className="font-serif font-medium text-xl tracking-wider uppercase">OUR STORY</span>
               <span className="text-xs text-[#C69A45]">→</span>
             </Link>
 
@@ -509,7 +510,7 @@ export const Header: React.FC = () => {
               onClick={() => setIsMobileMenuOpen(false)}
               className="flex items-center justify-between py-2.5 border-b border-[#C69A45]/15 text-[#F5EFE3] hover:text-[#E7CF98]"
             >
-              <span className="font-serif text-xl tracking-wider uppercase">JOURNAL</span>
+              <span className="font-serif font-medium text-xl tracking-wider uppercase">JOURNAL</span>
               <span className="text-xs text-[#C69A45]">→</span>
             </Link>
 
@@ -518,7 +519,7 @@ export const Header: React.FC = () => {
               onClick={() => setIsMobileMenuOpen(false)}
               className="flex items-center justify-between py-2.5 border-b border-[#C69A45]/15 text-[#F5EFE3] hover:text-[#E7CF98]"
             >
-              <span className="font-serif text-xl tracking-wider uppercase">CONTACT</span>
+              <span className="font-serif font-medium text-xl tracking-wider uppercase">CONTACT</span>
               <span className="text-xs text-[#C69A45]">→</span>
             </Link>
           </div>
