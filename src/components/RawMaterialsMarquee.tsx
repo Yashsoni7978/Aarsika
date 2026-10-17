@@ -22,12 +22,12 @@ const IngredientCard: React.FC<IngredientCardProps> = ({ item, uniqueKey }) => {
 
   return (
     <div
-      className="group flex flex-col items-center flex-shrink-0 w-[145px] sm:w-[155px] lg:w-[165px] xl:w-[178px] select-none cursor-pointer snap-center"
+      className="group flex flex-col items-center flex-shrink-0 w-[148px] sm:w-[160px] lg:w-[168px] xl:w-[182px] select-none cursor-pointer snap-center"
       role="group"
       aria-label={`${item.name} — ${item.character}`}
     >
       {/* Ornamental Mughal Cusped / Scalloped Medallion Frame */}
-      <div className="relative w-[120px] h-[120px] sm:w-[135px] sm:h-[135px] lg:w-[145px] lg:h-[145px] xl:w-[160px] xl:h-[160px] transition-transform duration-500 ease-out group-hover:scale-[1.04]">
+      <div className="relative w-[122px] h-[122px] sm:w-[138px] sm:h-[138px] lg:w-[148px] lg:h-[148px] xl:w-[164px] xl:h-[164px] transition-transform duration-500 ease-out group-hover:scale-[1.04]">
         <svg
           viewBox="0 0 200 200"
           className="w-full h-full filter drop-shadow-[0_8px_20px_rgba(0,0,0,0.6)]"
@@ -71,19 +71,19 @@ const IngredientCard: React.FC<IngredientCardProps> = ({ item, uniqueKey }) => {
       </div>
 
       {/* Centered Ingredient Information */}
-      <div className="mt-3 sm:mt-3.5 text-center px-1 w-full">
+      <div className="mt-3.5 sm:mt-4 text-center px-1 w-full">
         {/* Ingredient Name in Warm Ivory Serif */}
-        <h3 className="font-serif text-[#F8E7D7] text-sm sm:text-base lg:text-[17px] font-normal tracking-tight transition-colors duration-300 group-hover:text-[#C9A34E] leading-snug line-clamp-1">
+        <h3 className="font-serif text-[#F8E7D7] text-[15px] sm:text-base lg:text-[18px] font-normal tracking-tight transition-colors duration-300 group-hover:text-[#C9A34E] leading-snug line-clamp-1">
           {item.name}
         </h3>
 
         {/* Location Label in Subtle Champagne Gold */}
-        <p className="text-[#C9A34E] text-[10px] sm:text-[10.5px] font-mono tracking-wider uppercase mt-1 font-medium line-clamp-1">
+        <p className="text-[#C9A34E] text-[10.5px] sm:text-[11.5px] font-mono tracking-[0.18em] uppercase mt-1 font-medium line-clamp-1">
           {item.origin}
         </p>
 
         {/* Scent Description / Character */}
-        <p className="text-[#F8E7D7]/80 text-[11px] sm:text-[11.5px] font-serif italic mt-1 leading-snug line-clamp-2">
+        <p className="text-[#F8E7D7]/85 text-xs sm:text-[12.5px] lg:text-[13px] font-serif italic mt-1 leading-snug line-clamp-2">
           {item.character}
         </p>
       </div>
@@ -215,7 +215,7 @@ export const RawMaterialsMarquee: React.FC = () => {
       {/* Gentle left panel translucent vignette on desktop */}
       <div
         aria-hidden="true"
-        className="absolute left-0 inset-y-0 w-full lg:w-[480px] pointer-events-none bg-gradient-to-r from-[#38070F]/60 via-[#450913]/35 to-transparent hidden lg:block"
+        className="absolute left-0 inset-y-0 w-full lg:w-[500px] pointer-events-none bg-gradient-to-r from-[#38070F]/65 via-[#450913]/35 to-transparent hidden lg:block"
       />
 
       {/* Subtle edge gradient fade on carousel edges */}
@@ -228,53 +228,52 @@ export const RawMaterialsMarquee: React.FC = () => {
         <div className="flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-10 xl:gap-12">
           {/* ========================================================
               LEFT INTRODUCTION PANEL (Desktop) / TOP (Mobile)
+              Typography scale and presence styled after hero editorial reference
           ======================================================== */}
-          <div className="flex-shrink-0 w-full lg:w-[280px] xl:w-[310px] text-center lg:text-left flex flex-col items-center lg:items-start">
-            {/* Eyebrow Label */}
-            <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.3em] text-[#C9A34E] block mb-2 sm:mb-2.5 font-medium">
-              NATURE’S FINEST
-            </span>
+          <div className="flex-shrink-0 w-full lg:w-[350px] xl:w-[410px] text-center lg:text-left flex flex-col items-center lg:items-start">
+            {/* Eyebrow Label with Arabian Gold Motif matching the reference */}
+            <div className="flex items-center justify-center lg:justify-start gap-2.5 sm:gap-3 mb-2 sm:mb-3">
+              <span className="h-[1px] w-6 lg:w-9 bg-gradient-to-r from-transparent to-[#C9A34E]/90" />
+              <span className="text-[11px] sm:text-xs uppercase tracking-[0.28em] text-[#E5C378] font-serif font-medium">
+                NATURE’S FINEST
+              </span>
+              <span className="h-[1px] w-6 lg:w-9 bg-gradient-to-l from-transparent to-[#C9A34E]/90" />
+              <span className="text-[#C9A34E] text-xs leading-none select-none">❖</span>
+            </div>
 
-            {/* Main Heading */}
+            {/* Main Headline matching the large editorial scale of the reference image */}
             <h2
               id="raw-materials-heading"
-              className="font-serif text-2xl sm:text-3xl lg:text-[34px] xl:text-[38px] font-normal text-[#F8E7D7] tracking-tight leading-[1.12]"
+              className="font-serif text-3xl sm:text-5xl lg:text-[46px] xl:text-[54px] font-normal text-[#F8E7D7] leading-[1.08] tracking-tight drop-shadow-sm"
             >
-              THE RAW MATERIALS
+              The Raw{' '}
+              <span className="italic font-serif text-[#F8F4EC] font-light">
+                Materials.
+              </span>
             </h2>
 
-            {/* Decorative Antique-Gold Divider with Central Diamond */}
+            {/* Decorative Antique-Gold Divider matching the reference */}
             <div
               aria-hidden="true"
               className="flex items-center justify-center lg:justify-start gap-3 my-3 sm:my-3.5"
             >
-              <span className="w-10 sm:w-12 h-[1px] bg-gradient-to-r from-transparent via-[#C9A34E]/60 to-[#C9A34E]" />
-              <svg
-                width="12"
-                height="12"
-                viewBox="0 0 16 16"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-                className="text-[#C9A34E] flex-shrink-0"
-              >
-                <path d="M8 1L9.6 6.4L15 8L9.6 9.6L8 15L6.4 9.6L1 8L6.4 6.4L8 1Z" />
-                <circle cx="8" cy="8" r="1.3" fill="#5A0F1A" />
-              </svg>
-              <span className="w-10 sm:w-12 h-[1px] bg-gradient-to-l from-transparent via-[#C9A34E]/60 to-[#C9A34E]" />
+              <span className="w-12 sm:w-16 h-[1.5px] bg-gradient-to-r from-transparent via-[#C9A34E]/80 to-[#C9A34E]" />
+              <span className="text-[#C9A34E] text-xs">❖</span>
+              <span className="w-12 sm:w-16 h-[1.5px] bg-gradient-to-l from-transparent via-[#C9A34E]/80 to-[#C9A34E]" />
             </div>
 
-            {/* Supporting Subtitle */}
-            <p className="text-xs sm:text-sm lg:text-[14.5px] font-serif italic text-[#F8E7D7]/90 font-light leading-relaxed max-w-md">
+            {/* Supporting Subtitle in legible, elegant serif typography */}
+            <p className="font-serif italic text-sm sm:text-base lg:text-[17px] text-[#F8E7D7]/90 font-light leading-relaxed max-w-md">
               Nature, gathered into fragrance.
             </p>
 
-            {/* Understated Antique-Gold Previous / Next Controls */}
-            <div className="flex items-center gap-2.5 mt-5 sm:mt-6">
+            {/* Interactive Controls & Archive Button */}
+            <div className="flex items-center gap-3 mt-5 sm:mt-6">
               <button
                 type="button"
                 onClick={() => handleScroll('prev')}
                 aria-label="Previous ingredients"
-                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-[#C9A34E]/50 text-[#C9A34E] flex items-center justify-center transition-all duration-300 hover:border-[#C9A34E] hover:bg-[#C9A34E]/20 hover:text-[#F8E7D7] active:scale-95 focus:outline-none focus-visible:ring-1 focus-visible:ring-[#C9A34E] shadow-sm cursor-pointer"
+                className="w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-[#C9A34E]/60 text-[#C9A34E] flex items-center justify-center transition-all duration-300 hover:border-[#E7CF98] hover:bg-[#C9A34E]/25 hover:text-[#F8E7D7] active:scale-95 focus:outline-none focus-visible:ring-1 focus-visible:ring-[#C9A34E] shadow-sm cursor-pointer"
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
@@ -283,14 +282,14 @@ export const RawMaterialsMarquee: React.FC = () => {
                 type="button"
                 onClick={() => handleScroll('next')}
                 aria-label="Next ingredients"
-                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-[#C9A34E]/50 text-[#C9A34E] flex items-center justify-center transition-all duration-300 hover:border-[#C9A34E] hover:bg-[#C9A34E]/20 hover:text-[#F8E7D7] active:scale-95 focus:outline-none focus-visible:ring-1 focus-visible:ring-[#C9A34E] shadow-sm cursor-pointer"
+                className="w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-[#C9A34E]/60 text-[#C9A34E] flex items-center justify-center transition-all duration-300 hover:border-[#E7CF98] hover:bg-[#C9A34E]/25 hover:text-[#F8E7D7] active:scale-95 focus:outline-none focus-visible:ring-1 focus-visible:ring-[#C9A34E] shadow-sm cursor-pointer"
               >
                 <ChevronRight className="w-4 h-4" />
               </button>
 
               <Link
                 href="/ingredients"
-                className="ml-3 text-[10px] sm:text-[11px] font-mono tracking-[0.2em] uppercase text-[#C9A34E] hover:text-[#F8E7D7] transition-colors border-b border-[#C9A34E]/40 hover:border-[#F8E7D7] pb-0.5"
+                className="ml-2 inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full border border-[#C9A34E]/60 bg-[#C9A34E]/15 hover:bg-[#C9A34E] text-[#E5C378] hover:text-[#200408] font-sans font-semibold text-[11px] sm:text-xs uppercase tracking-[0.18em] transition-all duration-300 shadow-sm"
               >
                 VIEW ARCHIVE →
               </Link>
