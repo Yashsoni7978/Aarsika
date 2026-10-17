@@ -11,6 +11,7 @@ import { useShop } from '@/context/ShopContext';
 import PearlButton from '@/components/PearlButton';
 import ResponsivePhoto from '@/components/ResponsivePhoto';
 import FindYourFragrance from '@/components/FindYourFragrance';
+import RawMaterialsMarquee from '@/components/RawMaterialsMarquee';
 
 export default function HomePage() {
   const { wishlist, toggleWishlist } = useShop();
@@ -68,49 +69,6 @@ export default function HomePage() {
     .map((slug) => PRODUCTS.find((p) => p.slug === slug))
     .filter(Boolean) as Product[];
 
-  // 4. Ingredients data (associated with authentic fragrance compositions)
-  const ingredients = [
-    {
-      name: 'Damask Rose',
-      role: 'Floral Radiance',
-      image: '/images/rose ingrediant.png',
-      desc: 'Velvety petals harvested at dawn, offering a radiant, timeless floral signature.',
-      featuredIn: 'Sehar E Gulab & Amour',
-      productSlug: 'sehar-e-gulab',
-    },
-    {
-      name: 'Assam Oud',
-      role: 'Smoky Depth',
-      image: '/images/oudh.png',
-      desc: 'Deep, resinous agarwood providing profound smokiness and magnetic warmth.',
-      featuredIn: 'Resham Oudh',
-      productSlug: 'resham-oudh',
-    },
-    {
-      name: 'Night Jasmine',
-      role: 'Ethereal Sweetness',
-      image: '/images/green jasmine.png',
-      desc: 'Night-blooming white florals with intoxicating, ethereal sweetness.',
-      featuredIn: 'Raat Ki Rani',
-      productSlug: 'raat-ki-rani',
-    },
-    {
-      name: 'Kashmiri Saffron',
-      role: 'Exotic Warmth',
-      image: '/images/kesar ingrediant.png',
-      desc: 'Golden crimson threads infusing exotic spice and warm leather nuances.',
-      featuredIn: 'Saanjh',
-      productSlug: 'saanjh',
-    },
-    {
-      name: 'Mysore Sandalwood',
-      role: 'Creamy Calm',
-      image: '/images/scandalwood.png',
-      desc: 'Creamy heartwood that anchors compositions with serene elegance and comfort.',
-      featuredIn: 'Jaipur Maati',
-      productSlug: 'maati',
-    },
-  ];
 
   // 5. Moments data
   const moments = [
@@ -419,72 +377,9 @@ export default function HomePage() {
       </section>
 
       {/* ========================================================
-          7. THE ART OF FRAGRANCE (Our Ingredients)
+          7. NATURE'S FINEST — THE RAW MATERIALS (Luxury Marquee)
       ======================================================== */}
-      <section className="py-16 md:py-24 bg-[#FBF6EA] border-t border-[#C69A45]/20">
-        <div className="max-w-[1360px] mx-auto px-6 sm:px-10 lg:px-16">
-          <div className="text-center max-w-xl mx-auto mb-12">
-            <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.28em] text-[#9D6A26] block mb-2">
-              NATURAL RAW MATERIALS
-            </span>
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-[#32151A]">
-              The Art of Fragrance
-            </h2>
-            <p className="text-sm sm:text-base text-[#6b5f55] font-light mt-2">
-              Discover the notes that give every scent its character.
-            </p>
-            <div className="w-12 h-px bg-[#C69A45] mx-auto mt-4" />
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 sm:gap-6">
-            {ingredients.map((ing) => (
-              <div
-                key={ing.name}
-                className="bg-[#F5EFE3] border border-[#C69A45]/25 p-5 flex flex-col justify-between transition-all duration-300 hover:border-[#C69A45] hover:shadow-md group"
-              >
-                <div>
-                  <div className="relative aspect-[4/3] w-full mb-4 overflow-hidden border border-[#C69A45]/20 bg-[#30070D]/5">
-                    <Image
-                      src={ing.image}
-                      alt={ing.name}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
-                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                    />
-                  </div>
-                  <span className="text-[10px] font-mono tracking-widest text-[#9D6A26] uppercase block mb-1">
-                    {ing.role}
-                  </span>
-                  <h3 className="font-serif text-xl font-normal text-[#32151A]">
-                    {ing.name}
-                  </h3>
-                  <p className="text-xs text-[#6b5f55] font-light mt-2 leading-relaxed">
-                    {ing.desc}
-                  </p>
-                </div>
-
-                <div className="mt-4 pt-3 border-t border-[#C69A45]/20">
-                  <Link
-                    href={`/products/${ing.productSlug}`}
-                    className="text-[11px] font-mono uppercase tracking-wider text-[#9D6A26] hover:text-[#32151A] transition-colors block font-medium"
-                  >
-                    Featured in {ing.featuredIn} →
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center mt-10">
-            <Link
-              href="/ingredients"
-              className="text-xs font-mono uppercase tracking-[0.2em] text-[#9D6A26] hover:text-[#32151A] transition-colors"
-            >
-              EXPLORE ALL BOTANICAL INGREDIENTS →
-            </Link>
-          </div>
-        </div>
-      </section>
+      <RawMaterialsMarquee />
 
       {/* ========================================================
           8. SHOP BY MOMENT
