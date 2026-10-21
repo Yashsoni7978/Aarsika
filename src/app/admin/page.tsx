@@ -125,7 +125,7 @@ export default function AdminDashboardPage() {
           weight: "0.25 kg",
           dimensions: "6 x 6 x 14 cm",
           mainImage: "/images/gul-e-rooh.jpg",
-          secondaryImage: "/images/mehraab-edp.jpg",
+          secondaryImage: "/photos/attars/resham-oudh-palace 2nd.jpg",
           gallery: ["/images/gul-e-rooh.jpg"],
           sizeOptions: ["12ml Concentrated Oil"],
           defaultSize: "12ml Concentrated Oil",
@@ -146,7 +146,7 @@ export default function AdminDashboardPage() {
           rating: 5.0,
           reviewsCount: 1,
           colorTheme: "pink",
-          seoTitle: `${newProdName} | MEHRAAB`,
+          seoTitle: `${newProdName} | AARSIKA`,
           seoDescription: newProdDesc,
         }),
       });
@@ -187,20 +187,20 @@ export default function AdminDashboardPage() {
   };
 
   return (
-    <div className="bg-[#102746] min-h-screen text-[#FFF9F1]">
+    <div className="bg-wine-950 min-h-screen text-cream">
       {/* Top Admin Navigation Bar */}
-      <div className="bg-[#17345F] border-b border-[#C49A52]/30 px-6 py-4 flex items-center justify-between">
+      <div className="bg-wine-900 border-b border-gold/30 px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <Link href="/" className="font-serif text-2xl font-bold tracking-[0.18em] text-[#FFF9F1]">
-            MEHRAAB <span className="text-[#C49A52] text-xs font-sans tracking-widest uppercase">ADMIN</span>
+          <Link href="/" className="font-serif text-2xl font-bold tracking-[0.18em] text-cream">
+            AARSIKA <span className="text-gold text-xs font-sans tracking-widest uppercase">ADMIN</span>
           </Link>
-          <span className="text-xs bg-[#C49A52]/20 text-[#DDBD78] px-2.5 py-0.5 rounded border border-[#C49A52]/40 font-mono">
+          <span className="text-xs bg-gold/20 text-gold-light px-2.5 py-0.5 rounded border border-gold/40 font-mono">
             PORTAL v2.5
           </span>
         </div>
 
         <div className="flex items-center gap-4 text-xs font-semibold uppercase tracking-wider">
-          <Link href="/" className="hover:text-[#DDBD78] flex items-center gap-1">
+          <Link href="/" className="hover:text-gold-light flex items-center gap-1">
             <span>VIEW LIVE STORE</span>
           </Link>
         </div>
@@ -208,7 +208,7 @@ export default function AdminDashboardPage() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
         {/* Navigation Tabs */}
-        <div className="flex items-center gap-2 border-b border-[#C49A52]/20 pb-4 overflow-x-auto text-xs uppercase tracking-wider font-semibold">
+        <div className="flex items-center gap-2 border-b border-gold/20 pb-4 overflow-x-auto text-xs uppercase tracking-wider font-semibold">
           {[
             { id: "dashboard", label: "Dashboard Overview" },
             { id: "products", label: `Product Manager (${products.length})` },
@@ -222,8 +222,8 @@ export default function AdminDashboardPage() {
               onClick={() => setActiveTab(tab.id as any)}
               className={`px-5 py-2.5 rounded-lg transition-all whitespace-nowrap ${
                 activeTab === tab.id
-                  ? "bg-[#C49A52] text-[#17345F] font-bold shadow-md"
-                  : "bg-[#17345F]/60 text-[#FFF9F1]/80 hover:bg-[#17345F] hover:text-[#FFF9F1] border border-[#C49A52]/20"
+                  ? "bg-gold text-wine-900 font-bold shadow-md"
+                  : "bg-wine-900/60 text-cream/80 hover:bg-wine-900 hover:text-cream border border-gold/20"
               }`}
             >
               {tab.label}
@@ -236,55 +236,55 @@ export default function AdminDashboardPage() {
           <div className="space-y-8">
             {/* Metric Widgets */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="bg-[#17345F] border border-[#C49A52]/30 p-6 rounded-xl space-y-2 shadow-royal">
-                <div className="flex justify-between items-center text-[#C49A52]">
-                  <span className="text-[10px] tracking-widest uppercase font-bold text-[#FFF9F1]/70">TOTAL REVENUE</span>
+              <div className="bg-wine-900 border border-gold/30 p-6 rounded-xl space-y-2 shadow-royal">
+                <div className="flex justify-between items-center text-gold">
+                  <span className="text-[10px] tracking-widest uppercase font-bold text-cream/70">TOTAL REVENUE</span>
                   <TrendingUp className="w-5 h-5" />
                 </div>
-                <h3 className="font-serif text-3xl font-bold text-[#FFF9F1]">₹ {totalRevenue.toLocaleString("en-IN")}</h3>
-                <p className="text-[11px] text-[#DDBD78]">Processed orders revenue</p>
+                <h3 className="font-serif text-3xl font-bold text-cream">₹ {totalRevenue.toLocaleString("en-IN")}</h3>
+                <p className="text-[11px] text-gold-light">Processed orders revenue</p>
               </div>
 
-              <div className="bg-[#17345F] border border-[#C49A52]/30 p-6 rounded-xl space-y-2 shadow-royal">
-                <div className="flex justify-between items-center text-[#C49A52]">
-                  <span className="text-[10px] tracking-widest uppercase font-bold text-[#FFF9F1]/70">TOTAL ORDERS</span>
+              <div className="bg-wine-900 border border-gold/30 p-6 rounded-xl space-y-2 shadow-royal">
+                <div className="flex justify-between items-center text-gold">
+                  <span className="text-[10px] tracking-widest uppercase font-bold text-cream/70">TOTAL ORDERS</span>
                   <ShoppingBag className="w-5 h-5" />
                 </div>
-                <h3 className="font-serif text-3xl font-bold text-[#FFF9F1]">{totalOrders}</h3>
-                <p className="text-[11px] text-[#DDBD78]">Live customer orders</p>
+                <h3 className="font-serif text-3xl font-bold text-cream">{totalOrders}</h3>
+                <p className="text-[11px] text-gold-light">Live customer orders</p>
               </div>
 
-              <div className="bg-[#17345F] border border-[#C49A52]/30 p-6 rounded-xl space-y-2 shadow-royal">
-                <div className="flex justify-between items-center text-[#C49A52]">
-                  <span className="text-[10px] tracking-widest uppercase font-bold text-[#FFF9F1]/70">AVG ORDER VALUE</span>
+              <div className="bg-wine-900 border border-gold/30 p-6 rounded-xl space-y-2 shadow-royal">
+                <div className="flex justify-between items-center text-gold">
+                  <span className="text-[10px] tracking-widest uppercase font-bold text-cream/70">AVG ORDER VALUE</span>
                   <Package className="w-5 h-5" />
                 </div>
-                <h3 className="font-serif text-3xl font-bold text-[#FFF9F1]">₹ {aov.toLocaleString("en-IN")}</h3>
-                <p className="text-[11px] text-[#DDBD78]">Average basket size</p>
+                <h3 className="font-serif text-3xl font-bold text-cream">₹ {aov.toLocaleString("en-IN")}</h3>
+                <p className="text-[11px] text-gold-light">Average basket size</p>
               </div>
 
-              <div className="bg-[#17345F] border border-[#C49A52]/30 p-6 rounded-xl space-y-2 shadow-royal">
-                <div className="flex justify-between items-center text-[#B94D70]">
-                  <span className="text-[10px] tracking-widest uppercase font-bold text-[#FFF9F1]/70">LOW STOCK ALERTS</span>
+              <div className="bg-wine-900 border border-gold/30 p-6 rounded-xl space-y-2 shadow-royal">
+                <div className="flex justify-between items-center text-gold">
+                  <span className="text-[10px] tracking-widest uppercase font-bold text-cream/70">LOW STOCK ALERTS</span>
                   <AlertTriangle className="w-5 h-5" />
                 </div>
-                <h3 className="font-serif text-3xl font-bold text-[#B94D70]">{lowStockItems.length}</h3>
-                <p className="text-[11px] text-[#FFF9F1]/70">Products require re-stock</p>
+                <h3 className="font-serif text-3xl font-bold text-gold">{lowStockItems.length}</h3>
+                <p className="text-[11px] text-cream/70">Products require re-stock</p>
               </div>
             </div>
 
             {/* Recent Orders Table */}
-            <div className="bg-[#17345F] border border-[#C49A52]/30 rounded-xl p-6 space-y-4">
+            <div className="bg-wine-900 border border-gold/30 rounded-xl p-6 space-y-4">
               <div className="flex justify-between items-center">
-                <h3 className="font-serif text-2xl font-bold text-[#DDBD78]">RECENT ORDERS</h3>
-                <button onClick={() => setActiveTab("orders")} className="text-xs text-[#C49A52] hover:underline uppercase font-bold">
+                <h3 className="font-serif text-2xl font-bold text-gold-light">RECENT ORDERS</h3>
+                <button onClick={() => setActiveTab("orders")} className="text-xs text-gold hover:underline uppercase font-bold">
                   View All Orders
                 </button>
               </div>
 
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-xs">
-                  <thead className="text-[10px] text-[#C49A52] uppercase border-b border-[#C49A52]/20">
+                  <thead className="text-[10px] text-gold uppercase border-b border-gold/20">
                     <tr>
                       <th className="py-3 px-2">Order ID</th>
                       <th className="py-3 px-2">Customer</th>
@@ -294,14 +294,14 @@ export default function AdminDashboardPage() {
                       <th className="py-3 px-2">Actions</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-[#C49A52]/10">
+                  <tbody className="divide-y divide-gold/10">
                     {orders.slice(0, 5).map((o) => (
                       <tr key={o.id}>
-                        <td className="py-3 px-2 font-serif font-bold text-[#DDBD78]">
+                        <td className="py-3 px-2 font-serif font-bold text-gold-light">
                           {o.orderNumber}
                           {o.items?.map((it, idx) => (
                             (it.serialString || (it.serials && it.serials.length > 0)) && (
-                              <div key={idx} className="text-[9px] font-mono text-[#E7CF98] font-normal">
+                              <div key={idx} className="text-[9px] font-mono text-gold-light font-normal">
                                 {it.serialString || it.serials?.join(', ')}
                               </div>
                             )
@@ -309,9 +309,17 @@ export default function AdminDashboardPage() {
                         </td>
                         <td className="py-3 px-2">{o.customer.fullName} ({o.customer.city})</td>
                         <td className="py-3 px-2 font-bold">₹ {o.totalAmount.toLocaleString("en-IN")}</td>
-                        <td className="py-3 px-2">{o.paymentMethod}</td>
                         <td className="py-3 px-2">
-                          <span className="bg-[#C49A52]/20 text-[#DDBD78] px-2 py-0.5 rounded text-[10px] uppercase font-bold">
+                          <span className={o.paymentStatus === 'CAPTURED' || o.paymentStatus === 'AUTHORIZED' ? "text-success font-semibold" : "text-cream/80"}>
+                            {o.paymentMethod} {o.paymentStatus === 'CAPTURED' ? '(PAID)' : ''}
+                          </span>
+                        </td>
+                        <td className="py-3 px-2">
+                          <span className={`px-2 py-0.5 rounded text-[10px] uppercase font-bold ${
+                            o.orderStatus === 'DELIVERED'
+                              ? 'bg-success/20 text-[#7ec297] border border-success/40'
+                              : 'bg-gold/20 text-gold-light'
+                          }`}>
                             {o.orderStatus}
                           </span>
                         </td>
@@ -319,7 +327,7 @@ export default function AdminDashboardPage() {
                           <select
                             value={o.orderStatus}
                             onChange={(e) => handleUpdateOrderStatus(o.id, e.target.value)}
-                            className="bg-[#102746] border border-[#C49A52]/40 text-[#FFF9F1] p-1 rounded text-[10px] focus:outline-none"
+                            className="bg-wine-950 border border-gold/40 text-cream p-1 rounded text-[10px] focus:outline-none"
                           >
                             <option value="ORDER_PLACED">ORDER_PLACED</option>
                             <option value="PROCESSING">PROCESSING</option>
@@ -341,10 +349,10 @@ export default function AdminDashboardPage() {
         {activeTab === "products" && (
           <div className="space-y-6">
             <div className="flex justify-between items-center">
-              <h2 className="font-serif text-3xl font-bold text-[#DDBD78]">PRODUCT CATALOGUE MANAGEMENT</h2>
+              <h2 className="font-serif text-3xl font-bold text-gold-light">PRODUCT CATALOGUE MANAGEMENT</h2>
               <button
                 onClick={() => setIsAddingProduct(!isAddingProduct)}
-                className="px-5 py-2.5 bg-[#C49A52] text-[#17345F] font-bold text-xs uppercase tracking-wider rounded-lg hover:bg-[#FFF9F1] transition-colors flex items-center gap-1.5"
+                className="px-5 py-2.5 bg-gold text-wine-900 font-bold text-xs uppercase tracking-wider rounded-lg hover:bg-cream transition-colors flex items-center gap-1.5"
               >
                 <Plus className="w-4 h-4" />
                 <span>ADD NEW PRODUCT</span>
@@ -353,37 +361,37 @@ export default function AdminDashboardPage() {
 
             {/* Modal / Inline New Product Form */}
             {isAddingProduct && (
-              <form onSubmit={handleCreateProduct} className="bg-[#17345F] border-2 border-[#C49A52] p-6 rounded-xl space-y-4 text-xs">
-                <h3 className="font-serif text-xl font-bold text-[#DDBD78]">CREATE NEW FRAGRANCE PRODUCT</h3>
+              <form onSubmit={handleCreateProduct} className="bg-wine-900 border-2 border-gold p-6 rounded-xl space-y-4 text-xs">
+                <h3 className="font-serif text-xl font-bold text-gold-light">CREATE NEW FRAGRANCE PRODUCT</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   <div>
-                    <label className="block text-[#DDBD78] uppercase mb-1 font-bold">PRODUCT NAME</label>
+                    <label className="block text-gold-light uppercase mb-1 font-bold">PRODUCT NAME</label>
                     <input
                       type="text"
                       required
                       placeholder="e.g. Amber Royale"
                       value={newProdName}
                       onChange={(e) => setNewProdName(e.target.value)}
-                      className="w-full bg-[#102746] border border-[#C49A52]/40 p-2.5 rounded text-[#FFF9F1] focus:outline-none"
+                      className="w-full bg-wine-950 border border-gold/40 p-2.5 rounded text-cream focus:outline-none"
                     />
                   </div>
                   <div>
-                    <label className="block text-[#DDBD78] uppercase mb-1 font-bold">PRICE (INR ₹)</label>
+                    <label className="block text-gold-light uppercase mb-1 font-bold">PRICE (INR ₹)</label>
                     <input
                       type="number"
                       required
                       placeholder="e.g. 3499"
                       value={newProdPrice}
                       onChange={(e) => setNewProdPrice(e.target.value)}
-                      className="w-full bg-[#102746] border border-[#C49A52]/40 p-2.5 rounded text-[#FFF9F1] focus:outline-none"
+                      className="w-full bg-wine-950 border border-gold/40 p-2.5 rounded text-cream focus:outline-none"
                     />
                   </div>
                   <div>
-                    <label className="block text-[#DDBD78] uppercase mb-1 font-bold">CATEGORY</label>
+                    <label className="block text-gold-light uppercase mb-1 font-bold">CATEGORY</label>
                     <select
                       value={newProdCategory}
                       onChange={(e) => setNewProdCategory(e.target.value as any)}
-                      className="w-full bg-[#102746] border border-[#C49A52]/40 p-2.5 rounded text-[#FFF9F1] focus:outline-none"
+                      className="w-full bg-wine-950 border border-gold/40 p-2.5 rounded text-cream focus:outline-none"
                     >
                       <option value="ATTAR">ATTAR</option>
                       <option value="EAU DE PARFUM">EAU DE PARFUM</option>
@@ -395,26 +403,26 @@ export default function AdminDashboardPage() {
                   </div>
                 </div>
                 <div>
-                  <label className="block text-[#DDBD78] uppercase mb-1 font-bold">SHORT DESCRIPTION</label>
+                  <label className="block text-gold-light uppercase mb-1 font-bold">SHORT DESCRIPTION</label>
                   <textarea
                     required
                     placeholder="Describe the notes and heritage storytelling..."
                     value={newProdDesc}
                     onChange={(e) => setNewProdDesc(e.target.value)}
-                    className="w-full bg-[#102746] border border-[#C49A52]/40 p-2.5 rounded text-[#FFF9F1] focus:outline-none h-20"
+                    className="w-full bg-wine-950 border border-gold/40 p-2.5 rounded text-cream focus:outline-none h-20"
                   />
                 </div>
                 <div className="flex justify-end gap-3">
                   <button
                     type="button"
                     onClick={() => setIsAddingProduct(false)}
-                    className="px-4 py-2 bg-[#102746] text-[#FFF9F1] rounded text-xs font-semibold"
+                    className="px-4 py-2 bg-wine-950 text-cream rounded text-xs font-semibold"
                   >
                     CANCEL
                   </button>
                   <button
                     type="submit"
-                    className="px-6 py-2 bg-[#B94D70] text-[#FFF9F1] rounded text-xs font-semibold uppercase tracking-wider"
+                    className="px-6 py-2 bg-gold text-cream rounded text-xs font-semibold uppercase tracking-wider"
                   >
                     SAVE &amp; PUBLISH
                   </button>
@@ -424,19 +432,19 @@ export default function AdminDashboardPage() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {products.map((p) => (
-                <div key={p.id} className="bg-[#17345F] border border-[#C49A52]/30 p-4 rounded-xl space-y-3 shadow-royal">
-                  <div className="relative aspect-square w-full rounded-lg overflow-hidden border border-[#C49A52]/20">
+                <div key={p.id} className="bg-wine-900 border border-gold/30 p-4 rounded-xl space-y-3 shadow-royal">
+                  <div className="relative aspect-square w-full rounded-lg overflow-hidden border border-gold/20">
                     <Image src={p.mainImage} alt={p.name} fill className="object-cover" />
                   </div>
                   <div>
-                    <span className="text-[9px] text-[#C49A52] tracking-widest uppercase font-bold block">{p.category}</span>
-                    <h3 className="font-serif text-xl font-bold text-[#FFF9F1]">{p.name}</h3>
-                    <p className="text-xs text-[#DDBD78] font-mono font-bold mt-1">₹ {p.price.toLocaleString("en-IN")}</p>
-                    <p className="text-[11px] text-[#FFF9F1]/70 line-clamp-1">{p.shortDescription}</p>
+                    <span className="text-[9px] text-gold tracking-widest uppercase font-bold block">{p.category}</span>
+                    <h3 className="font-serif text-xl font-bold text-cream">{p.name}</h3>
+                    <p className="text-xs text-gold-light font-mono font-bold mt-1">₹ {p.price.toLocaleString("en-IN")}</p>
+                    <p className="text-[11px] text-cream/70 line-clamp-1">{p.shortDescription}</p>
                   </div>
-                  <div className="pt-2 border-t border-[#C49A52]/20 flex justify-between items-center text-xs">
-                    <span className="text-[10px] text-[#FFF9F1]/80">Stock: <strong className="text-[#DDBD78]">{p.stock} units</strong></span>
-                    <span className="text-[10px] bg-[#102746] text-[#C49A52] px-2 py-0.5 rounded font-mono">SKU: {p.sku}</span>
+                  <div className="pt-2 border-t border-gold/20 flex justify-between items-center text-xs">
+                    <span className="text-[10px] text-cream/80">Stock: <strong className="text-gold-light">{p.stock} units</strong></span>
+                    <span className="text-[10px] bg-wine-950 text-gold px-2 py-0.5 rounded font-mono">SKU: {p.sku}</span>
                   </div>
                 </div>
               ))}
@@ -446,11 +454,11 @@ export default function AdminDashboardPage() {
 
         {/* TAB 3: ORDERS MANAGEMENT */}
         {activeTab === "orders" && (
-          <div className="bg-[#17345F] border border-[#C49A52]/30 p-6 rounded-xl space-y-4">
-            <h2 className="font-serif text-3xl font-bold text-[#DDBD78]">FULL ORDERS FULFILLMENT PORTAL</h2>
+          <div className="bg-wine-900 border border-gold/30 p-6 rounded-xl space-y-4">
+            <h2 className="font-serif text-3xl font-bold text-gold-light">FULL ORDERS FULFILLMENT PORTAL</h2>
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs">
-                <thead className="text-[10px] text-[#C49A52] uppercase border-b border-[#C49A52]/20">
+                <thead className="text-[10px] text-gold uppercase border-b border-gold/20">
                   <tr>
                     <th className="py-3 px-2">Order ID</th>
                     <th className="py-3 px-2">Customer &amp; Address</th>
@@ -461,31 +469,35 @@ export default function AdminDashboardPage() {
                     <th className="py-3 px-2">Update Status</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#C49A52]/10">
+                <tbody className="divide-y divide-gold/10">
                   {orders.map((o) => (
                     <tr key={o.id}>
-                      <td className="py-3 px-2 font-serif font-bold text-[#DDBD78]">{o.orderNumber}</td>
+                      <td className="py-3 px-2 font-serif font-bold text-gold-light">{o.orderNumber}</td>
                       <td className="py-3 px-2">
                         <span className="font-bold block">{o.customer.fullName}</span>
-                        <span className="text-[10px] text-[#FFF9F1]/70 block">{o.customer.city}, {o.customer.pincode}</span>
+                        <span className="text-[10px] text-cream/70 block">{o.customer.city}, {o.customer.pincode}</span>
                       </td>
                       <td className="py-3 px-2">
                         {o.items.map((i) => i.productName).join(", ")}
                       </td>
                       <td className="py-3 px-2 font-bold">₹ {o.totalAmount.toLocaleString("en-IN")}</td>
                       <td className="py-3 px-2">
-                        <span className="bg-[#C49A52]/20 text-[#DDBD78] px-2 py-0.5 rounded text-[10px] uppercase font-bold">
+                        <span className={`px-2 py-0.5 rounded text-[10px] uppercase font-bold ${
+                          o.orderStatus === 'DELIVERED'
+                            ? 'bg-success/20 text-[#7ec297] border border-success/40'
+                            : 'bg-gold/20 text-gold-light'
+                        }`}>
                           {o.orderStatus}
                         </span>
                       </td>
-                      <td className="py-3 px-2 font-mono text-[10px] text-[#DDBD78]">
+                      <td className="py-3 px-2 font-mono text-[10px] text-gold-light">
                         {o.trackingNumber || "Pending Courier"}
                       </td>
                       <td className="py-3 px-2">
                         <select
                           value={o.orderStatus}
                           onChange={(e) => handleUpdateOrderStatus(o.id, e.target.value)}
-                          className="bg-[#102746] border border-[#C49A52]/40 text-[#FFF9F1] p-1.5 rounded text-[10px] focus:outline-none"
+                          className="bg-wine-950 border border-gold/40 text-cream p-1.5 rounded text-[10px] focus:outline-none"
                         >
                           <option value="ORDER_PLACED">ORDER_PLACED</option>
                           <option value="PROCESSING">PROCESSING</option>
@@ -505,19 +517,22 @@ export default function AdminDashboardPage() {
 
         {/* TAB 4: INVENTORY & STOCK */}
         {activeTab === "inventory" && (
-          <div className="bg-[#17345F] border border-[#C49A52]/30 p-6 rounded-xl space-y-4">
-            <h2 className="font-serif text-3xl font-bold text-[#DDBD78]">INVENTORY &amp; STOCK CONTROLS</h2>
+          <div className="bg-wine-900 border border-gold/30 p-6 rounded-xl space-y-4">
+            <h2 className="font-serif text-3xl font-bold text-gold-light">INVENTORY &amp; STOCK CONTROLS</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {products.map((p) => (
-                <div key={p.id} className="bg-[#102746] p-4 rounded-lg border border-[#C49A52]/20 flex items-center justify-between">
+                <div key={p.id} className="bg-wine-950 p-4 rounded-lg border border-gold/20 flex items-center justify-between">
                   <div>
-                    <h4 className="font-serif font-bold text-base text-[#FFF9F1]">{p.name}</h4>
-                    <span className="text-[10px] font-mono text-[#DDBD78]">SKU: {p.sku}</span>
+                    <h4 className="font-serif font-bold text-base text-cream">{p.name}</h4>
+                    <span className="text-[10px] font-mono text-gold-light">SKU: {p.sku}</span>
                   </div>
                   <div className="text-right">
-                    <span className="text-xs text-[#FFF9F1]/80 block">Available Stock:</span>
-                    <span className={`font-serif text-2xl font-bold ${p.stock <= p.lowStockThreshold ? "text-[#B94D70]" : "text-[#DDBD78]"}`}>
+                    <span className="text-xs text-cream/80 block">Available Stock:</span>
+                    <span className={`font-serif text-2xl font-bold ${p.stock <= p.lowStockThreshold ? "text-crimson" : "text-success"}`}>
                       {p.stock} Units
+                    </span>
+                    <span className={`block text-[9px] uppercase px-1.5 py-0.5 rounded font-mono mt-0.5 ${p.stock <= p.lowStockThreshold ? "bg-crimson/20 text-crimson" : "bg-success/20 text-[#7ec297]"}`}>
+                      {p.stock <= p.lowStockThreshold ? "Low Stock" : "In Stock"}
                     </span>
                   </div>
                 </div>
@@ -529,15 +544,15 @@ export default function AdminDashboardPage() {
         {/* TAB 5: COUPONS */}
         {activeTab === "coupons" && (
           <div className="space-y-6">
-            <h2 className="font-serif text-3xl font-bold text-[#DDBD78]">DISCOUNT COUPON ENGINE</h2>
-            <form onSubmit={handleCreateCoupon} className="bg-[#17345F] border border-[#C49A52]/30 p-6 rounded-xl flex gap-4 text-xs">
+            <h2 className="font-serif text-3xl font-bold text-gold-light">DISCOUNT COUPON ENGINE</h2>
+            <form onSubmit={handleCreateCoupon} className="bg-wine-900 border border-gold/30 p-6 rounded-xl flex gap-4 text-xs">
               <input
                 type="text"
                 required
                 placeholder="New Coupon Code (e.g. WELCOME500)"
                 value={newCouponCode}
                 onChange={(e) => setNewCouponCode(e.target.value)}
-                className="bg-[#102746] border border-[#C49A52]/40 p-2.5 rounded text-[#FFF9F1] uppercase flex-1"
+                className="bg-wine-950 border border-gold/40 p-2.5 rounded text-cream uppercase flex-1"
               />
               <input
                 type="number"
@@ -545,19 +560,19 @@ export default function AdminDashboardPage() {
                 placeholder="Discount %"
                 value={newCouponVal}
                 onChange={(e) => setNewCouponVal(e.target.value)}
-                className="bg-[#102746] border border-[#C49A52]/40 p-2.5 rounded text-[#FFF9F1] w-28"
+                className="bg-wine-950 border border-gold/40 p-2.5 rounded text-cream w-28"
               />
-              <button type="submit" className="px-6 py-2.5 bg-[#C49A52] text-[#17345F] font-bold rounded uppercase">
+              <button type="submit" className="px-6 py-2.5 bg-gold text-wine-900 font-bold rounded uppercase">
                 CREATE CODE
               </button>
             </form>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {coupons.map((c) => (
-                <div key={c.code} className="bg-[#17345F] border border-[#C49A52]/30 p-4 rounded-xl space-y-1">
-                  <span className="font-mono text-xl font-bold text-[#DDBD78]">{c.code}</span>
-                  <p className="text-xs text-[#FFF9F1]">{c.discountValue}% OFF on orders above ₹{c.minOrderAmount}</p>
-                  <p className="text-[10px] text-[#FFF9F1]/60">Times Used: {c.timesUsed}</p>
+                <div key={c.code} className="bg-wine-900 border border-gold/30 p-4 rounded-xl space-y-1">
+                  <span className="font-mono text-xl font-bold text-gold-light">{c.code}</span>
+                  <p className="text-xs text-cream">{c.discountValue}% OFF on orders above ₹{c.minOrderAmount}</p>
+                  <p className="text-[10px] text-cream/60">Times Used: {c.timesUsed}</p>
                 </div>
               ))}
             </div>

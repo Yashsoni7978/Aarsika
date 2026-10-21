@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { DB, Order } from '@/lib/store';
+import { FREE_SHIPPING_THRESHOLD, STANDARD_SHIPPING_FEE } from '@/config/shop';
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -46,7 +47,7 @@ export async function POST(request: Request) {
 
     const calculatedDiscount = Math.max(0, parseInt(body.discount || 0, 10));
     const discountedSubtotal = Math.max(0, calculatedSubtotal - calculatedDiscount);
-    const shippingFee = discountedSubtotal >= 3000 || discountedSubtotal === 0 ? 0 : 150;
+    const shippingFee = discountedSubtotal >= FREE_SHIPPING_THRESHOLD || discountedSubtotal === 0 ? 0 : STANDARD_SHIPPING_FEE;
     const tax = Math.round(discountedSubtotal * 0.18);
     const calculatedTotalAmount = discountedSubtotal + shippingFee;
 

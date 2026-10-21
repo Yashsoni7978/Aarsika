@@ -2,8 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { X, Sparkles, Check, ArrowRight, RotateCcw } from "lucide-react";
+import { X, Sparkles, RotateCcw } from "lucide-react";
 import { useShop } from "@/context/ShopContext";
 import { Product } from "@/data/products";
 import PearlButton from "./PearlButton";
@@ -51,27 +50,27 @@ export const FragranceFinderModal: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#102746]/80 backdrop-blur-md animate-in fade-in duration-300">
-      <div className="bg-[#FFF9F1] border-2 border-[#C49A52] rounded-2xl w-full max-w-2xl overflow-hidden shadow-royal relative text-[#241C1B]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-wine-950/80 backdrop-blur-md animate-in fade-in duration-300">
+      <div className="bg-cream border-2 border-gold rounded-2xl w-full max-w-2xl overflow-hidden shadow-royal relative text-ink">
         {/* Close Button */}
         <button
           onClick={() => setIsFinderOpen(false)}
-          className="absolute top-4 right-4 z-20 p-2 text-[#6b5f55] hover:text-[#8b1a2b] transition-colors rounded-none bg-[#F6EFE2]"
+          className="absolute top-4 right-4 z-20 p-2 text-muted hover:text-wine-900 transition-colors rounded-none bg-ivory"
           aria-label="Close Modal"
         >
           <X className="w-5 h-5" />
         </button>
 
         {/* Header */}
-        <div className="bg-[#17345F] text-[#FFF9F1] px-6 py-5 text-center relative border-b border-[#C49A52]/30">
-          <span className="text-[10px] tracking-[0.35em] text-[#C49A52] uppercase font-bold flex items-center justify-center gap-1.5">
-            <Sparkles className="w-3.5 h-3.5 text-[#C49A52]" />
+        <div className="bg-wine-900 text-ivory px-6 py-5 text-center relative border-b border-gold/30">
+          <span className="text-[10px] tracking-[0.35em] text-gold uppercase font-bold flex items-center justify-center gap-1.5 font-mono">
+            <Sparkles className="w-3.5 h-3.5 text-gold" />
             ROYAL SCENT PROFILER
           </span>
-          <h2 className="font-serif text-2xl sm:text-3xl font-bold tracking-wide mt-1">
+          <h2 className="font-serif text-2xl sm:text-3xl font-normal tracking-wide mt-1">
             FIND YOUR SIGNATURE FRAGRANCE
           </h2>
-          <p className="text-xs text-[#FFF9F1]/80 font-light mt-1">
+          <p className="text-xs text-ivory/80 font-light mt-1">
             Answer 4 questions to reveal your bespoke royal fragrance match.
           </p>
         </div>
@@ -80,10 +79,10 @@ export const FragranceFinderModal: React.FC = () => {
         <div className="p-6 sm:p-8 space-y-6 max-h-[75vh] overflow-y-auto">
           {/* STEP 1: MOOD */}
           {step === 1 && (
-            <div className="space-y-5 animate-in fade-in slide-in-from-right-4 duration-300">
+            <div className="space-y-5 animate-in fade-in slide-from-right duration-300">
               <div className="text-center">
-                <span className="text-[10px] tracking-widest text-[#C49A52] uppercase font-bold">QUESTION 1 OF 4</span>
-                <h3 className="font-serif text-2xl font-bold text-[#17345F] mt-1">What mood defines your presence?</h3>
+                <span className="text-[10px] tracking-widest text-gold-deep uppercase font-mono">QUESTION 1 OF 4</span>
+                <h3 className="font-serif text-2xl font-normal text-ink mt-1">What mood defines your presence?</h3>
               </div>
 
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
@@ -103,12 +102,12 @@ export const FragranceFinderModal: React.FC = () => {
                     }}
                     className={`p-4 rounded-xl border text-left transition-all flex flex-col justify-between ${
                       mood === m.id
-                        ? "border-[#B94D70] bg-[#B94D70]/10 text-[#17345F]"
-                        : "border-[#C49A52]/30 bg-[#F8F1E7] hover:border-[#C49A52]"
+                        ? "border-wine-900 bg-wine-900/10 text-wine-900"
+                        : "border-gold/30 bg-ivory hover:border-wine-900"
                     }`}
                   >
-                    <span className="font-serif font-bold text-base text-[#17345F]">{m.label}</span>
-                    <span className="text-[11px] text-[#756B63] mt-1">{m.desc}</span>
+                    <span className="font-serif font-medium text-base text-ink">{m.label}</span>
+                    <span className="text-[11px] text-muted mt-1">{m.desc}</span>
                   </button>
                 ))}
               </div>
@@ -117,10 +116,10 @@ export const FragranceFinderModal: React.FC = () => {
 
           {/* STEP 2: FRAGRANCE FAMILY */}
           {step === 2 && (
-            <div className="space-y-5 animate-in fade-in slide-in-from-right-4 duration-300">
+            <div className="space-y-5 animate-in fade-in slide-from-right duration-300">
               <div className="text-center">
-                <span className="text-[10px] tracking-widest text-[#C49A52] uppercase font-bold">QUESTION 2 OF 4</span>
-                <h3 className="font-serif text-2xl font-bold text-[#17345F] mt-1">Which olfactory family draws you?</h3>
+                <span className="text-[10px] tracking-widest text-gold-deep uppercase font-mono">QUESTION 2 OF 4</span>
+                <h3 className="font-serif text-2xl font-normal text-ink mt-1">Which olfactory family draws you?</h3>
               </div>
 
               <div className="grid grid-cols-2 gap-3">
@@ -138,12 +137,12 @@ export const FragranceFinderModal: React.FC = () => {
                     }}
                     className={`p-4 rounded-xl border text-left transition-all ${
                       family === f.id
-                        ? "border-[#B94D70] bg-[#B94D70]/10 text-[#17345F]"
-                        : "border-[#C49A52]/30 bg-[#F8F1E7] hover:border-[#C49A52]"
+                        ? "border-wine-900 bg-wine-900/10 text-wine-900"
+                        : "border-gold/30 bg-ivory hover:border-wine-900"
                     }`}
                   >
-                    <span className="font-serif font-bold text-base text-[#17345F] block">{f.label}</span>
-                    <span className="text-[11px] text-[#756B63] mt-1 block">{f.desc}</span>
+                    <span className="font-serif font-medium text-base text-ink block">{f.label}</span>
+                    <span className="text-[11px] text-muted mt-1 block">{f.desc}</span>
                   </button>
                 ))}
               </div>
@@ -152,10 +151,10 @@ export const FragranceFinderModal: React.FC = () => {
 
           {/* STEP 3: INTENSITY */}
           {step === 3 && (
-            <div className="space-y-5 animate-in fade-in slide-in-from-right-4 duration-300">
+            <div className="space-y-5 animate-in fade-in slide-from-right duration-300">
               <div className="text-center">
-                <span className="text-[10px] tracking-widest text-[#C49A52] uppercase font-bold">QUESTION 3 OF 4</span>
-                <h3 className="font-serif text-2xl font-bold text-[#17345F] mt-1">Desired sillage &amp; intensity?</h3>
+                <span className="text-[10px] tracking-widest text-gold-deep uppercase font-mono">QUESTION 3 OF 4</span>
+                <h3 className="font-serif text-2xl font-normal text-ink mt-1">Desired sillage &amp; intensity?</h3>
               </div>
 
               <div className="grid grid-cols-3 gap-3">
@@ -172,12 +171,12 @@ export const FragranceFinderModal: React.FC = () => {
                     }}
                     className={`p-4 rounded-xl border text-left transition-all ${
                       intensity === i.id
-                        ? "border-[#B94D70] bg-[#B94D70]/10 text-[#17345F]"
-                        : "border-[#C49A52]/30 bg-[#F8F1E7] hover:border-[#C49A52]"
+                        ? "border-wine-900 bg-wine-900/10 text-wine-900"
+                        : "border-gold/30 bg-ivory hover:border-wine-900"
                     }`}
                   >
-                    <span className="font-serif font-bold text-base text-[#17345F] block">{i.label}</span>
-                    <span className="text-[11px] text-[#756B63] mt-1 block">{i.desc}</span>
+                    <span className="font-serif font-medium text-base text-ink block">{i.label}</span>
+                    <span className="text-[11px] text-muted mt-1 block">{i.desc}</span>
                   </button>
                 ))}
               </div>
@@ -186,10 +185,10 @@ export const FragranceFinderModal: React.FC = () => {
 
           {/* STEP 4: OCCASION */}
           {step === 4 && (
-            <div className="space-y-5 animate-in fade-in slide-in-from-right-4 duration-300">
+            <div className="space-y-5 animate-in fade-in slide-from-right duration-300">
               <div className="text-center">
-                <span className="text-[10px] tracking-widest text-[#C49A52] uppercase font-bold">FINAL QUESTION</span>
-                <h3 className="font-serif text-2xl font-bold text-[#17345F] mt-1">When will you wear this fragrance?</h3>
+                <span className="text-[10px] tracking-widest text-gold-deep uppercase font-mono">FINAL QUESTION</span>
+                <h3 className="font-serif text-2xl font-normal text-ink mt-1">When will you wear this fragrance?</h3>
               </div>
 
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
@@ -206,10 +205,10 @@ export const FragranceFinderModal: React.FC = () => {
                       setOccasion(o.id);
                       handleCalculate();
                     }}
-                    className="p-4 rounded-xl border border-[#C49A52]/30 bg-[#F8F1E7] hover:border-[#C49A52] hover:bg-[#B94D70]/10 text-left transition-all"
+                    className="p-4 rounded-xl border border-gold/30 bg-ivory hover:border-wine-900 text-left transition-all"
                   >
-                    <span className="font-serif font-bold text-base text-[#17345F] block">{o.label}</span>
-                    <span className="text-[11px] text-[#756B63] mt-1 block">{o.desc}</span>
+                    <span className="font-serif font-medium text-base text-ink block">{o.label}</span>
+                    <span className="text-[11px] text-muted mt-1 block">{o.desc}</span>
                   </button>
                 ))}
               </div>
@@ -221,16 +220,16 @@ export const FragranceFinderModal: React.FC = () => {
             <div className="space-y-6 animate-in fade-in duration-300">
               {loading ? (
                 <div className="py-12 text-center space-y-3">
-                  <div className="w-10 h-10 border-2 border-[#C49A52] border-t-transparent rounded-full animate-spin mx-auto" />
-                  <p className="text-xs text-[#17345F] tracking-widest uppercase font-semibold">
+                  <div className="w-10 h-10 border-2 border-gold border-t-transparent rounded-full animate-spin mx-auto" />
+                  <p className="text-xs text-wine-900 tracking-widest uppercase font-mono">
                     Consulting Royal Olfactory Archives...
                   </p>
                 </div>
               ) : (
                 <>
                   <div className="text-center space-y-1">
-                    <span className="text-[10px] tracking-widest text-[#C49A52] uppercase font-bold">YOUR MATCH RESULTS</span>
-                    <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#17345F]">
+                    <span className="text-[10px] tracking-widest text-gold-deep uppercase font-mono">YOUR MATCH RESULTS</span>
+                    <h3 className="font-serif text-2xl sm:text-3xl font-normal text-wine-900">
                       RECOMMENDED SIGNATURE FRAGRANCES
                     </h3>
                   </div>
@@ -239,26 +238,26 @@ export const FragranceFinderModal: React.FC = () => {
                     {recommendations.map(({ product, matchScore }) => (
                       <div
                         key={product.id}
-                        className="bg-[#F8F1E7] border border-[#C49A52]/40 rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4"
+                        className="bg-ivory border border-gold/40 rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4"
                       >
                         <div className="flex items-center gap-4">
-                          <div className="relative w-16 h-16 rounded-lg overflow-hidden border border-[#C49A52]/30 shrink-0">
-                            <Image src={product.mainImage} alt={product.name} fill className="object-cover" />
+                          <div className="relative w-16 h-16 rounded-lg overflow-hidden border border-gold/30 shrink-0 bg-sand">
+                            <Image src={product.mainImage || "/photos/attars/sehar-e-gulab.jpg"} alt={product.name} fill className="object-cover" />
                           </div>
                           <div>
                             <div className="flex items-center gap-2">
-                              <span className="text-[10px] bg-[#17345F] text-[#FFF9F1] px-2 py-0.5 rounded font-bold">
+                              <span className="text-[10px] bg-wine-900 text-ivory px-2 py-0.5 rounded-full font-mono font-medium">
                                 {matchScore}% MATCH
                               </span>
-                              <span className="text-[10px] text-[#C49A52] font-semibold">{product.type}</span>
+                              <span className="text-[10px] text-gold-deep font-mono">{product.type}</span>
                             </div>
-                            <h4 className="font-serif text-lg font-bold text-[#17345F] mt-0.5">{product.name}</h4>
-                            <p className="text-xs text-[#756B63] line-clamp-1">{product.shortDescription}</p>
+                            <h4 className="font-serif text-lg font-normal text-ink mt-0.5">{product.name}</h4>
+                            <p className="text-xs text-muted line-clamp-1">{product.shortDescription}</p>
                           </div>
                         </div>
 
                         <div className="flex items-center gap-3 w-full sm:w-auto justify-end">
-                          <span className="font-serif font-bold text-base text-[#30070D]">
+                          <span className="font-serif font-bold text-base text-ink">
                             ₹ {product.price.toLocaleString("en-IN")}
                           </span>
                           <PearlButton
@@ -276,17 +275,17 @@ export const FragranceFinderModal: React.FC = () => {
                     ))}
                   </div>
 
-                  <div className="pt-2 flex justify-between items-center border-t border-[#C49A52]/20">
+                  <div className="pt-2 flex justify-between items-center border-t border-gold/20">
                     <button
                       onClick={resetQuiz}
-                      className="text-xs text-[#756B63] hover:text-[#17345F] flex items-center gap-1 font-semibold"
+                      className="text-xs text-muted hover:text-wine-900 flex items-center gap-1 font-mono"
                     >
                       <RotateCcw className="w-3.5 h-3.5" />
                       <span>Retake Scent Quiz</span>
                     </button>
                     <button
                       onClick={() => setIsFinderOpen(false)}
-                      className="text-xs text-[#17345F] hover:text-[#B94D70] font-bold uppercase tracking-wider"
+                      className="text-xs text-wine-900 hover:text-crimson font-mono uppercase tracking-wider"
                     >
                       Close Finder
                     </button>

@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Trash2, Plus, Minus, ArrowRight, ShoppingBag, ShieldCheck, Tag, Sparkles } from "lucide-react";
 import { useShop } from "@/context/ShopContext";
+import { FREE_SHIPPING_THRESHOLD, STANDARD_SHIPPING_FEE } from "@/config/shop";
 import PearlButton from "@/components/PearlButton";
 
 export default function CartPage() {
@@ -14,7 +15,9 @@ export default function CartPage() {
   const [appliedCoupon, setAppliedCoupon] = useState<{ code: string; discountAmount: number } | null>(null);
   const [isCheckingCoupon, setIsCheckingCoupon] = useState(false);
 
-  const freeShippingThreshold = 3000;
+  const freeShippingThreshold = FREE_SHIPPING_THRESHOLD;
+  const standardShippingFee = STANDARD_SHIPPING_FEE;
+  const shippingFee = cartTotal >= freeShippingThreshold || cartTotal === 0 ? 0 : standardShippingFee;
   const amountNeededForFreeShipping = Math.max(0, freeShippingThreshold - cartTotal);
   const shippingProgress = Math.min(100, (cartTotal / freeShippingThreshold) * 100);
 
@@ -35,7 +38,7 @@ export default function CartPage() {
       } else {
         showToast(data.message);
       }
-    } catch (e) {
+    } catch {
       showToast("Error validating coupon code");
     } finally {
       setIsCheckingCoupon(false);
@@ -49,14 +52,14 @@ export default function CartPage() {
 
   if (cart.length === 0) {
     return (
-      <div className="bg-[#F8F1E7] min-h-screen py-24 text-[#241C1B]">
+      <div className="bg-ivory min-h-screen py-24 text-ink">
         <div className="max-w-xl mx-auto px-4 text-center space-y-6">
-          <div className="w-20 h-20 mx-auto rounded-full bg-[#FFF9F1] border border-[#C49A52]/40 flex items-center justify-center shadow-soft text-[#17345F]">
+          <div className="w-20 h-20 mx-auto rounded-full bg-cream border border-gold/40 flex items-center justify-center shadow-soft text-wine-900">
             <ShoppingBag className="w-10 h-10 stroke-[1.5]" />
           </div>
-          <span className="text-[10px] tracking-[0.35em] text-[#9D6A26] uppercase font-bold">YOUR SHOPPING BAG IS EMPTY</span>
-          <h1 className="font-serif text-4xl font-normal text-[#30070D]">EXPLORE OUR SIGNATURE FRAGRANCES</h1>
-          <p className="text-xs text-[#6b5f55] max-w-sm mx-auto leading-relaxed font-light">
+          <span className="text-[10px] tracking-[0.35em] text-gold-deep uppercase font-mono">YOUR SHOPPING BAG IS EMPTY</span>
+          <h1 className="font-serif text-4xl font-normal text-wine-900">EXPLORE OUR SIGNATURE FRAGRANCES</h1>
+          <p className="text-xs text-muted max-w-sm mx-auto leading-relaxed font-light">
             Discover concentrated attars, royal eau de parfum, rare oud decanters, and luxury gifting boxes.
           </p>
           <div className="pt-4">
@@ -64,7 +67,7 @@ export default function CartPage() {
               href="/shop"
               variant="burgundy"
               size="lg"
-              rightIcon={<ArrowRight className="w-4 h-4 text-[#C69A45]" />}
+              rightIcon={<ArrowRight className="w-4 h-4 text-gold" />}
             >
               DISCOVER COLLECTIONS
             </PearlButton>
@@ -75,99 +78,108 @@ export default function CartPage() {
   }
 
   return (
-    <div className="bg-[#F8F1E7] min-h-screen py-16 text-[#241C1B]">
+    <div className="bg-ivory min-h-screen py-16 text-ink">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         <div className="text-center space-y-2">
-          <span className="text-[11px] tracking-[0.35em] text-[#C49A52] uppercase font-bold">
+          <span className="text-[11px] tracking-[0.35em] text-gold-deep uppercase font-mono">
             ROYAL SELECTION
           </span>
-          <h1 className="font-serif text-4xl sm:text-5xl font-bold text-[#17345F]">
+          <h1 className="font-serif text-4xl sm:text-5xl font-normal text-ink">
             YOUR SHOPPING BAG ({cart.length})
           </h1>
         </div>
 
         {/* Free Shipping Progress Bar */}
-        <div className="bg-[#FFF9F1] border border-[#C49A52]/30 p-4 rounded-xl text-center space-y-2 shadow-soft">
+        <div className="bg-wine-900 border border-gold/30 p-4 rounded-xl text-center space-y-2 shadow-soft text-ivory">
           {amountNeededForFreeShipping > 0 ? (
-            <p className="text-xs font-semibold text-[#17345F]">
-              Add <span className="text-[#B94D70] font-bold">₹ {amountNeededForFreeShipping.toLocaleString("en-IN")}</span> more to unlock <span className="text-[#C49A52] font-bold">Free Express Delivery &amp; Royal Sample Chest</span>!
+            <p className="text-xs font-semibold text-ivory">
+              Add <span className="text-gold-light font-bold">₹ {amountNeededForFreeShipping.toLocaleString("en-IN")}</span> more to unlock <span className="text-gold font-bold">Free Express Delivery &amp; Royal Sample Chest</span>!
             </p>
           ) : (
-            <p className="text-xs font-bold text-[#176B58] flex items-center justify-center gap-1.5">
-              <Sparkles className="w-4 h-4 text-[#C49A52]" />
+            <p className="text-xs font-bold text-gold-light flex items-center justify-center gap-1.5">
+              <Sparkles className="w-4 h-4 text-gold" />
               Congratulations! Your order qualifies for Free Express Delivery &amp; Complimentary Sample Box.
             </p>
           )}
-          <div className="w-full bg-[#EFE6D8] h-2 rounded-full overflow-hidden max-w-md mx-auto">
-            <div className="bg-[#C49A52] h-full transition-all duration-500" style={{ width: `${shippingProgress}%` }}></div>
+          <div className="w-full bg-wine-950 h-2 rounded-full overflow-hidden max-w-md mx-auto">
+            <div className="bg-gold h-full transition-all duration-500" style={{ width: `${shippingProgress}%` }}></div>
           </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
           {/* Cart Items List */}
           <div className="lg:col-span-7 space-y-4">
-            {cart.map((item, idx) => (
-              <div
-                key={`${item.product.id}-${item.size}`}
-                className="bg-[#FFF9F1] border border-[#C49A52]/30 rounded-xl p-4 sm:p-6 shadow-soft flex gap-4 sm:gap-6 items-center justify-between"
-              >
-                <div className="relative w-20 h-24 sm:w-24 sm:h-28 bg-[#F8F1E7] rounded-lg overflow-hidden border border-[#C49A52]/20 shrink-0">
-                  <Image src={item.product.mainImage} alt={item.product.name} fill className="object-cover" />
-                </div>
+            {cart.map((item) => {
+              const itemImg = item.product.mainImage && item.product.mainImage !== 'placeholder'
+                ? item.product.mainImage
+                : '/photos/attars/sehar-e-gulab.jpg';
 
-                <div className="flex-1 space-y-1">
-                  <span className="text-[10px] tracking-widest text-[#C49A52] uppercase font-bold">{item.product.type}</span>
-                  <Link href={`/products/${item.product.slug}`} className="block">
-                    <h3 className="font-serif text-lg sm:text-xl font-bold text-[#17345F] hover:text-[#B94D70] transition-colors">
-                      {item.product.name}
-                    </h3>
-                  </Link>
-                  <p className="text-xs text-[#756B63] font-medium">{item.size}</p>
-                  <p className="font-serif font-bold text-base text-[#17345F]">
-                    ₹ {item.product.price.toLocaleString("en-IN")}
-                  </p>
-                </div>
-
-                <div className="flex flex-col items-end gap-3">
-                  <div className="flex items-center border border-[#C49A52]/40 rounded bg-[#F8F1E7] px-2 py-1 text-xs">
-                    <button
-                      onClick={() => updateQuantity(item.product.id, item.size, item.quantity - 1)}
-                      className="px-1.5 text-[#756B63] hover:text-[#17345F]"
-                    >
-                      <Minus className="w-3.5 h-3.5" />
-                    </button>
-                    <span className="px-2 font-bold text-[#17345F]">{item.quantity}</span>
-                    <button
-                      onClick={() => updateQuantity(item.product.id, item.size, item.quantity + 1)}
-                      className="px-1.5 text-[#756B63] hover:text-[#17345F]"
-                    >
-                      <Plus className="w-3.5 h-3.5" />
-                    </button>
+              return (
+                <div
+                  key={`${item.product.id}-${item.size}`}
+                  className="bg-cream border border-gold/30 rounded-xl p-4 sm:p-6 shadow-soft flex gap-4 sm:gap-6 items-center justify-between"
+                >
+                  <div className="relative w-20 h-24 sm:w-24 sm:h-28 bg-sand rounded-lg overflow-hidden border border-gold/20 shrink-0">
+                    <Image src={itemImg} alt={item.product.name} fill className="object-cover" />
                   </div>
 
-                  <button
-                    onClick={() => removeFromCart(item.product.id, item.size)}
-                    className="text-[#756B63] hover:text-[#B94D70] transition-colors p-1"
-                    title="Remove item"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </button>
+                  <div className="flex-1 space-y-1">
+                    <span className="text-[10px] tracking-widest text-gold-deep uppercase font-mono">{item.product.type}</span>
+                    <Link href={`/products/${item.product.slug}`} className="block">
+                      <h3 className="font-serif text-lg sm:text-xl font-normal text-ink hover:text-wine-900 transition-colors">
+                        {item.product.name}
+                      </h3>
+                    </Link>
+                    <p className="text-xs text-muted font-light">{item.size}</p>
+                    <p className="font-serif font-bold text-base text-ink">
+                      ₹ {item.product.price.toLocaleString("en-IN")}
+                    </p>
+                  </div>
+
+                  <div className="flex flex-col items-end gap-3">
+                    <div className="flex items-center border border-gold/40 rounded bg-cream px-2 py-1 text-xs">
+                      <button
+                        onClick={() => updateQuantity(item.product.id, item.size, item.quantity - 1)}
+                        className="px-1.5 text-muted hover:text-ink"
+                        aria-label="Decrease quantity"
+                      >
+                        <Minus className="w-3.5 h-3.5" />
+                      </button>
+                      <span className="px-2 font-bold text-ink">{item.quantity}</span>
+                      <button
+                        onClick={() => updateQuantity(item.product.id, item.size, item.quantity + 1)}
+                        className="px-1.5 text-muted hover:text-ink"
+                        aria-label="Increase quantity"
+                      >
+                        <Plus className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+
+                    <button
+                      onClick={() => removeFromCart(item.product.id, item.size)}
+                      className="text-muted hover:text-wine-900 transition-colors p-1"
+                      title="Remove item"
+                      aria-label={`Remove ${item.product.name}`}
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Cart Summary & Checkout CTAs */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="bg-[#FFF9F1] border border-[#C49A52]/40 rounded-xl p-6 sm:p-8 shadow-xl space-y-6">
-              <h3 className="font-serif text-2xl font-bold text-[#17345F] border-b border-[#C49A52]/20 pb-3">
+            <div className="bg-cream border border-gold/40 rounded-xl p-6 sm:p-8 shadow-xl space-y-6">
+              <h3 className="font-serif text-2xl font-normal text-wine-900 border-b border-gold/20 pb-3">
                 SUMMARY
               </h3>
 
               {/* Promo Coupon Input */}
               <form onSubmit={handleApplyCoupon} className="space-y-2">
-                <label className="text-[10px] tracking-wider uppercase font-bold text-[#17345F] flex items-center gap-1">
-                  <Tag className="w-3.5 h-3.5 text-[#C49A52]" />
+                <label className="text-[10px] tracking-wider uppercase font-mono text-gold-deep flex items-center gap-1">
+                  <Tag className="w-3.5 h-3.5 text-gold" />
                   <span>PROMO / GIFT CODE</span>
                 </label>
                 <div className="flex gap-2">
@@ -176,7 +188,7 @@ export default function CartPage() {
                     placeholder="e.g. ROYAL15"
                     value={couponCode}
                     onChange={(e) => setCouponCode(e.target.value)}
-                    className="w-full bg-[#F5EFE3] border border-[#C69A45]/40 px-3.5 py-2.5 rounded-full text-xs uppercase text-[#30070D] focus:outline-none"
+                    className="w-full bg-ivory border border-gold/40 px-3.5 py-2.5 rounded-full text-xs uppercase text-wine-900 focus:outline-none"
                   />
                   <PearlButton
                     type="submit"
@@ -188,36 +200,36 @@ export default function CartPage() {
                   </PearlButton>
                 </div>
                 {appliedCoupon && (
-                  <p className="text-xs text-[#176B58] font-semibold pt-1">
+                  <p className="text-xs text-gold-deep font-semibold pt-1">
                     Coupon {appliedCoupon.code} active (-₹{appliedCoupon.discountAmount.toLocaleString("en-IN")})
                   </p>
                 )}
               </form>
 
               {/* Price Breakdown */}
-              <div className="space-y-3 pt-4 border-t border-[#C49A52]/20 text-xs text-[#756B63]">
+              <div className="space-y-3 pt-4 border-t border-gold/20 text-xs text-muted">
                 <div className="flex justify-between">
                   <span>Bag Subtotal</span>
-                  <span className="font-semibold text-[#241C1B]">₹ {cartTotal.toLocaleString("en-IN")}</span>
+                  <span className="font-semibold text-ink">₹ {cartTotal.toLocaleString("en-IN")}</span>
                 </div>
                 {appliedCoupon && (
-                  <div className="flex justify-between text-[#176B58] font-semibold">
+                  <div className="flex justify-between text-gold-deep font-semibold">
                     <span>Royal Discount ({appliedCoupon.code})</span>
                     <span>- ₹ {appliedCoupon.discountAmount.toLocaleString("en-IN")}</span>
                   </div>
                 )}
                 <div className="flex justify-between">
                   <span>GST (Included 18%)</span>
-                  <span className="font-semibold text-[#241C1B]">₹ {estimatedTax.toLocaleString("en-IN")}</span>
+                  <span className="font-semibold text-ink">₹ {estimatedTax.toLocaleString("en-IN")}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Royal Express Delivery</span>
-                  <span className="font-semibold text-[#C49A52]">{amountNeededForFreeShipping === 0 ? "FREE" : "₹ 150"}</span>
+                  <span className="font-semibold text-gold">{shippingFee === 0 ? "FREE" : `₹ ${standardShippingFee}`}</span>
                 </div>
-                <div className="flex justify-between pt-3 border-t border-[#C49A52]/20 text-sm font-bold text-[#17345F]">
+                <div className="flex justify-between pt-3 border-t border-gold/20 text-sm font-bold text-wine-900">
                   <span>TOTAL DUE</span>
                   <span className="font-serif text-2xl">
-                    ₹ {(finalTotal + (amountNeededForFreeShipping === 0 ? 0 : 150)).toLocaleString("en-IN")}
+                    ₹ {(finalTotal + shippingFee).toLocaleString("en-IN")}
                   </span>
                 </div>
               </div>
@@ -228,13 +240,13 @@ export default function CartPage() {
                 variant="burgundy"
                 size="lg"
                 fullWidth
-                rightIcon={<ArrowRight className="w-4 h-4 text-[#C69A45]" />}
+                rightIcon={<ArrowRight className="w-4 h-4 text-gold" />}
               >
                 PROCEED TO CHECKOUT
               </PearlButton>
 
-              <div className="text-[10px] text-center text-[#756B63] uppercase tracking-wider flex items-center justify-center gap-1">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#C49A52]" />
+              <div className="text-[10px] text-center text-muted uppercase tracking-wider flex items-center justify-center gap-1 font-mono">
+                <ShieldCheck className="w-3.5 h-3.5 text-gold" />
                 <span>256-Bit Encrypted Secure Checkout</span>
               </div>
             </div>

@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { FREE_SHIPPING_THRESHOLD, STANDARD_SHIPPING_FEE } from "@/config/shop";
 
 export default function FAQPage() {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
@@ -23,7 +24,7 @@ export default function FAQPage() {
       id: "shipping",
       category: "ORDERS & SHIPPING",
       q: "What are your delivery timelines across India?",
-      a: "Orders are dispatched within 24 hours. Standard delivery takes 2–4 business days for major metropolitan areas and 3–5 business days for other destinations. Shipping is complimentary across India.",
+      a: `Orders are dispatched within 24 hours. Standard delivery takes 2–4 business days for major metropolitan areas and 3–5 business days for other destinations. Complimentary express shipping applies on all orders of ₹${FREE_SHIPPING_THRESHOLD.toLocaleString('en-IN')} and above (₹${STANDARD_SHIPPING_FEE} for orders below ₹${FREE_SHIPPING_THRESHOLD.toLocaleString('en-IN')}).`,
     },
     {
       id: "payment",

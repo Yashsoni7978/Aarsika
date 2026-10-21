@@ -55,16 +55,58 @@ export default function HeroSlider() {
     setMobileActiveIndex((prev) => (prev - 1 + MOBILE_HERO_SLIDES.length) % MOBILE_HERO_SLIDES.length);
   }, []);
 
+  const [slide1Loaded, setSlide1Loaded] = useState(false);
+  const [canLoadLazySlides, setCanLoadLazySlides] = useState(false);
+
+  // Defer lazy slides to idle period after critical paint, with complete check & 3s fallback
+  useEffect(() => {
+    // 1. Immediate check if slide 1 image already completed (e.g. cached / fast paint)
+    const checkComplete = () => {
+      const desktopImg = document.querySelector('img[data-hero-slide-1="desktop"]') as HTMLImageElement | null;
+      const mobileImg = document.querySelector('img[data-hero-slide-1="mobile"]') as HTMLImageElement | null;
+      if (desktopImg?.complete || mobileImg?.complete) {
+        setSlide1Loaded(true);
+      }
+    };
+    checkComplete();
+
+    // 2. Idle callback / timer for lazy slides
+    if (typeof window !== 'undefined') {
+      if ('requestIdleCallback' in window) {
+        const handle = (window as unknown as { requestIdleCallback: (cb: () => void, opts?: { timeout: number }) => number }).requestIdleCallback(() => {
+          setCanLoadLazySlides(true);
+          setSlide1Loaded(true);
+        }, { timeout: 2000 });
+        return () => (window as unknown as { cancelIdleCallback: (id: number) => void }).cancelIdleCallback(handle);
+      } else {
+        const timer = setTimeout(() => {
+          setCanLoadLazySlides(true);
+          setSlide1Loaded(true);
+        }, 1500);
+        return () => clearTimeout(timer);
+      }
+    }
+
+    // 3. Fallback safety timer: guarantees autoplay and slide loading never hang
+    const fallbackTimer = setTimeout(() => {
+      setSlide1Loaded(true);
+      setCanLoadLazySlides(true);
+    }, 3000);
+    return () => clearTimeout(fallbackTimer);
+  }, []);
+
   // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!sliderRef.current?.contains(document.activeElement)) return;
       if (e.key === 'ArrowRight') {
         e.preventDefault();
+        setCanLoadLazySlides(true);
         nextSlide();
         nextMobileSlide();
       } else if (e.key === 'ArrowLeft') {
         e.preventDefault();
+        setCanLoadLazySlides(true);
         prevSlide();
         prevMobileSlide();
       }
@@ -73,19 +115,19 @@ export default function HeroSlider() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [nextSlide, prevSlide, nextMobileSlide, prevMobileSlide]);
 
-  // Desktop/Tablet Autoplay
+  // Desktop/Tablet Autoplay - starts only after slide 1 has loaded
   useEffect(() => {
-    if (isPaused || prefersReducedMotion) return;
+    if (isPaused || prefersReducedMotion || !slide1Loaded) return;
     const interval = setInterval(nextSlide, AUTOPLAY_MS);
     return () => clearInterval(interval);
-  }, [isPaused, prefersReducedMotion, nextSlide]);
+  }, [isPaused, prefersReducedMotion, slide1Loaded, nextSlide]);
 
-  // Mobile Autoplay (5.5s refined pace)
+  // Mobile Autoplay (5.5s refined pace) - starts only after slide 1 has loaded
   useEffect(() => {
-    if (isPaused || prefersReducedMotion) return;
+    if (isPaused || prefersReducedMotion || !slide1Loaded) return;
     const interval = setInterval(nextMobileSlide, MOBILE_AUTOPLAY_MS);
     return () => clearInterval(interval);
-  }, [isPaused, prefersReducedMotion, nextMobileSlide]);
+  }, [isPaused, prefersReducedMotion, slide1Loaded, nextMobileSlide]);
 
   // Touch handlers for desktop/tablet swipe
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -171,20 +213,24 @@ export default function HeroSlider() {
                 isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
               }`}
             >
-              <picture className="w-full h-full block">
-                <source srcSet={slide.desktopImage} type="image/webp" />
-                <img
-                  src={slide.desktopImage}
-                  alt={slide.alt}
-                  width={1672}
-                  height={941}
-                  decoding="async"
-                  loading={isPriority ? 'eager' : 'lazy'}
-                  // @ts-expect-error fetchpriority attribute is standard in HTML5
-                  fetchpriority={isPriority ? 'high' : 'auto'}
-                  className="w-full h-full object-cover object-center"
-                />
-              </picture>
+              {(isPriority || canLoadLazySlides) && (
+                <picture className="w-full h-full block">
+                  <source media="(min-width: 1024px)" srcSet={slide.desktopImage} type="image/webp" />
+                  <img
+                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1672 941'/%3E"
+                    alt={slide.alt}
+                    data-hero-slide-1={isPriority ? "desktop" : undefined}
+                    width={1672}
+                    height={941}
+                    decoding="async"
+                    loading={isPriority ? 'eager' : 'lazy'}
+                    // @ts-expect-error fetchpriority attribute is standard in HTML5
+                    fetchpriority={isPriority ? 'high' : 'auto'}
+                    onLoad={isPriority ? () => setSlide1Loaded(true) : undefined}
+                    className="w-full h-full object-cover object-center"
+                  />
+                </picture>
+              )}
             </div>
           );
         })}
@@ -327,7 +373,7 @@ export default function HeroSlider() {
             </div>
 
             {/* Headline */}
-            <h1 className="font-serif text-3xl sm:text-4xl md:text-[38px] font-normal text-[#F5EFE3] leading-[1.12] tracking-tight">
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-[38px] font-normal text-[#F5EFE3] leading-[1.12] tracking-tight">
               {activeSlide.headline}{' '}
               {activeSlide.headlineAccent && (
                 <span className="italic font-serif text-[#F8F4EC] font-light">
@@ -335,7 +381,7 @@ export default function HeroSlider() {
                 </span>
               )}
               {activeSlide.headlineAfterAccent ? ` ${activeSlide.headlineAfterAccent}` : ''}
-            </h1>
+            </h2>
 
             {/* Description */}
             <p className="font-sans text-xs sm:text-sm text-[#F5EFE3]/85 font-light leading-relaxed max-w-sm">
@@ -394,20 +440,23 @@ export default function HeroSlider() {
                     isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
                   }`}
                 >
-                  <picture className="w-full h-full block">
-                    <source srcSet={slide.tabletImage} type="image/webp" />
-                    <img
-                      src={slide.tabletImage}
-                      alt={slide.alt}
-                      width={1080}
-                      height={1350}
-                      decoding="async"
-                      loading={isPriority ? 'eager' : 'lazy'}
-                      // @ts-expect-error fetchpriority attribute is standard in HTML5
-                      fetchpriority={isPriority ? 'high' : 'auto'}
-                      className="w-full h-full object-cover object-center"
-                    />
-                  </picture>
+                  {(isPriority || canLoadLazySlides) && (
+                    <picture className="w-full h-full block">
+                      <source media="(min-width: 768px) and (max-width: 1023px)" srcSet={slide.tabletImage} type="image/webp" />
+                      <img
+                        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1080 1350'/%3E"
+                        alt={slide.alt}
+                        width={1080}
+                        height={1350}
+                        decoding="async"
+                        loading={isPriority ? 'eager' : 'lazy'}
+                        // @ts-expect-error fetchpriority attribute is standard in HTML5
+                        fetchpriority={isPriority ? 'high' : 'auto'}
+                        onLoad={isPriority ? () => setSlide1Loaded(true) : undefined}
+                        className="w-full h-full object-cover object-center"
+                      />
+                    </picture>
+                  )}
                 </div>
               );
             })}
@@ -467,36 +516,64 @@ export default function HeroSlider() {
                 aria-label={`${slide.title} - ${slide.productName}`}
                 className="relative block w-full h-full overflow-hidden focus:outline-none focus:ring-1 focus:ring-[#C69A45]/60 cursor-pointer"
               >
-                {/* Ambient Soft Glow Backdrop with Luxury Vignette */}
+                {/* Ambient Soft Glow Backdrop with Luxury Vignette (shares exact source to avoid duplicate network request) */}
                 <div
                   aria-hidden="true"
                   className="absolute inset-0 overflow-hidden pointer-events-none"
                 >
-                  <img
-                    src={slide.mobileWebp}
-                    alt=""
-                    className="w-full h-full object-cover blur-3xl opacity-35 scale-110"
-                  />
+                  {(isPriority || canLoadLazySlides) && (
+                    <picture className="w-full h-full block">
+                      <source
+                        media="(max-width: 767px)"
+                        srcSet={idx === 0 ? '/photos/hero/mobile-amour-love-750w.avif' : slide.mobileAvif}
+                        type="image/avif"
+                      />
+                      <source
+                        media="(max-width: 767px)"
+                        srcSet={idx === 0 ? '/photos/hero/mobile-amour-love-750w.webp' : slide.mobileWebp}
+                        type="image/webp"
+                      />
+                      <img
+                        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 750 938'/%3E"
+                        alt=""
+                        aria-hidden="true"
+                        className="w-full h-full object-cover blur-3xl opacity-35 scale-110"
+                        loading="lazy"
+                      />
+                    </picture>
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-b from-[#1b0306]/75 via-[#1b0306]/20 to-[#1b0306]/85" />
                 </div>
 
                 {/* Main Crisp Campaign Artwork (Uniform Centered Frame with Safe Inset) */}
                 <div className="relative z-20 w-full h-full flex items-center justify-center p-2 pt-3 pb-16">
-                  <picture className="w-full h-full flex items-center justify-center">
-                    <source srcSet={slide.mobileAvif} type="image/avif" />
-                    <source srcSet={slide.mobileWebp} type="image/webp" />
-                    <img
-                      src={slide.fallbackImage}
-                      alt={slide.alt}
-                      width={1080}
-                      height={1350}
-                      decoding="async"
-                      loading={isPriority ? 'eager' : 'lazy'}
-                      // @ts-expect-error fetchpriority attribute is standard in HTML5
-                      fetchpriority={isPriority ? 'high' : 'auto'}
-                      className={`max-w-full max-h-full ${slide.objectFitClass} ${slide.objectPositionClass}`}
-                    />
-                  </picture>
+                  {(isPriority || canLoadLazySlides) && (
+                    <picture className="w-full h-full flex items-center justify-center">
+                      <source
+                        media="(max-width: 767px)"
+                        srcSet={idx === 0 ? '/photos/hero/mobile-amour-love-750w.avif' : slide.mobileAvif}
+                        type="image/avif"
+                      />
+                      <source
+                        media="(max-width: 767px)"
+                        srcSet={idx === 0 ? '/photos/hero/mobile-amour-love-750w.webp' : slide.mobileWebp}
+                        type="image/webp"
+                      />
+                      <img
+                        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 750 938'/%3E"
+                        alt={slide.alt}
+                        data-hero-slide-1={isPriority ? "mobile" : undefined}
+                        width={idx === 0 ? 750 : 1080}
+                        height={idx === 0 ? 938 : 1350}
+                        decoding="async"
+                        loading={isPriority ? 'eager' : 'lazy'}
+                        // @ts-expect-error fetchpriority attribute is standard in HTML5
+                        fetchpriority={isPriority ? 'high' : 'auto'}
+                        onLoad={isPriority ? () => setSlide1Loaded(true) : undefined}
+                        className={`max-w-full max-h-full ${slide.objectFitClass} ${slide.objectPositionClass}`}
+                      />
+                    </picture>
+                  )}
                 </div>
               </Link>
             </div>

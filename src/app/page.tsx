@@ -252,10 +252,10 @@ export default function HomePage() {
         {/* Full-width Panoramic Background */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/photos/discovery-set-burgundy-bg.png"
+            src="/photos/discovery-set-burgundy-bg.webp"
             alt="Aarsika Discovery Set Burgundy Background"
             fill
-            priority
+            loading="lazy"
             sizes="100vw"
             className="object-cover object-[center_right] md:object-center"
           />
@@ -578,7 +578,7 @@ export default function HomePage() {
           <div className="pt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center border-t border-[#C69A45]/20 mt-8">
             <div className="flex flex-col items-center gap-1.5 text-xs text-[#6b5f55]">
               <Truck className="w-4 h-4 text-[#C69A45]" />
-              <span>Free Delivery in India</span>
+              <span>Complimentary Delivery on Orders ₹1,500 and Above</span>
             </div>
             <div className="flex flex-col items-center gap-1.5 text-xs text-[#6b5f55]">
               <ShieldCheck className="w-4 h-4 text-[#C69A45]" />

@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-export type PearlButtonVariant = 'burgundy' | 'champagne' | 'outline';
+export type PearlButtonVariant = 'burgundy' | 'champagne' | 'outline' | 'primary' | 'secondary';
 export type PearlButtonSize = 'sm' | 'md' | 'lg';
 
 export interface PearlButtonProps {
@@ -41,7 +41,8 @@ export const PearlButton: React.FC<PearlButtonProps> = ({
   fullWidth = false,
   ariaLabel,
 }) => {
-  const variantClass = `pearl-button--${variant}`;
+  const resolvedVariant = variant === 'primary' ? 'burgundy' : variant === 'secondary' ? 'champagne' : variant;
+  const variantClass = `pearl-button--${resolvedVariant}`;
   const sizeClass = `pearl-button--${size}`;
   const widthClass = fullWidth ? 'w-full' : '';
   const combinedClassName = `pearl-button ${variantClass} ${sizeClass} ${widthClass} ${className}`.trim();

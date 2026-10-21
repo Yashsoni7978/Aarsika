@@ -9,7 +9,11 @@ import { Flame, Shield } from "lucide-react";
 
 export default function OudCategoryPage() {
   const ouds = PRODUCTS.filter(
-    (p) => p.category === "OUD" || p.type.toLowerCase().includes("oud")
+    (p) =>
+      p.category === "OUD" ||
+      (p.collections && p.collections.includes("oud")) ||
+      (p.tags && p.tags.includes("oud")) ||
+      p.slug.includes("oud")
   );
 
   return (

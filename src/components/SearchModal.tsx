@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Search, X, ShoppingBag, ArrowRight } from "lucide-react";
+import { Search, X, ShoppingBag } from "lucide-react";
 import { useShop } from "@/context/ShopContext";
 import { PRODUCTS } from "@/data/products";
 import PearlButton from "./PearlButton";
@@ -29,7 +29,7 @@ export const SearchModal: React.FC = () => {
         );
       });
 
-  const popularTags = ["Rose Attar", "Oud-e-Jaipur", "Saffron", "Eau de Parfum", "Gift Box", "Sandalwood"];
+  const popularTags = ["Rose Attar", "Amour", "Saffron", "Eau de Parfum", "Gift Box", "Sandalwood", "Resham Oudh"];
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto">
@@ -39,41 +39,45 @@ export const SearchModal: React.FC = () => {
       />
 
       <div className="relative min-h-screen flex items-start justify-center pt-16 sm:pt-24 px-4 pb-12 z-10">
-        <div className="w-full max-w-3xl bg-[#FFF9F1] border border-[#C49A52]/40 rounded-lg shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300">
+        <div className="w-full max-w-3xl bg-cream border border-gold/40 rounded-2xl shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300">
           {/* Input Header */}
-          <div className="p-6 bg-[#F8F1E7] border-b border-[#C49A52]/30 flex items-center gap-4">
-            <Search className="w-6 h-6 text-[#C49A52]" />
+          <div className="p-6 bg-ivory border-b border-gold/30 flex items-center gap-4">
+            <Search className="w-6 h-6 text-gold" />
             <input
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search by perfume name, notes (Rose, Oud, Saffron), or category..."
+              placeholder="Search perfumes, notes, or categories..."
               autoFocus
-              className="flex-1 bg-transparent text-lg sm:text-xl font-serif text-[#17345F] placeholder-[#756B63]/60 focus:outline-none"
+              className="flex-1 bg-transparent text-base sm:text-xl font-serif text-ink placeholder-muted/60 focus:outline-none"
             />
             {query && (
-              <button onClick={() => setQuery("")} className="text-xs text-[#756B63] hover:text-[#241C1B]">
+              <button
+                onClick={() => setQuery("")}
+                className="text-xs font-mono uppercase text-muted hover:text-wine-900"
+              >
                 CLEAR
               </button>
             )}
             <button
               onClick={() => setIsSearchOpen(false)}
-              className="p-2 text-[#756B63] hover:text-[#B94D70] transition-colors"
+              className="p-2 text-muted hover:text-wine-900 transition-colors"
+              aria-label="Close search"
             >
               <X className="w-6 h-6" />
             </button>
           </div>
 
-          {/* Quick Suggestion Chips */}
-          <div className="px-6 py-3 bg-[#FFF9F1] border-b border-[#C49A52]/10 flex flex-wrap items-center gap-2 text-xs">
-            <span className="text-[#756B63] uppercase tracking-wider text-[10px] font-semibold mr-2">
+          {/* Quick Suggestion Chips (Same Pill Style as Filter Chips) */}
+          <div className="px-6 py-4 bg-cream border-b border-gold/15 flex flex-wrap items-center gap-2 text-xs">
+            <span className="text-muted uppercase tracking-wider text-[10px] font-mono font-semibold mr-1">
               POPULAR SEARCHES:
             </span>
             {popularTags.map((tag) => (
               <button
                 key={tag}
                 onClick={() => setQuery(tag)}
-                className="px-3 py-1 rounded-none bg-[#F6EFE2] border border-[#dccfb6] text-[#1a1411] hover:bg-[#26060d] hover:text-[#F6EFE2] transition-all"
+                className="px-3.5 py-1 rounded-full text-xs font-mono tracking-wider transition-all duration-300 bg-transparent text-muted border border-line hover:border-wine-900 hover:text-wine-900"
               >
                 {tag}
               </button>
@@ -83,64 +87,70 @@ export const SearchModal: React.FC = () => {
           {/* Results Container */}
           <div className="p-6 max-h-[60vh] overflow-y-auto">
             {query.trim() === "" ? (
-              <div className="text-center py-10 text-[#756B63]">
-                <p className="text-sm font-serif italic text-lg text-[#17345F]">
+              <div className="text-center py-10 text-muted space-y-2">
+                <p className="font-serif italic text-lg sm:text-xl text-ink">
                   &ldquo;Fragrance is the invisible garment of royalty.&rdquo;
                 </p>
-                <p className="text-xs mt-2">Type a perfume name or scent note to discover.</p>
+                <p className="text-xs font-mono text-muted">Type a fragrance name, olfactive note, or family to search.</p>
               </div>
             ) : filteredProducts.length === 0 ? (
-              <div className="text-center py-12 text-[#756B63] space-y-2">
-                <p className="font-serif text-xl text-[#17345F]">No fragrances found for &ldquo;{query}&rdquo;</p>
-                <p className="text-xs">Try searching for &ldquo;Rose&rdquo;, &ldquo;Attar&rdquo;, &ldquo;Oud&rdquo;, or &ldquo;Saffron&rdquo;.</p>
+              <div className="text-center py-12 text-muted space-y-2">
+                <p className="font-serif text-xl text-wine-900">No fragrances found for &ldquo;{query}&rdquo;</p>
+                <p className="text-xs font-mono text-muted">Try searching for &ldquo;Rose&rdquo;, &ldquo;Attar&rdquo;, &ldquo;Oud&rdquo;, or &ldquo;Saffron&rdquo;.</p>
               </div>
             ) : (
               <div className="space-y-4">
-                <p className="text-xs uppercase tracking-wider text-[#756B63] font-semibold mb-3">
-                  FOUND {filteredProducts.length} FRAGRANCE(S)
+                <p className="text-xs uppercase tracking-wider text-muted font-mono font-semibold mb-3">
+                  FOUND {filteredProducts.length} CREATION(S)
                 </p>
-                {filteredProducts.map((product) => (
-                  <div
-                    key={product.id}
-                    className="flex items-center justify-between p-4 bg-[#F8F1E7]/70 border border-[#C49A52]/20 rounded-md hover:border-[#C49A52] transition-all"
-                  >
-                    <Link
-                      href={`/products/${product.slug}`}
-                      onClick={() => setIsSearchOpen(false)}
-                      className="flex items-center gap-4 flex-1"
-                    >
-                      <div className="relative w-16 h-20 bg-white rounded overflow-hidden shrink-0 border border-[#C49A52]/20">
-                        <Image src={product.mainImage} alt={product.name} fill className="object-cover" />
-                      </div>
-                      <div>
-                        <h4 className="font-serif text-lg font-bold text-[#30070D] hover:text-[#9D6A26]">
-                          {product.name}
-                        </h4>
-                        <p className="text-xs text-[#756B63]">{product.type} • {product.defaultSize}</p>
-                        <p className="text-[11px] text-[#C49A52] mt-1 italic">
-                          Notes: {product.notes.top.join(", ")}
-                        </p>
-                      </div>
-                    </Link>
+                {filteredProducts.map((product) => {
+                  const itemImg = product.mainImage && product.mainImage !== 'placeholder'
+                    ? product.mainImage
+                    : '/photos/attars/sehar-e-gulab.jpg';
 
-                    <div className="flex items-center gap-4 pl-4 border-l border-[#C49A52]/20">
-                      <span className="font-serif font-bold text-base text-[#241C1B]">
-                        ₹ {product.price.toLocaleString("en-IN")}
-                      </span>
-                      <PearlButton
-                        onClick={() => {
-                          addToCart(product);
-                          setIsSearchOpen(false);
-                        }}
-                        variant="burgundy"
-                        size="sm"
-                        leftIcon={<ShoppingBag className="w-3.5 h-3.5 text-[#C69A45]" />}
+                  return (
+                    <div
+                      key={product.id}
+                      className="flex items-center justify-between p-4 bg-ivory border border-gold/20 rounded-xl hover:border-gold transition-all shadow-xs"
+                    >
+                      <Link
+                        href={`/products/${product.slug}`}
+                        onClick={() => setIsSearchOpen(false)}
+                        className="flex items-center gap-4 flex-1 min-w-0"
                       >
-                        BAG
-                      </PearlButton>
+                        <div className="relative w-16 h-20 bg-sand rounded-lg overflow-hidden shrink-0 border border-gold/20">
+                          <Image src={itemImg} alt={product.name} fill className="object-cover" />
+                        </div>
+                        <div className="min-w-0">
+                          <h4 className="font-serif text-lg font-normal text-ink hover:text-wine-900 transition-colors truncate">
+                            {product.name}
+                          </h4>
+                          <p className="text-xs text-muted font-light">{product.type} • {product.defaultSize}</p>
+                          <p className="text-[11px] text-gold-deep mt-0.5 italic font-mono truncate">
+                            Notes: {product.notes.top.join(", ")}
+                          </p>
+                        </div>
+                      </Link>
+
+                      <div className="flex items-center gap-4 pl-4 border-l border-gold/20 shrink-0">
+                        <span className="font-serif font-bold text-base text-ink">
+                          ₹ {product.price.toLocaleString("en-IN")}
+                        </span>
+                        <PearlButton
+                          onClick={() => {
+                            addToCart(product);
+                            setIsSearchOpen(false);
+                          }}
+                          variant="burgundy"
+                          size="sm"
+                          leftIcon={<ShoppingBag className="w-3.5 h-3.5 text-gold" />}
+                        >
+                          BAG
+                        </PearlButton>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             )}
           </div>

@@ -2,8 +2,9 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { RotateCcw, CheckCircle2, ShieldCheck, ArrowRight } from "lucide-react";
+import { RotateCcw, CheckCircle2 } from "lucide-react";
 import { useShop } from "@/context/ShopContext";
+import PearlButton from "@/components/PearlButton";
 
 export default function ReturnsPage() {
   const { showToast } = useShop();
@@ -45,25 +46,25 @@ export default function ReturnsPage() {
 
   if (submitted) {
     return (
-      <div className="bg-[#F8F1E7] min-h-screen py-24 text-[#241C1B]">
+      <div className="bg-ivory min-h-screen py-20 text-ink">
         <div className="max-w-xl mx-auto px-4 text-center space-y-6">
-          <div className="w-16 h-16 mx-auto rounded-full bg-[#17345F] text-[#DDBD78] border border-[#C49A52] flex items-center justify-center shadow-royal">
-            <CheckCircle2 className="w-8 h-8" />
+          <div className="w-16 h-16 mx-auto rounded-full bg-wine-900 text-gold-light border border-gold flex items-center justify-center shadow-royal">
+            <CheckCircle2 className="w-8 h-8 text-gold" />
           </div>
-          <span className="text-[10px] tracking-[0.35em] text-[#C49A52] uppercase font-bold">RETURN INITIATED</span>
-          <h1 className="font-serif text-3xl font-bold text-[#17345F]">RETURN REQUEST RECEIVED</h1>
-          <p className="text-xs text-[#756B63]">
-            Reference ID: <span className="font-bold text-[#17345F]">{returnId}</span> for Order <span className="font-bold text-[#17345F]">{orderNumber}</span>.
+          <span className="text-[10px] tracking-[0.35em] text-gold-deep uppercase font-semibold">Return Initiated</span>
+          <h1 className="font-serif text-3xl font-normal text-wine-900">Return Request Received</h1>
+          <p className="text-sm text-muted">
+            Reference ID: <span className="font-semibold text-wine-900">{returnId}</span> for Order{" "}
+            <span className="font-semibold text-wine-900">{orderNumber}</span>.
           </p>
-          <p className="text-xs text-[#756B63] max-w-md mx-auto leading-relaxed">
-            Our royal concierge will review your request within 24 hours and schedule a complimentary doorstep pickup. Once returned, your refund will be processed to the original payment method.
+          <p className="text-xs text-muted max-w-md mx-auto leading-relaxed">
+            Our concierge will review your request within 24 hours and schedule a complimentary doorstep pickup. Once returned, your refund will be processed to the original payment method.
           </p>
-          <div className="pt-4">
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#17345F] text-[#FFF9F1] text-xs font-semibold uppercase tracking-wider rounded"
-            >
-              <span>RETURN TO HOMEPAGE</span>
+          <div className="pt-4 flex justify-center">
+            <Link href="/">
+              <PearlButton variant="primary">
+                Return to Homepage
+              </PearlButton>
             </Link>
           </div>
         </div>
@@ -72,47 +73,70 @@ export default function ReturnsPage() {
   }
 
   return (
-    <div className="bg-[#F8F1E7] min-h-screen py-16 text-[#241C1B]">
+    <div className="bg-ivory min-h-screen py-10 sm:py-16 text-ink">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        {/* Breadcrumb */}
+        <nav aria-label="Breadcrumb" className="pt-2 text-center">
+          <ol className="inline-flex items-center gap-2 text-[10px] tracking-[0.25em] uppercase text-muted">
+            <li>
+              <Link href="/" className="hover:text-wine-900 transition-colors">
+                Home
+              </Link>
+            </li>
+            <li className="text-gold/60">/</li>
+            <li className="text-wine-900 font-medium" aria-current="page">
+              Returns &amp; Refunds
+            </li>
+          </ol>
+        </nav>
+
         <div className="text-center space-y-2">
-          <span className="text-[11px] tracking-[0.35em] text-[#C49A52] uppercase font-bold">CLIENT CARE</span>
-          <h1 className="font-serif text-4xl font-bold text-[#17345F]">RETURNS &amp; REFUNDS</h1>
-          <p className="text-xs text-[#756B63] max-w-md mx-auto">
+          <div className="inline-flex items-center justify-center gap-3">
+            <span className="h-[1px] w-8 bg-gold" />
+            <span className="text-[11px] tracking-[0.3em] uppercase text-gold-deep font-semibold">
+              Client Care
+            </span>
+            <span className="h-[1px] w-8 bg-gold" />
+          </div>
+          <h1 className="font-serif text-3xl sm:text-4xl font-normal text-wine-900 tracking-wide">
+            Returns &amp; Refunds
+          </h1>
+          <p className="text-sm text-muted max-w-md mx-auto">
             We offer hassle-free 7-day returns for unopened items and scent profiling exchanges.
           </p>
         </div>
 
-        <form onSubmit={handleSubmitReturn} className="bg-[#FFF9F1] border border-[#C49A52]/30 p-6 sm:p-8 rounded-xl shadow-soft space-y-4 text-xs">
+        <form onSubmit={handleSubmitReturn} className="bg-cream border border-gold/30 p-6 sm:p-8 rounded-2xl shadow-soft space-y-4 text-xs">
           <div>
-            <label className="block font-bold text-[#17345F] uppercase mb-1">ORDER NUMBER</label>
+            <label className="block font-medium text-wine-900 uppercase tracking-wider text-[11px] mb-1">Order Number</label>
             <input
               type="text"
               required
-              placeholder="e.g. MEH-984210"
+              placeholder="e.g. AAR-984210"
               value={orderNumber}
               onChange={(e) => setOrderNumber(e.target.value)}
-              className="w-full bg-[#F8F1E7] border border-[#C49A52]/40 p-3 rounded text-[#17345F] focus:outline-none"
+              className="w-full bg-ivory border border-gold/30 p-3 rounded-lg text-ink focus:outline-none focus:border-gold"
             />
           </div>
 
           <div>
-            <label className="block font-bold text-[#17345F] uppercase mb-1">ACCOUNT EMAIL</label>
+            <label className="block font-medium text-wine-900 uppercase tracking-wider text-[11px] mb-1">Account Email</label>
             <input
               type="email"
               required
               placeholder="Your email address used for order"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full bg-[#F8F1E7] border border-[#C49A52]/40 p-3 rounded text-[#17345F] focus:outline-none"
+              className="w-full bg-ivory border border-gold/30 p-3 rounded-lg text-ink focus:outline-none focus:border-gold"
             />
           </div>
 
           <div>
-            <label className="block font-bold text-[#17345F] uppercase mb-1">REASON FOR RETURN</label>
+            <label className="block font-medium text-wine-900 uppercase tracking-wider text-[11px] mb-1">Reason for Return</label>
             <select
               value={reason}
               onChange={(e) => setReason(e.target.value)}
-              className="w-full bg-[#F8F1E7] border border-[#C49A52]/40 p-3 rounded text-[#17345F] focus:outline-none font-semibold"
+              className="w-full bg-ivory border border-gold/30 p-3 rounded-lg text-ink focus:outline-none font-medium"
             >
               <option value="Scent profile mismatch">Scent profile mismatch</option>
               <option value="Damaged during shipping">Damaged during shipping</option>
@@ -122,22 +146,27 @@ export default function ReturnsPage() {
           </div>
 
           <div>
-            <label className="block font-bold text-[#17345F] uppercase mb-1">ADDITIONAL NOTES</label>
+            <label className="block font-medium text-wine-900 uppercase tracking-wider text-[11px] mb-1">Additional Notes</label>
             <textarea
               placeholder="Provide any extra details for courier pickup..."
               value={comments}
               onChange={(e) => setComments(e.target.value)}
-              className="w-full bg-[#F8F1E7] border border-[#C49A52]/40 p-3 rounded text-[#17345F] focus:outline-none h-24"
+              className="w-full bg-ivory border border-gold/30 p-3 rounded-lg text-ink focus:outline-none focus:border-gold h-24"
             />
           </div>
 
-          <button
-            type="submit"
-            className="w-full py-4 bg-[#17345F] text-[#FFF9F1] text-xs font-semibold tracking-[0.2em] uppercase rounded hover:bg-[#B94D70] transition-colors flex items-center justify-center gap-2"
-          >
-            <RotateCcw className="w-4 h-4" />
-            <span>SUBMIT RETURN REQUEST</span>
-          </button>
+          <div className="pt-2">
+            <PearlButton
+              variant="primary"
+              fullWidth
+              className="!py-3.5"
+            >
+              <span className="flex items-center justify-center gap-2">
+                <RotateCcw className="w-4 h-4" />
+                <span>Submit Return Request</span>
+              </span>
+            </PearlButton>
+          </div>
         </form>
       </div>
     </div>

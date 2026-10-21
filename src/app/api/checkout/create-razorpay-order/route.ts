@@ -62,7 +62,7 @@ export async function POST(request: Request) {
       orderId: mockRazorpayOrderId,
       amount: amountInPaise,
       currency,
-      key: keyId || 'rzp_test_mehraab_mock_key',
+      key: keyId || 'rzp_test_aarsika_mock_key',
       isSandboxMock: true
     });
   } catch (error) {

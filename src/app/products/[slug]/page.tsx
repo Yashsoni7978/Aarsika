@@ -27,10 +27,10 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
   const categoryBreadcrumb = React.useMemo(() => {
     if (!product) return { href: '/shop', label: 'COLLECTION' };
     const cat = (product.category || '').toUpperCase();
-    if (cat.includes('PARFUM')) return { href: '/collection/eau-de-parfums', label: 'EAU DE PARFUMS' };
-    if (cat.includes('ATTAR')) return { href: '/collection/ittras', label: 'ITTRAS' };
-    if (cat.includes('GIFT')) return { href: '/collection/gift-sets', label: 'GIFT SETS' };
-    if (cat.includes('DISCOVERY') || cat.includes('TRIAL')) return { href: '/collection/trial-sets', label: 'TRIAL SETS' };
+    if (cat.includes('PARFUM')) return { href: '/perfumes', label: 'EAU DE PARFUMS' };
+    if (cat.includes('ATTAR')) return { href: '/attar', label: 'ATTARS' };
+    if (cat.includes('GIFT')) return { href: '/gifting', label: 'GIFT SETS' };
+    if (cat.includes('DISCOVERY') || cat.includes('TRIAL')) return { href: '/discovery-sets', label: 'DISCOVERY SETS' };
     return { href: '/shop', label: 'COLLECTION' };
   }, [product]);
 
@@ -46,19 +46,22 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
   // Collect 3 images for the gallery
   const galleryImages = React.useMemo(() => {
     if (!product) return [];
+    const clean = (url: string) => url.endsWith('.png') ? url.replace(/\.png$/, '.webp') : url;
+
     if (product.gallery && product.gallery.length >= 3) {
-      return product.gallery.slice(0, 3);
+      return product.gallery.slice(0, 3).map(clean);
     }
     const imgs: string[] = [];
-    if (product.mainImage) imgs.push(product.mainImage);
-    if (product.secondaryImage) imgs.push(product.secondaryImage);
+    if (product.mainImage) imgs.push(clean(product.mainImage));
+    if (product.secondaryImage) imgs.push(clean(product.secondaryImage));
     if (product.gallery && product.gallery.length > 0) {
       product.gallery.forEach((g) => {
-        if (!imgs.includes(g)) imgs.push(g);
+        const cleaned = clean(g);
+        if (!imgs.includes(cleaned)) imgs.push(cleaned);
       });
     }
     while (imgs.length < 3) {
-      imgs.push(product.mainImage || '/photos/attars/sehar-e-gulab.jpg');
+      imgs.push(clean(product.mainImage || '/photos/attars/sehar-e-gulab.jpg'));
     }
     return imgs.slice(0, 3);
   }, [product]);
@@ -178,14 +181,17 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
                         idx === activeImageIndex ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
                       }`}
                     >
-                      <Image
-                        src={imgSrc}
-                        alt={`${product.name} - View ${idx + 1}`}
-                        fill
-                        sizes="(max-width: 1024px) 100vw, 50vw"
-                        className="object-contain p-3"
-                        priority={idx === 0}
-                      />
+                      {(idx === 0 || isHovered || idx === activeImageIndex) && (
+                        <Image
+                          src={imgSrc}
+                          alt={`${product.name} - View ${idx + 1}`}
+                          fill
+                          sizes="(max-width: 1024px) 100vw, 50vw"
+                          className="object-contain p-3"
+                          priority={idx === 0}
+                          loading={idx === 0 ? 'eager' : 'lazy'}
+                        />
+                      )}
                     </div>
                   ))}
 
@@ -236,7 +242,8 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
                         src={imgSrc}
                         alt={`${product.name} Thumbnail ${idx + 1}`}
                         fill
-                        sizes="20vw"
+                        sizes="(max-width: 768px) 30vw, 120px"
+                        loading="lazy"
                         className="object-contain p-1.5"
                       />
                     </button>

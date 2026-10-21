@@ -4,7 +4,7 @@
 export const HOME = {
   // Block 1: Announcement Bar
   announcement: {
-    shipping: 'Free shipping across India',
+    shipping: 'Complimentary delivery on orders ₹1,500 and above',
     discovery: 'The Discovery Set from',
     discoveryFallbackPrice: 499,
   },
@@ -52,7 +52,7 @@ export const HOME = {
   // Block 7: Discovery Set
   discovery: {
     heading: 'Start with the Discovery Set',
-    copy: 'Three to four attars, 3 ml each. Find your signature before you choose a full bottle. Free shipping across India.',
+    copy: 'Three to four attars, 3 ml each. Find your signature before you choose a full bottle.',
     buttonText: 'Order the set',
     buttonHref: '/discovery-sets',
   },
@@ -94,7 +94,7 @@ export const HOME = {
 
   // Block 12: Trust & WhatsApp
   trust: {
-    line: 'Free shipping across India · UPI, cards and cash on delivery · Replacement if a bottle arrives broken · GST invoice with every order',
+    line: 'Complimentary delivery on orders ₹1,500 and above · Replacement if a bottle arrives broken · GST invoice with every order',
     heading: 'Find your signature.',
     copy: 'New batches and offers, straight to your WhatsApp.',
     buttonText: 'Join',

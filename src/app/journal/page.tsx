@@ -4,65 +4,93 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { JOURNAL_ARTICLES } from "@/data/journal";
-import { ArrowRight, Clock, BookOpen } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export default function JournalPage() {
-  const [activeCategory, setActiveCategory] = useState<string>("ALL");
+  const [activeCategory, setActiveCategory] = useState("ALL");
 
-  const categories = ["ALL", "HERITAGE", "FRAGRANCE", "INGREDIENTS", "CRAFT", "RAJASTHAN", "GIFTING"];
+  const categories = ["ALL", "OLFACTIVE NOTES", "THE ATELIER", "HERITAGE", "GIFTING"];
+
+  const filteredArticles = activeCategory === "ALL"
+    ? JOURNAL_ARTICLES
+    : JOURNAL_ARTICLES.filter((a) => a.category.toUpperCase() === activeCategory);
 
   const featuredArticle = JOURNAL_ARTICLES.find((a) => a.featured) || JOURNAL_ARTICLES[0];
-  const articlesList = JOURNAL_ARTICLES.filter((a) => {
-    if (activeCategory !== "ALL" && a.category !== activeCategory) return false;
-    return true;
-  });
+  const displayArticles = activeCategory === "ALL"
+    ? filteredArticles.filter((a) => a.id !== featuredArticle.id)
+    : filteredArticles;
 
   return (
-    <div className="bg-[#F8F1E7] min-h-screen text-[#17345F]">
-      {/* Hero Header */}
-      <section className="pt-32 pb-16 px-6 sm:px-10 lg:px-12 bg-[#FFF9F1] border-b border-[#C49A52]/25 text-center space-y-4">
-        <span className="text-[10px] sm:text-[11px] tracking-[0.35em] text-[#C49A52] uppercase font-mono block">
-          MEHRAAB EDITORIAL PUBLICATION
-        </span>
-        <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl font-light text-[#17345F]">
-          THE JOURNAL
-        </h1>
-        <p className="text-xs sm:text-sm text-[#756B63] max-w-xl mx-auto font-light leading-relaxed">
-          Essays on Indian fragrance heritage, botanical harvests, royal architecture, and artisanal craft from Jaipur.
-        </p>
-      </section>
+    <div className="bg-ivory min-h-screen text-ink pt-24 pb-20 font-sans">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        {/* Breadcrumb Navigation */}
+        <div className="text-xs font-mono tracking-widest text-muted uppercase space-x-2">
+          <Link href="/" className="hover:text-ink">
+            HOME
+          </Link>
+          <span>/</span>
+          <Link href="/our-story" className="hover:text-ink">
+            THE HOUSE
+          </Link>
+          <span>/</span>
+          <span className="text-ink font-medium">JOURNAL</span>
+        </div>
 
-      {/* Category Pills */}
-      <section className="py-8 bg-[#F8F1E7] border-b border-[#C49A52]/20 sticky top-[116px] z-20 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-center gap-3 overflow-x-auto text-[11px] font-mono tracking-[0.18em] uppercase">
+        {/* Luxury Architectural Header Banner */}
+        <section className="bg-cream border border-gold/30 rounded-2xl p-6 sm:p-10 lg:p-12 shadow-soft relative overflow-hidden">
+          <div className="max-w-3xl space-y-4">
+            <div className="flex items-center gap-3">
+              <span className="h-[1px] w-8 bg-gold" />
+              <span className="text-[11px] font-mono tracking-[0.35em] text-gold-deep uppercase">
+                AARSIKA JOURNAL
+              </span>
+              <span className="text-gold text-xs">❖</span>
+            </div>
+
+            <div className="space-y-2">
+              <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-ink font-normal leading-tight">
+                The Journal
+              </h1>
+              <p className="font-serif italic text-lg sm:text-xl text-muted">
+                Essays on Rajasthan court olfaction, rare botanicals, and artisanal perfumery.
+              </p>
+            </div>
+
+            <p className="text-xs sm:text-sm text-muted max-w-lg font-light leading-relaxed">
+              Explore the history of royal attars, hydro-distillation traditions of Kannauj, and contemporary fragrance ritual curation.
+            </p>
+          </div>
+        </section>
+
+        {/* Category Filter Chips */}
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3 border-b border-gold/20 pb-4">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-4 py-2 transition-colors whitespace-nowrap border ${
+              className={`px-4 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all duration-300 ${
                 activeCategory === cat
-                  ? "bg-[#17345F] text-[#F8F1E7] border-[#17345F]"
-                  : "bg-[#FFF9F1] text-[#17345F] border-[#C49A52]/30 hover:border-[#C49A52]"
+                  ? "bg-wine-900 text-ivory shadow-md border border-wine-900"
+                  : "bg-transparent text-muted border border-line hover:border-wine-900 hover:text-wine-900"
               }`}
             >
               {cat}
             </button>
           ))}
         </div>
-      </section>
 
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 py-16 space-y-16">
-        {/* Featured Story */}
+        {/* Featured Essay Card (Only on ALL) */}
         {activeCategory === "ALL" && featuredArticle && (
           <Link
             href={`/journal/${featuredArticle.slug}`}
-            className="group grid grid-cols-1 lg:grid-cols-12 gap-10 bg-[#FFF9F1] border border-[#C49A52]/30 p-6 sm:p-10 hover:border-[#C49A52] transition-all"
+            className="group grid grid-cols-1 lg:grid-cols-12 gap-8 bg-cream border border-gold/30 rounded-2xl p-6 sm:p-8 hover:border-gold transition-all shadow-soft"
           >
-            <div className="lg:col-span-7 relative aspect-[16/10] overflow-hidden border border-[#C49A52]/20">
+            <div className="lg:col-span-7 relative aspect-[16/10] overflow-hidden rounded-xl border border-gold/20 bg-sand">
               <Image
                 src={featuredArticle.mainImage}
                 alt={featuredArticle.title}
                 fill
+                priority
                 sizes="(max-width: 1024px) 100vw, 60vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-700"
               />
@@ -70,72 +98,76 @@ export default function JournalPage() {
 
             <div className="lg:col-span-5 flex flex-col justify-between space-y-6">
               <div className="space-y-4">
-                <div className="flex items-center justify-between text-[10px] font-mono tracking-[0.25em] text-[#C49A52] uppercase">
+                <div className="flex items-center justify-between text-[10px] font-mono tracking-[0.25em] text-gold-deep uppercase">
                   <span>{featuredArticle.category} • FEATURED</span>
                   <span>{featuredArticle.readTime}</span>
                 </div>
 
-                <h2 className="font-serif text-3xl sm:text-4xl text-[#17345F] group-hover:text-[#C49A52] transition-colors leading-tight">
+                <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl text-wine-900 group-hover:text-crimson transition-colors leading-tight font-normal">
                   {featuredArticle.title}
                 </h2>
 
-                <p className="text-xs text-[#756B63] font-light leading-relaxed">
+                <p className="text-xs sm:text-sm text-muted font-light leading-relaxed">
                   {featuredArticle.excerpt}
                 </p>
               </div>
 
-              <div className="pt-4 flex items-center justify-between text-xs font-mono tracking-[0.2em] text-[#17345F]">
-                <span className="text-[#756B63] font-light">{featuredArticle.date}</span>
-                <span className="text-[#C49A52] group-hover:text-[#17345F] flex items-center gap-1.5 uppercase">
+              <div className="pt-4 border-t border-gold/20 flex items-center justify-between text-xs font-mono tracking-[0.2em] text-ink">
+                <span className="text-muted font-light">{featuredArticle.date}</span>
+                <span className="text-gold-deep group-hover:text-wine-900 flex items-center gap-1.5 uppercase font-medium">
                   <span>READ ESSAY</span>
-                  <ArrowRight className="w-3.5 h-3.5 stroke-[1.4]" />
+                  <ArrowRight className="w-3.5 h-3.5 stroke-[1.5]" />
                 </span>
               </div>
             </div>
           </Link>
         )}
 
-        {/* Editorial Articles Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {articlesList.map((article) => (
-            <Link
+        {/* Editorial Articles Grid - Centered Remainder Layout */}
+        <div className="flex flex-wrap justify-center gap-6 sm:gap-8">
+          {displayArticles.map((article) => (
+            <div
               key={article.id}
-              href={`/journal/${article.slug}`}
-              className="group bg-[#FFF9F1] border border-[#C49A52]/25 p-6 flex flex-col justify-between space-y-6 hover:border-[#C49A52] transition-all"
+              className="w-full sm:w-[calc(50%-16px)] lg:w-[calc(33.333%-22px)] xl:max-w-[390px] flex"
             >
-              <div className="space-y-4">
-                <div className="relative aspect-[16/10] w-full overflow-hidden border border-[#C49A52]/20">
-                  <Image
-                    src={article.mainImage}
-                    alt={article.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
+              <Link
+                href={`/journal/${article.slug}`}
+                className="group w-full bg-cream border border-gold/30 rounded-2xl p-6 flex flex-col justify-between space-y-6 hover:border-gold transition-all shadow-soft"
+              >
+                <div className="space-y-4">
+                  <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl border border-gold/20 bg-sand">
+                    <Image
+                      src={article.mainImage}
+                      alt={article.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                  </div>
+
+                  <div className="flex items-center justify-between text-[10px] font-mono tracking-[0.25em] text-gold-deep uppercase">
+                    <span>{article.category}</span>
+                    <span>{article.readTime}</span>
+                  </div>
+
+                  <h3 className="font-serif text-xl sm:text-2xl text-wine-900 group-hover:text-crimson transition-colors leading-snug font-normal line-clamp-2">
+                    {article.title}
+                  </h3>
+
+                  <p className="text-xs text-muted font-light line-clamp-3 leading-relaxed">
+                    {article.excerpt}
+                  </p>
                 </div>
 
-                <div className="flex items-center justify-between text-[9.5px] font-mono tracking-[0.25em] text-[#C49A52] uppercase">
-                  <span>{article.category}</span>
-                  <span>{article.readTime}</span>
+                <div className="pt-4 border-t border-gold/20 flex items-center justify-between text-[10px] font-mono tracking-[0.2em] uppercase">
+                  <span className="text-muted">{article.date}</span>
+                  <span className="text-gold-deep group-hover:text-wine-900 flex items-center gap-1 font-medium">
+                    <span>READ</span>
+                    <ArrowRight className="w-3 h-3 stroke-[1.5]" />
+                  </span>
                 </div>
-
-                <h3 className="font-serif text-xl text-[#17345F] group-hover:text-[#C49A52] transition-colors leading-snug">
-                  {article.title}
-                </h3>
-
-                <p className="text-xs text-[#756B63] font-light line-clamp-2 leading-relaxed">
-                  {article.excerpt}
-                </p>
-              </div>
-
-              <div className="pt-4 border-t border-[#C49A52]/15 flex items-center justify-between text-[10px] font-mono tracking-[0.2em] uppercase">
-                <span className="text-[#756B63]">{article.date}</span>
-                <span className="text-[#C49A52] flex items-center gap-1">
-                  <span>READ</span>
-                  <ArrowRight className="w-3 h-3 stroke-[1.4]" />
-                </span>
-              </div>
-            </Link>
+              </Link>
+            </div>
           ))}
         </div>
       </div>
